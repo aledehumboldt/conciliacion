@@ -305,3 +305,5 @@
 127.0.0.1 - - [29/Nov/2023:10:14:57 -0400] "POST /aprov/usuarios/reset HTTP/1.1" 302 1516 "http://aprovisionamiento.com/aprov/usuarios/reset" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
 127.0.0.1 - - [29/Nov/2023:10:14:57 -0400] "GET /login HTTP/1.1" 200 2539 "http://aprovisionamiento.com/aprov/usuarios/reset" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
 127.0.0.1 - - [29/Nov/2023:10:15:07 -0400] "POST /login HTTP/1.1" 200 6701 "http://aprovisionamiento.com/login" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [29/Nov/2023:10:17:43 -0400] "GET /logout HTTP/1.1" 302 1516 "http://aprovisionamiento.com/login" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [29/Nov/2023:10:17:43 -0400] "GET /login HTTP/1.1" 200 2478 "http://aprovisionamiento.com/login" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
