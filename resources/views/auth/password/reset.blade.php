@@ -9,8 +9,9 @@
 @section('contenido')
     @include('layouts.partials.messages')
     <div class="editor-textarea-editable">
-        <form method="POST" action="{{ route('password.update', auth()->user()->id) }}">
+        <form method="POST" action="{{ route('password.update') }}">
             @csrf
+            @method('patch')
             <div class="row mb-3">
                 <label for="clave" class="col-md-4 col-form-label text-md-end">{{ __('Contraseña actual') }}</label>
 
@@ -40,10 +41,10 @@
             </div>
 
             <div class="row mb-3">
-                <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirma nueva contraseña') }}</label>
+                <label for="nueva-clave_confirmation" class="col-md-4 col-form-label text-md-end">{{ __('Confirma nueva contraseña') }}</label>
 
                 <div class="col-md-6">
-                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                    <input id="nueva-clave_confirmation" type="password" class="form-control" name="nueva-clave_confirmation" required autocomplete="new-password">
                 </div>
             </div>
 
