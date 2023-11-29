@@ -28,7 +28,11 @@
 	<header class="window-header">
 		<nav class="navigation">
 			<div class="navigation-top">
-				<a href="{{route('home')}}" class="navigation-item">
+				@if (auth()->user()->estatus == "Activo")
+					<a href="{{route('home')}}" class="navigation-item">
+				@else
+					<a href="#" class="navigation-item">
+				@endif
 					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M3 9.5L12 4L21 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
 						<path d="M19 13V19.4C19 19.7314 18.7314 20 18.4 20H5.6C5.26863 20 5 19.7314 5 19.4V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -52,7 +56,11 @@
 					<span class="navigation-item-title">Exclusiones</span>
 
 				</a>
-				<a href="{{route('usuarios.index')}}" class="navigation-item">
+				@if (auth()->user()->estatus == "Activo" && auth()->user()->perfil == "CYA")
+					<a href="{{route('usuarios.index')}}" class="navigation-item">	
+				@else
+					<a href="#" class="navigation-item">
+				@endif
 					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
 						<path d="M8 21.1679V14L12 7L16 14V21.1679" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
