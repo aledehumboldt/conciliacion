@@ -46,7 +46,7 @@ class LoginController extends Controller
             $this->authenticated($request, $user);
 
             if(auth()->user()->estatus == 'Iniciado') {
-                return view('auth.password.reset')->withErrors('Por favor cambie su contraseña');
+                return redirect('/aprov/usuarios/reset')->with('mensaje','Por favor cambie su contraseña');
             }
 
             return view('home');
