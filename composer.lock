@@ -972,6 +972,18 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
+            "version": "v10.34.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "c581caa233e380610b34cc491490bfa147a3b62b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/c581caa233e380610b34cc491490bfa147a3b62b",
+                "reference": "c581caa233e380610b34cc491490bfa147a3b62b",
+=======
             "version": "v10.34.0",
             "source": {
                 "type": "git",
@@ -982,6 +994,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/92b78fdd1f386425a88f443a728efd176c666244",
                 "reference": "92b78fdd1f386425a88f443a728efd176c666244",
+>>>>>>> 9b2790df8a971e828f4dc9c80edfa36de1c2c89b
                 "shasum": ""
             },
             "require": {
@@ -1170,7 +1183,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+<<<<<<< HEAD
+            "time": "2023-11-28T19:06:27+00:00"
+=======
             "time": "2023-11-28T15:01:38+00:00"
+>>>>>>> 9b2790df8a971e828f4dc9c80edfa36de1c2c89b
         },
         {
             "name": "laravel/prompts",
@@ -8626,6 +8643,17 @@
             "time": "2023-10-09T12:55:26+00:00"
         },
         {
+<<<<<<< HEAD
+            "name": "symfony/yaml",
+            "version": "v6.3.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "3493af8a8dad7fa91c77fa473ba23ecd95334a92"
+            },
+            "dist": {
+                "type": "zip",
+=======
             "name": "symfony/polyfill-php81",
             "version": "v1.28.0",
             "source": {
@@ -8714,6 +8742,7 @@
             },
             "dist": {
                 "type": "zip",
+>>>>>>> 9b2790df8a971e828f4dc9c80edfa36de1c2c89b
                 "url": "https://api.github.com/repos/symfony/yaml/zipball/3493af8a8dad7fa91c77fa473ba23ecd95334a92",
                 "reference": "3493af8a8dad7fa91c77fa473ba23ecd95334a92",
                 "shasum": ""
@@ -8836,5 +8865,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }
