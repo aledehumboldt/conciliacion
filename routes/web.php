@@ -28,7 +28,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/aprov/usuarios/reset', [ResetController::class, 'index'])->name('password.reset');
 
-Route::post('/aprov/usuarios/reset', [ResetController::class, 'update'])->name('password.update');
+Route::patch('/aprov/usuarios/reset', [ResetController::class, 'update'])->name('password.update');
 
 Route::resource('exclusiones/usuarios', ExclusioneController::class);
 
