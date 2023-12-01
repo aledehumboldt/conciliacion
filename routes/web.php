@@ -7,7 +7,7 @@ use App\Http\Controllers\AprovController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ResetController;
-use Illuminate\Auth\Notifications\ResetPassword;
+use App\Http\Middleware\Authenticate;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +30,9 @@ Route::get('/aprov/usuarios/reset', [ResetController::class, 'index'])->name('pa
 
 Route::patch('/aprov/usuarios/reset', [ResetController::class, 'update'])->name('password.update');
 
-Route::resource('exclusiones/usuarios', ExclusioneController::class);
+Route::resource('exclusiones/usuarios', ExclusioneController::class)->middleware(Authenticate::class);
 
-Route::get('aprov/documentos', [AprovController::class,'docs'])->name('docs');
+Route::get('aprov/documentos', [AprovController::class,'docs'])->name('docs')->middleware(Authenticate::class);
 
 Route::get('/login', [LoginController::class, 'show'])->name('login');
 

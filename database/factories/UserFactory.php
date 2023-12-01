@@ -20,13 +20,16 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        return [
+        $result = [
             'nombre' => fake()->name(),
             'usuario' => fake()->numerify('########'),
             'estatus' => fake()->randomElement(['Suspendido', 'Iniciado', 'Activo']),
             'perfil' => fake()->randomElement(['SA', 'CYA']),
             'creado_por' => fake()->numerify('########'),
-            'clave' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
         ];
+
+        $result['clave'] = md5($result['usuario']);
+        
+        return $result;
     }
 }
