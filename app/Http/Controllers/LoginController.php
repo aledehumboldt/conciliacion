@@ -49,7 +49,7 @@ class LoginController extends Controller
                 return redirect('/aprov/usuarios/reset')->with('mensaje','Por favor cambie su contraseña');
             }
 
-            return view('home');
+            return redirect('/');
         }
 
         return view('auth.login')->withErrors('Inicio fallido');
