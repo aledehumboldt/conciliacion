@@ -42,3 +42,4 @@ Route::post('/login', [LoginController::class, 'login']);
 
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
+Route::get('exclusiones/', [ExclusioneController::class, 'excluir'])->name('exclusiones.index');
