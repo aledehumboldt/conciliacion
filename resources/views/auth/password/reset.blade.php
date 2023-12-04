@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.bootstrap')
 
 @section('titulo', 'Cambio de Contraseña')
 
