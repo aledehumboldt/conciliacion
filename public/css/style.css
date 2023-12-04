@@ -220,6 +220,12 @@ img {
   border-radius: 6px;
   transition: 0.15s ease;
 }
+.editor-title {
+  font-weight: 500;
+  line-height: 1.375;
+  font-size: 1.5rem;
+  text-align: center;
+}
 .editor-toolbar-item.icon {
   width: 2rem;
   height: 2rem;
@@ -316,7 +322,7 @@ img {
   overflow-y: auto;
 }
 .window-panel::-webkit-scrollbar {
-  width: 1px;
+  width: 15px;
   background-color: #6666;
 }
 .window-panel::-webkit-scrollbar-thumb {
