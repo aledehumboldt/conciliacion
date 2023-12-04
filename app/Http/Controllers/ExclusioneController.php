@@ -86,4 +86,8 @@ class ExclusioneController extends Controller
         return redirect('exclusiones/usuarios')->with('mensaje', 'Usuario suspendido.');
         //return $usuario;
     }
+
+    public function excluir () {
+        return view('exclusiones.index');
+    }
 }

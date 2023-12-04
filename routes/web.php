@@ -26,9 +26,11 @@ use App\Http\Middleware\Authenticate;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/aprov/usuarios/reset', [ResetController::class, 'index'])->name('password.reset');
+Route::get('/aprov/usuarios/reset', [ResetController::class, 'index'])->name('password.change');
 
 Route::patch('/aprov/usuarios/reset', [ResetController::class, 'update'])->name('password.update');
+
+Route::get('/aprov/usuarios/restablecer/{id}', [ResetController::class, 'edit'])->name('password.reset');
 
 Route::resource('exclusiones/usuarios', ExclusioneController::class)->middleware(Authenticate::class);
 
@@ -40,3 +42,4 @@ Route::post('/login', [LoginController::class, 'login']);
 
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
+Route::get('exclusiones/', [ExclusioneController::class, 'excluir'])->name('exclusiones.index');

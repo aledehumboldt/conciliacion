@@ -34,4 +34,13 @@ class ResetController extends Controller {
 
         return redirect('/login')->withErrors('Contraseña actualizada.');
     }
+
+    public function edit($id) {
+        $usuario = User::find($id);
+        $usuario->clave = md5($usuario->usuario);
+        $usuario->estatus = "Iniciado";
+        $usuario->save();
+
+        return redirect('exclusiones/usuarios')->with('mensaje', 'contraseña reestablecida.');
+    }
 }
