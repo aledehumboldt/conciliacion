@@ -25,7 +25,7 @@ img {
 
 .window {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 100px 1fr;
   grid-template-rows: 100vh;
 }
 
@@ -316,7 +316,7 @@ img {
   overflow-y: auto;
 }
 .window-panel::-webkit-scrollbar {
-  width: 15px;
+  width: 1px;
   background-color: #6666;
 }
 .window-panel::-webkit-scrollbar-thumb {
@@ -327,7 +327,7 @@ img {
 }
 .window-panel:after {
   content: "";
-  width: calc(100% + 4rem);
+  width: calc(0% + 4rem);
   height: 50px;
   margin-left: -2rem;
   bottom: -2rem;
