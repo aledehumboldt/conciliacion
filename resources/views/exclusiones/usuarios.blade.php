@@ -8,7 +8,7 @@
 @section('encabezado')
     <h3 class="editor-toolbar-item">Gestion de Usuarios</h3>
 <div style="position: absolute; right: 2%;">
-    <a href="{{route('usuarios.create')}}" class="editor-toolbar-item btn btn-secondary">Crear Usario</a>
+    <a href="{{route('usuarios.create')}}" class="editor-toolbar-item btn btn-secondary">Crear Usuario</a>
 </div>
 @endsection
 

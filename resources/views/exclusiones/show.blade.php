@@ -1,4 +1,4 @@
-@extends('layouts.plantilla')
+@extends('layouts.bootstrap')
 
 @section('titulo', 'Gestion Usuarios')
 
