@@ -12,13 +12,14 @@
 	 <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"> 
 	<!--<script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>-->
 	<style>
-        .pagination {
-            --bs-pagination-active-bg: #fd585f;
-            --bs-pagination-active-border-color: #fd585f;
-            --bs-pagination-color:#666666;
-            --bs-pagination-hover-bg:#fd585f;
-            --bs-pagination-hover-color: #666666;
-        }
+      .pagination {
+      --bs-pagination-active-bg: #fd585f;
+      --bs-pagination-active-border-color: #fd585f;
+      --bs-pagination-color:#666666;
+      --bs-pagination-hover-bg:#fd585f;
+      --bs-pagination-hover-color: #070707;
+      --bs-link-hover-color: #fd585f;
+      }
     </style>
 	@yield('estilos')
 </head>

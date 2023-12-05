@@ -112,6 +112,16 @@
       .dropdown-menu{
       --bs-dropdown-link-active-bg: #fd585f;
       }
+      
+      .pagination {
+      --bs-pagination-active-bg: #fd585f;
+      --bs-pagination-active-border-color: #fd585f;
+      --bs-pagination-color:#666666;
+      --bs-pagination-hover-bg:#fd585f;
+      --bs-pagination-hover-color: #070707;
+      --bs-link-hover-color: #fd585f;
+      }
+
     </style>
     @yield('estilos')
 
@@ -224,10 +234,11 @@
   </symbol>
 </svg>
 
-<header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow align-items-center" data-bs-theme="dark">
+
+<header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white">{{auth()->user()->nombre}}</a>
-  <img src="{{asset('assets/1699301436808.png')}}" style="width: 50px" alt="logo">
-  <h3 class="text-white col-md" style="text-align:center">Coordinación de Aprovisionamiento</h3>
+  <img src="{{asset('assets/1699301436808.png')}}" style="width: 45px; position:absolute; right:61%" alt="logo">
+  <h2 class="text-white col-md" style="text-align:center">Aprovisionamiento</h2>
 </header>
  
 <div class="container-fluid">
