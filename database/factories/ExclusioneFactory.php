@@ -24,7 +24,6 @@ class ExclusioneFactory extends Factory
             'celular' => fake()->numerify('##########'),
             'observaciones' => fake()->sentence(),
             'tecnologia' => fake()->randomElement(['GSM', 'CDMA']),
-            'fecham' => now(),
             'tcliente' => fake()->randomElement(['POSTPAGO','PREPAGO'])
         ];
     }
