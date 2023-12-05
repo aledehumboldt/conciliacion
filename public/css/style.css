@@ -302,10 +302,10 @@ img {
   cursor: pointer;
 }
 .editor-textarea-editable img:hover {
-  box-shadow: 0 0 0 4px #3f5efb;
+  box-shadow: 0 0 0 4px #fd585f;
 }
 .editor-textarea-editable a {
-  color: #3f5efb;
+  color: #fd585f;
   text-decoration: none;
   box-shadow: 0 2px 0 0 currentcolor;
   font-weight: 600;
@@ -545,11 +545,11 @@ img {
 }
 .button--save {
   background-color: #e0e4fa;
-  color: #2f47be;
+  color: #fd585f;
 }
 .button--save:hover {
   color: #e0e4fa;
-  background-color: #2f47be;
+  background-color: #fd585f;
 }
 .button--schedule {
   background-color: #ece0fa;

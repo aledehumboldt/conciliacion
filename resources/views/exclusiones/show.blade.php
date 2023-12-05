@@ -1,5 +1,4 @@
-@extends('layouts.app')
-
+@extends('layouts.bootstrap')
 @section('titulo', 'Gestion Exclusiones')
 
 @section('estilos')
@@ -42,7 +41,7 @@
           </div>
           <label for="observaciones" class="form-label">Observaciones</label>
           <div class="form-floating mb-3">
-            <textarea name="observaciones" id="observaciones" cols="170" rows="5" >{{old('observaciones')}}</textarea>
+            <textarea name="observaciones" id="observaciones" cols="50" rows="5" >{{old('observaciones')}}</textarea>
         </div>
         <div class="text-center pt-1 mb-5 pb-1">
             <button type="submit" name="excluir" id="excluir" class="btn btn-secondary btn-block fa-lg gradient-custom-2 mb-3">

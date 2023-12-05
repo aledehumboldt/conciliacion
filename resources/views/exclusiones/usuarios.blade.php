@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.bootstrap')
 
 @section('titulo', 'Gestion Usuarios')
 
@@ -8,15 +8,15 @@
 @section('encabezado')
     <h3 class="editor-toolbar-item">Gestion de Usuarios</h3>
 <div style="position: absolute; right: 2%;">
-    <a href="{{route('usuarios.create')}}" class="editor-toolbar-item btn btn-secondary">Crear Usario</a>
+    <a href="{{route('usuarios.create')}}" class="editor-toolbar-item btn btn-secondary">Crear Usuario</a>
 </div>
 @endsection
 
 @section('contenido')
     @include('layouts.partials.messages')
 
-        <table class="table table-light">
-            <thead class="table table-light editor-textarea-editable">
+        <table class="table">
+            <thead class="table editor-textarea-editable">
                 <tr>
                     <th>#</th>
                     <th>Nombre</th>
@@ -27,7 +27,7 @@
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody class="table table-light editor-textarea-editable">
+            <tbody class="table editor-textarea-editable">
                 @foreach ($usuarios as $usuario)
                 <tr>
                     <td>{{$usuario->id}}</td>

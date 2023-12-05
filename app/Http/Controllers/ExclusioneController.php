@@ -13,7 +13,7 @@ class ExclusioneController extends Controller
      * Display a listing of the resource.
      */
     public function index() {
-        $datos['usuarios'] = User::where('estatus','<>', 'Suspendido')->paginate();
+        $datos['usuarios'] = User::where('estatus','<>', 'Suspendido')->orderBy('id','asc')->paginate();
         return view('exclusiones.usuarios', $datos);
     }
 
