@@ -1,12 +1,11 @@
 <!doctype html>
-<html lang="en" data-bs-theme="auto">
-  <head><script src="{{asset('js/color-modes.js')}}"></script>
-
+<html lang="es" data-bs-theme="auto">
+  <head>
+    <script src="{{asset('js/color-modes.js')}}"></script>
+    <link rel="icon" type="image/x-icon" href="{{asset('assets/1699301436808.png')}}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.118.2">
     <title>@yield('titulo')</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
