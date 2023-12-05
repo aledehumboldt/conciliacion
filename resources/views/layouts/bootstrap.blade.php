@@ -147,13 +147,13 @@
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{route('home')}}">
                 <svg class="bi"><use xlink:href="#house-fill"/></svg>
-                Inicio
+                Lo Nuevo
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{route('exclusiones.show')}}">
                 <svg class="bi"><use xlink:href="#file-earmark"/></svg>
-                Exclusiones
+                Gestion de Exclusiones
               </a>
             </li>
 
@@ -164,21 +164,21 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="#">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{route('bypass.showbypass')}}">
                 <svg class="bi"><use xlink:href="#graph-up"/></svg>
-                Example
+                Gestion Trafico Gris (Bypass)
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="#">
                 <svg class="bi"><use xlink:href="#cart"/></svg>
-                Example
+                Conexion y Desconexion de abonados
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="#">
                 <svg class="bi"><use xlink:href="#puzzle"/></svg>
-                Example
+                Suspension y Reactivacion de Abonados
               </a>
             </li>
           </ul>
