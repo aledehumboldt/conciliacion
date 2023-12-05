@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ExclusioneController;
+use App\Http\Controllers\BypassController;
 use App\Http\Controllers\AprovController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -45,3 +46,5 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::get('exclusiones/', [ExclusioneController::class, 'show'])->name('exclusiones.show');
 
 Route::post('exclusiones/', [ExclusioneController::class, 'storage'])->name('exclusiones.storage');
+
+Route::get('bypass/', [BypassController::class, 'showbypass'])->name('bypass.showbypass');
