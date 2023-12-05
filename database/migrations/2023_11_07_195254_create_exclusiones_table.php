@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('celular', 10);
             $table->text('observaciones');
             $table->string('tecnologia');
-            $table->string('fecham');
             $table->string('tcliente');
             $table->timestamps();
         });
