@@ -416,3 +416,4 @@
 127.0.0.1 - - [05/Dec/2023:09:27:07 -0400] "GET /assets/1699301436808.png HTTP/1.1" 200 137522 "http://aprovisionamiento.com/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
 127.0.0.1 - - [05/Dec/2023:09:27:19 -0400] "GET /exclusiones/usuarios HTTP/1.1" 200 5716 "http://aprovisionamiento.com/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
 127.0.0.1 - - [05/Dec/2023:09:27:37 -0400] "GET /exclusiones/usuarios/2/edit HTTP/1.1" 200 4971 "http://aprovisionamiento.com/exclusiones/usuarios" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [06/Dec/2023:10:07:12 -0400] "GET /exclusiones/usuarios HTTP/1.1" 302 1593 "http://aprovisionamiento.com/exclusiones/usuarios" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
