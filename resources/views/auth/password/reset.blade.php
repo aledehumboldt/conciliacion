@@ -9,7 +9,7 @@
 @section('contenido')
     @include('layouts.partials.messages')
     <div class="editor-textarea-editable">
-        <form method="POST" action="{{ route('password.update') }}">
+        <form method="POST" action="{{ route('password.update',auth()->user()->id)}}">
             @csrf
             @method('patch')
             <div class="row mb-3">

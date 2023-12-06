@@ -29,7 +29,7 @@
                         <h4 class="mt-1 mb-5 pb-1">Coordinación de Aprovisionamiento</h4>
                       </div>
       
-                      <form method="post" action="/login">
+                      <form method="post" action="{{route('login')}}">
                         @csrf
                         <p>Por favor, inicie sesión.</p>
                         @include('layouts.partials.messages')

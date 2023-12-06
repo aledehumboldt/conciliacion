@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Exclusione;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -13,82 +12,21 @@ class ExclusioneController extends Controller
      * Display a listing of the resource.
      */
     public function index() {
-        $datos['usuarios'] = User::where('estatus','<>', 'Suspendido')->orderBy('id','asc')->paginate();
-        return view('exclusiones.usuarios', $datos);
+        $datos['exclusiones'] = Exclusione::paginate();
+        return view('exclusiones.index', $datos);
     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create() {
-        return view('exclusiones.create');
+        return view('exclusiones.crear');
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request) {
-        $campos = [
-            'nombre' => 'required|string|max:100',
-            'usuario' => 'required|numeric|min:8',
-            'perfil' => 'required|string|min:2|max:3',
-        ];
-
-        $this->validate($request,$campos);
-
-        $datosUsuario = request()->except('_token', 'crear');
-        $datosUsuario['clave'] = md5(request()->usuario);
-        User::insert($datosUsuario);
-        return redirect('exclusiones/usuarios')->with('mensaje', 'Usuario agregado.');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show() {
-        return view('exclusiones.show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id) {
-        $usuario = User::findOrFail($id);
-        return view('exclusiones.edit', compact('usuario'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id) {
-
-        $campos = [
-            'nombre' => 'required|string|max:100',
-            'usuario' => 'required|numeric|min:8',
-            'perfil' => 'required|string|min:2|max:3',
-        ];
-
-        $this->validate($request,$campos);
-        
-        //Actualizando registro
-        $datosUsuario = request()->except('_token', 'crear', '_method');
-        User::where('id','=',$id)->update($datosUsuario);
-        //Buscando registro actualizado y redireccionando
-        $usuario = User::findOrFail($id);
-        return redirect('exclusiones/usuarios')->with('mensaje', 'Usuario actualizado.');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $usuario) {
-        $usuario->estatus = 'Suspendido';
-        $usuario->save();
-        return redirect('exclusiones/usuarios')->with('mensaje', 'Usuario suspendido.');
-        //return $usuario;
-    }
-
-    public function storage (Request $request) {
         //Validando valores del formulario
         $campos = [
             'ticket' => 'required|string|min:10|max:10',
@@ -126,6 +64,37 @@ class ExclusioneController extends Controller
 
         //Redireccionando
         return redirect('exclusiones')->with('mensaje', 'Abonado Excluido.');
+    }
 
+    /**
+     * Display the specified resource.
+     */
+    public function show() {
+        return view('exclusiones.consultar');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Request $request) {
+        return $request;
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, $id) {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy() {
+        //
+    }
+
+    public function query (Request $request) {
+        //
     }
 }
