@@ -28,8 +28,5 @@
 @if (Session::has('mensaje'))
     <div class="alert alert-secondary alert-dismissible fade show" role="alert">
         <strong>{{Session::get('mensaje')}}</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
     </div>
 @endif
