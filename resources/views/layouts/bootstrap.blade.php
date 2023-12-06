@@ -145,38 +145,42 @@
         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{route('home')}}">
+              <a aria-current="page" href="{{route('home')}}" class="nav-link d-flex align-items-center gap-2
+                @if(route('home') == url()->current()) active @endif ">
                 <svg class="bi"><use xlink:href="#house-fill"/></svg>
-                Lo Nuevo
+                Inicio
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="{{route('exclusiones.index')}}">
+              <a href="{{route('exclusiones.index')}}" class="nav-link d-flex align-items-center gap-2
+                @if(route('exclusiones.index') == url()->current()) active @endif ">
                 <svg class="bi"><use xlink:href="#file-earmark"/></svg>
                 Gestion de Exclusiones
               </a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="{{route('usuarios.index')}}">
+              <a href="{{route('usuarios.index')}}" class="nav-link d-flex align-items-center gap-2
+                @if(route('usuarios.index') == url()->current()) active @endif ">
                 <svg class="bi"><use xlink:href="#people"/></svg>
                 Gestion de Usuarios
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="{{route('bypass.showbypass')}}">
+              <a href="{{route('bypass.create')}}"  class="nav-link d-flex align-items-center gap-2
+              @if(route('bypass.create') == url()->current()) active @endif ">
                 <svg class="bi"><use xlink:href="#graph-up"/></svg>
                 Gestion Trafico Gris (Bypass)
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="#">
+              <a href="#" class="nav-link d-flex align-items-center gap-2">
                 <svg class="bi"><use xlink:href="#cart"/></svg>
                 Conexion y Desconexion de abonados
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="#">
+              <a ref="#" class="nav-link d-flex align-items-center gap-2">
                 <svg class="bi"><use xlink:href="#puzzle"/></svg>
                 Suspension y Reactivacion de Abonados
               </a>
@@ -211,7 +215,7 @@
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{route('logout')}}">
                 <svg class="bi"><use xlink:href="#door-closed"/></svg>
-                Logout
+                Salir
               </a>
             </li>
           </ul>

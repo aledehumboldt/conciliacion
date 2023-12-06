@@ -8,10 +8,10 @@ use Carbon\Carbon;
 
 class BypassController extends Controller
 {
-    public function show() {
-        return view('bypass.showbypass');
+    public function create() {
+        return view('bypass.crear');
     }
-    public function showbypass (Request $request) {
+    public function store (Request $request) {
         //Validando valores del formulario
         $campos = [
             'ticket' => 'required|string|min:10|max:10',
@@ -45,7 +45,7 @@ class BypassController extends Controller
         Bypas::insert($datosBypass);
 
         //Redireccionando
-        return redirect('bypass')->with('mensaje', 'Abonado Procesado.');
+        return redirect('bypass/create')->with('mensaje', 'Abonado Procesado.');
 
     }
 }

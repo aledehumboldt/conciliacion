@@ -1,5 +1,5 @@
 @extends('layouts.bootstrap')
-@section('titulo', 'Gestion Trafico gris Bypass')
+@section('titulo', 'Gestion Bypass')
 
 @section('estilos')
 <style>
@@ -18,12 +18,12 @@
 @endsection
 
 @section('encabezado')
-    <h3 class="editor-toolbar-item">Gestion de Trafico gris Bypass</h3>
+    <h3 class="editor-toolbar-item">Gestion Bypass</h3>
 @endsection
 
 @section('contenido')
     @include('layouts.partials.messages')
-    <form action="{{ route('bypass.showbypass') }}" enctype="multipart/form-data" method="get">
+    <form action="{{ route('bypass.store') }}" enctype="multipart/form-data" method="get">
         @csrf
     <div class="form-container">
         <div class="form-floating mb-3">

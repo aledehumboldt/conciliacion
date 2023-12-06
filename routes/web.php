@@ -34,7 +34,9 @@ Route::post('/login', [LoginController::class, 'login']);
 
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
-Route::get('bypass/', [BypassController::class, 'showbypass'])->name('bypass.showbypass');
+Route::get('/bypass/create', [BypassController::class, 'create'])->name('bypass.create');
+
+Route::post('/bypass/create', [BypassController::class, 'store'])->name('bypass.store');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);

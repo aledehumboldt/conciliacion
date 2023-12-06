@@ -12,7 +12,7 @@ class ExclusioneController extends Controller
      * Display a listing of the resource.
      */
     public function index() {
-        $datos['exclusiones'] = Exclusione::paginate();
+        $datos['exclusiones'] = Exclusione::where('fechae', '>=', now()->format('Y-m-d H:i:s'))->paginate();
         return view('exclusiones.index', $datos);
     }
 
