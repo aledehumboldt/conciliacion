@@ -143,10 +143,6 @@ textarea:focus, input:focus, input[type]:focus{
 background-color: #fd585f;
 }
 
-.dropdown-menu{
---bs-dropdown-link-active-bg: #fd585f;
-}
-
 .pagination {
 --bs-pagination-active-bg: #fd585f;
 --bs-pagination-active-border-color: #fd585f;
@@ -155,7 +151,15 @@ background-color: #fd585f;
 --bs-pagination-hover-color: #070707;
 }
 
-textarea:focus, input:focus, input[type]:focus{
-border-color: #fd585f;
-box-shadow: 0 1px 1px #fd585f inset, 0 0 8px #fd585f;
+.tomatxt:focus {
+box-shadow: 0 0 8px #fd585f;
 }
+
+.form-control:focus{
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: #fd585f;
+  outline: 0;
+  box-shadow: 0 0 8px #fd585f;
+}
+
