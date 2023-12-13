@@ -24,7 +24,7 @@
                     <th>Creado por</th>
                     <th>Estatus</th>
                     <th>Perfil</th>
-                    <th>Acciones</th>
+                    <th style="text-align: center">Acciones</th>
                 </tr>
             </thead>
             <tbody class="table editor-textarea-editable">
