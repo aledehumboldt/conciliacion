@@ -3,7 +3,70 @@
 	@section('titulo', 'Inicio')
 
 		@section('encabezado')
+		hola
 		@endsection
+
+<style>
+
+.carousel-caption{
+    position: absolute; 
+    right: 15%;
+    left: 15%;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.carousel-item{
+  	height: 250px;
+}
+
+.carousel-inner img{
+  height: 170%;
+}
+
+</style>
+
 		@section('contenido')
+		<div id="carouselExampleCaptions" class="carousel slide">
+			<div class="carousel-indicators">
+			  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+			  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+			  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+			</div>
+			<div class="carousel-inner">
+			  <div class="carousel-item active">
+				<img src="{{asset('assets/1.png')}}" alt="...">
+				<div class="carousel-caption">
+				  <h5>PRUEBAS</h5>
+				  <p>Some representative placeholder content for the first slide.</p>
+				</div>
+			  </div>
+			  <div class="carousel-item">
+				<img src="{{asset('assets/2.png')}}" alt="...">
+				<div class="carousel-caption">
+				  <h5>PRUEBAS2</h5>
+				  <p>Some representative placeholder content for the second slide.</p>
+				</div>
+			  </div>
+			  <div class="carousel-item">
+				<img src="{{asset('assets/3.png')}}" alt="...">
+				<div class="carousel-caption">
+				  <h5>PRUEBAS3</h5>
+				  <p>Some representative placeholder content for the third slide.</p>
+				</div>
+			  </div>
+			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+			  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			  <span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+			  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			  <span class="visually-hidden">Next</span>
+			</button>
+		  </div>
 		@endsection
+
 
