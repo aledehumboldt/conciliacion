@@ -155,7 +155,7 @@
               <a href="{{route('exclusiones.index')}}" class="nav-link d-flex align-items-center gap-2
                 @if(route('exclusiones.index') == url()->current()) active @endif ">
                 <svg class="bi"><use xlink:href="#file-earmark"/></svg>
-                Gestion de Exclusiones
+                Exclusiones
               </a>
             </li>
 
@@ -163,14 +163,14 @@
               <a href="{{route('usuarios.index')}}" class="nav-link d-flex align-items-center gap-2
                 @if(route('usuarios.index') == url()->current()) active @endif ">
                 <svg class="bi"><use xlink:href="#people"/></svg>
-                Gestion de Usuarios
+                Usuarios
               </a>
             </li>
             <li class="nav-item">
               <a href="{{route('bypass.create')}}"  class="nav-link d-flex align-items-center gap-2
               @if(route('bypass.create') == url()->current()) active @endif ">
                 <svg class="bi"><use xlink:href="#graph-up"/></svg>
-                Gestion Trafico Gris (Bypass)
+                Trafico Gris (Bypass)
               </a>
             </li>
             <li class="nav-item">
