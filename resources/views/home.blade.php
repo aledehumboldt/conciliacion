@@ -16,14 +16,16 @@
     padding-top: 20px;
     padding-bottom: 20px;
     text-align: center;
+	background-color: rgba(0, 0, 0, 0.7);
 }
 
 .carousel-item{
-  	height: 250px;
+  	height: 60%;
 }
 
 .carousel-inner img{
-  height: 170%;
+  height: 100%;
+  opacity: 0.8;																								
 }
 
 </style>
@@ -39,22 +41,22 @@
 			  <div class="carousel-item active">
 				<img src="{{asset('assets/1.png')}}" alt="...">
 				<div class="carousel-caption">
-				  <h5>PRUEBAS</h5>
-				  <p>Some representative placeholder content for the first slide.</p>
+				  <h5>ffffff</h5>
+				  <p>solicitud</p>
 				</div>
 			  </div>
 			  <div class="carousel-item">
 				<img src="{{asset('assets/2.png')}}" alt="...">
 				<div class="carousel-caption">
-				  <h5>PRUEBAS2</h5>
-				  <p>Some representative placeholder content for the second slide.</p>
+				  <h5>¿Extravío de clave?</h5>
+				  <p>Pídele al equipo de Aprovisionamiento el reestablecimiento de la misma, mediante el formato correspondiente a la solicitud</p>
 				</div>
 			  </div>
 			  <div class="carousel-item">
 				<img src="{{asset('assets/3.png')}}" alt="...">
 				<div class="carousel-caption">
-				  <h5>PRUEBAS3</h5>
-				  <p>Some representative placeholder content for the third slide.</p>
+				  <h5>Para ti, usuario nuevo</h5>
+				  <p>Es necesario realizar la solicitud de creación de usuario, para accerder a las distintas funcionalidades.</p>
 				</div>
 			  </div>
 			</div>
