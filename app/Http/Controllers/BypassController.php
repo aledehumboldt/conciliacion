@@ -5,12 +5,29 @@ namespace App\Http\Controllers;
 use App\Models\Bypas;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class BypassController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+
+            if (Auth::user()->perfil == "CYA") {
+                return $next($request);
+            } else {
+                return false;
+            }
+ 
+        });
+    }
+
     public function create() {
         return view('bypass.crear');
     }
+
+    
     public function store (Request $request) {
         //Validando valores del formulario
         $campos = [

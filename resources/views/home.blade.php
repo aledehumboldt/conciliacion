@@ -2,9 +2,9 @@
 
 	@section('titulo', 'Inicio')
 
-		@section('encabezado')
-		hola
-		@endsection
+	@section('encabezado')
+	
+	@endsection
 
 <style>
 

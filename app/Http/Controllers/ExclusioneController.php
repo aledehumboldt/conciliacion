@@ -5,13 +5,29 @@ namespace App\Http\Controllers;
 use App\Models\Exclusione;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExclusioneController extends Controller
 {
+    protected function verify() {
+        if (Auth::user()->estatus != "Iniciado") {
+            return true;
+        } else {
+            return false;
+        }
+    }
     /**
      * Display a listing of the resource.
      */
     public function index() {
+        if(!$this->verify()) {
+            return back();
+        }
+
+        if(auth()->user()->perfil == "SA") {
+            return redirect()->route('exclusiones.create');
+        }
+
         $datos['exclusiones'] = Exclusione::where('fechae', '>=', now()->format('Y-m-d H:i:s'))->paginate();
         return view('exclusiones.index', $datos);
     }
