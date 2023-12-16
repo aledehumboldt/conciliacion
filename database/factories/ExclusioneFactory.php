@@ -16,15 +16,22 @@ class ExclusioneFactory extends Factory
      */
     public function definition(): array
     {
-        return [
+        $result = [
             'ticket' => fake()->numerify('##########'),
             'fechae' => fake()->dateTimeBetween('now', '+1 year'),
             'fechac' => now(),
             'usuario' => fake()->numerify('########'),
-            'celular' => fake()->numerify('##########'),
+            'codarea' => fake()->randomElement(['416', '426']),
+            'numero' => fake()->numerify('#######'),
             'observaciones' => fake()->sentence(),
             'tecnologia' => fake()->randomElement(['GSM', 'CDMA']),
             'tcliente' => fake()->randomElement(['POSTPAGO','PREPAGO'])
         ];
+
+        $result['celular'] = $result['codarea'].$result['numero'];
+
+        unset($result['codarea'], $result['numero']);
+        
+        return $result;
     }
 }

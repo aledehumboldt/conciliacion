@@ -22,7 +22,7 @@
 
 @section('contenido')
     @include('layouts.partials.messages')
-    <form action="{{ route('exclusiones.edit',auth()->user()->id) }}" enctype="multipart/form-data" method="POST">
+    <form action="{{ route('exclusiones.query') }}" enctype="multipart/form-data" method="POST">
         @csrf
     <div class="form-container">
         <label for="celularB" class="form-label">Celular</label>
@@ -35,14 +35,14 @@
             <input type="text" name="celularB" id="celularB" value="{{old('celularB')}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
         </div>
         <div class="text-center pt-1 mb-3 pb-1">
-            <button type="submit" name="buscar" id="buscar" class="btn btn-secondary btn-block fa-lg gradient-custom-2 mb-3">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3 19V5C3 3.89543 3.89543 3 5 3H16.1716C16.702 3 17.2107 3.21071 17.5858 3.58579L20.4142 6.41421C20.7893 6.78929 21 7.29799 21 7.82843V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19Z" stroke="currentColor" stroke-width="1.5" />
-                    <path d="M8.6 9H15.4C15.7314 9 16 8.73137 16 8.4V3.6C16 3.26863 15.7314 3 15.4 3H8.6C8.26863 3 8 3.26863 8 3.6V8.4C8 8.73137 8.26863 9 8.6 9Z" stroke="currentColor" stroke-width="1.5" />
-                    <path d="M6 13.6V21H18V13.6C18 13.2686 17.7314 13 17.4 13H6.6C6.26863 13 6 13.2686 6 13.6Z" stroke="currentColor" stroke-width="1.5" />
+            <!-- Button trigger modal -->
+            <button type="submit" class="btn btn-secondary btn-block fa-lg gradient-custom-2 mb-3" name="buscar" id="buscar"  data-toggle="modal" data-target="#exampleModal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                 </svg>
-                Buscar abonado</button>
-                <a href="{{route('exclusiones.create')}}" class="btn btn-secondary btn-block fa-lg gradient-custom-2 mb-3">Volver</a>
+                Buscar abonado
+            </button>
+            <a href="{{route('exclusiones.create')}}" class="btn btn-secondary btn-block fa-lg gradient-custom-2 mb-3">Volver</a>
         </div>
     </div>
 </form>

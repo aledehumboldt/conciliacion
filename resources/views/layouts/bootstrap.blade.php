@@ -205,7 +205,6 @@
                 Incidencias o Requerimientos
               </a>
             </li>
-            </li>
           </ul>
           @endif
 
