@@ -5,13 +5,29 @@ namespace App\Http\Controllers;
 use App\Models\Exclusione;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExclusioneController extends Controller
 {
+    protected function verify() {
+        if (Auth::user()->estatus != "Iniciado") {
+            return true;
+        } else {
+            return false;
+        }
+    }
     /**
      * Display a listing of the resource.
      */
     public function index() {
+        if(!$this->verify()) {
+            return back();
+        }
+
+        if(auth()->user()->perfil == "SA") {
+            return redirect()->route('exclusiones.create');
+        }
+
         $datos['exclusiones'] = Exclusione::where('fechae', '>=', now()->format('Y-m-d H:i:s'))->paginate();
         return view('exclusiones.index', $datos);
     }
@@ -95,6 +111,23 @@ class ExclusioneController extends Controller
     }
 
     public function query (Request $request) {
-        //
+        //Validando valores del formulario
+        $campos = [
+            'codareaB' => 'required|string',
+            'celularB' => 'required|numeric',
+        ];
+
+        $this->validate($request,$campos);
+
+        //Guardando datos del formulario
+        $datosExclusion = request()->except('_token', 'buscar');
+
+        //Sustituyendo valores necesarios
+        $celular = $datosExclusion['codareaB'].$datosExclusion['celularB'];
+
+        //Buscando en la tabla
+        $exclusiones = Exclusione::where('celular',$celular)->get();
+
+        return view('exclusiones.consultar', compact('exclusiones'));
     }
 }

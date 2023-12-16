@@ -38,6 +38,8 @@ Route::get('/bypass/create', [BypassController::class, 'create'])->name('bypass.
 
 Route::post('/bypass/create', [BypassController::class, 'store'])->name('bypass.store');
 
+Route::post('/exclusiones/query', [ExclusioneController::class, 'query'])->name('exclusiones.query');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);
     Route::resource('exclusiones', ExclusioneController::class);

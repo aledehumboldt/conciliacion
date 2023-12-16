@@ -143,6 +143,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+          @if (auth()->user()->estatus != "Iniciado")
           <ul class="nav flex-column">
             <li class="nav-item">
               <a aria-current="page" href="{{route('home')}}" class="nav-link d-flex align-items-center gap-2
@@ -159,6 +160,7 @@
               </a>
             </li>
 
+            @if (auth()->user()->perfil == "CYA")
             <li class="nav-item">
               <a href="{{route('usuarios.index')}}" class="nav-link d-flex align-items-center gap-2
                 @if(route('usuarios.index') == url()->current()) active @endif ">
@@ -166,6 +168,7 @@
                 Usuarios
               </a>
             </li>
+
             <li class="nav-item">
               <a href="{{route('bypass.create')}}"  class="nav-link d-flex align-items-center gap-2
               @if(route('bypass.create') == url()->current()) active @endif ">
@@ -173,6 +176,8 @@
                 Trafico Gris (Bypass)
               </a>
             </li>
+            @endif
+
             <li class="nav-item">
               <a href="#" class="nav-link d-flex align-items-center gap-2">
                 <svg class="bi"><use xlink:href="#cart"/></svg>
@@ -200,18 +205,20 @@
                 Incidencias o Requerimientos
               </a>
             </li>
-            </li>
           </ul>
+          @endif
 
           <hr class="my-3">
 
           <ul class="nav flex-column mb-auto">
+            @if (auth()->user()->estatus != "Iniciado")
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="#">
                 <svg class="bi"><use xlink:href="#gear-wide-connected"/></svg>
                 Configuracion
               </a>
             </li>
+            @endif
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{route('logout')}}">
                 <svg class="bi"><use xlink:href="#door-closed"/></svg>

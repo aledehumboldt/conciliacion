@@ -7,15 +7,26 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+    protected function verify() {
+        if (Auth::user()->estatus != "Iniciado") {
+            return true;
+        } else {
+            return false;
+        }
+    }
         /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index() {
+        if(!$this->verify()) {
+            return back();
+        }
+
         if (Auth::check()) {
             return view('home');
         }
-        return redirect('/login');
+        return redirect()->route('login');
     }
 }
