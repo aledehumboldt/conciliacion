@@ -2,71 +2,79 @@
 
 	@section('titulo', 'Inicio')
 
+	@section('estilos')
+	@endsection
+
 	@section('encabezado')
 	
 	@endsection
 
-<style>
-
-.carousel-caption{
-    position: absolute; 
-    right: 15%;
-    left: 15%;
-    z-index: 10;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    text-align: center;
-}
-
-.carousel-item{
-  	height: 250px;
-}
-
-.carousel-inner img{
-  height: 170%;
-}
-
-</style>
-
-		@section('contenido')
-		<div id="carouselExampleCaptions" class="carousel slide">
-			<div class="carousel-indicators">
-			  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-			  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-			  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+	@section('contenido')
+		<!-- Carousel Start -->
+		<div class="container-fluid mb-3">
+			<div class="row px-xl-5">
+				<div class="col-lg-8">
+					<div id="header-carousel" class="carousel slide carousel-fade mb-30 mb-lg-0" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#header-carousel" data-slide-to="0" class="active"></li>
+							<li data-target="#header-carousel" data-slide-to="1"></li>
+							<li data-target="#header-carousel" data-slide-to="2"></li>
+						</ol>
+						<div class="carousel-inner">
+							<div class="carousel-item position-relative active" style="height: 430px;">
+								<img class="position-absolute w-100 h-100" src="{{asset('assets/carousel-1.jpg')}}" style="object-fit: cover;">
+								<div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+									<div class="p-3" style="max-width: 700px;">
+										<h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">¿Nuevo Ingreso?</h1>
+										<p class="mx-md-5 px-5 animate__animated animate__bounceIn">Contacta con el equipo de Aprovisionamiento para la creación de un nuevo usuario.</p>
+										<a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Contactar</a>
+									</div>
+								</div>
+							</div>
+							<div class="carousel-item position-relative" style="height: 430px;">
+								<img class="position-absolute w-100 h-100" src="{{asset('assets/carousel-2.jpg')}}" style="object-fit: cover;">
+								<div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+									<div class="p-3" style="max-width: 700px;">
+										<h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">¿Olvidaste tu contraseña?</h1>
+										<p class="mx-md-5 px-5 animate__animated animate__bounceIn">Solicita el reestablecimiento de tu clave al equipo de Aprovisionamiento. Recuerda que debes ingresar con tu cédula y luego cambiarla.</p>
+										<a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Solicitar</a>
+									</div>
+								</div>
+							</div>
+							<div class="carousel-item position-relative" style="height: 430px;">
+								<img class="position-absolute w-100 h-100" src="{{asset('assets/carousel-3.jpg')}}" style="object-fit: cover;">
+								<div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+									<div class="p-3" style="max-width: 700px;">
+										<h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Antes de excluir...</h1>
+										<p class="mx-md-5 px-5 animate__animated animate__bounceIn">Verifica si el abonado ya esta excluido hasta la fecha que requieres.</p>
+										<a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Excluir</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="product-offer mb-30" style="height: 200px;">
+						<img class="img-fluid" src="{{asset('assets/offer-1.jpg')}}" alt="">
+						<div class="offer-text">
+							<h6 class="text-white text-uppercase">Procesos de Conciliación</h6>
+							<h3 class="text-white mb-3">Gestión Exclusiones</h3>
+							<a href="{{route('exclusiones.index')}}" class="btn btn-secondary">Excluir</a>
+						</div>
+					</div>
+					<div class="product-offer mb-30" style="height: 200px;">
+						<img class="img-fluid" src="{{asset('assets/offer-2.jpg')}}" alt="">
+						<div class="offer-text">
+							<h6 class="text-white text-uppercase">Tráfico Gris</h6>
+							<h3 class="text-white mb-3">Gestión Bypass</h3>
+							<a href="{{route('bypass.create')}}" class="btn btn-secondary">Gestionar</a>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="carousel-inner">
-			  <div class="carousel-item active">
-				<img src="{{asset('assets/1.png')}}" alt="...">
-				<div class="carousel-caption">
-				  <h5>PRUEBAS</h5>
-				  <p>Some representative placeholder content for the first slide.</p>
-				</div>
-			  </div>
-			  <div class="carousel-item">
-				<img src="{{asset('assets/2.png')}}" alt="...">
-				<div class="carousel-caption">
-				  <h5>PRUEBAS2</h5>
-				  <p>Some representative placeholder content for the second slide.</p>
-				</div>
-			  </div>
-			  <div class="carousel-item">
-				<img src="{{asset('assets/3.png')}}" alt="...">
-				<div class="carousel-caption">
-				  <h5>PRUEBAS3</h5>
-				  <p>Some representative placeholder content for the third slide.</p>
-				</div>
-			  </div>
-			</div>
-			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-			  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			  <span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-			  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			  <span class="visually-hidden">Next</span>
-			</button>
-		  </div>
-		@endsection
+		</div>
+		<!-- Carousel End -->
+	@endsection
 
 
