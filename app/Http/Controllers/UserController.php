@@ -59,7 +59,7 @@ class UserController extends Controller
         $datosUsuario = request()->except('_token', 'crear');
         $datosUsuario['clave'] = md5(request()->usuario);
         User::insert($datosUsuario);
-        return redirect()->route('usuarios')->with('mensaje', 'Usuario agregado.');
+        return redirect()->route('usuarios.index')->with('mensaje', 'Usuario agregado.');
     }
 
     /**
@@ -102,7 +102,7 @@ class UserController extends Controller
         User::where('id','=',$id)->update($datosUsuario);
         //Buscando registro actualizado y redireccionando
         $usuario = User::findOrFail($id);
-        return redirect()->route('usuarios')->with('mensaje', 'Usuario actualizado.');
+        return redirect()->route('usuarios.index')->with('mensaje', 'Usuario actualizado.');
 
     }
 
@@ -116,6 +116,6 @@ class UserController extends Controller
 
         $usuario->estatus = 'Suspendido';
         $usuario->save();
-        return redirect()->route('usuarios')->with('mensaje', 'Usuario suspendido.');
+        return redirect()->route('usuarios.index')->with('mensaje', 'Usuario suspendido.');
     }
 }

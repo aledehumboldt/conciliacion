@@ -41,6 +41,6 @@ class ResetController extends Controller {
         $usuario->estatus = "Iniciado";
         $usuario->save();
 
-        return redirect('usuarios')->with('mensaje', 'contraseña reestablecida.');
+        return redirect('usuarios')->with('mensaje', 'Contraseña reestablecida.');
     }
 }

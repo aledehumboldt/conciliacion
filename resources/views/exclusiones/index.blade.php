@@ -24,20 +24,20 @@
         <table class="table">
             <thead class="table editor-textarea-editable">
                 <tr>
-                    <th>#</th>
+                    <th style="display: none">#</th>
                     <th>Ticket</th>
                     <th>Excluido hasta</th>
                     <th>Excluido desde</th>
                     <th>Responsable</th>
                     <th>Abonado</th>
                     <th>Observaciones</th>
-                    <th>Tipo cliente</th>
+                    <th>Cliente</th>
                 </tr>
             </thead>
             <tbody class="table editor-textarea-editable">
                 @foreach ($exclusiones as $exclusion)
                 <tr>
-                    <td>{{$exclusion->id}}</td>
+                    <td style="display: none">{{$exclusion->id}}</td>
                     <td>{{$exclusion->ticket}}</td>
                     <td>{{$exclusion->fechae}}</td>
                     <td>{{$exclusion->fechac}}</td>

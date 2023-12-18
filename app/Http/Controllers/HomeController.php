@@ -20,11 +20,10 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index() {
-        if(!$this->verify()) {
-            return back();
-        }
-
         if (Auth::check()) {
+            if(!$this->verify()) {
+                return back();
+            }
             return view('home');
         }
         return redirect()->route('login');

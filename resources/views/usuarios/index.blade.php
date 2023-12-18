@@ -24,7 +24,7 @@
         <table class="table">
             <thead class="table editor-textarea-editable">
                 <tr>
-                    <th>#</th>
+                    <th style="display: none">#</th>
                     <th>Nombre</th>
                     <th>Usuario</th>
                     <th>Creado por</th>
@@ -36,7 +36,7 @@
             <tbody class="table editor-textarea-editable">
                 @foreach ($usuarios as $usuario)
                 <tr>
-                    <td>{{$usuario->id}}</td>
+                    <td style="display: none">{{$usuario->id}}</td>
                     <td>{{$usuario->nombre}}</td>
                     <td>{{$usuario->usuario}}</td>
                     <td>{{$usuario->creado_por}}</td>
