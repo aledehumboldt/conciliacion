@@ -8,7 +8,7 @@
 @section('encabezado')
     <h3 class="editor-toolbar-item">Gestion Incidencias</h3>
 <div style="position: absolute; right: 2%;">
-    <a href="{{route('exclusiones.create')}}" class="editor-toolbar-item btn btn-secondary">Cargar Incidencias</a>
+    <a href="{{route('incidencias.create')}}" class="editor-toolbar-item btn btn-secondary">Cargar Incidencias</a>
 </div>
 @endsection
 
@@ -20,28 +20,24 @@
                 <tr>
                     <th>#</th>
                     <th>Ticket</th>
-                    <th>Excluido hasta</th>
-                    <th>Excluido desde</th>
-                    <th>Responsable</th>
-                    <th>Abonado</th>
-                    <th>Observaciones</th>
-                    <th>Tipo cliente</th>
+                    <th>Inicio</th>
+                    <th>Fin</th>
+                    <th>Descripcion</th>
+                    <th>Solicitante</th>
                 </tr>
             </thead>
             <tbody class="table editor-textarea-editable">
-                @foreach ($exclusiones as $exclusion)
+                @foreach ($incidencias as $incidencia)
                 <tr>
-                    <td>{{$exclusion->id}}</td>
-                    <td>{{$exclusion->ticket}}</td>
-                    <td>{{$exclusion->fechae}}</td>
-                    <td>{{$exclusion->fechac}}</td>
-                    <td>{{$exclusion->usuario}}</td>
-                    <td>{{$exclusion->celular}}</td>
-                    <td>{{$exclusion->observaciones}}</td>
-                    <td>{{$exclusion->tcliente}}</td>
+                    <td>{{$incidencia->id}}</td>
+                    <td>{{$incidencia->ticket}}</td>
+                    <td>{{$incidencia->inicio}}</td>
+                    <td>{{$incidencia->fin}}</td>
+                    <td>{{$incidencia->descripcion}}</td>
+                    <td>{{$incidencia->solicitante}}</td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
-        {{$exclusiones->links()}}
+        {{$incidencias->links()}}
 @endsection

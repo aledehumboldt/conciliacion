@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Incidencia;
 use Database\Factories\IncidenciaFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,6 +14,6 @@ class IncidenciaSeeder extends Seeder
      */
     public function run(): void
     {
-        IncidenciaFactory::factory(50)->create();
+        Incidencia::factory(50)->create();
     }
 }

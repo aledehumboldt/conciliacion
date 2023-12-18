@@ -1,15 +1,17 @@
 <?php
 
+use App\Models\Incidencia;
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ExclusioneController;
-use App\Http\Controllers\BypassController;
-use App\Http\Controllers\ProvisioningController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\ResetController;
 use App\Http\Controllers\UserController;
-use App\Http\Middleware\Authenticate;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ResetController;
+use App\Http\Controllers\BypassController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\ExclusioneController;
+use App\Http\Controllers\IncidenciaController;
+use App\Http\Controllers\ProvisioningController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,4 +47,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('exclusiones', ExclusioneController::class);
     Route::resource('provisioning', ProvisioningController::class);
     Route::resource('password', ResetController::class);
+    Route::resource('incidencias', IncidenciaController::class);
 });

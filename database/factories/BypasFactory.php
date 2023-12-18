@@ -23,6 +23,7 @@ class BypasFactory extends Factory
             'accion' => fake()->numerify('########'),
             'usuario' => fake()->numerify('########'),
             'tcliente' => fake()->randomElement(['POSTPAGO','PREPAGO']),
+            'observaciones' => fake()->sentence(),
         ];
     }
 }

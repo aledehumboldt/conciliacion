@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Exclusione;
 use App\Models\Incidencia;
 use Illuminate\Http\Request;
 
@@ -13,20 +14,13 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
-        $datos['incidencias'] = Incidencia::where('inicio', '>=', now()->format('Y-m-d H:i:s'))->paginate();
+        $datos['incidencias'] = Incidencia::paginate();
         return view('incidencias.index', $datos);
+        //return $datos;
     }
 
     /**
      * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('incidencias.crear');
-    }
-
-    /**
-     * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
@@ -40,30 +34,24 @@ class IncidenciaController extends Controller
 
         $this->validate($request,$campos);
 
-        //Guardando datos del formulario
-        $datosExclusion = request()->except('_token', 'excluir');
+        $datosIncidencia = request()->except('_token', 'añadir');
+        $inicio = Carbon::parse($datosIncidencia['inicio'])->format('Ymd');
+        $fin = Carbon::parse($datosIncidencia['inicio'])->format('Ymd');
 
-        //Sustituyendo valores necesarios
-        $fechae = Carbon::parse($datosExclusion['fechae'])->format('Ymd');
-        $celular = $datosExclusion['codarea'].$datosExclusion['celular'];
+        $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
 
-        //Agregando valores necesarios
-        $datosExclusion['usuario'] = auth()->user()->usuario;
-        $datosExclusion['tecnologia'] = "GSM";
-        $datosExclusion['fechac'] = Carbon::now()->format('Y-m-d_H:i:s');
-        $datosExclusion['fechae'] = $fechae;
-        $datosExclusion['celular'] = $celular;
-        $datosExclusion['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-        $datosExclusion['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        Incidencia::insert($datosIncidencia);
 
-        //Eliminando del array
-        unset($datosExclusion['codarea']);
+        return redirect('incidencias')->with('mensaje', 'Incidencia u/o Requirimiento Creado.');
+    }
 
-        //Insertando la tabla
-        Exclusione::insert($datosExclusion);
-
-        //Redireccionando
-        return redirect('incidencias')->with('mensaje', 'Abonado Excluido.');
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function create(Request $request)
+    {
+        return view('incidencias.crear');
     }
 
     /**
