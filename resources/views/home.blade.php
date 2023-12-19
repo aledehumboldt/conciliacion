@@ -27,7 +27,7 @@
 									<div class="p-3" style="max-width: 700px;">
 										<h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">¿Nuevo Ingreso?</h1>
 										<p class="mx-md-5 px-5 animate__animated animate__bounceIn">Contacta con el equipo de Aprovisionamiento para la creación de un nuevo usuario.</p>
-										<a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Contactar</a>
+										<a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="{{ route('contactar.index') }}">Contactar</a>
 									</div>
 								</div>
 							</div>

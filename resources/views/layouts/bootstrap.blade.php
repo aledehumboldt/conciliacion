@@ -205,9 +205,9 @@
           </ul>
 
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
-            <span>Documentacion</span>
-            <a class="link-secondary" href="#" aria-label="Add a new report">
+            <a class="nav-link d-flex align-items-center gap-2" href="{{ route('incidencias.create') }}" aria-current="page">
               <svg class="bi"><use xlink:href="#plus-circle"/></svg>
+              Documentacion
             </a>
           </h6>
           <ul class="nav flex-column mb-auto">
@@ -265,6 +265,7 @@
       <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>Calle Londres, Las Mercedes, Caracas</p>
       <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>conciliacionyaprovisionamiento@gmail.com</p>
       <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+58 416 6325765</p>
+      <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+58 424 3490074</p>
     </div>
     <div class="col-lg-8 col-md-12">
       <div class="row">
