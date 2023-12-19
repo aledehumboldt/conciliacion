@@ -12,6 +12,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ExclusioneController;
 use App\Http\Controllers\IncidenciaController;
 use App\Http\Controllers\ProvisioningController;
+use App\Http\Controllers\ContactarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,4 +48,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('provisioning', ProvisioningController::class);
     Route::resource('password', ResetController::class);
     Route::resource('incidencias', IncidenciaController::class);
+    Route::resource('contactar', ContactarController::class);
 });
