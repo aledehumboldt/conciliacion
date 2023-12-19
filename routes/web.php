@@ -37,15 +37,12 @@ Route::post('/login', [LoginController::class, 'login']);
 
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
-Route::get('/bypass/create', [BypassController::class, 'create'])->name('bypass.create');
-
-Route::post('/bypass/create', [BypassController::class, 'store'])->name('bypass.store');
-
 Route::post('/exclusiones/query', [ExclusioneController::class, 'query'])->name('exclusiones.query');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);
     Route::resource('exclusiones', ExclusioneController::class);
+    Route::resource('bypass', BypassController::class);
     Route::resource('provisioning', ProvisioningController::class);
     Route::resource('password', ResetController::class);
     Route::resource('incidencias', IncidenciaController::class);

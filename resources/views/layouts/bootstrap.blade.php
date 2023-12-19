@@ -177,8 +177,8 @@
             </li>
 
             <li class="nav-item">
-              <a href="{{route('bypass.create')}}"  class="nav-link d-flex align-items-center gap-2
-              @if(route('bypass.create') == url()->current()) active @endif ">
+              <a href="{{route('bypass.index')}}"  class="nav-link d-flex align-items-center gap-2
+              @if(route('bypass.index') == url()->current()) active @endif ">
                 <svg class="bi"><use xlink:href="#graph-up"/></svg>
                 Trafico Gris (Bypass)
               </a>
