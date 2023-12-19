@@ -33,11 +33,11 @@
         </div>
         <div class="mb-3">
             <label for="inicio" class="form-label">Fecha Inicio</label>
-            <input type="date" name="inicio" id="inicio" class="form-control" value="{{old('inicio')}} placeholder="Día/Mes/Año">
+            <input type="datetime-local" name="inicio" id="inicio" class="form-control" value="{{old('inicio')}}" placeholder="Día/Mes/Año">
         </div>        
         <div class="mb-3">
             <label for="fin" class="form-label">Fecha Fin</label>
-            <input type="date" name="fin" id="fin" class="form-control" value="{{old('fin')}} placeholder="Día/Mes/Año">
+            <input type="datetime-local" name="fin" id="fin" class="form-control" value="{{old('fin')}}" placeholder="Día/Mes/Año">
         </div>
         <label for="descripcion" class="form-label">Descripcion</label>
         <div class="form-floating mb-3">

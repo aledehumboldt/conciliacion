@@ -43,7 +43,7 @@ class IncidenciaController extends Controller
 
         Incidencia::insert($datosIncidencia);
 
-        return redirect('incidencias')->with('mensaje', 'Incidencia u/o Requirimiento Creado.');
+        return redirect('incidencias')->with('mensaje', 'Incidencia u/o Requerimiento Creado.');
     }
 
     /**
@@ -59,7 +59,7 @@ class IncidenciaController extends Controller
      */
     public function show(string $id)
     {
-        return view('incidencias.consultar');
+        //return view('incidencias.consultar');
     }
 
     /**
@@ -81,8 +81,11 @@ class IncidenciaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
-    }
+          $post = Incidencia::find($id);
+          $post->delete();
+          return redirect()->route('incidencias.index')
+            ->with('mensaje', 'Incidencia eliminada satisfactoriamente');
+        }
 }
