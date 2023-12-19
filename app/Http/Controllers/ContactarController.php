@@ -43,7 +43,7 @@ class ContactarController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
     }
 
     /**
