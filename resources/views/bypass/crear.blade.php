@@ -18,7 +18,7 @@
 @endsection
 
 @section('encabezado')
-    <h3 class="editor-toolbar-item">Gestion Bypass</h3>
+    <h3>Gestion Bypass</h3>
 @endsection
 
 @section('contenido')

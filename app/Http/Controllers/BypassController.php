@@ -23,6 +23,10 @@ class BypassController extends Controller
         });
     }
 
+    public function index() {
+        return view('bypass.index');
+    }
+
     public function create() {
         return view('bypass.crear');
     }
