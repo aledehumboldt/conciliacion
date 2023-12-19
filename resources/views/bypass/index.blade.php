@@ -15,37 +15,37 @@
 			<div class="row px-xl-12">
                 <div class="col-lg-6">
 					<div class="product-offer mb-30" style="height: 300px;">
-						<img class="img-fluid" src="{{asset('assets/offer-1.jpg')}}" alt="">
+						<img class="img-fluid" src="{{asset('assets/soloMIN.jpg')}}" alt="">
 						<div class="offer-text">
 							<h6 class="text-white text-uppercase">Gestión Tráfico Gris</h6>
 							<h3 class="text-white mb-3">Solo MIN</h3>
-							<a href="{{route('exclusiones.index')}}" class="btn btn-secondary">Gestionar</a>
+							<a href="{{url('bypass/create/min')}}" class="btn btn-secondary">Gestionar</a>
 						</div>
 					</div>
 					<div class="product-offer mb-30" style="height: 300px;">
-						<img class="img-fluid" src="{{asset('assets/offer-2.jpg')}}" alt="">
+						<img class="img-fluid" src="{{asset('assets/ambos.jpg')}}" alt="">
 						<div class="offer-text">
 							<h6 class="text-white text-uppercase">Gestión Tráfico Gris</h6>
-							<h3 class="text-white mb-3">Solo IMSI</h3>
-							<a href="{{route('bypass.create')}}" class="btn btn-secondary">Gestionar</a>
+							<h3 class="text-white mb-3">MIN e IMSI</h3>
+							<a href="{{url('bypass/create/ambos')}}" class="btn btn-secondary">Gestionar</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<div class="product-offer mb-30" style="height: 300px;">
-						<img class="img-fluid" src="{{asset('assets/offer-1.jpg')}}" alt="">
+						<img class="img-fluid" src="{{asset('assets/soloIMSI.jpg')}}" alt="">
 						<div class="offer-text">
 							<h6 class="text-white text-uppercase">Gestión Tráfico Gris</h6>
-							<h3 class="text-white mb-3">MIN e IMSI</h3>
-							<a href="{{route('exclusiones.index')}}" class="btn btn-secondary">Gestionar</a>
+							<h3 class="text-white mb-3">Solo IMSI</h3>
+							<a href="{{url('bypass/create/imsi')}}" class="btn btn-secondary">Gestionar</a>
 						</div>
 					</div>
 					<div class="product-offer mb-30" style="height: 300px;">
-						<img class="img-fluid" src="{{asset('assets/offer-2.jpg')}}" alt="">
+						<img class="img-fluid" src="{{asset('assets/whitelist.jpg')}}" alt="">
 						<div class="offer-text">
 							<h6 class="text-white text-uppercase">Gestión Tráfico Gris</h6>
 							<h3 class="text-white mb-3">Lista Blanca</h3>
-							<a href="{{route('bypass.create')}}" class="btn btn-secondary">Gestionar</a>
+							<a href="{{url('bypass/create/whitelist')}}" class="btn btn-secondary">Gestionar</a>
 						</div>
 					</div>
 				</div>

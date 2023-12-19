@@ -15,10 +15,26 @@
         width: 400px;
     }
 </style>
+@php
+    if (isset($mod)) {
+        if ($mod == "min") {
+            $nombre = "MIN";
+        }
+        if ($mod == "imsi") {
+            $nombre = "IMSI";
+        }
+        if ($mod == "ambos") {
+            $nombre = "MIN e IMSI";
+        }
+        if ($mod == "whitelist") {
+            $nombre = "Lista Blanca";
+        }
+    }
+@endphp
 @endsection
 
 @section('encabezado')
-    <h3>Gestion Bypass</h3>
+    <h3>Bypass: Gestionar {{$nombre}}</h3>
 @endsection
 
 @section('contenido')
@@ -31,6 +47,7 @@
                 value="{{old('ticket')}}" placeholder="Ingresar ticket">
             <label for="ticket" class="form-label">Ingresa ticket</label>
         </div>
+        @if ($mod != "imsi")
         <label for="celular2" class="form-label">Celular</label>
         <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
             <select name="codarea" id="codaera" class="form-control" style="width:100px">
@@ -40,19 +57,22 @@
             </select>
             <input type="text" name="celular" id="celular" value="{{old('min')}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
         </div>
+        @endif
+        @if ($mod != "min" && $mod != "whitelist")
+            <div class="form-floating mb-3">
+                <input type="text" name="imsi" id="imsi" value="{{old('imsi')}}" class="form-control" placeholder="Ingrese Imsi" pattern=".{15,15}">
+                <label for="imsi" class="form-label">IMSI</label>
+            </div>
+        @endif
+            <div class="mb-3">
+                <select id="tcliente" name="tcliente" class="form-control" >
+                    <option value="">Tipo de cliente</option>
+                    <option value="PREPAGO">Prepago</option>
+                    <option value="POSTPAGO">Postpago</option>
+                </select>
+            </div>
+        <label for="observaciones2" class="form-label">Observaciones</label>
         <div class="form-floating mb-3">
-            <input type="text" name="imsi" id="imsi" value="{{old('imsi')}}" class="form-control" placeholder="Ingrese Imsi" pattern=".{15,15}">
-            <label for="imsi" class="form-label">IMSI</label>
-        </div>
-        <div class="mb-3">
-            <select id="tcliente" name="tcliente" class="form-control" >
-                <option value="">Tipo de cliente</option>
-                <option value="PREPAGO">Prepago</option>
-                <option value="POSTPAGO">Postpago</option>
-            </select>
-          </div>
-          <label for="observaciones2" class="form-label">Observaciones</label>
-          <div class="form-floating mb-3">
             <textarea name="observaciones" id="observaciones" cols="35" rows="5" >{{old('observaciones')}}</textarea>
         </div>
         <div class="text-center pt-1 mb-5 pb-1" style="display: flex; align-items: center;justify-content: center;">
