@@ -65,9 +65,10 @@ class IncidenciaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $incidencia = Incidencia::findOrFail($id);
+        return view('incidencias.editar', compact('incidencia'));
     }
 
     /**
@@ -75,7 +76,17 @@ class IncidenciaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'ticket' => 'required|string|min:10|max:10',
+            'inicio' => 'required|string',
+            'fin' => 'required|string',
+            'descripcion' => 'required|string|max:250',
+            'solicitante' => 'required|string',
+          ]);
+          $incidencia = Incidencia::find($id);
+          $incidencia->update($request->all());
+          return redirect()->route('incidencias.index')
+            ->with('mensaje', 'Incidencia Actualizada.');
     }
 
     /**

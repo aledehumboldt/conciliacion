@@ -39,6 +39,8 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::post('/exclusiones/query', [ExclusioneController::class, 'query'])->name('exclusiones.query');
 
+Route::get('pdf','ReportincidenciasContoller@generar');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);
     Route::resource('exclusiones', ExclusioneController::class);
