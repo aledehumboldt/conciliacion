@@ -15,7 +15,7 @@
 
 <body style="background-color: #f2f2f2; color:#666666;">
 
-    <section class="h-100 gradient-form" style="background-color: #ff585f;">
+    <section class="h-100 gradient-form" style="background-color: #212529;">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-xl-5">
@@ -44,7 +44,7 @@
                         </div>
       
                         <div class="text-center pt-1 mb-5 pb-1">
-                          <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Ingresar</button>
+                          <button class="btn btn-secondary" type="submit">Ingresar</button>
                         </div>      
                       </form>
                     </div>

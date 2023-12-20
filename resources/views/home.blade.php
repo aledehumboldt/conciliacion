@@ -38,7 +38,7 @@
 									<div class="p-3" style="max-width: 700px;">
 										<h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">¿Olvidaste tu contraseña?</h1>
 										<p class="mx-md-5 px-5 animate__animated animate__bounceIn">Solicita el reestablecimiento de tu clave al equipo de Aprovisionamiento.</p>
-										<a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Solicitar</a>
+										<a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="{{ route('contactar.index') }}">Solicitar</a>
 									</div>
 								</div>
 							</div>
@@ -48,7 +48,7 @@
 									<div class="p-3" style="max-width: 700px;">
 										<h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Antes de excluir...</h1>
 										<p class="mx-md-5 px-5 animate__animated animate__bounceIn">Verifica si el abonado ya esta excluido hasta la fecha que requieres.</p>
-										<a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Excluir</a>
+										<a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="{{ route('exclusiones.create') }}">Excluir</a>
 									</div>
 								</div>
 							</div>
@@ -58,7 +58,7 @@
 									<div class="p-3" style="max-width: 700px;">
 										<h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">¿Primera vez?</h1>
 										<p class="mx-md-5 px-5 animate__animated animate__bounceIn">Recuerda que debes ingresar con tu cédula y luego cambiar tu contraseña.</p>
-										<a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Contactar</a>
+										<a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="{{ route('contactar.index') }}">Contactar</a>
 									</div>
 								</div>
 							</div>
