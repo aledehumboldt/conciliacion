@@ -1,6 +1,6 @@
 @extends('layouts.bootstrap')
 
-@section('titulo', 'Gestion Incidencias y Requerimientos')
+@section('titulo', 'Gestión Incidencias y Requerimientos')
 
 @section('estilos')
 @endsection

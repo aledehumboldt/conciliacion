@@ -1,6 +1,6 @@
 	@extends('layouts.bootstrap')
 
-	@section('titulo', 'Inicio')
+	@section('titulo', 'Gestión Bypass')
 
 	@section('estilos')
 	@endsection
