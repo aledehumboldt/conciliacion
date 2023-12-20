@@ -10,29 +10,33 @@ use Illuminate\Support\Facades\Auth;
 class BypassController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware(function ($request, $next) {
-
-            if (Auth::user()->perfil == "CYA") {
-                return $next($request);
-            } else {
-                return false;
-            }
- 
-        });
+    protected function verify() {
+        if (Auth::user()->estatus != "Iniciado") {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function index() {
+        if(!$this->verify()) {
+            return back();
+        }
         return view('bypass.index');
     }
 
     public function create(string $mod) {
+        if(!$this->verify()) {
+            return back();
+        }
         return view('bypass.crear',compact('mod'));
     }
 
     
     public function store (Request $request) {
+        if(!$this->verify()) {
+            return back();
+        }
         //Validando valores del formulario
         $campos = [
             'ticket' => 'required|string|min:10|max:10',

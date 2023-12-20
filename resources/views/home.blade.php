@@ -79,7 +79,7 @@
 						<div class="offer-text">
 							<h6 class="text-white text-uppercase">Tráfico Gris</h6>
 							<h3 class="text-white mb-3">Gestión Bypass</h3>
-							<a href="{{route('bypass.create')}}" class="btn btn-secondary">Gestionar</a>
+							<a href="{{route('bypass.index')}}" class="btn btn-secondary">Gestionar</a>
 						</div>
 					</div>
 				</div>

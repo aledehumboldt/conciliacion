@@ -175,6 +175,7 @@
                 Usuarios
               </a>
             </li>
+            @endif
 
             <li class="nav-item">
               <a href="{{route('bypass.index')}}"  class="nav-link d-flex align-items-center gap-2
@@ -183,7 +184,6 @@
                 Trafico Gris (Bypass)
               </a>
             </li>
-            @endif
 
             <li class="nav-item">
               <a href="#" class="nav-link d-flex align-items-center gap-2">
@@ -202,16 +202,18 @@
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
             <a class="nav-link d-flex align-items-center gap-2" href="{{ route('incidencias.create') }}" aria-current="page">
               <svg class="bi"><use xlink:href="#plus-circle"/></svg>
-              Documentacion
+              Documentación
             </a>
           </h6>
           <ul class="nav flex-column mb-auto">
+            @if (auth()->user()->perfil == "CYA")
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{ route('incidencias.index') }}">
                 <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
                 Incidencias o Requerimientos
               </a>
             </li>
+            @endif
           </ul>
           @endif
 

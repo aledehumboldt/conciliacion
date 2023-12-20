@@ -27,16 +27,18 @@
     <div class="form-container">
         <div class="form-floating mb-3">
             <input type="text" name="ticket" id="ticket" class="form-control"
-                value="{{old('ticket')}}" placeholder="Ingresar ticket">
+                value="{{old('ticket')}}" placeholder="">
             <label for="ticket" class="form-label">Ingresa ticket</label>
         </div>
         <div class="mb-3">
             <label for="inicio" class="form-label">Fecha Inicio</label>
-            <input type="datetime-local" name="inicio" id="inicio" class="form-control" value="{{old('inicio')}}" placeholder="Día/Mes/Año">
+            <input type="text" name="inicio" id="inicio" class="form-control" value="{{old('inicio')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
+            this.type='text'">
         </div>        
         <div class="mb-3">
             <label for="fin" class="form-label">Fecha Fin</label>
-            <input type="datetime-local" name="fin" id="fin" class="form-control" value="{{old('fin')}}" placeholder="Día/Mes/Año">
+            <input type="text" name="fin" id="fin" class="form-control" value="{{old('fin')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
+            this.type='text'">
         </div>
         <label for="descripcion" class="form-label">Descripcion</label>
         <div class="form-floating mb-3">
@@ -44,7 +46,7 @@
       </div>
       <div class="form-floating mb-3">
         <input type="text" name="solicitante" id="solicitante" class="form-control"
-            value="{{old('solicitante')}}" placeholder="Solicitante">
+            value="{{old('solicitante')}}" placeholder="">
         <label for="ticket" class="form-label">Solicitante</label>
     </div>
         <div class="text-center pt-1 mb-5 pb-1">
