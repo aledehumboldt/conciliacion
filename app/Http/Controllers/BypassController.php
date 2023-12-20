@@ -27,8 +27,8 @@ class BypassController extends Controller
         return view('bypass.index');
     }
 
-    public function create() {
-        return view('bypass.crear');
+    public function create(string $mod) {
+        return view('bypass.crear',compact('mod'));
     }
 
     
