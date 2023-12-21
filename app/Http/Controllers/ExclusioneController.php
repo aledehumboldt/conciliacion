@@ -85,8 +85,18 @@ class ExclusioneController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show() {
-        return view('exclusiones.consultar');
+    public function show(Request $request) {
+        //Validando valores del formulario
+        $campos = [
+            'codigo' => 'required|string',
+            'celular' => 'required|numeric',
+        ];
+
+        $this->validate($request,$campos);
+
+        $abonado = $request->codareaB.$request->celularB;
+        $exclusiones = Exclusione::where('celular',$abonado)->get();
+        return view('exclusiones.consultar',compact('exclusiones'));
     }
 
     /**
@@ -108,26 +118,5 @@ class ExclusioneController extends Controller
      */
     public function destroy() {
         //
-    }
-
-    public function query (Request $request) {
-        //Validando valores del formulario
-        $campos = [
-            'codareaB' => 'required|string',
-            'celularB' => 'required|numeric',
-        ];
-
-        $this->validate($request,$campos);
-
-        //Guardando datos del formulario
-        $datosExclusion = request()->except('_token', 'buscar');
-
-        //Sustituyendo valores necesarios
-        $celular = $datosExclusion['codareaB'].$datosExclusion['celularB'];
-
-        //Buscando en la tabla
-        $exclusiones = Exclusione::where('celular',$celular)->get();
-
-        return view('exclusiones.consultar', compact('exclusiones'));
     }
 }

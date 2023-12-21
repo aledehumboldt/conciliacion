@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Closure;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-
     protected function verify() {
         if (Auth::user()->perfil == "CYA" && Auth::user()->estatus != "Iniciado") {
             return true;

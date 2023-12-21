@@ -6,9 +6,9 @@
 @endsection
 
 @section('encabezado')
-    <h3 class="editor-toolbar-item">Gestion de Usuarios</h3>
+    <h3>Gestion de Usuarios</h3>
 <div style="position: absolute; right: 2%;">
-    <a href="{{route('usuarios.create')}}" class="editor-toolbar-item btn btn-secondary">
+    <a href="{{route('usuarios.create')}}" class="btn btn-secondary">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
             <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
             <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
@@ -22,7 +22,7 @@
     @include('layouts.partials.messages')
 
         <table class="table">
-            <thead class="table editor-textarea-editable">
+            <thead class="table">
                 <tr>
                     <th style="display: none">#</th>
                     <th>Nombre</th>
@@ -33,7 +33,7 @@
                     <th style="text-align: center">Acciones</th>
                 </tr>
             </thead>
-            <tbody class="table editor-textarea-editable">
+            <tbody class="table">
                 @foreach ($usuarios as $usuario)
                 <tr>
                     <td style="display: none">{{$usuario->id}}</td>
