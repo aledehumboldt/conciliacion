@@ -301,10 +301,11 @@
           </form>
           <h6 class="text-secondary text-uppercase mt-4 mb-3">Síguenos</h6>
           <div class="d-flex">
-            <a class="btn btn-secondary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
-            <a class="btn btn-secondary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-            <a class="btn btn-secondary btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a class="btn btn-secondary btn-square" href="#"><i class="fab fa-instagram"></i></a>
+            <a class="btn btn-secondary btn-square mr-2" href="https://twitter.com/SomosMovilnet_"><i class="fab fa-twitter"></i></a>
+            <a class="btn btn-secondary btn-square mr-2" href="https://www.facebook.com/SomosMovilnetOFICIAL"><i class="fab fa-facebook-f"></i></a>
+            <a class="btn btn-secondary btn-square mr-2" href="https://t.me/SomosMovilnet_Oficial"><i class="fab fa-telegram"></i></a>
+            <a class="btn btn-secondary btn-square mr-2" href="https://www.instagram.com/somosmovilnet_/?hl=es-la"><i class="fab fa-instagram"></i></a>
+            <a class="btn btn-secondary btn-square mr-2" href="https://www.youtube.com/channel/UCVp8u5oEC-dtjqhaRYJLv3g"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
       </div>
@@ -313,9 +314,9 @@
   <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
     <div class="col-md-6 px-xl-0">
       <p class="mb-md-0 text-center text-md-left text-secondary">
-        &copy; <a class="text-primary" href="#">Domain</a>. All Rights Reserved. Designed
-        by
-        <a class="text-primary" href="https://htmlcodex.com">HTML Codex</a>
+        &copy; <a class="text-primary" href="#">Domain</a>. All Rights Reserved. Desarrollado
+        por
+        <strong class="text-primary">Aprovisionamiento</strong>
       </p>
     </div>
     <div class="col-md-6 px-xl-0 text-center text-md-right">
