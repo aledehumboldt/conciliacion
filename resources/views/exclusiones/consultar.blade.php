@@ -1,49 +1,62 @@
 @extends('layouts.bootstrap')
-@section('titulo', 'Gestión Exclusiones')
+@section('titulo', 'Exclusiones realizadas')
 
 @section('estilos')
 <style>
     form {
         width: 100%;
-        height: 30vh;
         display: flex;
         align-items: center !important;
         justify-content: center !important;
     }
     .form-container {
+        margin-top: 55px;
         width: 400px;
     }
 </style>
 @endsection
 
 @section('encabezado')
-    <h3 class="editor-toolbar-item">Gestion de Exclusiones</h3>
+    <h3 class="">Exclusiones para Abonado</h3>
 @endsection
 
 @section('contenido')
     @include('layouts.partials.messages')
-    <form action="{{ route('exclusiones.query') }}" enctype="multipart/form-data" method="POST">
-        @csrf
-    <div class="form-container">
-        <label for="celularB" class="form-label">Celular</label>
-        <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
-            <select name="codareaB" id="codaeraB" class="form-control" style="width:100px">
-                <option value="">Código</option>
-                <option value="416">0416</option>
-                <option value="426">0426</option>
-            </select>
-            <input type="text" name="celularB" id="celularB" value="{{old('celularB')}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
-        </div>
-        <div class="text-center pt-1 mb-3 pb-1">
-            <!-- Button trigger modal -->
-            <button type="submit" class="btn btn-secondary btn-block fa-lg gradient-custom-2 mb-3" name="buscar" id="buscar"  data-toggle="modal" data-target="#exampleModal">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                </svg>
-                Buscar abonado
-            </button>
-            <a href="{{route('exclusiones.create')}}" class="btn btn-secondary btn-block fa-lg gradient-custom-2 mb-3">Volver</a>
-        </div>
+    <table class="table">
+        <thead class="table">
+            <tr>
+                <th style="display: none">#</th>
+                <th>Ticket</th>
+                <th>Excluido hasta</th>
+                <th>Excluido desde</th>
+                <th>Responsable</th>
+                <th>Abonado</th>
+                <th>Tecnología</th>
+                <th>Cliente</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($exclusiones as $exclusion)
+            <tr>
+                <td style="display: none">{{$exclusion->id}}</td>
+                <td>{{$exclusion->ticket}}</td>
+                <td>{{$exclusion->fechae}}</td>
+                <td>{{$exclusion->fechac}}</td>
+                <td>{{$exclusion->usuario}}</td>
+                <td>{{$exclusion->celular}}</td>
+                <td>{{$exclusion->tecnologia}}</td>
+                <td>{{$exclusion->tcliente}}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <div class="text-center pt-1 mb-5 pb-1">
+        <a href="{{route('exclusiones.index')}}" class="btn btn-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 14 14">
+                <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+            </svg>
+            Volver
+        </a>
     </div>
-</form>
 @endsection

@@ -3,17 +3,29 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Models\Exclusione;
 use App\Models\Incidencia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IncidenciaController extends Controller
 {
+
+    protected function verify() {
+        if (Auth::user()->perfil == "CYA" && Auth::user()->estatus != "Iniciado") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
+    public function index() {
+        if(!$this->verify()) {
+            return back();
+        }
+        
         $datos['incidencias'] = Incidencia::paginate();
         return view('incidencias.index', $datos);
         //return $datos;
@@ -22,8 +34,7 @@ class IncidenciaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $campos = [
             'ticket' => 'required|string|min:10|max:10',
             'inicio' => 'required|string',
@@ -49,24 +60,29 @@ class IncidenciaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function create(Request $request)
-    {
+    public function create(Request $request) {
+        if(!$this->verify()) {
+            return back();
+        }
+
         return view('incidencias.crear');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
+    public function show(string $id) {
         //return view('incidencias.consultar');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
-    {
+    public function edit($id) {
+        if(!$this->verify()) {
+            return back();
+        }
+        
         $incidencia = Incidencia::findOrFail($id);
         return view('incidencias.editar', compact('incidencia'));
     }
@@ -74,8 +90,7 @@ class IncidenciaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
+    public function update(Request $request, string $id) {
         $request->validate([
             'ticket' => 'required|string|min:10|max:10',
             'inicio' => 'required|string',
@@ -92,8 +107,7 @@ class IncidenciaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
           $post = Incidencia::find($id);
           $post->delete();
           return redirect()->route('incidencias.index')
