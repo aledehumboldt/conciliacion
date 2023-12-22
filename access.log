@@ -2036,3 +2036,8 @@
 127.0.0.1 - - [21/Dec/2023:13:00:42 -0400] "GET /dashboard.js HTTP/1.1" 404 6877 "http://aprovisionamiento.com/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
 127.0.0.1 - - [21/Dec/2023:13:00:42 -0400] "GET /dashboard.js HTTP/1.1" 404 6876 "http://aprovisionamiento.com/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
 127.0.0.1 - - [21/Dec/2023:13:00:42 -0400] "GET /assets/1699301436808.png HTTP/1.1" 200 137522 "http://aprovisionamiento.com/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [22/Dec/2023:10:14:01 -0400] "GET / HTTP/1.1" 302 1598 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [22/Dec/2023:10:14:01 -0400] "GET /login HTTP/1.1" 200 2461 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [22/Dec/2023:10:14:01 -0400] "GET /assets/estilos.css HTTP/1.1" 404 6876 "http://aprovisionamiento.com/login" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [22/Dec/2023:10:14:01 -0400] "GET /assets/1699298393389.png HTTP/1.1" 200 171661 "http://aprovisionamiento.com/login" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [22/Dec/2023:10:14:01 -0400] "GET /assets/1699301436808.png HTTP/1.1" 200 137522 "http://aprovisionamiento.com/login" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
