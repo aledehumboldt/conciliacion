@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class BypasFactory extends Factory
+class BypasImsiFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,12 +18,17 @@ class BypasFactory extends Factory
     {
         return [
             'ticket' => fake()->numerify('##########'),
-            'min' => fake()->numerify('##########'),
-            'imsi' => fake()->numerify('########'),
-            'accion' => fake()->numerify('########'),
+            'fecha' => fake()->dateTimeBetween('now', '+1 year'),
             'usuario' => fake()->numerify('########'),
-            'tcliente' => fake()->randomElement(['POSTPAGO','PREPAGO']),
+            'tipsim' => fake()->randomElement(['7340610', '7340630']),
+            'restsim' => fake()->numerify('########'),
             'observaciones' => fake()->sentence(),
         ];
+
+        $result['imsi'] = $result['tipsim'].$result['restsim'];
+
+        unset($result['tipsim'], $result['restsim']);
+        
+        return $result;
     }
 }

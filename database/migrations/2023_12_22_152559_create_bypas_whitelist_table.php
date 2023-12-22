@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bypas', function (Blueprint $table) {
+        Schema::create('bypas_whitelist', function (Blueprint $table) {
             $table->id();
             $table->string('ticket');
-            $table->string('min');
-            $table->string('imsi');
+            $table->string('fecha');
             $table->integer('usuario');
-            $table->string('accion');
-            $table->text('tcliente');
+            $table->string('min');
             $table->text('observaciones');
             $table->timestamps();
         });
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bypas');
+        Schema::dropIfExists('bypas_whitelist');
     }
 };
