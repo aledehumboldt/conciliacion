@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bypas_imsi', function (Blueprint $table) {
+        Schema::create('bypas_imsis', function (Blueprint $table) {
             $table->id();
             $table->string('ticket');
             $table->string('fecha');
             $table->integer('usuario');
-            $table->string('imsi');
+            $table->string('imsi', 15);
             $table->text('observaciones');
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bypas_imsi');
+        Schema::dropIfExists('bypas_imsis');
     }
 };

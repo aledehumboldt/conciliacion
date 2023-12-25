@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bypas_whitelist', function (Blueprint $table) {
+        Schema::create('bypas_whitelists', function (Blueprint $table) {
             $table->id();
             $table->string('ticket');
             $table->string('fecha');
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bypas_whitelist');
+        Schema::dropIfExists('bypas_whitelists');
     }
 };

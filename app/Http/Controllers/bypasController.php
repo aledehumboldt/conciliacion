@@ -29,4 +29,9 @@ class bypasController extends Controller
         return view('bypass.index');
     }
 
+    public function show(Request $request)
+    {
+        return view('bypass.bypassMin.index', $request);
+    }
+
 }

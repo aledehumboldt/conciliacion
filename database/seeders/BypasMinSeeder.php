@@ -3,11 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\BypasMin;
-use Database\Factories\BypasMinFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class BypasSeeder extends Seeder
+class BypasMinSeeder extends Seeder
 {
     /**
      * Run the database seeds.

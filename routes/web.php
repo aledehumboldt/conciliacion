@@ -46,6 +46,8 @@ Route::post('/exclusiones/query', [ExclusioneController::class, 'query'])->name(
 
 Route::get('/bypass', [bypasController::class, 'index'])->name('bypass.index');
 
+//Route::get('bypass/bypassMin/create', [BypasMinController::class, 'create'])->name('bypass.bypassMin.create');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);
     Route::resource('exclusiones', ExclusioneController::class);
