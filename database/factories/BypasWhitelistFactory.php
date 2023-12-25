@@ -16,7 +16,7 @@ class BypasWhitelistFactory extends Factory
      */
     public function definition(): array
     {
-        return [
+        $result = [
             'ticket' => fake()->numerify('##########'),
             'fecha' => fake()->dateTimeBetween('now', '+1 year'),
             'usuario' => fake()->numerify('########'),

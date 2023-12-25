@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bypas_min', function (Blueprint $table) {
+        Schema::create('bypas_mins', function (Blueprint $table) {
             $table->id();
             $table->string('ticket');
             $table->string('fecha');
             $table->integer('usuario');
-            $table->string('min');
+            $table->string('min', 10);
             $table->text('observaciones');
             $table->text('tcliente');
             $table->timestamps();
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bypas_min');
+        Schema::dropIfExists('bypas_mins');
     }
 };
