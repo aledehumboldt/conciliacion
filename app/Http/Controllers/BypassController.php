@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bypas;
+use App\Models\BypasMin;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +23,9 @@ class BypassController extends Controller
         if(!$this->verify()) {
             return back();
         }
-        return view('bypass.index');
+        $bypassMin = BypasMin::where('fecha', '>=', now()->format('Y-m-d H:i:s'))->paginate();
+        return view('bypasMin.index', $bypassMin);
+        //return view('bypass.index');
     }
 
     public function create(string $mod) {

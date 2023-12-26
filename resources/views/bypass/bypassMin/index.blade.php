@@ -19,7 +19,6 @@
 
 @section('contenido')
     @include('layouts.partials.messages')
-
         <table class="table">
             <thead class="table editor-textarea-editable">
                 <tr>
@@ -33,7 +32,7 @@
                 </tr>
             </thead>
             <tbody class="table editor-textarea-editable">
-                @foreach ($bypas_min as $bypasMin)
+                @foreach ($bypas_mins as $bypaMin)
                 <tr>
                     <td>{{$bypasMin->id}}</td>
                     <td>{{$bypasMin->ticket}}</td>
