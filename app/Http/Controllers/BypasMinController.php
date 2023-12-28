@@ -11,9 +11,27 @@ class BypasMinController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
+    protected function verify() {
+        if (Auth::user()->estatus != "Iniciado") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    /**
+     * Display a listing of the resource.
+     */
+    public function index() {
+        if(!$this->verify()) {
+            return back();
+        }
+
+        if(auth()->user()->perfil == "SA") {
+            return redirect()->route('bypasMin.create');
+        }
+
+        $datos['bypasMin'] = BypasMin::where('fecha', '>=', now()->format('Y-m-d H:i:s'))->paginate();
+        return view('bypasMin.index', $datos);
     }
 
     /**
@@ -29,7 +47,27 @@ class BypasMinController extends Controller
      */
     public function store(StoreBypasMinRequest $request)
     {
-        //
+        //Guardando datos del formulario
+        $datosMinbypas = request()->except('_token', 'excluir');
+        $datosMinbypas = request()->except('_token', 'incluir');
+
+        //Sustituyendo valores necesarios
+        $min = $datosMinbypas['codarea'].$datosMinbypas['celular'];
+
+        //Agregando valores necesarios
+        $datosMinbypas['usuario'] = auth()->user()->usuario;
+        $datosMinbypas['min'] = $min;
+        $datosMinbypas['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosMinbypas['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+
+        //Eliminando del array
+        unset($datosMinbypas['codarea']);
+
+        //Insertando la tabla
+        BypasMin::insert($datosMinbypas);
+
+        //Redireccionando
+        return redirect('bypass/index')->with('mensaje', 'Abonado Procesado.');
     }
 
     /**

@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\BypassMin>
  */
-class BypasFactory extends Factory
+class BypasMinFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,20 +16,20 @@ class BypasFactory extends Factory
      */
     public function definition(): array
     {
-        return [
+        $result = [
             'ticket' => fake()->numerify('##########'),
             'fecha' => fake()->dateTimeBetween('now', '+1 year'),
             'usuario' => fake()->numerify('########'),
             'codarea' => fake()->randomElement(['416', '426']),
             'numero' => fake()->numerify('#######'),
             'observaciones' => fake()->sentence(),
-            'tcliente' => fake()->randomElement(['POSTPAGO','PREPAGO']),
+            'tcliente' => fake()->randomElement(['POSTPAGO','PREPAGO'])
         ];
 
         $result['min'] = $result['codarea'].$result['numero'];
 
         unset($result['codarea'], $result['numero']);
-        
+
         return $result;
     }
 }

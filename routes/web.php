@@ -7,7 +7,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ResetController;
-use App\Http\Controllers\BypassController;
+use App\Http\Controllers\BypasMinController;
+use App\Http\Controllers\BypasImsiController;
+use App\Http\Controllers\BypasWhitelistController;
+use App\Http\Controllers\bypasController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ExclusioneController;
 use App\Http\Controllers\IncidenciaController;
@@ -41,14 +44,19 @@ Route::post('/exclusiones/query', [ExclusioneController::class, 'query'])->name(
 
 //Route::get('pdf',[ReporteController::class, 'generar']);
 
-Route::get('bypass/create/{mod}', [BypassController::class, 'create'])->name('bypass.create');
+Route::get('/bypass', [bypasController::class, 'index'])->name('bypass.index');
+
+//Route::get('bypass/bypassMin/create', [BypasMinController::class, 'create'])->name('bypass.bypassMin.create');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);
     Route::resource('exclusiones', ExclusioneController::class);
-    Route::resource('bypass', BypassController::class);
     Route::resource('provisioning', ProvisioningController::class);
     Route::resource('password', ResetController::class);
     Route::resource('incidencias', IncidenciaController::class);
+    Route::resource('bypass', bypasController::class);
+    Route::resource('bypass/bypassMin', BypasMinController::class);
+    Route::resource('bypass/bypassImsi', BypasImsiController::class);
+    Route::resource('bypass/bypassWhitelist', BypasWhitelistController::class);
     Route::resource('contactar', ContactarController::class);
 });

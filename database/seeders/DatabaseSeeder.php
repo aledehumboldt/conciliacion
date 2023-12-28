@@ -2,10 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Bypas;
+use App\Models\BypasImsi;
+use App\Models\BypasMin;
+use App\Models\BypasWhitelist;
 use Database\Factories\IncidenciaFactory;
+use Database\Factories\BypasMinFactory;
+use Database\Factories\BypasImsiFactory;
+use Database\Factories\BypasWhitelistFactory;
 use Database\Seeders\ExclusioneSeeder;
-use Database\Seeders\BypasSeeder;
+use Database\Seeders\BypasMinSeeder;
+use Database\Seeders\BypasImsiSeeder;
+use Database\Seeders\BypasWhitelistSeeder;
 use Database\Seeders\IncidenciaSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -21,8 +28,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ExclusioneSeeder::class,
             UserSeeder::class,
-            BypasSeeder::class,
-            IncidenciaSeeder::class
+            IncidenciaSeeder::class,
+            BypasMinSeeder::class,
+            BypasImsiSeeder::class,
+            BypasWhitelistSeeder::class,
         ]);
     }
 }

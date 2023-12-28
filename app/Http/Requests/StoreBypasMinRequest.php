@@ -11,7 +11,7 @@ class StoreBypasMinRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class StoreBypasMinRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'ticket' => 'required|string|min:10|max:10',
+            'fecha' => 'required|date|after:today',
+            'usuario' => 'required|string',
+            'codarea' => 'required|string',
+            'celular' => 'required|numeric',
+            'observaciones' => 'required|string|max:250',
+            'tcliente' => 'required|string|min:7|max:8',
+
         ];
     }
 }
