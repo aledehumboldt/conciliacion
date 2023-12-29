@@ -2139,3 +2139,7 @@
 127.0.0.1 - - [28/Dec/2023:10:12:32 -0400] "GET /img/payments.png HTTP/1.1" 404 6876 "http://aprovisionamiento.com/bypass" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
 127.0.0.1 - - [28/Dec/2023:10:12:32 -0400] "GET /dashboard.js HTTP/1.1" 404 6877 "http://aprovisionamiento.com/bypass" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
 127.0.0.1 - - [28/Dec/2023:10:12:32 -0400] "GET /dashboard.js HTTP/1.1" 404 6876 "http://aprovisionamiento.com/bypass" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [29/Dec/2023:08:20:21 -0400] "GET /login HTTP/1.1" 200 2459 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [29/Dec/2023:08:20:21 -0400] "GET /assets/estilos.css HTTP/1.1" 404 6876 "http://aprovisionamiento.com/login" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [29/Dec/2023:08:20:21 -0400] "GET /assets/1699298393389.png HTTP/1.1" 304 251 "http://aprovisionamiento.com/login" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [29/Dec/2023:08:20:21 -0400] "GET /assets/1699301436808.png HTTP/1.1" 200 137522 "http://aprovisionamiento.com/login" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
