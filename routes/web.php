@@ -44,9 +44,9 @@ Route::post('/exclusiones/query', [ExclusioneController::class, 'query'])->name(
 
 //Route::get('pdf',[ReporteController::class, 'generar']);
 
-Route::get('/bypass', [bypasController::class, 'index'])->name('bypass.index');
+//Route::get('/bypass', [bypasController::class, 'index'])->name('bypass.index');
 
-//Route::get('bypass/bypassMin/create', [BypasMinController::class, 'create'])->name('bypass.bypassMin.create');
+Route::get('bypass/bypassMin', [BypasMinController::class, 'index'])->name('bypass.bypassMin.index');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);
@@ -55,7 +55,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('password', ResetController::class);
     Route::resource('incidencias', IncidenciaController::class);
     Route::resource('bypass', bypasController::class);
-    Route::resource('bypass/bypassMin', BypasMinController::class);
+    //Route::resource('/bypass/bypassMin', BypasMinController::class);
     Route::resource('bypass/bypassImsi', BypasImsiController::class);
     Route::resource('bypass/bypassWhitelist', BypasWhitelistController::class);
     Route::resource('contactar', ContactarController::class);

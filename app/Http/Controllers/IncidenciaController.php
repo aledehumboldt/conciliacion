@@ -38,7 +38,7 @@ class IncidenciaController extends Controller
         $campos = [
             'ticket' => 'required|string|min:10|max:10',
             'inicio' => 'required|string',
-            'fin' => 'required|string',
+            'fin' => '',
             'descripcion' => 'required|string|max:250',
             'solicitante' => 'required|string',
         ];
@@ -71,8 +71,18 @@ class IncidenciaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id) {
-        //return view('incidencias.consultar');
+    public function show(Request $request) {
+
+        $campos = [
+            'ticket' => 'required|string',
+        ];
+
+        $this->validate($request,$campos);
+
+        $vartmp = $request->ticket;
+
+        $incidencias = Incidencia::where('ticket',$vartmp)->get();
+        return view('incidencias.consultar',compact('incidencias'));
     }
 
     /**

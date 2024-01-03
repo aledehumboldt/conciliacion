@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\BypasMin;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\StoreBypasMinRequest;
 use App\Http\Requests\UpdateBypasMinRequest;
@@ -16,10 +17,24 @@ class BypasMinController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() {
+    protected function verify() {
+        if (Auth::user()->perfil == "CYA" && Auth::user()->estatus != "Iniciado") {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-    $bypas_mins = BypasMin::all();
-    return view('bypass.bypassMin.index', compact('bypass_mins'));
+    /**
+     * Display a listing of the resource.
+     */
+    public function index() {
+        if(!$this->verify()) {
+            return back();
+        }
+        
+        $datos['bypas_mins'] = BypasMin::paginate();
+        return view('bypass.bypassMin.index', $datos);
     }
 
     /**
