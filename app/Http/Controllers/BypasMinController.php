@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\BypasMin;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\StoreBypasMinRequest;
@@ -40,22 +41,34 @@ class BypasMinController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        if(!$this->verify()) {
+            return back();
+        }
+
+        return view('bypass.bypassMin.crear');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreBypasMinRequest $request)
+    public function store(Request $request)
     {
-        //Guardando datos del formulario
-        $datosMinbypas = request()->except('_token', 'excluir');
+        $campos = [
+
+            'ticket' => 'required|string',
+            'fecha' => 'required|string',
+            'codarea' => 'required|string',
+            'min' => 'required|numeric',
+            'observaciones' => 'required|string',
+            'tcliente' => 'required|string',
+        ];
+
         $datosMinbypas = request()->except('_token', 'incluir');
 
         //Sustituyendo valores necesarios
-        $min = $datosMinbypas['codarea'].$datosMinbypas['celular'];
+        $min = $datosMinbypas['codarea'].$datosMinbypas['min'];
 
         //Agregando valores necesarios
         $datosMinbypas['usuario'] = auth()->user()->usuario;
@@ -70,15 +83,26 @@ class BypasMinController extends Controller
         BypasMin::insert($datosMinbypas);
 
         //Redireccionando
-        return redirect('bypass/index')->with('mensaje', 'Abonado Procesado.');
+        return redirect('bypass/bypassMin')->with('mensaje', 'Abonado Incluido Exitosamente.');
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(BypasMin $bypasMin)
-    {
-        //
+    public function show(Request $request) {
+
+        $campos = [
+            'codarea' => 'required|string',
+            'celular' => 'required|string',
+        ];
+
+        $this->validate($request,$campos);
+
+        $vartmp = $request->codarea.$request->celular;
+
+        $bypas_mins = BypasMin::where('min',$vartmp)->get();
+        return view('bypass.bypassMin.consultar',compact('bypas_mins'));
     }
 
     /**
@@ -100,8 +124,11 @@ class BypasMinController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(BypasMin $bypasMin)
+    public function destroy($id)
     {
-        //
-    }
+          $post = BypasMin::find($id);
+          $post->delete();
+          return redirect()->route('bypass.bypassMin.index')
+            ->with('mensaje', 'Abonado excluido satisfactoriamente');
+        }
 }

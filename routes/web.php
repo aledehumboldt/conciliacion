@@ -46,6 +46,17 @@ Route::post('/exclusiones/query', [ExclusioneController::class, 'query'])->name(
 
 //Route::get('/bypass', [bypasController::class, 'index'])->name('bypass.index');
 
+
+Route::get('bypass/bypassMin/consultar', [BypasMinController::class, 'show'])->name('bypass.bypassMin.show');
+
+Route::post('bypass/bypassMin/store', [BypasMinController::class, 'store'])->name('bypass.bypassMin.store');
+
+Route::get('bypass/bypassMin/crear', [BypasMinController::class, 'create'])->name('bypass.bypassMin.create');
+
+Route::delete('bypass/bypassMin/{id}', [BypasMinController::class, 'destroy'])->name('bypass.bypassMin.destroy');
+
+Route::delete('bypass/bypassMin/consultar/{id}', [BypasMinController::class, 'destroy'])->name('bypass.bypassMin.destroy');
+
 Route::get('bypass/bypassMin', [BypasMinController::class, 'index'])->name('bypass.bypassMin.index');
 
 Route::group(['middleware' => ['auth']], function () {
@@ -55,8 +66,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('password', ResetController::class);
     Route::resource('incidencias', IncidenciaController::class);
     Route::resource('bypass', bypasController::class);
-    //Route::resource('/bypass/bypassMin', BypasMinController::class);
-    Route::resource('bypass/bypassImsi', BypasImsiController::class);
-    Route::resource('bypass/bypassWhitelist', BypasWhitelistController::class);
     Route::resource('contactar', ContactarController::class);
 });
