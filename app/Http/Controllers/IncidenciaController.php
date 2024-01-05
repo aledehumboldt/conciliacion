@@ -34,7 +34,7 @@ class IncidenciaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function store(Request $request) {
+    public function store(Request $request,$vartmp) {
         $campos = [
             'ticket' => 'required|string|min:10|max:10',
             'inicio' => 'required|string',
@@ -45,6 +45,7 @@ class IncidenciaController extends Controller
 
         $this->validate($request,$campos);
 
+
         $datosIncidencia = request()->except('_token', 'añadir');
         $inicio = Carbon::parse($datosIncidencia['inicio'])->format('Ymd');
         $fin = Carbon::parse($datosIncidencia['inicio'])->format('Ymd');
@@ -53,8 +54,12 @@ class IncidenciaController extends Controller
         $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
 
         Incidencia::insert($datosIncidencia);
-
-        return redirect('incidencias')->with('mensaje', 'Incidencia u/o Requerimiento Creado.');
+        
+        if ($vartmp == 1) {
+            return redirect('bypass/bypassMin')->with('mensaje', 'Abonado Excluido Exitosamente.');
+        }
+        else
+            return redirect('incidencias')->with('mensaje', 'Incidencia u/o Requerimiento Creado.');
     }
 
     /**

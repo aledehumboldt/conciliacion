@@ -17,12 +17,13 @@
 @endsection
 
 @section('encabezado')
-    <h3 class="editor-toolbar-item">Crear incidencia o Rquerimiento</h3>
+    <h3 class="editor-toolbar-item">Crear incidencia o Requerimiento</h3>
 @endsection
 
 @section('contenido')
     @include('layouts.partials.messages')
-    <form action="{{ route('incidencias.store')}}" enctype="multipart/form-data" method="POST">
+    <?php $vartmp = 0; ?>
+    <form action="{{ route('incidencias.store', $vartmp)}}" enctype="multipart/form-data" method="POST">
         @csrf
     <div class="form-container">
         <div class="form-floating mb-3">

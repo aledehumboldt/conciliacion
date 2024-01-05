@@ -46,6 +46,20 @@ Route::post('/exclusiones/query', [ExclusioneController::class, 'query'])->name(
 
 //Route::get('/bypass', [bypasController::class, 'index'])->name('bypass.index');
 
+Route::get('incidencias/consultar', [IncidenciaController::class, 'show'])->name('incidencias.show');
+
+Route::get('incidencias/store', [IncidenciaController::class, 'create'])->name('incidencias.create');
+
+Route::get('incidencias/editar/{id}', [IncidenciaController::class, 'edit'])->name('incidencias.edit');
+
+Route::put('incidencias/editar/{id}', [IncidenciaController::class, 'update'])->name('incidencias.update');
+
+Route::post('incidencias/crear/{vartmp}', [IncidenciaController::class, 'store'])->name('incidencias.store');
+
+Route::delete('incidencias/{id}', [IncidenciaController::class, 'destroy'])->name('incidencias.destroy');
+
+Route::get('incidencias', [IncidenciaController::class, 'index'])->name('incidencias.index');
+
 
 Route::get('bypass/bypassMin/consultar', [BypasMinController::class, 'show'])->name('bypass.bypassMin.show');
 
@@ -59,12 +73,14 @@ Route::delete('bypass/bypassMin/consultar/{id}', [BypasMinController::class, 'de
 
 Route::get('bypass/bypassMin', [BypasMinController::class, 'index'])->name('bypass.bypassMin.index');
 
+Route::post('bypass/bypassMin/{vartmp}', [IncidenciaController::class, 'store'])->name('bypass.bypassMin.store-incidencia');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);
     Route::resource('exclusiones', ExclusioneController::class);
     Route::resource('provisioning', ProvisioningController::class);
     Route::resource('password', ResetController::class);
-    Route::resource('incidencias', IncidenciaController::class);
+    //Route::resource('incidencias', IncidenciaController::class);
     Route::resource('bypass', bypasController::class);
     Route::resource('contactar', ContactarController::class);
 });
