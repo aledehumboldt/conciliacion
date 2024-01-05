@@ -54,12 +54,11 @@ Route::get('incidencias/editar/{id}', [IncidenciaController::class, 'edit'])->na
 
 Route::put('incidencias/editar/{id}', [IncidenciaController::class, 'update'])->name('incidencias.update');
 
-Route::post('incidencias/crear/{vartmp}', [IncidenciaController::class, 'store'])->name('incidencias.store');
+Route::post('incidencias/crear/{id}', [IncidenciaController::class, 'store'])->name('incidencias.store');
 
 Route::delete('incidencias/{id}', [IncidenciaController::class, 'destroy'])->name('incidencias.destroy');
 
 Route::get('incidencias', [IncidenciaController::class, 'index'])->name('incidencias.index');
-
 
 Route::get('bypass/bypassMin/consultar', [BypasMinController::class, 'show'])->name('bypass.bypassMin.show');
 
@@ -73,7 +72,7 @@ Route::delete('bypass/bypassMin/consultar/{id}', [BypasMinController::class, 'de
 
 Route::get('bypass/bypassMin', [BypasMinController::class, 'index'])->name('bypass.bypassMin.index');
 
-Route::post('bypass/bypassMin/{vartmp}', [IncidenciaController::class, 'store'])->name('bypass.bypassMin.store-incidencia');
+Route::post('bypass/bypassMin/{id}', [IncidenciaController::class, 'store'])->name('bypass.bypassMin.store-incidencia');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);

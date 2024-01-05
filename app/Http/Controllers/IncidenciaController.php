@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Incidencia;
+use App\Models\BypasMin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,7 +35,7 @@ class IncidenciaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function store(Request $request,$vartmp) {
+    public function store(Request $request, $id) {
         $campos = [
             'ticket' => 'required|string|min:10|max:10',
             'inicio' => 'required|string',
@@ -45,6 +46,7 @@ class IncidenciaController extends Controller
 
         $this->validate($request,$campos);
 
+        $vartmp = $request->bypass;
 
         $datosIncidencia = request()->except('_token', 'añadir');
         $inicio = Carbon::parse($datosIncidencia['inicio'])->format('Ymd');
@@ -53,9 +55,13 @@ class IncidenciaController extends Controller
         $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
 
+        unset($datosIncidencia['bypass']);
+
         Incidencia::insert($datosIncidencia);
-        
+
         if ($vartmp == 1) {
+            $var = BypasMin::where('id', $id)->get();
+            BypasMin::destroy($var);
             return redirect('bypass/bypassMin')->with('mensaje', 'Abonado Excluido Exitosamente.');
         }
         else

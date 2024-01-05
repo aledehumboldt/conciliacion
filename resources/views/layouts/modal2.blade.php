@@ -8,8 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-            <?php $vartmp = 1; ?>
-    <form action="{{ route('bypass.bypassMin.store-incidencia', $vartmp)}}" enctype="multipart/form-data" method="POST">
+    <form action="{{ route('bypass.bypassMin.store-incidencia',$bypas_min->id)}}" enctype="multipart/form-data" method="POST">
         @csrf
     <div class="form-container">
         <h6>Para excluir es necesario rellenar el presente formulario:</h6>
@@ -39,6 +38,13 @@
             value="{{old('solicitante')}}" placeholder="">
         <label for="ticket" class="form-label">Solicitante</label>
     </div>
+       <div class="form-floating mb-3">
+                <select name="bypass" id="bypass" class="form-control" style="width:350px">
+                    <option value="">Seleccione para inicidencia o requerimiento:</option>
+                    <option value="0">Incidencia</option>
+                    <option value="1">Requerimiento</option>
+                </select>
+    </div>
         <div class="text-center">
             <button type="submit" name="añadir" id="añadir" class="btn btn-secondary">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -47,7 +53,7 @@
                     <path d="M6 13.6V21H18V13.6C18 13.2686 17.7314 13 17.4 13H6.6C6.26863 13 6 13.2686 6 13.6Z" stroke="currentColor" stroke-width="1.5" />
                 </svg>
                 Añadir Requerimiento</button>
-                <a href="{{route('incidencias.index')}}" class="btn btn-secondary">
+                <a href="{{route('bypass.bypassMin.index')}}" class="btn btn-secondary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 14 14">
                         <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
                     </svg>  

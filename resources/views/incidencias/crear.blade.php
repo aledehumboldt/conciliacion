@@ -22,8 +22,8 @@
 
 @section('contenido')
     @include('layouts.partials.messages')
-    <?php $vartmp = 0; ?>
-    <form action="{{ route('incidencias.store', $vartmp)}}" enctype="multipart/form-data" method="POST">
+    <?php $id = 0; ?>
+    <form action="{{ route('incidencias.store', $id)}}" enctype="multipart/form-data" method="POST">
         @csrf
     <div class="form-container">
         <div class="form-floating mb-3">
@@ -49,6 +49,13 @@
         <input type="text" name="solicitante" id="solicitante" class="form-control"
             value="{{old('solicitante')}}" placeholder="">
         <label for="ticket" class="form-label">Solicitante</label>
+    </div>
+    <div class="form-floating mb-3">
+                <select name="bypass" id="bypass" class="form-control" style="width:350px">
+                    <option value="">Seleccione para inicidencia o requerimiento:</option>
+                    <option value="0">Incidencia</option>
+                    <option value="1">Requerimiento</option>
+                </select>
     </div>
         <div class="text-center">
             <button type="submit" name="añadir" id="añadir" class="btn btn-secondary">
