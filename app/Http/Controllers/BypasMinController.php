@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\BypasMin;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreBypasMinRequest;
 use App\Http\Requests\UpdateBypasMinRequest;
+use Carbon\Carbon;
 
 class BypasMinController extends Controller
 {
@@ -30,8 +32,8 @@ class BypasMinController extends Controller
             return redirect()->route('bypasMin.create');
         }
 
-        $datos['bypasMin'] = BypasMin::where('fecha', '>=', now()->format('Y-m-d H:i:s'))->paginate();
-        return view('bypasMin.index', $datos);
+        $datos['excluidos'] = BypasMin::where('fecha', '>=', now()->format('Y-m-d H:i:s'))->paginate();
+        return view('bypass.bypasMin.index', $datos);
     }
 
     /**

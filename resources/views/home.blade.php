@@ -10,7 +10,7 @@
 	@endsection
 
 	@section('contenido')
-		<!-- Carousel Start -->
+		<!-- Carousel Start --> 
 		<div class="container-fluid mb-3">
 			<div class="row px-xl-5">
 				<div class="col-lg-8">
