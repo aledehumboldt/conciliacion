@@ -8,21 +8,19 @@
     <meta name="description" content="">
     <title>@yield('titulo')</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link rel="stylesheet" href="{{asset('css/npm.css')}}">
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
    
     <!-- Custom styles for this template -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="{{asset('css/bootstrap-icons.min.css')}}" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
     
     		<!-- Google Web Fonts -->
-		<link rel="preconnect" href="https://fonts.gstatic.com">
-		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">  
+		<link href="{{asset('css/font.css')}}" rel="stylesheet">  
 	
 		<!-- Font Awesome -->
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+		<link href="{{asset('css/all.min.css')}}" rel="stylesheet">
 	
 		<!-- Libraries Stylesheet -->
 		<link href="{{asset('css/animate.min.css')}}" rel="stylesheet">
@@ -327,8 +325,9 @@
 <!-- Footer End -->
 
 <!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
+<script src="{{asset('js/popper.min.js')}}">
+<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('js/easing.min.js')}}"></script>
 <script src="{{asset('js/owl.carousel.min.js')}}"></script>
 
@@ -337,9 +336,8 @@
 <script src="{{asset('js/contact.js')}}"></script>
 
 <!-- Template Javascript -->
-<script src="{{asset('js/main.js')}}"></script>
-<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous"></script>
-    <script src="{{asset('dashboard.js')}}"></script></body>
+<script src="{{asset('js/main.js')}}"></script>
+
+<script src="{{asset('dashboard.js')}}"></script></body>
 </html>

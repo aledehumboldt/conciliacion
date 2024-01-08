@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Models\BypasMin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
-use App\Http\Requests\StoreBypasMinRequest;
 use App\Http\Requests\UpdateBypasMinRequest;
+use Carbon\Carbon;
 
 class BypasMinController extends Controller
 {
@@ -33,7 +31,6 @@ class BypasMinController extends Controller
         if(!$this->verify()) {
             return back();
         }
-        
         $datos['bypas_mins'] = BypasMin::paginate();
         return view('bypass.bypassMin.index', $datos);
     }

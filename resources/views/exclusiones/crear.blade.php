@@ -121,12 +121,4 @@
         </div>
     </div>
 </form>
-
-
-<script>
-    $(document).on('click', '.btnShowInfo', function(e){
-    e.preventDefault();
-    $('#exampleModal').modal('show');
-});
-</script>
 @endsection
