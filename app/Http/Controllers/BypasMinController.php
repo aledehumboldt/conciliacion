@@ -94,12 +94,12 @@ class BypasMinController extends Controller
 
         $campos = [
             'codarea' => 'required|string',
-            'celular' => 'required|string',
+            'min' => 'required|string',
         ];
 
         $this->validate($request,$campos);
 
-        $vartmp = $request->codarea.$request->celular;
+        $vartmp = $request->codarea.$request->min;
 
         $bypas_mins = BypasMin::where('min',$vartmp)->get();
         return view('bypass.bypassMin.consultar',compact('bypas_mins'));
@@ -108,7 +108,7 @@ class BypasMinController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(BypasMin $bypasMin)
+    public function edit($id)
     {
         //
     }
@@ -116,9 +116,36 @@ class BypasMinController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBypasMinRequest $request, BypasMin $bypasMin)
+    public function update(Request $request, string $id)
     {
-        //
+        $campos = [
+
+            'ticket' => 'required|string',
+            'fecha' => 'required|string',
+            'codarea' => 'required|string',
+            'min' => 'required|numeric',
+            'observaciones' => 'required|string',
+            'tcliente' => 'required|string',
+        ];
+
+        $datosMinbypas = request()->except('_token', 'editar', '_method');
+
+        //Sustituyendo valores necesarios
+        $min = $datosMinbypas['codarea'].$datosMinbypas['min'];
+
+        //Agregando valores necesarios
+        $datosMinbypas['usuario'] = auth()->user()->usuario;
+        $datosMinbypas['min'] = $min;
+        $datosMinbypas['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosMinbypas['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+
+        //Eliminando del array
+        unset($datosMinbypas['codarea']);
+
+        BypasMin::where('id','=',$id)->update($datosMinbypas);
+        $bypas_min = BypasMin::findOrFail($id);
+          return redirect()->route('bypass.bypassMin.index')
+            ->with('mensaje', 'Inclusion Abonado Actualizada.');
     }
 
     /**

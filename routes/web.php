@@ -60,6 +60,8 @@ Route::delete('incidencias/{id}', [IncidenciaController::class, 'destroy'])->nam
 
 Route::get('incidencias', [IncidenciaController::class, 'index'])->name('incidencias.index');
 
+Route::get('export/Incidencia', [IncidenciaController::class, 'IncidenciaExport'])->name('incidencias.export');
+
 Route::get('bypass/bypassMin/consultar', [BypasMinController::class, 'show'])->name('bypass.bypassMin.show');
 
 Route::post('bypass/bypassMin/store', [BypasMinController::class, 'store'])->name('bypass.bypassMin.store');
@@ -73,6 +75,8 @@ Route::delete('bypass/bypassMin/consultar/{id}', [BypasMinController::class, 'de
 Route::get('bypass/bypassMin', [BypasMinController::class, 'index'])->name('bypass.bypassMin.index');
 
 Route::post('bypass/bypassMin/{id}', [IncidenciaController::class, 'store'])->name('bypass.bypassMin.store-incidencia');
+
+Route::put('bypass/bypassMin/{id}', [BypasMinController::class, 'update'])->name('bypass.bypassMin.update');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);

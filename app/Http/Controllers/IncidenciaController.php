@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Incidencia;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\IncidenciaExport;
 use App\Models\BypasMin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -134,4 +136,11 @@ class IncidenciaController extends Controller
           return redirect()->route('incidencias.index')
             ->with('mensaje', 'Incidencia eliminada satisfactoriamente');
         }
+
+    public function IncidenciaExport()
+    {
+    
+        return Excel::download(new IncidenciaExport, 'Incidencias.csv');
+    
+    }
 }
