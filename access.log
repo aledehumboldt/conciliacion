@@ -2204,3 +2204,5 @@
 127.0.0.1 - - [08/Jan/2024:09:12:50 -0400] "GET /webfonts/fa-solid-900.woff HTTP/1.1" 404 6876 "http://aprovisionamiento.com/css/all.min.css" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
 127.0.0.1 - - [08/Jan/2024:09:12:50 -0400] "GET /webfonts/fa-brands-400.ttf HTTP/1.1" 404 6876 "http://aprovisionamiento.com/css/all.min.css" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
 127.0.0.1 - - [08/Jan/2024:09:12:50 -0400] "GET /webfonts/fa-solid-900.ttf HTTP/1.1" 404 6876 "http://aprovisionamiento.com/css/all.min.css" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [09/Jan/2024:08:45:30 -0400] "GET /login HTTP/1.1" 200 2461 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [09/Jan/2024:08:45:31 -0400] "GET /assets/estilos.css HTTP/1.1" 404 6876 "http://aprovisionamiento.com/login" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
