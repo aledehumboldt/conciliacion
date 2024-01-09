@@ -28,8 +28,4 @@ class HomeController extends Controller
         }
         return redirect()->route('login');
     }
-
-    public function modal() {
-        return view('modal');
-    }
 }
