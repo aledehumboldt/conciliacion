@@ -30,6 +30,8 @@ use App\Http\Controllers\ContactarController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::get('/modal', [HomeController::class, 'modal'])->name('modal');
+
 Route::get('/login', [LoginController::class, 'show'])->name('login');
 
 Route::post('/login', [LoginController::class, 'login']);

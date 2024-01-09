@@ -1,31 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es" data-bs-theme="auto">
   <head>
-    <script src="{{asset('js/color-modes.js')}}"></script>
     <link rel="icon" type="image/x-icon" href="{{asset('assets/1699301436808.png')}}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <title>@yield('titulo')</title>
 
-    <link rel="stylesheet" href="{{asset('css/npm.css')}}">
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('css/npm.css')}}" crossorigin="anonymous">-->
    
     <!-- Custom styles for this template -->
-    <link href="{{asset('css/bootstrap-icons.min.css')}}" rel="stylesheet">
+    <link href="{{asset('css/bootstrap-icons.min.css')}}" rel="stylesheet" crossorigin="anonymous">-->
     <!-- Custom styles for this template -->
-    <link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
+    <link href="{{asset('css/dashboard.css')}}" rel="stylesheet" crossorigin="anonymous">-->
     
     		<!-- Google Web Fonts -->
-		<link href="{{asset('css/font.css')}}" rel="stylesheet">  
+		<link href="{{asset('css/font.css')}}" rel="stylesheet" crossorigin="anonymous">  -->
 	
 		<!-- Font Awesome -->
-		<link href="{{asset('css/all.min.css')}}" rel="stylesheet">
+		<link href="{{asset('css/all.min.css')}}" rel="stylesheet" crossorigin="anonymous">-->
 	
 		<!-- Libraries Stylesheet -->
-		<link href="{{asset('css/animate.min.css')}}" rel="stylesheet">
-		<link href="{{asset('css/owl.carousel.min.css')}}" rel="stylesheet">
-		<link href="{{asset('css/stylo.css')}}" rel="stylesheet">
+		<link href="{{asset('css/animate.min.css')}}" rel="stylesheet" crossorigin="anonymous">-->
+		<link href="{{asset('css/owl.carousel.min.css')}}" rel="stylesheet" crossorigin="anonymous">-->
+		<link href="{{asset('css/stylo.css')}}" rel="stylesheet" crossorigin="anonymous">-->
     @yield('estilos')
 
   </head>
@@ -325,19 +324,23 @@
 <!-- Footer End -->
 
 <!-- JavaScript Libraries -->
-<script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
-<script src="{{asset('js/popper.min.js')}}">
-<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('js/easing.min.js')}}"></script>
-<script src="{{asset('js/owl.carousel.min.js')}}"></script>
+<script src="{{asset('js/jquery-3.4.1.min.js')}}" crossorigin="anonymous"></script>
+<script src="{{asset('js/popper.min.js')}}" crossorigin="anonymous"> </script>
+    <script src="{{asset('js/bootstrap.min.js')}}" crossorigin="anonymous"></script>
+<script src="{{asset('js/bootstrap.bundle.min.js')}}" crossorigin="anonymous"></script>
+ <script src="{{asset('js/easing.min.js')}}" crossorigin="anonymous"></script> 
+ <script src="{{asset('js/owl.carousel.min.js')}}" crossorigin="anonymous"></script> 
 
-<!-- Contact Javascript File -->
-<script src="{{asset('js/jqBootstrapValidation.min.js')}}"></script>
-<script src="{{asset('js/contact.js')}}"></script>
+  <!-- Contact Javascript File -->
+ <script src="{{asset('js/jqBootstrapValidation.min.js')}}" crossorigin="anonymous"></script> 
+ <script src="{{asset('js/contact.js')}}" crossorigin="anonymous"></script> 
 
 <!-- Template Javascript -->
 
-<script src="{{asset('js/main.js')}}"></script>
+<script src="{{asset('js/color-modes.js')}}" crossorigin="anonymous"></script>
+<script src="{{asset('js/main.js')}}" crossorigin="anonymous"></script>
 
-<script src="{{asset('dashboard.js')}}"></script></body>
+<script src="{{asset('dashboard.js')}}" crossorigin="anonymous"></script>
+
+  </body>
 </html>

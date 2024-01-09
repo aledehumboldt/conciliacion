@@ -66,7 +66,7 @@
         <table class="table">
             <thead class="table editor-textarea-editable">
                 <tr>
-                    <th>#</th>
+                    <th style="display: none">#</th>
                     <th>Ticket</th>
                     <th>Inicio</th>
                     <th>Fin</th>
@@ -78,7 +78,7 @@
             <tbody class="table editor-textarea-editable">
                 @foreach ($incidencias as $incidencia)
                 <tr>
-                    <td>{{$incidencia->id}}</td>
+                    <td style="display: none">{{$incidencia->id}}</td>
                     <td>{{$incidencia->ticket}}</td>
                     <td>{{$incidencia->inicio}}</td>
                     <td>{{$incidencia->fin}}</td>
