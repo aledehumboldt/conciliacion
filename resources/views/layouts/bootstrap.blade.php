@@ -8,23 +8,23 @@
     <title>@yield('titulo')</title>
 
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('css/npm.css')}}" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="{{asset('css/npm.css')}}" crossorigin="anonymous">
    
     <!-- Custom styles for this template -->
-    <link href="{{asset('css/bootstrap-icons.min.css')}}" rel="stylesheet" crossorigin="anonymous">-->
+    <link href="{{asset('css/bootstrap-icons.min.css')}}" rel="stylesheet" crossorigin="anonymous">
     <!-- Custom styles for this template -->
-    <link href="{{asset('css/dashboard.css')}}" rel="stylesheet" crossorigin="anonymous">-->
+    <link href="{{asset('css/dashboard.css')}}" rel="stylesheet" crossorigin="anonymous">
     
     		<!-- Google Web Fonts -->
-		<link href="{{asset('css/font.css')}}" rel="stylesheet" crossorigin="anonymous">  -->
+		<link href="{{asset('css/font.css')}}" rel="stylesheet" crossorigin="anonymous">
 	
 		<!-- Font Awesome -->
-		<link href="{{asset('css/all.min.css')}}" rel="stylesheet" crossorigin="anonymous">-->
+		<link href="{{asset('css/all.min.css')}}" rel="stylesheet" crossorigin="anonymous">
 	
 		<!-- Libraries Stylesheet -->
-		<link href="{{asset('css/animate.min.css')}}" rel="stylesheet" crossorigin="anonymous">-->
-		<link href="{{asset('css/owl.carousel.min.css')}}" rel="stylesheet" crossorigin="anonymous">-->
-		<link href="{{asset('css/stylo.css')}}" rel="stylesheet" crossorigin="anonymous">-->
+		<link href="{{asset('css/animate.min.css')}}" rel="stylesheet" crossorigin="anonymous">
+		<link href="{{asset('css/owl.carousel.min.css')}}" rel="stylesheet" crossorigin="anonymous">
+		<link href="{{asset('css/stylo.css')}}" rel="stylesheet" crossorigin="anonymous">
     @yield('estilos')
 
   </head>
