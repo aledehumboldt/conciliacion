@@ -317,7 +317,7 @@
       </p>
     </div>
     <div class="col-md-6 px-xl-0 text-center text-md-right">
-      <img class="img-fluid" src="img/payments.png" alt="">
+      <img class="img-fluid" src="{{asset('assets/payments.png')}}" alt="">
     </div>
   </div>
 </div>
@@ -340,7 +340,7 @@
 <script src="{{asset('js/color-modes.js')}}" crossorigin="anonymous"></script>
 <script src="{{asset('js/main.js')}}" crossorigin="anonymous"></script>
 
-<script src="{{asset('dashboard.js')}}" crossorigin="anonymous"></script>
+<script src="{{asset('js/dashboard.js')}}" crossorigin="anonymous"></script>
 
   </body>
 </html>
