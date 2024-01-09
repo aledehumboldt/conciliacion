@@ -1,15 +1,11 @@
 <?php
 
-use App\Models\Incidencia;
-use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\BypasMinController;
-use App\Http\Controllers\BypasImsiController;
-use App\Http\Controllers\BypasWhitelistController;
 use App\Http\Controllers\bypasController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ExclusioneController;
@@ -42,26 +38,25 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::post('/exclusiones/query', [ExclusioneController::class, 'query'])->name('exclusiones.query');
 
-//Route::get('pdf',[ReporteController::class, 'generar']);
+//------------------------------------------Incidencias---------------------------------------------
+Route::get('incidencias', [IncidenciaController::class, 'index'])->name('incidencias.index');
 
-//Route::get('/bypass', [bypasController::class, 'index'])->name('bypass.index');
+Route::get('incidencias/create', [IncidenciaController::class, 'create'])->name('incidencias.create');
 
-Route::get('incidencias/consultar', [IncidenciaController::class, 'show'])->name('incidencias.show');
+Route::get('incidencias/show', [IncidenciaController::class, 'show'])->name('incidencias.show');
 
-Route::get('incidencias/store', [IncidenciaController::class, 'create'])->name('incidencias.create');
+Route::post('incidencias/{id}', [IncidenciaController::class, 'store'])->name('incidencias.store');
 
-Route::get('incidencias/editar/{id}', [IncidenciaController::class, 'edit'])->name('incidencias.edit');
+Route::get('incidencias/{id}/edit', [IncidenciaController::class, 'edit'])->name('incidencias.edit');
 
-Route::put('incidencias/editar/{id}', [IncidenciaController::class, 'update'])->name('incidencias.update');
-
-Route::post('incidencias/crear/{id}', [IncidenciaController::class, 'store'])->name('incidencias.store');
+Route::put('incidencias/{id}', [IncidenciaController::class, 'update'])->name('incidencias.update');
 
 Route::delete('incidencias/{id}', [IncidenciaController::class, 'destroy'])->name('incidencias.destroy');
 
-Route::get('incidencias', [IncidenciaController::class, 'index'])->name('incidencias.index');
+Route::get('incidencias/export', [IncidenciaController::class, 'export'])->name('incidencias.export');
+//--------------------------------------------------Fin Incidencias--------------------------------
 
-Route::get('export/Incidencia', [IncidenciaController::class, 'IncidenciaExport'])->name('incidencias.export');
-
+//-------------------------------------------------Bypass MIN------------------------------------------------
 Route::get('bypass/bypassMin/consultar', [BypasMinController::class, 'show'])->name('bypass.bypassMin.show');
 
 Route::post('bypass/bypassMin/store', [BypasMinController::class, 'store'])->name('bypass.bypassMin.store');
@@ -77,6 +72,7 @@ Route::get('bypass/bypassMin', [BypasMinController::class, 'index'])->name('bypa
 Route::post('bypass/bypassMin/{id}', [IncidenciaController::class, 'store'])->name('bypass.bypassMin.store-incidencia');
 
 Route::put('bypass/bypassMin/{id}', [BypasMinController::class, 'update'])->name('bypass.bypassMin.update');
+//-------------------------------------------------Fin Bypass MIN------------------------------------------------
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);

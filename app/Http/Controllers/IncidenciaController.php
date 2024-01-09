@@ -37,7 +37,17 @@ class IncidenciaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function store(Request $request, $id) {
+    public function create(Request $request) {
+        if(!$this->verify()) {
+            return back();
+        }
+
+        return view('incidencias.crear');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */public function store(Request $request, $id) {
         $campos = [
             'ticket' => 'required|string|min:10|max:10',
             'inicio' => 'required|string',
@@ -51,8 +61,6 @@ class IncidenciaController extends Controller
         $vartmp = $request->bypass;
 
         $datosIncidencia = request()->except('_token', 'añadir');
-        $inicio = Carbon::parse($datosIncidencia['inicio'])->format('Ymd');
-        $fin = Carbon::parse($datosIncidencia['inicio'])->format('Ymd');
 
         $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
@@ -64,21 +72,10 @@ class IncidenciaController extends Controller
         if ($vartmp == 1) {
             $var = BypasMin::where('id', $id)->get();
             BypasMin::destroy($var);
-            return redirect('bypass/bypassMin')->with('mensaje', 'Abonado Excluido Exitosamente.');
+            return redirect('bypass/bypassMin')->with('mensaje', 'Abonado excluido exitosamente.');
         }
         else
-            return redirect('incidencias')->with('mensaje', 'Incidencia u/o Requerimiento Creado.');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function create(Request $request) {
-        if(!$this->verify()) {
-            return back();
-        }
-
-        return view('incidencias.crear');
+            return redirect('incidencias')->with('mensaje', 'Registro agregado correctamente.');
     }
 
     /**
@@ -124,7 +121,7 @@ class IncidenciaController extends Controller
           $incidencia = Incidencia::find($id);
           $incidencia->update($request->all());
           return redirect()->route('incidencias.index')
-            ->with('mensaje', 'Incidencia Actualizada.');
+            ->with('mensaje', 'REgistro actualizado.');
     }
 
     /**
@@ -134,10 +131,10 @@ class IncidenciaController extends Controller
           $post = Incidencia::find($id);
           $post->delete();
           return redirect()->route('incidencias.index')
-            ->with('mensaje', 'Incidencia eliminada satisfactoriamente');
+            ->with('mensaje', 'Registro eliminado satisfactoriamente');
         }
 
-    public function IncidenciaExport()
+    public function export()
     {
     
         return Excel::download(new IncidenciaExport, 'Incidencias.csv');

@@ -1,5 +1,5 @@
 @extends('layouts.bootstrap')
-@section('titulo', 'incidencias realizadas')
+@section('titulo', 'Incidencias presentadas')
 
 @section('estilos')
 <style>
