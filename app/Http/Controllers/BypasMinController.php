@@ -110,13 +110,13 @@ class BypasMinController extends Controller
      */
     public function edit($id)
     {
-        //
+     //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         $campos = [
 
