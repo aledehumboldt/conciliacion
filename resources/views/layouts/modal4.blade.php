@@ -8,7 +8,8 @@
                 </button>
             </div>
             <div class="modal-body">
-    <form action="{{ route('bypass.bypassMin.store')}}" enctype="multipart/form-data" method="POST">
+                <?php $id = 3; ?>
+    <form action="{{ route('bypass.bypassMin.create-incidenciaincluir', $id)}}" enctype="multipart/form-data" method="POST">
         @csrf
     <div class="form-container">
         <div class="form-floating mb-3">
