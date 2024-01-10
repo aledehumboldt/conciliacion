@@ -38,20 +38,10 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::post('/exclusiones/query', [ExclusioneController::class, 'query'])->name('exclusiones.query');
 
-/*------------------------------------------Incidencias---------------------------------------------
-Route::get('incidencias', [IncidenciaController::class, 'index'])->name('incidencias.index');
-
-Route::get('incidencias/create', [IncidenciaController::class, 'create'])->name('incidencias.create');
-*/
+//---------------------------------------------------Incidencias------------------------------------
 Route::get('incidencias/show', [IncidenciaController::class, 'show'])->name('incidencias.show');
 
 Route::post('incidencias/{incidencia}', [IncidenciaController::class, 'store'])->name('incidencias.store');
-/*
-Route::get('incidencias/{incidencia}/edit', [IncidenciaController::class, 'edit'])->name('incidencias.edit');
-
-Route::put('incidencias/{incidencia}', [IncidenciaController::class, 'update'])->name('incidencias.update');
-
-Route::delete('incidencias/{incidencia}', [IncidenciaController::class, 'destroy'])->name('incidencias.destroy');*/
 
 Route::get('incidencias/export', [IncidenciaController::class, 'export'])->name('incidencias.export');
 //--------------------------------------------------Fin Incidencias--------------------------------
@@ -61,19 +51,17 @@ Route::get('bypass/bypassMin/crear', [BypasMinController::class, 'create'])->nam
 
 Route::get('bypass/bypassMin/show', [BypasMinController::class, 'show'])->name('bypass.bypassMin.show');
 
-Route::post('bypass/bypassMin/store', [BypasMinController::class, 'store'])->name('bypass.bypassMin.store');
+Route::get('bypassMin', [BypasMinController::class, 'index'])->name('bypassMin.index');
+
+Route::post('bypassMin', [BypasMinController::class, 'store'])->name('bypassMin.store');
+
+Route::post('bypassMin/{bypass}', [BypasMinController::class, 'destroy'])->name('bypassMin.destroy');
 
 Route::get('bypass/bypassMin/editar/{id}', [BypasMinController::class, 'edit'])->name('bypass.bypassMin.edit');
 
 Route::delete('bypass/bypassMin/{id}', [BypasMinController::class, 'destroy'])->name('bypass.bypassMin.destroy');
 
 Route::put('bypass/bypassMin/{id}', [BypasMinController::class, 'update'])->name('bypass.bypassMin.update');
-
-Route::get('bypass/bypassMin', [BypasMinController::class, 'index'])->name('bypass.bypassMin.index');
-
-Route::post('bypass/bypassMin/store/{id}', [IncidenciaController::class, 'store'])->name('bypass.bypassMin.create-incidenciaincluir');
-
-Route::post('bypass/bypassMin/{id}', [IncidenciaController::class, 'store'])->name('bypass.bypassMin.store-incidencia');
 
 //-------------------------------------------------Fin Bypass MIN------------------------------------------------
 

@@ -47,55 +47,12 @@ class IncidenciaController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     */public function store(Request $request, $id) {
-
-        if ($id == 3) {
-        $campos = [
-            'ticket' => 'required|string',
-            'fecha' => 'required|string',
-            'codarea' => 'required|string',
-            'min' => 'required|numeric',
-            'observaciones' => 'required|string',
-            'tcliente' => 'required|string',
-        ];
-
-        $this->validate($request,$campos);
-
-        $datosMinbypas = request()->except('_token', 'incluir');
-        $datosIncidencia = $datosMinbypas;
-        //Sustituyendo valores necesarios
-        $min = $datosMinbypas['codarea'].$datosMinbypas['min'];
-
-        //Agregando valores necesarios
-        $datosMinbypas['usuario'] = auth()->user()->usuario;
-        $datosMinbypas['min'] = $min;
-        $datosMinbypas['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-        $datosMinbypas['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-        $datosIncidencia['ticket'] = $request->ticket;
-        $datosIncidencia['inicio'] = $request->fecha;
-        $datosIncidencia['fin'] = $request->fecha;
-        $datosIncidencia['descripcion'] = $request->observaciones;
-        $datosIncidencia['solicitante'] = auth()->user()->perfil;
-        $datosIncidencia['updated_at'] = $datosMinbypas['updated_at'];
-        $datosIncidencia['created_at'] = $datosMinbypas['created_at'];
-
-        //Eliminando del array
-        unset($datosMinbypas['codarea']);
-        unset($datosIncidencia['usuario'],$datosIncidencia['min'],$datosIncidencia['codarea'],$datosIncidencia['observaciones'],$datosIncidencia['tcliente'],$datosIncidencia['fecha']);
-
-        //Insertando la tabla
-        BypasMin::insert($datosMinbypas);
-        Incidencia::insert($datosIncidencia);
-
-        //Redireccionando
-        return redirect('bypass/bypassMin')->with('mensaje', 'Abonado Incluido Exitosamente.');
-
-        }
+     */
+    public function store(Request $request) {
 
         $campos = [
             'ticket' => 'required|string|min:10|max:10',
             'inicio' => 'required|string',
-            'fin' => '',
             'descripcion' => 'required|string|max:250',
             'solicitante' => 'required|string',
         ];
@@ -104,7 +61,7 @@ class IncidenciaController extends Controller
 
         $vartmp = $request->tipo;
 
-        $datosIncidencia = request()->except('_token', 'agregar');
+        $datosIncidencia = request()->except('_token', 'excluir');
 
         $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
@@ -113,13 +70,9 @@ class IncidenciaController extends Controller
 
         Incidencia::insert($datosIncidencia);
 
-        if ($vartmp == 1) {
-            $var = BypasMin::where('id', $id)->get();
-            BypasMin::destroy($var);
-            return redirect('bypass/bypassMin')->with('mensaje', 'Abonado excluido exitosamente.');
-        }
-        else
-            return redirect('incidencias')->with('mensaje', 'Registro agregado correctamente.');
+       
+        return redirect()->route('incidencias.index')
+        ->with('mensaje', 'Registro agregado correctamente.');
     }
 
     /**

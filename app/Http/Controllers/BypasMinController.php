@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\BypasMin;
+use App\Models\Incidencia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\UpdateBypasMinRequest;
 use Carbon\Carbon;
 
 class BypasMinController extends Controller
@@ -52,8 +52,8 @@ class BypasMinController extends Controller
      */
     public function store(Request $request)
     {
+        //Validando parametros enviados
         $campos = [
-
             'ticket' => 'required|string',
             'fecha' => 'required|string',
             'codarea' => 'required|string',
@@ -62,9 +62,11 @@ class BypasMinController extends Controller
             'tcliente' => 'required|string',
         ];
 
-        $datosMinbypas = request()->except('_token', 'incluir');
+        $this->validate($request,$campos);
 
+        //-------------------Bypass--------------
         //Sustituyendo valores necesarios
+        $datosMinbypas = request()->except('_token', 'incluir');
         $min = $datosMinbypas['codarea'].$datosMinbypas['min'];
 
         //Agregando valores necesarios
@@ -76,12 +78,26 @@ class BypasMinController extends Controller
         //Eliminando del array
         unset($datosMinbypas['codarea']);
 
-        //Insertando la tabla
+        //Insertando la tabla Bypass MIN
         BypasMin::insert($datosMinbypas);
+        //-------------------Bypass--------------
 
+        //-------------------Incidencia--------------
+        //Agregando valores necesarios
+        $datosMinbypas['inicio'] = $request->fecha;
+        $datosMinbypas['fin'] = $request->fecha;
+        $datosMinbypas['descripcion'] = $request->observaciones;
+        $datosMinbypas['solicitante'] = auth()->user()->perfil;
+
+        //Eliminando del array
+        unset($datosMinbypas['usuario'],$datosMinbypas['min'],$datosMinbypas['codarea'],$datosMinbypas['observaciones'],$datosMinbypas['tcliente'],$datosMinbypas['fecha']);
+
+        //Insertando la tabla Incidencias
+        Incidencia::insert($datosMinbypas);
+        //-------------------Incidencia--------------
+        
         //Redireccionando
-        return redirect('bypass/bypassMin')->with('mensaje', 'Abonado Incluido Exitosamente.');
-
+        return redirect()->route('bypassMin.index')->with('mensaje', 'Abonado incluido exitosamente.');
     }
 
     /**
@@ -149,11 +165,31 @@ class BypasMinController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
-    {
-          $post = BypasMin::find($id);
-          $post->delete();
-          return redirect()->route('bypass.bypassMin.index')
-            ->with('mensaje', 'Abonado excluido satisfactoriamente');
+    public function destroy(Request $request, $id)
+    {       //Eliminando de la tabla Bypass MIN
+            $numero = BypasMin::find($id);
+            $numero->delete();
+
+            //Validando los datos enviados
+            $campos = [
+                'ticket' => 'required|string|min:10|max:10',
+                'inicio' => 'required|string',
+                'descripcion' => 'required|string|max:250',
+                'solicitante' => 'required|string',
+            ];
+    
+            $this->validate($request,$campos);
+
+            $datosIncidencia = request()->except('_token', 'excluir');
+
+            //Agregando valores necesarios
+            $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+            $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+            
+            //Agregando registro a Incidencia
+            Incidencia::insert($datosIncidencia);
+
+            return redirect()->route('bypassMin.index')
+            ->with('mensaje', 'Abonado excluido exitosamente.');
         }
 }
