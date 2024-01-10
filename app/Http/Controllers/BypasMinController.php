@@ -99,6 +99,7 @@ class BypasMinController extends Controller
         $vartmp = $request->codarea.$request->min;
 
         $bypas_mins = BypasMin::where('min',$vartmp)->get();
+
         return view('bypass.bypassMin.consultar',compact('bypas_mins'));
     }
 
