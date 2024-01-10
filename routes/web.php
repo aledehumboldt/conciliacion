@@ -38,20 +38,20 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::post('/exclusiones/query', [ExclusioneController::class, 'query'])->name('exclusiones.query');
 
-//------------------------------------------Incidencias---------------------------------------------
+/*------------------------------------------Incidencias---------------------------------------------
 Route::get('incidencias', [IncidenciaController::class, 'index'])->name('incidencias.index');
 
 Route::get('incidencias/create', [IncidenciaController::class, 'create'])->name('incidencias.create');
-
+*/
 Route::get('incidencias/show', [IncidenciaController::class, 'show'])->name('incidencias.show');
 
-Route::post('incidencias/{id}', [IncidenciaController::class, 'store'])->name('incidencias.store');
+Route::post('incidencias/{incidencia}', [IncidenciaController::class, 'store'])->name('incidencias.store');
+/*
+Route::get('incidencias/{incidencia}/edit', [IncidenciaController::class, 'edit'])->name('incidencias.edit');
 
-Route::get('incidencias/{id}/edit', [IncidenciaController::class, 'edit'])->name('incidencias.edit');
+Route::put('incidencias/{incidencia}', [IncidenciaController::class, 'update'])->name('incidencias.update');
 
-Route::put('incidencias/{id}', [IncidenciaController::class, 'update'])->name('incidencias.update');
-
-Route::delete('incidencias/{id}', [IncidenciaController::class, 'destroy'])->name('incidencias.destroy');
+Route::delete('incidencias/{incidencia}', [IncidenciaController::class, 'destroy'])->name('incidencias.destroy');*/
 
 Route::get('incidencias/export', [IncidenciaController::class, 'export'])->name('incidencias.export');
 //--------------------------------------------------Fin Incidencias--------------------------------
@@ -84,7 +84,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('exclusiones', ExclusioneController::class);
     Route::resource('provisioning', ProvisioningController::class);
     Route::resource('password', ResetController::class);
-    //Route::resource('incidencias', IncidenciaController::class);
+    Route::resource('incidencias', IncidenciaController::class)->except(['show','store']);
     Route::resource('bypass', bypasController::class);
     Route::resource('contactar', ContactarController::class);
 });
