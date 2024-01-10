@@ -102,14 +102,14 @@ class IncidenciaController extends Controller
 
         $this->validate($request,$campos);
 
-        $vartmp = $request->bypass;
+        $vartmp = $request->tipo;
 
-        $datosIncidencia = request()->except('_token', 'añadir');
+        $datosIncidencia = request()->except('_token', 'agregar');
 
         $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
 
-        unset($datosIncidencia['bypass']);
+        unset($datosIncidencia['tipo']);
 
         Incidencia::insert($datosIncidencia);
 
@@ -165,7 +165,7 @@ class IncidenciaController extends Controller
           $incidencia = Incidencia::find($id);
           $incidencia->update($request->all());
           return redirect()->route('incidencias.index')
-            ->with('mensaje', 'REgistro actualizado.');
+            ->with('mensaje', 'Registro actualizado.');
     }
 
     /**
