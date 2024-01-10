@@ -48,6 +48,50 @@ class IncidenciaController extends Controller
     /**
      * Store a newly created resource in storage.
      */public function store(Request $request, $id) {
+
+        if ($id == 3) {
+        $campos = [
+            'ticket' => 'required|string',
+            'fecha' => 'required|string',
+            'codarea' => 'required|string',
+            'min' => 'required|numeric',
+            'observaciones' => 'required|string',
+            'tcliente' => 'required|string',
+        ];
+
+        $this->validate($request,$campos);
+
+        $datosMinbypas = request()->except('_token', 'incluir');
+        $datosIncidencia = $datosMinbypas;
+        //Sustituyendo valores necesarios
+        $min = $datosMinbypas['codarea'].$datosMinbypas['min'];
+
+        //Agregando valores necesarios
+        $datosMinbypas['usuario'] = auth()->user()->usuario;
+        $datosMinbypas['min'] = $min;
+        $datosMinbypas['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosMinbypas['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosIncidencia['ticket'] = $request->ticket;
+        $datosIncidencia['inicio'] = $request->fecha;
+        $datosIncidencia['fin'] = $request->fecha;
+        $datosIncidencia['descripcion'] = $request->observaciones;
+        $datosIncidencia['solicitante'] = auth()->user()->perfil;
+        $datosIncidencia['updated_at'] = $datosMinbypas['updated_at'];
+        $datosIncidencia['created_at'] = $datosMinbypas['created_at'];
+
+        //Eliminando del array
+        unset($datosMinbypas['codarea']);
+        unset($datosIncidencia['usuario'],$datosIncidencia['min'],$datosIncidencia['codarea'],$datosIncidencia['observaciones'],$datosIncidencia['tcliente'],$datosIncidencia['fecha']);
+
+        //Insertando la tabla
+        BypasMin::insert($datosMinbypas);
+        Incidencia::insert($datosIncidencia);
+
+        //Redireccionando
+        return redirect('bypass/bypassMin')->with('mensaje', 'Abonado Incluido Exitosamente.');
+
+        }
+
         $campos = [
             'ticket' => 'required|string|min:10|max:10',
             'inicio' => 'required|string',
@@ -137,7 +181,7 @@ class IncidenciaController extends Controller
     public function export()
     {
     
-        return Excel::download(new IncidenciaExport, 'Incidencias.csv');
+        return Excel::download(new IncidenciaExport, 'Incidencias.xlsx');
     
     }
 }

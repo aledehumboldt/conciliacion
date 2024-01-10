@@ -73,7 +73,7 @@ Route::put('bypass/bypassMin/{id}', [BypasMinController::class, 'update'])->name
 
 Route::get('bypass/bypassMin/', [BypasMinController::class, 'index'])->name('bypass.bypassMin.index');
 
-Route::post('bypass/bypassMin/store', [IncidenciaController::class, 'store'])->name('bypass.bypassMin.store-incidenciaincluir');
+Route::post('bypass/bypassMin/store/{id}', [IncidenciaController::class, 'store'])->name('bypass.bypassMin.create-incidenciaincluir');
 
 Route::post('bypass/bypassMin/{id}', [IncidenciaController::class, 'store'])->name('bypass.bypassMin.store-incidencia');
 
