@@ -30,8 +30,8 @@ class IncidenciaController extends Controller
         }
         $mes = date('m');
         $anio = date('Y');
-        $dateFrom = $anio.$mes."01 00:00:00";
-        $dateTo = $anio.$mes."31 23:59:59";
+        $dateFrom = $anio."-".$mes."-01 00:00:00";
+        $dateTo = $anio."-".$mes."-31 23:59:59";
         //$datos['incidencias'] = Incidencia::paginate();
         $datos['incidencias'] = Incidencia::whereBetween('inicio', [$dateFrom, $dateTo])->paginate();
         return view('incidencias.index', $datos);
