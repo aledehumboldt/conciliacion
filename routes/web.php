@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\BypasMinController;
+use App\Http\Controllers\BypasImsiController;
 use App\Http\Controllers\bypasController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ExclusioneController;
@@ -47,23 +48,41 @@ Route::get('incidencias/export', [IncidenciaController::class, 'export'])->name(
 //--------------------------------------------------Fin Incidencias--------------------------------
 
 //-------------------------------------------------Bypass MIN------------------------------------------------
-Route::get('bypass/bypassMin/crear', [BypasMinController::class, 'create'])->name('bypass.bypassMin.create');
-
-Route::get('bypass/bypassMin/show', [BypasMinController::class, 'show'])->name('bypass.bypassMin.show');
-
 Route::get('bypassMin', [BypasMinController::class, 'index'])->name('bypassMin.index');
 
-Route::post('bypassMin', [BypasMinController::class, 'store'])->name('bypassMin.store');
+Route::get('bypassMin/crear', [BypasMinController::class, 'create'])->name('bypass.bypassMin.create');
 
-Route::post('bypassMin/{bypass}', [BypasMinController::class, 'destroy'])->name('bypassMin.destroy');
+Route::get('bypassMin/show', [BypasMinController::class, 'show'])->name('bypass.bypassMin.show');
 
-Route::get('bypass/bypassMin/editar/{id}', [BypasMinController::class, 'edit'])->name('bypass.bypassMin.edit');
+Route::post('bypassMin/store', [BypasMinController::class, 'store'])->name('bypassMin.store');
 
-Route::delete('bypass/bypassMin/{id}', [BypasMinController::class, 'destroy'])->name('bypass.bypassMin.destroy');
+Route::post('bypassMin/{id}', [BypasMinController::class, 'destroy'])->name('bypassMin.destroy');
 
-Route::put('bypass/bypassMin/{id}', [BypasMinController::class, 'update'])->name('bypass.bypassMin.update');
+Route::get('bypassMin/editar/{id}', [BypasMinController::class, 'edit'])->name('bypass.bypassMin.edit');
+
+Route::delete('bypassMin/{id}', [BypasMinController::class, 'destroy'])->name('bypassMin.destroy');
+
+Route::put('bypassMin/{id}', [BypasMinController::class, 'update'])->name('bypass.bypassMin.update');
 
 //-------------------------------------------------Fin Bypass MIN------------------------------------------------
+//-------------------------------------------------Bypass IMSI------------------------------------------------
+Route::get('bypassImsi', [BypasImsiController::class, 'index'])->name('bypassImsi.index');
+
+Route::get('bypassImsi/crear', [BypasImsiController::class, 'create'])->name('bypass.bypassImsi.create');
+
+Route::get('bypassImsi/show', [BypasImsiController::class, 'show'])->name('bypass.bypassImsi.show');
+
+Route::post('bypassImsi/store', [BypasImsiController::class, 'store'])->name('bypassImsi.store');
+
+Route::post('bypassImsi/{id}', [BypasImsiController::class, 'destroy'])->name('bypassImsi.destroy');
+
+Route::get('bypassImsi/editar/{id}', [BypasImsiController::class, 'edit'])->name('bypass.bypassImsi.edit');
+
+Route::delete('bypassImsi/{id}', [BypasImsiController::class, 'destroy'])->name('bypassImsi.destroy');
+
+Route::put('bypassImsi/{id}', [BypasImsiController::class, 'update'])->name('bypass.bypassImsi.update');
+
+//-------------------------------------------------Fin Bypass IMSI------------------------------------------------
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);

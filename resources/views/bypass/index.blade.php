@@ -36,7 +36,7 @@
 						<div class="offer-text">
 							<h6 class="text-white text-uppercase">Gestión Tráfico Gris</h6>
 							<h3 class="text-white mb-3">Solo IMSI</h3>
-							<a href="{{url('bypass/create/imsi')}}" class="btn btn-secondary">Gestionar</a>
+							<a href="{{ route('bypassImsi.index') }}" class="btn btn-secondary">Gestionar</a>
 						</div>
 					</div>
 					<div class="product-offer mb-30" style="height: 300px;">

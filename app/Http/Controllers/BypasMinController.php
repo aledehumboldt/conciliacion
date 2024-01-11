@@ -158,7 +158,7 @@ class BypasMinController extends Controller
 
         BypasMin::where('id','=',$id)->update($datosMinbypas);
         $bypas_min = BypasMin::findOrFail($id);
-          return redirect()->route('bypass.bypassMin.index')
+          return redirect()->route('bypassMin.index')
             ->with('mensaje', 'Inclusion Abonado Actualizada.');
     }
 
