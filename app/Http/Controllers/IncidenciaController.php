@@ -28,8 +28,12 @@ class IncidenciaController extends Controller
         if(!$this->verify()) {
             return back();
         }
-        
-        $datos['incidencias'] = Incidencia::paginate();
+        $mes = date('m');
+        $anio = date('Y');
+        $dateFrom = $anio.$mes."01 00:00:00";
+        $dateTo = $anio.$mes."31 23:59:59";
+        //$datos['incidencias'] = Incidencia::paginate();
+        $datos['incidencias'] = Incidencia::whereBetween('inicio', [$dateFrom, $dateTo])->paginate();
         return view('incidencias.index', $datos);
         //return $datos;
     }
@@ -61,10 +65,12 @@ class IncidenciaController extends Controller
 
         $vartmp = $request->tipo;
 
-        $datosIncidencia = request()->except('_token', 'agregar');
+        $datosIncidencia = request()->except('_token', 'excluir');
 
         $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+
+        unset($datosIncidencia['tipo']);
 
         Incidencia::insert($datosIncidencia);
 
