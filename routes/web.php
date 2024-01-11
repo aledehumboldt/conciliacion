@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\BypasMinController;
 use App\Http\Controllers\BypasImsiController;
+use App\Http\Controllers\BypasWhitelistController;
 use App\Http\Controllers\bypasController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ExclusioneController;
@@ -46,7 +47,6 @@ Route::post('incidencias/{incidencia}', [IncidenciaController::class, 'store'])-
 
 Route::get('incidencias/export', [IncidenciaController::class, 'export'])->name('incidencias.export');
 //--------------------------------------------------Fin Incidencias--------------------------------
-
 //-------------------------------------------------Bypass MIN------------------------------------------------
 Route::get('bypassMin', [BypasMinController::class, 'index'])->name('bypassMin.index');
 
@@ -83,6 +83,24 @@ Route::delete('bypassImsi/{id}', [BypasImsiController::class, 'destroy'])->name(
 Route::put('bypassImsi/{id}', [BypasImsiController::class, 'update'])->name('bypass.bypassImsi.update');
 
 //-------------------------------------------------Fin Bypass IMSI------------------------------------------------
+//-------------------------------------------------Bypass Whitelist------------------------------------------------
+Route::get('bypassWhitelist', [BypasWhitelistController::class, 'index'])->name('bypassWhitelist.index');
+
+Route::get('bypassWhitelist/crear', [BypasWhitelistController::class, 'create'])->name('bypass.bypassWhitelist.create');
+
+Route::get('bypassWhitelist/show', [BypasWhitelistController::class, 'show'])->name('bypass.bypassWhitelist.show');
+
+Route::post('bypassWhitelist/store', [BypasWhitelistController::class, 'store'])->name('bypassWhitelist.store');
+
+Route::post('bypassWhitelist/{id}', [BypasWhitelistController::class, 'destroy'])->name('bypassWhitelist.destroy');
+
+Route::get('bypassWhitelist/editar/{id}', [BypasWhitelistController::class, 'edit'])->name('bypass.bypassWhitelist.edit');
+
+Route::delete('bypassWhitelist/{id}', [BypasWhitelistController::class, 'destroy'])->name('bypassWhitelist.destroy');
+
+Route::put('bypassWhitelist/{id}', [BypasWhitelistController::class, 'update'])->name('bypass.bypassWhitelist.update');
+
+//-------------------------------------------------Fin Bypass Whitelist------------------------------------------------
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);
