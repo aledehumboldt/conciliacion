@@ -41,7 +41,6 @@
        <div class="form-floating mb-3">
                 <select name="tipo" id="tipo" class="form-control" style="width:350px">
                     <option value="">Seleccione para inicidencia o requerimiento:</option>
-                    <option value="0">Incidencia</option>
                     <option value="1">Requerimiento</option>
                 </select>
     </div>
