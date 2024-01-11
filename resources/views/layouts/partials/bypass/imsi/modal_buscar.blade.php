@@ -2,23 +2,18 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Buscar Abonado en Trafico Gris</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Buscar Imsi en Trafico Gris</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('bypass.bypassMin.show',auth()->user()->id) }}" enctype="multipart/form-data" method="get">
+                <form action="{{ route('bypassImsi.show',auth()->user()->id) }}" enctype="multipart/form-data" method="get">
                     @csrf
                     <div class="form-container">
-                    <label for="celular" class="form-label">Celular</label>
+                    <label for="ismi" class="form-label">Imsi</label>
                     <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
-                    <select name="codarea" id="codarea" class="form-control" style="width:100px">
-                    <option value="">Código</option>
-                    <option value="416">416</option>
-                    <option value="426">426</option>
-                </select>
-                <input type="text" name="min" id="min" class="form-control" value="{{old('min')}}" placeholder="Ingrese abonado" pattern=".{7,7}">
+                <input type="text" name="imsi" id="imsi" class="form-control" value="{{old('min')}}" placeholder="Ingrese imsi" pattern=".{15,15}">
                     </div>
                         <button type="submit" class="btn btn-secondary" name="buscar" id="buscar">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">

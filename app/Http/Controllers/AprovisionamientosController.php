@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\aprovisionamientos;
-use App\Http\Requests\StoreaprovisionamientosRequest;
-use App\Http\Requests\UpdateaprovisionamientosRequest;
+use App\Models\Aprovisionamiento;
+use App\Http\Requests\StoreAprovisionamientoRequest;
+use App\Http\Requests\UpdateAprovisionamientoRequest;
 
-class AprovisionamientosController extends Controller
+class AprovisionamientoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class AprovisionamientosController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreaprovisionamientosRequest $request)
+    public function store(StoreAprovisionamientoRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class AprovisionamientosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(aprovisionamientos $aprovisionamientos)
+    public function show(Aprovisionamiento $Aprovisionamiento)
     {
         //
     }
@@ -43,7 +43,7 @@ class AprovisionamientosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(aprovisionamientos $aprovisionamientos)
+    public function edit(Aprovisionamiento $Aprovisionamiento)
     {
         //
     }
@@ -51,7 +51,7 @@ class AprovisionamientosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateaprovisionamientosRequest $request, aprovisionamientos $aprovisionamientos)
+    public function update(UpdateAprovisionamientoRequest $request, Aprovisionamiento $Aprovisionamiento)
     {
         //
     }
@@ -59,7 +59,7 @@ class AprovisionamientosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(aprovisionamientos $aprovisionamientos)
+    public function destroy(Aprovisionamiento $Aprovisionamiento)
     {
         //
     }

@@ -61,12 +61,10 @@ class IncidenciaController extends Controller
 
         $vartmp = $request->tipo;
 
-        $datosIncidencia = request()->except('_token', 'excluir');
+        $datosIncidencia = request()->except('_token', 'agregar');
 
         $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-
-        unset($datosIncidencia['tipo']);
 
         Incidencia::insert($datosIncidencia);
 

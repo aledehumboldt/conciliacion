@@ -2,13 +2,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Buscar Abonado en Trafico Gris lista blanca</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Buscar Abonado en Trafico Gris</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('bypass.bypassWhitelist.show',auth()->user()->id) }}" enctype="multipart/form-data" method="get">
+                <form action="{{ route('bypassMin.show',auth()->user()->id) }}" enctype="multipart/form-data" method="get">
                     @csrf
                     <div class="form-container">
                     <label for="celular" class="form-label">Celular</label>

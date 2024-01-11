@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\aprovisionamientos;
+use App\Models\Aprovisionamiento;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class AprovisionamientosSeeder extends Seeder
+class AprovisionamientoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        aprovisionamientos::factory(50)->create();
+        Aprovisionamiento::factory(50)->create();
     }
 }

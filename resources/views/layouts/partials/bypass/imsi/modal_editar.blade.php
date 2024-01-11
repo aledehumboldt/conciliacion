@@ -1,4 +1,4 @@
-    <div class="modal fade" id="exampleModal3{{$bypas_min->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+    <div class="modal fade" id="exampleModal3{{$bypas_imsi->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,40 +8,26 @@
                 </button>
             </div>
             <div class="modal-body">
-    <form action="{{ route('bypass.bypassMin.update', $bypas_min->id) }}" enctype="multipart/form-data" method="POST">
+    <form action="{{ route('bypassImsi.update', $bypas_imsi->id) }}" enctype="multipart/form-data" method="POST">
         @csrf
         @method('PUT')
     <div class="form-container">
         <div class="form-floating mb-3">
-            <input type="text" name="ticket" id="ticket" class="form-control" placeholder="Ingresar ticket" value="{{ $bypas_min->ticket }}" required>
+            <input type="text" name="ticket" id="ticket" class="form-control" placeholder="Ingresar ticket" value="{{ $bypas_imsi->ticket }}" required>
             <label for="ticket" class="form-label">Ingresa ticket</label>
         </div>
-        <label for="min" class="form-label">Celular</label>
+        <label for="imsi" class="form-label">Imsi</label>
         <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
-        <select name="codarea" id="codarea" class="form-control" style="width:100px" required>
-        <option value="416"
-        @if (substr($bypas_min->min, 0, 3) == "416") selected @endif>0416</option>
-        <option value="426"
-        @if (substr($bypas_min->min, 0, 3) == "426") selected @endif>0426</option>
-        </select>
-        <input type="text" name="min" id="min" value="{{substr($bypas_min->min, 3)}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
+        <input type="text" name="imsi" id="imsi" value="{{ $bypas_imsi->imsi }}" class="form-control" placeholder="Ingrese imsi" pattern=".{15,15}">
         </div>
         <div class="mb-3">
             <label for="fecha" class="form-label">Fecha</label>
-            <input type="text" name="fecha" id="fecha" class="form-control" value="{{ $bypas_min->fecha }}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
+            <input type="text" name="fecha" id="fecha" class="form-control" value="{{ $bypas_imsi->fecha }}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
             this.type='text'">
         </div>
-    <div class="mb-3">
-            <select id="tcliente" name="tcliente" class="form-control" required>
-                <option value="PREPAGO"
-                @if ($bypas_min->tcliente == "PREPAGO") selected @endif>Prepago</option>
-                <option value="POSTPAGO"
-                @if ($bypas_min->tcliente == "POSTPAGO") selected @endif>Postpago</option>
-            </select>
-    </div>
     <label for="observaciones" class="form-label">Observaciones</label>
     <div class="form-floating mb-3">
-          <textarea name="observaciones" id="observaciones" cols="35" rows="5">{{ $bypas_min->observaciones }}</textarea>
+          <textarea name="observaciones" id="observaciones" cols="35" rows="5">{{ $bypas_imsi->observaciones }}</textarea>
     </div>
         <div class="text-center pt-1 mb-5 pb-1">
             <button type="submit" name="editar" id="editar" class="btn btn-secondary">
@@ -51,7 +37,7 @@
                     <path d="M6 13.6V21H18V13.6C18 13.2686 17.7314 13 17.4 13H6.6C6.26863 13 6 13.2686 6 13.6Z" stroke="currentColor" stroke-width="1.5" />
                 </svg>
                 Editar Inclusion</button>
-                <a href="{{route('bypassMin.index')}}" class="btn btn-secondary">
+                <a href="{{route('bypassImsi.index')}}" class="btn btn-secondary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 14 14">
                         <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
                     </svg>

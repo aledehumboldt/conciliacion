@@ -5,57 +5,16 @@
 @endsection
 
 @section('encabezado')
-@include('layouts.modales.modalesbypass.modalshowbypassmin')
 <h3 class="editor-toolbar-item">Gestion trafico gris abonados</h3>
 <div style="position: absolute; right: 2%;">
-    <button class="btn btn-secondary me-md-2" type="button" name="buscar" id="buscar"  data-toggle="modal" data-target="#exampleModal">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-        </svg>
-    </button>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Buscar Abonado en Trafico Gris</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('bypass.bypassMin.show',auth()->user()->id) }}" enctype="multipart/form-data" method="get">
-                    @csrf
-                    <div class="form-container">
-                    <label for="celular" class="form-label">Celular</label>
-                    <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
-                    <select name="codarea" id="codarea" class="form-control" style="width:100px">
-                    <option value="">Código</option>
-                    <option value="416">0416</option>
-                    <option value="426">0426</option>
-                </select>
-                <input type="text" name="celular" id="celular" value="{{old('min')}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
-                    </div>
-                        <button type="submit" class="btn btn-secondary" name="buscar" id="buscar">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                            </svg>
-                        </button>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
-        @include('layouts.modal_incluir')
-        <button type="submit" class="btn btn-secondary" type="button" name="incluir" id="incluir"  data-toggle="modal" data-target="#exampleModal4">
+    @include('layouts.partials.bypass.min.modal_incluir')
+    <button type="submit" class="btn btn-secondary" type="button" name="incluir" id="incluir"  data-toggle="modal" data-target="#exampleModal4">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
             <path d="M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707z"/>
             <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
-          </svg>
-    Incluir Abonado</button>
+        </svg>
+        Incluir Abonado
+    </button>
 </div>
 @endsection
 
@@ -84,7 +43,7 @@
                     <td>{{$bypas_min->min}}</td>
                     <td>{{$bypas_min->observaciones}}</td>
                     <td>{{$bypas_min->tcliente}}</td>
-                    @include('layouts.modal_editar')
+                    @include('layouts.partials.bypass.min.modal_editar')
                     <td style="display: flex; align-items: center;justify-content: center;">
                     <div style="display: flex; align-items: center;justify-content: center;">
                         <button type="submit" class="btn btn-secondary" type="button" name="editar" id="editar"  data-toggle="modal" data-target="#exampleModal3{{$bypas_min->id}}">
@@ -93,7 +52,7 @@
                           </svg>
                         </button>
                     </div>
-                    @include('layouts.modal_excluir')
+                    @include('layouts.partials.bypass.min.modal_excluir')
                     <div style="display: flex; align-items: center;justify-content: center;">
                             <button type="submit" class="btn btn-danger me-md-2" type="button" name="buscar" id="buscar"  data-toggle="modal" data-target="#exampleModal2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser" viewBox="0 0 16 16">
@@ -107,4 +66,12 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="text-center pt-1 mb-5 pb-1">
+            <a href="{{route('bypassMin.index')}}" class="btn btn-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 14 14">
+                    <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                </svg>
+                Volver
+            </a>
+        </div>
 @endsection

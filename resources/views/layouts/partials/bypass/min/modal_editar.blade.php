@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-    <form action="{{ route('bypass.bypassWhitelist.update', $bypas_min->id) }}" enctype="multipart/form-data" method="POST">
+    <form action="{{ route('bypassMin.update', $bypas_min->id) }}" enctype="multipart/form-data" method="POST">
         @csrf
         @method('PUT')
     <div class="form-container">
@@ -31,6 +31,14 @@
             <input type="text" name="fecha" id="fecha" class="form-control" value="{{ $bypas_min->fecha }}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
             this.type='text'">
         </div>
+    <div class="mb-3">
+            <select id="tcliente" name="tcliente" class="form-control" required>
+                <option value="PREPAGO"
+                @if ($bypas_min->tcliente == "PREPAGO") selected @endif>Prepago</option>
+                <option value="POSTPAGO"
+                @if ($bypas_min->tcliente == "POSTPAGO") selected @endif>Postpago</option>
+            </select>
+    </div>
     <label for="observaciones" class="form-label">Observaciones</label>
     <div class="form-floating mb-3">
           <textarea name="observaciones" id="observaciones" cols="35" rows="5">{{ $bypas_min->observaciones }}</textarea>
@@ -43,7 +51,7 @@
                     <path d="M6 13.6V21H18V13.6C18 13.2686 17.7314 13 17.4 13H6.6C6.26863 13 6 13.2686 6 13.6Z" stroke="currentColor" stroke-width="1.5" />
                 </svg>
                 Editar Inclusion</button>
-                <a href="{{route('bypassWhitelist.index')}}" class="btn btn-secondary">
+                <a href="{{route('bypassMin.index')}}" class="btn btn-secondary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 14 14">
                         <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
                     </svg>

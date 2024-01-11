@@ -47,59 +47,41 @@ Route::post('incidencias/{incidencia}', [IncidenciaController::class, 'store'])-
 
 Route::get('incidencias/export', [IncidenciaController::class, 'export'])->name('incidencias.export');
 //--------------------------------------------------Fin Incidencias--------------------------------
+
 //-------------------------------------------------Bypass MIN------------------------------------------------
 Route::get('bypassMin', [BypasMinController::class, 'index'])->name('bypassMin.index');
 
-Route::get('bypassMin/crear', [BypasMinController::class, 'create'])->name('bypass.bypassMin.create');
+Route::get('bypassMin/show', [BypasMinController::class, 'show'])->name('bypassMin.show');
 
-Route::get('bypassMin/show', [BypasMinController::class, 'show'])->name('bypass.bypassMin.show');
-
-Route::post('bypassMin/store', [BypasMinController::class, 'store'])->name('bypassMin.store');
+Route::post('bypassMin', [BypasMinController::class, 'store'])->name('bypassMin.store');
 
 Route::post('bypassMin/{id}', [BypasMinController::class, 'destroy'])->name('bypassMin.destroy');
 
-Route::get('bypassMin/editar/{id}', [BypasMinController::class, 'edit'])->name('bypass.bypassMin.edit');
-
-Route::delete('bypassMin/{id}', [BypasMinController::class, 'destroy'])->name('bypassMin.destroy');
-
-Route::put('bypassMin/{id}', [BypasMinController::class, 'update'])->name('bypass.bypassMin.update');
-
+Route::put('bypassMin/{id}', [BypasMinController::class, 'update'])->name('bypassMin.update');
 //-------------------------------------------------Fin Bypass MIN------------------------------------------------
+
 //-------------------------------------------------Bypass IMSI------------------------------------------------
 Route::get('bypassImsi', [BypasImsiController::class, 'index'])->name('bypassImsi.index');
 
-Route::get('bypassImsi/crear', [BypasImsiController::class, 'create'])->name('bypass.bypassImsi.create');
+Route::get('bypassImsi/show', [BypasImsiController::class, 'show'])->name('bypassImsi.show');
 
-Route::get('bypassImsi/show', [BypasImsiController::class, 'show'])->name('bypass.bypassImsi.show');
-
-Route::post('bypassImsi/store', [BypasImsiController::class, 'store'])->name('bypassImsi.store');
+Route::post('bypassImsi', [BypasImsiController::class, 'store'])->name('bypassImsi.store');
 
 Route::post('bypassImsi/{id}', [BypasImsiController::class, 'destroy'])->name('bypassImsi.destroy');
 
-Route::get('bypassImsi/editar/{id}', [BypasImsiController::class, 'edit'])->name('bypass.bypassImsi.edit');
-
-Route::delete('bypassImsi/{id}', [BypasImsiController::class, 'destroy'])->name('bypassImsi.destroy');
-
-Route::put('bypassImsi/{id}', [BypasImsiController::class, 'update'])->name('bypass.bypassImsi.update');
-
+Route::put('bypassImsi/{id}', [BypasImsiController::class, 'update'])->name('bypassImsi.update');
 //-------------------------------------------------Fin Bypass IMSI------------------------------------------------
+
 //-------------------------------------------------Bypass Whitelist------------------------------------------------
 Route::get('bypassWhitelist', [BypasWhitelistController::class, 'index'])->name('bypassWhitelist.index');
 
-Route::get('bypassWhitelist/crear', [BypasWhitelistController::class, 'create'])->name('bypass.bypassWhitelist.create');
+Route::get('bypassWhitelist/show', [BypasWhitelistController::class, 'show'])->name('bypassWhitelist.show');
 
-Route::get('bypassWhitelist/show', [BypasWhitelistController::class, 'show'])->name('bypass.bypassWhitelist.show');
-
-Route::post('bypassWhitelist/store', [BypasWhitelistController::class, 'store'])->name('bypassWhitelist.store');
+Route::post('bypassWhitelist', [BypasWhitelistController::class, 'store'])->name('bypassWhitelist.store');
 
 Route::post('bypassWhitelist/{id}', [BypasWhitelistController::class, 'destroy'])->name('bypassWhitelist.destroy');
 
-Route::get('bypassWhitelist/editar/{id}', [BypasWhitelistController::class, 'edit'])->name('bypass.bypassWhitelist.edit');
-
-Route::delete('bypassWhitelist/{id}', [BypasWhitelistController::class, 'destroy'])->name('bypassWhitelist.destroy');
-
-Route::put('bypassWhitelist/{id}', [BypasWhitelistController::class, 'update'])->name('bypass.bypassWhitelist.update');
-
+Route::put('bypassWhitelist/{id}', [BypasWhitelistController::class, 'update'])->name('bypassWhitelist.update');
 //-------------------------------------------------Fin Bypass Whitelist------------------------------------------------
 
 Route::group(['middleware' => ['auth']], function () {
