@@ -15,6 +15,7 @@ use App\Http\Controllers\ExclusioneController;
 use App\Http\Controllers\IncidenciaController;
 use App\Http\Controllers\ProvisioningController;
 use App\Http\Controllers\ContactarController;
+use App\Http\Controllers\AlmacenamientoarchivoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,17 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::post('/exclusiones/query', [ExclusioneController::class, 'query'])->name('exclusiones.query');
+
+//-------------------------------------------------Almacenamiento de archivos------------------------------------------------
+Route::get('documentacion', [AlmacenamientoarchivoController::class, 'index'])->name('documentacion.index');
+
+//Route::get('documentacion', [AlmacenamientoarchivoController::class, 'loadView'])->name('subirArchivo');
+
+Route::post('documentacion', [AlmacenamientoarchivoController::class, 'storeFile'])->name('storeFile');
+
+Route::get('documentacion/descargar/{name}', [AlmacenamientoarchivoController::class, 'downloadFile'])->name('download');
+
+//-------------------------------------------------Fin Almacenamiento de archivos------------------------------------------------
 
 //---------------------------------------------------Incidencias------------------------------------
 Route::get('incidencias/show', [IncidenciaController::class, 'show'])->name('incidencias.show');
