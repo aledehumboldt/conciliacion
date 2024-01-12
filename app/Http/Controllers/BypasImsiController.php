@@ -17,7 +17,7 @@ class BypasImsiController extends Controller
      * Display a listing of the resource.
      */
     protected function verify() {
-        if (Auth::user()->perfil == "CYA" && Auth::user()->estatus != "Iniciado") {
+        if (Auth::user()->estatus != "Iniciado") {
             return true;
         } else {
             return false;

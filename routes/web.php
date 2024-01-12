@@ -8,7 +8,8 @@ use App\Http\Controllers\ResetController;
 use App\Http\Controllers\BypasMinController;
 use App\Http\Controllers\BypasImsiController;
 use App\Http\Controllers\BypasWhitelistController;
-use App\Http\Controllers\bypasController;
+use App\Http\Controllers\BypassController;
+use App\Http\Controllers\BypassAmbosController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ExclusioneController;
 use App\Http\Controllers\IncidenciaController;
@@ -84,12 +85,18 @@ Route::post('bypassWhitelist/{id}', [BypasWhitelistController::class, 'destroy']
 Route::put('bypassWhitelist/{id}', [BypasWhitelistController::class, 'update'])->name('bypassWhitelist.update');
 //-------------------------------------------------Fin Bypass Whitelist------------------------------------------------
 
+//-------------------------------------------------Bypass Ambos------------------------------------------------
+Route::get('bypassAmbos/create', [BypassAmbosController::class, 'create'])->name('bypassAmbos.create');
+
+Route::post('bypassAmbos', [BypassAmbosController::class, 'store'])->name('bypassAmbos.store');
+//-------------------------------------------------Fin Bypass Ambos------------------------------------------------
+
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);
     Route::resource('exclusiones', ExclusioneController::class);
     Route::resource('provisioning', ProvisioningController::class);
     Route::resource('password', ResetController::class);
     Route::resource('incidencias', IncidenciaController::class)->except(['show','store']);
-    Route::resource('bypass', bypasController::class);
+    Route::resource('bypass', BypassController::class);
     Route::resource('contactar', ContactarController::class);
 });

@@ -16,9 +16,9 @@
                 value="{{old('ticket')}}" placeholder="">
             <label for="ticket" class="form-label">Ingresa ticket</label>
         </div>
-        <label for="imsi" class="form-label">Celular</label>
+        <label for="imsi" class="form-label">IMSI</label>
         <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
-        <input type="text" name="imsi" id="imsi" value="{{old('imsi')}}" class="form-control" placeholder="Ingrese imsi" pattern=".{15,15}">
+            <input type="text" name="imsi" id="imsi" value="{{old('imsi')}}" class="form-control" placeholder="Ingrese imsi" pattern=".{15,15}">
         </div>
         <div class="mb-3">
             <label for="fecha" class="form-label">Fecha</label>
