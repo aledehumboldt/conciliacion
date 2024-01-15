@@ -6,14 +6,24 @@ use App\Models\Aprovisionamiento;
 use App\Http\Requests\StoreAprovisionamientoRequest;
 use App\Http\Requests\UpdateAprovisionamientoRequest;
 
-class AprovisionamientoController extends Controller
+class AprovisionamientosController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('aprovisionamientos.index');
+    }
+
+    public function conexion()
+    {
+        return view('aprovisionamientos.conexion.index');
+    }
+
+    public function desconexion()
+    {
+        return view('aprovisionamientos.desconexion.index');
     }
 
     /**
