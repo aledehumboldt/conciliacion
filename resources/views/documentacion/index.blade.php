@@ -26,9 +26,11 @@
 <h3>Archivos cargados</h3>
 <div class="container">
         @if(isset($files))
+        <div class="continer-cuadrado">
             @foreach($files as $file)
-                    <div><a href="{{$file['link']}}" target="_blank">{{$file['name']}}</a></div>
+                    <button type="submit" class="btn btn-secondary" href="{{$file['link']}}" target="_blank">{{$file['name']}}</button>
             @endforeach
+        </div>
         @endif
 </div>
 
