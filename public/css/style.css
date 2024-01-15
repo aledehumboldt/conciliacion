@@ -721,3 +721,12 @@ img {
 .hide {
   display: none;
 }
+
+.continer-cuadrado {
+  width: 25vh;
+  max-width: 100px;
+  height: 25vh;
+  max-height: 100px;
+  position: relative;
+  background: orangered;
+}
