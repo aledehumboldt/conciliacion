@@ -25,10 +25,14 @@ class AlmacenamientoarchivoController extends Controller
         if(!$this->verify()) {
             return back();
         }
-        $files =[];
+
+    $files =[];
 
         foreach (Storage::disk($this->disk)->files() as $file) {
-            $name = str_replace("$this->disk/","",$file);
+
+            $name = str_replace("/","",$file);
+
+            $filetitle = str_replace($file,"","");
 
             $document = "";
 
@@ -43,9 +47,8 @@ class AlmacenamientoarchivoController extends Controller
             $files[] = [
                 "document" => $document,
                 "name" => $name,
+                "filetitle" => $filetitle,
                 "link" => $downloadLink,
-                "size" => Storage::disk($this->disk)->size($name)
-
             ];
         }
 
@@ -55,7 +58,9 @@ class AlmacenamientoarchivoController extends Controller
     public function storeFile(Request $request)
     {
         if ($request->isMethod('POST')) {
-            $file = $request->file('file')->getClientOriginalName();
+            $dir = "/";
+
+            $file = $dir.$request->file('file')->getClientOriginalName();
 
             $request->file('file')->storeAs($this->disk,$file);
 
@@ -66,8 +71,9 @@ class AlmacenamientoarchivoController extends Controller
 
     public function downLoadfile($name)
     {
-        if (Storage::disk($this->disk)->exists($name)) {
-            return Storage::disk($this->disk)->download($name);
+        $dir = "/";
+        if (Storage::disk($this->disk)->exists($dir.$name)) {
+            return Storage::disk($this->disk)->download($dir.$name);
         }
 
         return response('',404);

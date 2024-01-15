@@ -9509,11 +9509,14 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
-.continer-cuadrado {
-  width: 25vh;
-  max-width: 100px;
-  height: 25vh;
-  max-height: 100px;
-  position: relative;
-  background: orangered;
+.grid {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(50px, auto);
+  grid-gap: 15px;
+}
+
+.grid-item {
+  margin: auto;
 }

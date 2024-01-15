@@ -23,15 +23,14 @@
 @section('contenido')
     @include('layouts.partials.messages')
 
-<h3>Archivos cargados</h3>
-<div class="container">
+<div class="grid">
+    <div class="">
         @if(isset($files))
-        <div class="continer-cuadrado">
             @foreach($files as $file)
-                    <button type="submit" class="btn btn-secondary" href="{{$file['link']}}" target="_blank">{{$file['name']}}</button>
+                <h3 style="text-transform:uppercase">{{$file['filetitle']}}</h3>
+                <a class="btn btn-secondary" href="{{$file['link']}}" target="_blank"><h5 class="text-white" style="text-transform:uppercase">{{$file['name']}}</h5></a>
             @endforeach
-        </div>
         @endif
+    </div>
 </div>
-
 @endsection

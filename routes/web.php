@@ -15,6 +15,7 @@ use App\Http\Controllers\IncidenciaController;
 use App\Http\Controllers\ProvisioningController;
 use App\Http\Controllers\ContactarController;
 use App\Http\Controllers\AlmacenamientoarchivoController;
+use App\Http\Controllers\AprovisionamientosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,6 +96,14 @@ Route::post('bypassWhitelist/{id}', [BypasWhitelistController::class, 'destroy']
 
 Route::put('bypassWhitelist/{id}', [BypasWhitelistController::class, 'update'])->name('bypassWhitelist.update');
 //-------------------------------------------------Fin Bypass Whitelist------------------------------------------------
+
+//-------------------------------------------------Aprovisionamientos------------------------------------------------
+Route::get('aprovisionamientos', [AprovisionamientosController::class, 'index'])->name('aprovisionamientos');
+
+Route::get('aprovisionamientos/conexion', [AprovisionamientosController::class, 'conexion'])->name('aprovisionamientos.conexion');
+
+Route::get('aprovisionamientos/desconexion', [AprovisionamientosController::class, 'desconexion'])->name('aprovisionamientos.desconexion');
+//-------------------------------------------------Fin Aprovisionamientos------------------------------------------------
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);
