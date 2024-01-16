@@ -101,6 +101,8 @@ Route::put('bypassWhitelist/{id}', [BypasWhitelistController::class, 'update'])-
 Route::get('bypassAmbos/create', [BypassAmbosController::class, 'create'])->name('bypassAmbos.create');
 
 Route::post('bypassAmbos', [BypassAmbosController::class, 'store'])->name('bypassAmbos.store');
+
+Route::post('bypassAmbos/{id}', [BypasWhitelistController::class, 'destroy'])->name('bypassAmbos.destroy');
 //-------------------------------------------------Fin Bypass Ambos------------------------------------------------
 
 Route::group(['middleware' => ['auth']], function () {
