@@ -96,7 +96,8 @@ class BypasWhitelistController extends Controller
         //-------------------Incidencia--------------
         
         //Redireccionando
-        return redirect()->route('bypassWhitelist.index')->with('mensaje', 'Abonado incluido exitosamente.');
+        return redirect()->route('bypassWhitelist.index')
+        ->with('mensaje', 'Abonado incluido exitosamente.');
     }
 
     /**
@@ -157,7 +158,7 @@ class BypasWhitelistController extends Controller
         BypasWhitelist::where('id','=',$id)->update($datosMinbypas);
         $bypas_min = BypasWhitelist::findOrFail($id);
           return redirect()->route('bypassWhitelist.index')
-            ->with('mensaje', 'Inclusion Abonado Actualizada.');
+            ->with('mensaje', 'Registro actualizado.');
     }
 
     /**

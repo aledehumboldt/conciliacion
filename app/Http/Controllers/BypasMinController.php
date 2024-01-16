@@ -97,7 +97,8 @@ class BypasMinController extends Controller
         //-------------------Incidencia--------------
         
         //Redireccionando
-        return redirect()->route('bypassMin.index')->with('mensaje', 'Abonado incluido exitosamente.');
+        return redirect()->route('bypassMin.index')
+        ->with('mensaje', 'Abonado incluido exitosamente.');
     }
 
     /**
@@ -159,7 +160,7 @@ class BypasMinController extends Controller
         BypasMin::where('id','=',$id)->update($datosMinbypas);
         $bypas_min = BypasMin::findOrFail($id);
           return redirect()->route('bypassMin.index')
-            ->with('mensaje', 'Inclusion Abonado Actualizada.');
+            ->with('mensaje', 'Registro actualizado.');
     }
 
     /**

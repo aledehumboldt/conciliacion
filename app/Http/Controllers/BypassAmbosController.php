@@ -112,6 +112,14 @@ class BypassAmbosController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Request $request, string $id) {
+        //Eliminando de la tabla Bypass MIN
+        $numero = BypasMin::find($id);
+        $numero->delete();
+
+        //Eliminando de la tabla Bypass IMSI
+        $numero = BypasImsi::find($id);
+        $numero->delete();
+
         //Validando parametros enviados 
         $campos = [
             'ticket' => 'required|string',
@@ -125,49 +133,19 @@ class BypassAmbosController extends Controller
 
         $this->validate($request,$campos);
 
-        //-------------------Bypass--------------
-        //Sustituyendo valores necesarios
-        $datosBypass = request()->except('_token', 'incluir');
-        $min = $datosBypass['codarea'].$datosBypass['min'];
-        $imsi = $datosBypass['imsi'];
-
-        //Agregando valores necesarios
-        $datosBypass['min'] = $min;
-        $datosBypass['usuario'] = auth()->user()->usuario;
-        $datosBypass['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-        $datosBypass['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-
-        //Eliminando del array
-        unset($datosBypass['codarea'],$datosBypass['imsi']);
-
-        //Insertando la tabla Bypass MIN
-        BypasMin::insert($datosBypass);
-        //------------------------------------------
-        //Agregando valores necesarios
-        $datosBypass['imsi'] = $imsi;
-
-        //Eliminando del array
-        unset($datosBypass['min'],$datosBypass['tcliente']);
-
-        //Insertando la tabla Bypass IMSI
-        BypasImsi::insert($datosBypass);
-        //-------------------Bypass------------------
-
         //-------------------Incidencia--------------
+        $datosIncidencia = request()->except('_token', 'excluir');
+
         //Agregando valores necesarios
-        $datosBypass['inicio'] = $request->fecha;
-        $datosBypass['fin'] = $request->fecha;
-        $datosBypass['descripcion'] = $request->observaciones;
-        $datosBypass['solicitante'] = auth()->user()->perfil;
-
-        //Eliminando del array
-        unset($datosBypass['usuario'],$datosBypass['imsi'],$datosBypass['observaciones'],$datosBypass['fecha']);
-
-        //Insertando la tabla Incidencias
-        Incidencia::insert($datosBypass);
+        $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        
+        //Agregando registro a Incidencia
+        Incidencia::insert($datosIncidencia);
         //-------------------Incidencia--------------
         
         //Redireccionando
-        return redirect()->route('bypassAmbos.create')->with('mensaje', 'Inclusion realizada exitosamente.');
+        return redirect()->route('bypassAmbos.create')
+        ->with('mensaje', 'Exlusión realizada exitosamente.');
     }
 }

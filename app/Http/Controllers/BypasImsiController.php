@@ -91,7 +91,8 @@ class BypasImsiController extends Controller
         //-------------------Incidencia--------------
         
         //Redireccionando
-        return redirect()->route('bypassImsi.index')->with('mensaje', 'Imsi incluido exitosamente.');
+        return redirect()->route('bypassImsi.index')
+        ->with('mensaje', 'IMSI incluido exitosamente.');
     }
 
     /**
@@ -143,7 +144,7 @@ class BypasImsiController extends Controller
         BypasImsi::where('id','=',$id)->update($datosImsibypas);
         $bypas_min = BypasImsi::findOrFail($id);
           return redirect()->route('bypassImsi.index')
-            ->with('mensaje', 'Inclusion Imsi Actualizada.');
+            ->with('mensaje', 'Registro actualizado.');
     }
 
     /**
@@ -174,7 +175,7 @@ class BypasImsiController extends Controller
             Incidencia::insert($datosIncidencia);
 
             return redirect()->route('bypassImsi.index')
-            ->with('mensaje', 'Imsi excluido exitosamente.');
+            ->with('mensaje', 'IMSI excluido exitosamente.');
         }
 }
 

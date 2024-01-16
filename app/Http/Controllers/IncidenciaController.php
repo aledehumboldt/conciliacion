@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use App\Models\Incidencia;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\IncidenciaExport;
-use App\Models\BypasMin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
