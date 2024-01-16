@@ -42,6 +42,11 @@ class BypassAmbosController extends Controller
         $this->validate($request,$campos);
 
         //-------------------Bypass--------------
+        //En caso de ser una exclusion
+        if (isset(request()->excluir)) {
+            return $this->destroy($request);
+        }
+
         //Sustituyendo valores necesarios
         $datosBypass = request()->except('_token', 'incluir');
         $min = $datosBypass['codarea'].$datosBypass['min'];
@@ -84,7 +89,8 @@ class BypassAmbosController extends Controller
         //-------------------Incidencia--------------
         
         //Redireccionando
-        return redirect()->route('bypassAmbos.create')->with('mensaje', 'Inclusion realizada exitosamente.');
+        return redirect()->route('bypassAmbos.create')
+        ->with('mensaje', 'Inclusion realizada exitosamente.');
     }
 
     /**
@@ -111,34 +117,36 @@ class BypassAmbosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, string $id) {
+    public function destroy(Request $request) {
+        //Sustituyendo valores necesarios
+        $datosIncidencia = $request->except('_token', 'excluir');
+        $min = $datosIncidencia['codarea'].$datosIncidencia['min'];
+
         //Eliminando de la tabla Bypass MIN
-        $numero = BypasMin::find($id);
+        $numero = BypasMin::where('min',$min);
         $numero->delete();
 
         //Eliminando de la tabla Bypass IMSI
-        $numero = BypasImsi::find($id);
+        $numero = BypasImsi::where('imsi',$datosIncidencia['imsi']);
         $numero->delete();
-
-        //Validando parametros enviados 
-        $campos = [
-            'ticket' => 'required|string',
-            'fecha' => 'required|string',
-            'codarea' => 'required|string',
-            'min' => 'required|numeric',
-            'imsi' => 'required|numeric',
-            'observaciones' => 'required|string',
-            'tcliente' => 'required|string',
-        ];
-
-        $this->validate($request,$campos);
 
         //-------------------Incidencia--------------
         $datosIncidencia = request()->except('_token', 'excluir');
 
         //Agregando valores necesarios
+        $datosIncidencia['inicio'] = $request->fecha;
+        $datosIncidencia['fin'] = $request->fecha;
+        $datosIncidencia['descripcion'] = $request->observaciones;
+        $datosIncidencia['solicitante'] = auth()->user()->perfil;
         $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+
+         //Eliminando del array
+         unset(
+            $datosIncidencia['min'],$datosIncidencia['imsi'],
+            $datosIncidencia['codarea'],$datosIncidencia['tcliente'],
+            $datosIncidencia['observaciones'],$datosIncidencia['fecha'],
+        );
         
         //Agregando registro a Incidencia
         Incidencia::insert($datosIncidencia);
