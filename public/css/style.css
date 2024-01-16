@@ -722,11 +722,21 @@ img {
   display: none;
 }
 
-.continer-cuadrado {
-  width: 25vh;
-  max-width: 100px;
-  height: 25vh;
-  max-height: 100px;
-  position: relative;
-  background: orangered;
+.grid {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  max-height: 200px;
+  min-height: 200px;
+  min-width: 100%;
+  max-width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(80px, auto);
+  grid-gap: 15px;
+  text-align: center;
+  margin: auto;
+}
+
+.grid-item {
+  margin: auto;
 }
