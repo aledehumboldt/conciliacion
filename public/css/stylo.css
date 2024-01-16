@@ -9061,19 +9061,20 @@ button.bg-dark:focus {
   color: #fff !important;
 }
 
-.text-primary {
+.text-primer {
   color: #fd585f !important;
 }
 
-a.text-primary:hover, a.text-primary:focus {
+a.text-primer:hover, a.text-primer:focus {
   color: #fd585f !important;
 }
 
-.text-secondary {
+.text-secondar {
   color: #F5F5F5 !important;
+  text-decoration: none;
 }
 
-a.text-secondary:hover, a.text-secondary:focus {
+a.text-secondar:hover, a.text-secondar:focus {
   color: #cfcfcf !important;
 }
 
