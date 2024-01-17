@@ -64,7 +64,7 @@
     @include('layouts.partials.messages')
 
         <table class="table">
-            <thead class="table editor-textarea-editable">
+            <thead class="table">
                 <tr>
                     <th style="display: none">#</th>
                     <th>Ticket</th>
@@ -75,7 +75,7 @@
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody class="table editor-textarea-editable">
+            <tbody class="table">
                 @foreach ($incidencias as $incidencia)
                 <tr>
                     <td style="display: none">{{$incidencia->id}}</td>
