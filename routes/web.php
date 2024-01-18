@@ -13,9 +13,8 @@ use App\Http\Controllers\BypassAmbosController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ExclusioneController;
 use App\Http\Controllers\IncidenciaController;
-use App\Http\Controllers\ProvisioningController;
 use App\Http\Controllers\ContactarController;
-use App\Http\Controllers\AlmacenamientoarchivoController;
+use App\Http\Controllers\ProvisioningController;
 use App\Http\Controllers\AprovisionamientosController;
 
 /*
@@ -44,13 +43,13 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::post('/exclusiones/query', [ExclusioneController::class, 'query'])->name('exclusiones.query');
 
 //-------------------------------------------------Almacenamiento de archivos------------------------------------------------
-Route::get('documentacion', [AlmacenamientoarchivoController::class, 'index'])->name('documentacion.index');
+Route::get('documentacion', [ProvisioningController::class, 'index'])->name('documentacion.index');
 
-//Route::get('documentacion', [AlmacenamientoarchivoController::class, 'loadView'])->name('subirArchivo');
+//Route::get('documentacion', [ProvisioningController::class, 'loadView'])->name('subirArchivo');
 
-Route::post('documentacion', [AlmacenamientoarchivoController::class, 'storeFile'])->name('storeFile');
+Route::post('documentacion', [ProvisioningController::class, 'store'])->name('storeFile');
 
-Route::get('storage/{name}', [AlmacenamientoarchivoController::class, 'downloadFile'])->name('download');
+Route::get('storage/{name}', [ProvisioningController::class, 'downloadFile'])->name('download');
 
 //-------------------------------------------------Fin Almacenamiento de archivos------------------------------------------------
 
@@ -117,7 +116,6 @@ Route::get('aprovisionamientos/desconexion', [AprovisionamientosController::clas
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);
     Route::resource('exclusiones', ExclusioneController::class);
-    Route::resource('provisioning', ProvisioningController::class);
     Route::resource('password', ResetController::class);
     Route::resource('incidencias', IncidenciaController::class)->except(['show','store']);
     Route::resource('bypass', BypassController::class);
