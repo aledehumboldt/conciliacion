@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('titulo', 'Inclusion Bypass Abonado')
+@section('titulo', 'Inclusion Bypass')
 
 @section('estilos')
 <style>
@@ -17,7 +17,7 @@
 @endsection
 
 @section('encabezado')
-    <h3 class="editor-toolbar-item">Incluir Abonado al Listado trafico gris</h3>
+    <h3 class="editor-toolbar-item">Incluir Abonado a Lista Blanca de Bypass</h3>
 @endsection
 
 @section('contenido')

@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('titulo', 'Gestión bypass abonados')
+@section('titulo', 'Gestión Bypass')
 
 @section('estilos')
 @endsection
 
 @section('encabezado')
 @include('layouts.partials.bypass.whitelist.modal_editar')
-<h3 class="editor-toolbar-item">Gestion trafico gris abonados</h3>
+<h3 class="editor-toolbar-item">Gestion Bypass para Lista Blanca</h3>
 <div style="position: absolute; right: 2%;">
     @include('layouts.partials.bypass.whitelist.modal_incluir')
     <button type="submit" class="btn btn-secondary" type="button" name="incluir" id="incluir"  data-toggle="modal" data-target="#exampleModal4">

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('titulo', 'Gestión bypass abonados')
+@section('titulo', 'Gestión Bypass')
 
 @section('estilos')
 @endsection
