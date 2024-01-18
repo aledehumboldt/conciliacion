@@ -1,6 +1,6 @@
 @extends('layouts.bootstrap')
 
-@section('titulo', 'Almacenamiento Archivos')
+@section('titulo', 'Documentación')
 
 @section('estilos')
 @endsection
