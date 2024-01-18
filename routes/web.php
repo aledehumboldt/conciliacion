@@ -51,6 +51,8 @@ Route::post('documentacion', [ProvisioningController::class, 'store'])->name('st
 
 Route::get('storage/{name}', [ProvisioningController::class, 'downloadFile'])->name('download');
 
+Route::post('documentacion/1', [ProvisioningController::class, 'storeCategory'])->name('storeCategory');
+
 //-------------------------------------------------Fin Almacenamiento de archivos------------------------------------------------
 
 //---------------------------------------------------Incidencias------------------------------------
