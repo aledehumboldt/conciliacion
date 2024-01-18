@@ -67,9 +67,8 @@ class AlmacenamientoarchivoController extends Controller
     public function storeFile(Request $request)
     {
         if ($request->isMethod('POST')) {
-            $dir = "/";
 
-            $file = $dir.$request->file('file')->getClientOriginalName();
+            $file = $request->categoria."/".$request->file('file')->getClientOriginalName();
 
             $request->file('file')->storeAs($this->disk,$file);
 
