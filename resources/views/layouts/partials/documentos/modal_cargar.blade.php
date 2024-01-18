@@ -16,8 +16,12 @@
             <div class="mb-3">
                         <select name="categoria" id="categoria" class="form-control" style="width:450px" required>
                             <option value="">Categoria</option>
-                            <option value="gestion">Gestion</option>
-                            <option value="ficha tecnica">Ficha Tecnica</option>
+                            @php $dirs = scandir('storage'); @endphp
+                            @foreach ($dirs as $dir)
+                                @if ($dir != ".." && $dir != "." && $dir != "cpa" && is_dir('storage/'.$dir))
+                                    <option value="{{$dir}}">{{$dir}}</option>
+                                @endif
+                            @endforeach
                         </select>
             </div>
             <div class="mb-3">
