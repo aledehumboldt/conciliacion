@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Buscar Abonado en Trafico Gris lista blanca</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Buscar Abonado en lista blanca</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -15,8 +15,8 @@
                     <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
                     <select name="codarea" id="codarea" class="form-control" style="width:100px">
                     <option value="">Código</option>
-                    <option value="416">416</option>
-                    <option value="426">426</option>
+                    <option value="416">0416</option>
+                    <option value="426">0426</option>
                 </select>
                 <input type="text" name="min" id="min" class="form-control" value="{{old('min')}}" placeholder="Ingrese abonado" pattern=".{7,7}">
                     </div>
@@ -24,6 +24,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                             </svg>
+                            Consultar
                         </button>
                     </div>
                 </form>
