@@ -131,9 +131,10 @@
 </svg>
 
 
-<header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
+<header class="navbar sticky-top bg-nav flex-md-nowrap p-0 shadow" data-bs-theme="dark" style="background-color: #fd585f">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white">{{auth()->user()->nombre}}</a>
-  <img src="{{asset('assets/1699301436808.png')}}" style="width: 45px; position:absolute; right:52%" alt="logo">
+  <img src="{{asset('assets/1699301436808.png')}}" style="width: 45px; position:absolute; left:17%" alt="logo">
+  <img src="{{asset('assets/logoMovilnet.png')}}" style="width: 150px; position:absolute; right:0%" alt="logo">
   <h2 class="text-white col-md" style="text-align:center">Aprovisionamiento</h2>
 </header>
  
@@ -334,7 +335,7 @@
 <!-- JavaScript Libraries -->
 <script src="{{asset('js/jquery-3.4.1.min.js')}}" crossorigin="anonymous"></script>
 <script src="{{asset('js/popper.min.js')}}" crossorigin="anonymous"> </script>
-    <script src="{{asset('js/bootstrap.min.js')}}" crossorigin="anonymous"></script>
+<script src="{{asset('js/bootstrap.min.js')}}" crossorigin="anonymous"></script>
 <script src="{{asset('js/bootstrap.bundle.min.js')}}" crossorigin="anonymous"></script>
  <script src="{{asset('js/easing.min.js')}}" crossorigin="anonymous"></script> 
  <script src="{{asset('js/owl.carousel.min.js')}}" crossorigin="anonymous"></script> 

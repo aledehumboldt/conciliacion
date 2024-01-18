@@ -64,12 +64,11 @@ class ProvisioningController extends Controller
         return view('documentacion.index',compact('archivos','titles'));
     }
 
-    public function store(Request $request)
+    public function storeFile(Request $request)
     {
         if ($request->isMethod('POST')) {
-            $dir = "/";
 
-            $file = $dir.$request->file('file')->getClientOriginalName();
+            $file = $request->categoria."/".$request->file('file')->getClientOriginalName();
 
             $request->file('file')->storeAs($this->disk,$file);
 
