@@ -49,7 +49,7 @@ Route::get('documentacion', [AlmacenamientoarchivoController::class, 'index'])->
 
 Route::post('documentacion', [AlmacenamientoarchivoController::class, 'storeFile'])->name('storeFile');
 
-Route::get('documentacion/descargar/{name}', [AlmacenamientoarchivoController::class, 'downloadFile'])->name('download');
+Route::get('storage/{name}', [AlmacenamientoarchivoController::class, 'downloadFile'])->name('download');
 
 //-------------------------------------------------Fin Almacenamiento de archivos------------------------------------------------
 

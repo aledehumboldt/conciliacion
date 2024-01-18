@@ -25,11 +25,17 @@
 
 <div class="grid">
     <div class="">
-        @if(isset($files))
-            @foreach($files as $file)
-                <h3 style="text-transform:uppercase">{{$file['filetitle']}}</h3>
-                <a class="btn btn-secondary" href="{{$file['link']}}" target="_blank"><h5 class="text-white" style="text-transform:uppercase">{{$file['name']}}</h5></a>
+        @if(isset($archivos) && isset($titles))
+            @foreach($titles as $title)
+                <h4>{{$title}}</h4>
+                    @foreach($archivos as $archivo)
+                        @if ($archivo['title'] == $title)
+                        <a class="btn btn-secondary" href="{{$archivo['link']}}" target="_blank"><h5 class="text-white" style="text-transform:uppercase">{{$archivo['name']}}</h5></a>
+                        @endif
+                    @endforeach
             @endforeach
+        @else
+            <h3 style="text-transform:uppercase">No hay datos</h3>
         @endif
     </div>
 </div>

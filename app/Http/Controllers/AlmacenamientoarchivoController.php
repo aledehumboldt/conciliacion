@@ -26,33 +26,42 @@ class AlmacenamientoarchivoController extends Controller
             return back();
         }
 
-    $files =[];
+    $archivos = array();
 
         foreach (Storage::disk($this->disk)->files() as $file) {
 
-            $name = str_replace("/","",$file);
+            $arrFiles = array();
+            $link = array();
 
-            $filetitle = str_replace($file,"","");
+            $arrFiles = scandir('storage');
 
-            $document = "";
+            foreach ($arrFiles as $arrFile) {
+                if ($arrFile != ".." && $arrFile != ".") {
+                    $titles [] = $arrFile;
+                    if (is_dir('storage/'.$arrFile)) {
 
-            $type = Storage::disk($this->disk)->mimeType($name);
+                        $arrFilesDos = array();
+                        $arrFilesDos = scandir('storage/'.$arrFile);
 
-            if (strpos($type,"image")!==false) {
-                $picture = asset(Storage::disk($this->disk)->url($name));
+                        foreach ($arrFilesDos as $fileDos) {
+                            if ($fileDos != ".." && $fileDos != ".") {
+
+                                $arraylink = $arrFile."/".$fileDos;
+
+                                $archivos[] = [
+                                    'name' => $fileDos,
+                                    'link' => route("download",$arraylink),
+                                    'title' => $arrFile,
+                                ];
+
+                            }
+                        }
+                    }
+                }
             }
-
-            $downloadLink = route("download",$name);
-
-            $files[] = [
-                "document" => $document,
-                "name" => $name,
-                "filetitle" => $filetitle,
-                "link" => $downloadLink,
-            ];
         }
 
-        return view('documentacion.index',["files"=>$files]);
+        return view('documentacion.index',compact('archivos','titles'));
     }
 
     public function storeFile(Request $request)
@@ -71,9 +80,8 @@ class AlmacenamientoarchivoController extends Controller
 
     public function downLoadfile($name)
     {
-        $dir = "/";
-        if (Storage::disk($this->disk)->exists($dir.$name)) {
-            return Storage::disk($this->disk)->download($dir.$name);
+        if (Storage::disk($this->disk)->exists($name)) {
+            return Storage::disk($this->disk)->download($name);
         }
 
         return response('',404);
