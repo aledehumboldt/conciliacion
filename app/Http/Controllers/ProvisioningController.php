@@ -67,9 +67,8 @@ class ProvisioningController extends Controller
     public function store(Request $request)
     {
         if ($request->isMethod('POST')) {
-            $dir = "/";
-
-            $file = $dir.$request->file('file')->getClientOriginalName();
+            
+            $file = $request->categoria."/".$request->file('file')->getClientOriginalName();
 
             $request->file('file')->storeAs($this->disk,$file);
 
@@ -85,5 +84,26 @@ class ProvisioningController extends Controller
         }
 
         return response('',404);
+    }
+
+    public function storeCategory (Request $request){
+
+        $campos = [
+            'categoria' => 'required|string',
+        ];
+
+        $this->validate($request,$campos);
+
+        $datosCategory = request()->except('_token', 'guardar');
+
+        $categoria = $datosCategory['categoria'];
+
+        $dir = "storage/";
+
+        $rutdir = $dir.$categoria;
+
+        mkdir($rutdir,0777);
+
+        return redirect()->route('documentacion.index')->with('mensaje', 'Categoria cargada exitosamente.');
     }
 }
