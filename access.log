@@ -3832,3 +3832,8 @@
 127.0.0.1 - - [17/Jan/2024:16:40:50 -0400] "GET /bypass HTTP/1.1" 500 1062423 "http://aprovisionamiento.com/incidencias" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 127.0.0.1 - - [17/Jan/2024:16:42:06 -0400] "GET /bypass HTTP/1.1" 500 1034621 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 127.0.0.1 - - [17/Jan/2024:16:43:38 -0400] "GET /bypass HTTP/1.1" 500 1062367 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+127.0.0.1 - - [18/Jan/2024:08:45:42 -0400] "GET /login HTTP/1.1" 200 2211 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+127.0.0.1 - - [18/Jan/2024:08:45:43 -0400] "GET /css/bootstrap.min.css HTTP/1.1" 200 20899 "http://aprovisionamiento.com/login" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+127.0.0.1 - - [18/Jan/2024:08:45:43 -0400] "GET /js/popper.min.js HTTP/1.1" 200 7255 "http://aprovisionamiento.com/login" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+127.0.0.1 - - [18/Jan/2024:08:45:43 -0400] "GET /js/bootstrap.min.js HTTP/1.1" 200 13450 "http://aprovisionamiento.com/login" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+127.0.0.1 - - [18/Jan/2024:08:45:43 -0400] "GET /assets/estilos.css HTTP/1.1" 404 6877 "http://aprovisionamiento.com/login" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
