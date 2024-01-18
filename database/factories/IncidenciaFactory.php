@@ -14,8 +14,7 @@ class IncidenciaFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
-    {
+    public function definition(): array {
         return [
             'ticket' => fake()->numerify('##########'),
             'inicio' => fake()->dateTimeThisMonth()->format('Y-m-d H:i:s'),

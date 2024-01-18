@@ -64,8 +64,7 @@ class ProvisioningController extends Controller
         return view('documentacion.index',compact('archivos','titles'));
     }
 
-    public function storeFile(Request $request)
-    {
+    public function storeFile(Request $request) {
         if ($request->isMethod('POST')) {
             
             $file = $request->categoria."/".$request->file('file')->getClientOriginalName();
@@ -77,8 +76,7 @@ class ProvisioningController extends Controller
         return redirect()->route('documentacion.index')->with('mensaje', 'Documento subido exitosamente.');
     }
 
-    public function downLoadfile($name)
-    {
+    public function downLoadfile($name) {
         if (Storage::disk($this->disk)->exists($name)) {
             return Storage::disk($this->disk)->download($name);
         }

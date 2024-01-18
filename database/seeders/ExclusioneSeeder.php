@@ -11,8 +11,7 @@ class ExclusioneSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
-    {
+    public function run(): void {
         Exclusione::factory(50)->create();
     }
 }

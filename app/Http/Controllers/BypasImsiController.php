@@ -38,8 +38,7 @@ class BypasImsiController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
-    {
+    public function create(Request $request) {
         if(!$this->verify()) {
             return back();
         }
@@ -50,8 +49,7 @@ class BypasImsiController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //Validando parametros enviados
         $campos = [
             'ticket' => 'required|string',
@@ -114,16 +112,14 @@ class BypasImsiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
-    {
+    public function edit($id) {
      //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         $campos = [
 
             'ticket' => 'required|string',
@@ -150,8 +146,7 @@ class BypasImsiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, $id)
-    {       //Eliminando de la tabla Bypass MIN
+    public function destroy(Request $request, $id) {       //Eliminando de la tabla Bypass MIN
             $imsi = BypasImsi::find($id);
             $imsi->delete();
 

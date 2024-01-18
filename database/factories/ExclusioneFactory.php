@@ -14,8 +14,7 @@ class ExclusioneFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
-    {
+    public function definition(): array {
         $result = [
             'ticket' => fake()->numerify('##########'),
             'fechae' => fake()->dateTimeBetween('now', '+1 year'),

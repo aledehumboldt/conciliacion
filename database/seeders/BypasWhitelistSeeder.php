@@ -12,8 +12,7 @@ class BypasWhitelistSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
-    {
+    public function run(): void {
         BypasWhitelist::factory(50)->create();
     }
 }

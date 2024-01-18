@@ -11,13 +11,11 @@ class IncidenciaExport implements FromCollection
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function collection()
-    {
+    public function collection() {
         return Incidencia::all();
     }
 
-    public function headings(): array
-    {
+    public function headings(): array {
         return [
             'id',
             'ticket',

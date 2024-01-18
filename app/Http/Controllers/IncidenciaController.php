@@ -134,8 +134,7 @@ class IncidenciaController extends Controller
             ->with('mensaje', 'Registro eliminado satisfactoriamente');
         }
 
-    public function export()
-    {
+    public function export() {
     
         return Excel::download(new IncidenciaExport, 'Incidencias.xlsx');
     

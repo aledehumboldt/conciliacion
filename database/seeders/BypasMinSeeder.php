@@ -11,8 +11,7 @@ class BypasMinSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
-    {
+    public function run(): void {
         BypasMin::factory(50)->create();
     }
 }

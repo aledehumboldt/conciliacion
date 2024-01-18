@@ -10,8 +10,7 @@ class DummyClass implements FromCollection
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function collection()
-    {
+    public function collection() {
         return DummyModelClass::all();
     }
 }

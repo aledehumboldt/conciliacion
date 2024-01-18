@@ -14,8 +14,7 @@ class BypasImsiFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
-    {
+    public function definition(): array {
         $result = [
             'ticket' => fake()->numerify('##########'),
             'fecha' => fake()->dateTimeBetween('now', '+1 year'),
