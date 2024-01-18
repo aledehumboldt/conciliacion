@@ -1,4 +1,4 @@
-@extends('layouts.bootstrap')
+@extends('layouts.app')
 @section('titulo', 'Inclusion Bypass Abonado')
 
 @section('estilos')

@@ -1,4 +1,4 @@
-@extends('layouts.bootstrap')
+@extends('layouts.app')
 @section('titulo', 'Creación Incidencia')
 
 @section('estilos')
