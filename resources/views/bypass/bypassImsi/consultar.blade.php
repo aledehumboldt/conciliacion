@@ -6,7 +6,7 @@
 
 @section('encabezado')
 @include('layouts.partials.bypass.imsi.modal_editar')
-<h3 class="editor-toolbar-item">Gestion trafico gris para IMSI</h3>
+<h3 class="editor-toolbar-item">Gestión trafico gris para IMSI</h3>
 <div style="position: absolute; right: 2%;">
         @include('layouts.partials.bypass.imsi.modal_incluir')
         <button type="submit" class="btn btn-secondary" type="button" name="incluir" id="incluir"  data-toggle="modal" data-target="#exampleModal4">

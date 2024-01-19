@@ -202,7 +202,8 @@
             </li>
             
           <li class="nav-item">
-            <a href="{{route('documentacion.index')}}" class="nav-link d-flex align-items-center gap-2">
+            <a href="{{route('documentacion.index')}}" class="nav-link d-flex align-items-center gap-2
+            @if(route('documentacion.index') == url()->current()) active @endif ">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
                 <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
                 <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z"/>
@@ -216,7 +217,8 @@
         <ul class="nav flex-column mb-auto">
           @if (auth()->user()->perfil == "CYA")
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="{{ route('incidencias.index') }}">
+            <a href="{{ route('incidencias.index') }}" class="nav-link d-flex align-items-center gap-2
+              @if(route('documentacion.index') == url()->current()) active @endif ">
               <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
               Incidencias o Requerimientos
             </a>
@@ -230,7 +232,8 @@
           <ul class="nav flex-column mb-auto">
             @if (auth()->user()->estatus != "Iniciado")
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="{{route('usuarios.edit',auth()->user()->id)}}">
+              <a href="{{route('usuarios.edit',auth()->user()->id)}}" class="nav-link d-flex align-items-center gap-2
+                @if(route('documentacion.index') == url()->current()) active @endif ">
                 <svg class="bi"><use xlink:href="#gear-wide-connected"/></svg>
                 Configuracion
               </a>
@@ -395,6 +398,9 @@
 <script src="{{asset('js/main.js')}}" crossorigin="anonymous"></script>
 
 <script src="{{asset('js/dashboard.js')}}" crossorigin="anonymous"></script>
-
+<script>
+  const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+  const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+</script>
   </body>
 </html>

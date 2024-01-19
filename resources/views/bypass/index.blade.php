@@ -7,6 +7,14 @@
 
 	@section('encabezado')
 	<h3>Gestión Tráfico Gris (Bypass)</h3>
+	<div style="position: absolute; right: 2%;">
+		<button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-title="¿Sabes qué es el Tráfico Gris?" data-bs-content="
+		El llamado tráfico gris disfraza las llamadas internacionales como locales, evadiendo así los costos asociados y por ende, haciendo fraude al proveedor.">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
+				<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247m2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
+			</svg>
+		</button>
+	</div>
 	@endsection
 
 	@section('contenido')
@@ -18,7 +26,7 @@
 						<div class="offer-text">
 							<h6 class="text-white text-uppercase">Gestión Tráfico Gris</h6>
 							<h3 class="text-white mb-3">Solo MIN</h3>
-							<a href="{{ route('bypassMin.index') }}" class="btn btn-secondary">Gestionar</a>
+							<a href="{{ route('bypassMin.index') }}" class="btn btn-secondary">Gestiónar</a>
 						</div>
 					</div>
 					<div class="product-offer mb-30" style="height: 300px;">
@@ -26,7 +34,7 @@
 						<div class="offer-text">
 							<h6 class="text-white text-uppercase">Gestión Tráfico Gris</h6>
 							<h3 class="text-white mb-3">MIN e IMSI</h3>
-							<a href="{{ route('bypassAmbos.create') }}" class="btn btn-secondary">Gestionar</a>
+							<a href="{{ route('bypassAmbos.create') }}" class="btn btn-secondary">Gestiónar</a>
 						</div>
 					</div>
 				</div>
@@ -36,7 +44,7 @@
 						<div class="offer-text">
 							<h6 class="text-white text-uppercase">Gestión Tráfico Gris</h6>
 							<h3 class="text-white mb-3">Solo IMSI</h3>
-							<a href="{{ route('bypassImsi.index') }}" class="btn btn-secondary">Gestionar</a>
+							<a href="{{ route('bypassImsi.index') }}" class="btn btn-secondary">Gestiónar</a>
 						</div>
 					</div>
 					<div class="product-offer mb-30" style="height: 300px;">
@@ -44,7 +52,7 @@
 						<div class="offer-text">
 							<h6 class="text-white text-uppercase">Gestión Tráfico Gris</h6>
 							<h3 class="text-white mb-3">Lista Blanca</h3>
-							<a href="{{ route('bypassWhitelist.index') }}" class="btn btn-secondary">Gestionar</a>
+							<a href="{{ route('bypassWhitelist.index') }}" class="btn btn-secondary">Gestiónar</a>
 						</div>
 					</div>
 				</div>

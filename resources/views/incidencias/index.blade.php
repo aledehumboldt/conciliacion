@@ -6,7 +6,7 @@
 @endsection
 
 @section('encabezado')
-    <h3 class="editor-toolbar-item">Gestion Incidencias y Requerimientos</h3>
+    <h3 class="editor-toolbar-item">Gestión Incidencias y Requerimientos</h3>
 <div style="position: absolute; right: 2%;">
     <button class="btn btn-secondary me-md-2" type="button" name="buscar" id="buscar"  data-toggle="modal" data-target="#exampleModal">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">

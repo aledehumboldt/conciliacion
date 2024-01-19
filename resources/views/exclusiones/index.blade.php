@@ -6,7 +6,7 @@
 @endsection
 
 @section('encabezado')
-    <h3 class="editor-toolbar-item">Gestion Exclusiones</h3>
+    <h3 class="editor-toolbar-item">Gestión Exclusiones</h3>
     <div style="position: absolute; right: 2%;">
         <a href="{{route('exclusiones.create')}}" class="editor-toolbar-item btn btn-secondary">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-database-add" viewBox="0 0 16 16">

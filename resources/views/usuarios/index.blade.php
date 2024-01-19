@@ -6,7 +6,7 @@
 @endsection
 
 @section('encabezado')
-    <h3>Gestion de Usuarios</h3>
+    <h3>Gestión de Usuarios</h3>
 <div style="position: absolute; right: 2%;">
     <a href="{{route('usuarios.create')}}" class="btn btn-secondary">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">

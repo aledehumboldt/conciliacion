@@ -18,7 +18,7 @@
 @endsection
 
 @section('encabezado')
-    <h3 class="editor-toolbar-item">Gestion aprovisionamiento de abonados</h3>
+    <h3 class="editor-toolbar-item">Gestión aprovisionamiento de abonados</h3>
 @endsection
 
 @section('contenido')
