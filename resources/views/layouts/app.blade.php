@@ -11,12 +11,11 @@
     <link href="{{asset('css/bootstrap-icons.min.css')}}" rel="stylesheet" crossorigin="anonymous">
    
     <!-- Custom styles for this template -->
-		<link href="{{asset('css/stylo.css')}}" rel="stylesheet" crossorigin="anonymous">
     <link href="{{asset('css/bootstrap.login.css')}}" rel="stylesheet" crossorigin="anonymous">
+		<link href="{{asset('css/stylo.css')}}" rel="stylesheet" crossorigin="anonymous">
     <link href="{{asset('css/dashboard.css')}}" rel="stylesheet" crossorigin="anonymous">
     
     		<!-- Google Web Fonts -->
-		<link href="{{asset('css/font.css')}}" rel="stylesheet" crossorigin="anonymous">
 	
 		<!-- Font Awesome -->
 		<link href="{{asset('css/all.min.css')}}" rel="stylesheet" crossorigin="anonymous">
@@ -364,15 +363,15 @@
     </div>
   </div>
   <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
-    <div class="col-md-6 px-xl-0">
-      <p class="mb-md-0 text-center text-md-left text-secondar">
+    <div class="col-md-5 px-xl-0 text-center text-md-left">
+      <img class="img-fluid" src="{{asset('assets/payments.png')}}" alt="" style="width: 500px;">
+    </div>
+    <div class="col-md-7 px-xl-0">
+      <p class="mb-md-0 text-center text-md-right text-secondar">
         <a class="text-primer" href="#">Domain</a>. Todos los Derechos Reservados. Desarrollado
         por
         <strong class="text-primer">Aprovisionamiento</strong>
       </p>
-    </div>
-    <div class="col-md-6 px-xl-0 text-center text-md-right">
-      <img class="img-fluid" src="{{asset('assets/payments.png')}}" alt="">
     </div>
   </div>
 </div>
