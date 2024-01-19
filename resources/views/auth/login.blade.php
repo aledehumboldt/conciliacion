@@ -14,13 +14,12 @@
   <link rel="icon" type="image/x-icon" href="{{asset('assets/1699301436808.png')}}">
 </head>
 
-<body style="background-color: #f2f2f2; color:#666666;">
+<body style="background-color: #fd585f; color:#666666;">
 
-    <section class="h-100 gradient-form" style="background-color: #fd585f;">
-        <div class="container py-5 h-100">
-          <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="container py-5">
+          <div class="row d-flex justify-content-center align-items-center">
             <div class="col-xl-5">
-              <div class="card rounded-3">
+              <div class="card rounded-5">
                 <div class="row g-0">
                   <div class="col-lg-12">
                     <div class="card-body p-md-2 mx-md-4">
@@ -103,7 +102,6 @@
             </div>
           </div>
         </div>
-      </section>
     
   <!-- Bootstrap JavaScript Libraries -->
   <script src="{{asset('js/jquery-3.4.1.min.js')}}" crossorigin="anonymous"></script>
