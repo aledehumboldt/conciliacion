@@ -182,6 +182,7 @@
               </a>
             </li>
 
+            @if (auth()->user()->perfil == "CYA")
             <li class="nav-item">
               <a href="{{route('aprovisionamientos')}}" class="nav-link d-flex align-items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart" viewBox="0 0 16 16">
@@ -209,26 +210,28 @@
               </svg>
               Documentacion
             </a>
-          </h6>
-        </ul>
-          <ul class="nav flex-column mb-auto">
-            @if (auth()->user()->perfil == "CYA")
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="{{ route('incidencias.index') }}">
-                <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
-                Incidencias o Requerimientos
-              </a>
-            </li>
-            @endif
-          </ul>
+          </li>
           @endif
+        </ul>
+
+        <ul class="nav flex-column mb-auto">
+          @if (auth()->user()->perfil == "CYA")
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="{{ route('incidencias.index') }}">
+              <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
+              Incidencias o Requerimientos
+            </a>
+          </li>
+          @endif
+        </ul>
+        @endif
 
           <hr class="my-3">
 
           <ul class="nav flex-column mb-auto">
             @if (auth()->user()->estatus != "Iniciado")
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="#">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{route('usuarios.edit',auth()->user()->id)}}">
                 <svg class="bi"><use xlink:href="#gear-wide-connected"/></svg>
                 Configuracion
               </a>

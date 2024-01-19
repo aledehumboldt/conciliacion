@@ -42,9 +42,6 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request) {
-        if(!$this->verify()) {
-            return back();
-        }
 
         $campos = [
             'nombre' => 'required|string|max:100',
@@ -71,9 +68,6 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit($id) {
-        if(!$this->verify()) {
-            return back();
-        }
 
         $usuario = User::findOrFail($id);
         return view('usuarios.editar', compact('usuario'));
@@ -83,9 +77,6 @@ class UserController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id) {
-        if(!$this->verify()) {
-            return back();
-        }
 
         $campos = [
             'nombre' => 'required|string|max:100',
