@@ -27,14 +27,21 @@ class IncidenciaController extends Controller
         if(!$this->verify()) {
             return back();
         }
+
         $mes = date('m');
         $anio = date('Y');
         $dateFrom = $anio."-".$mes."-01 00:00:00";
         $dateTo = $anio."-".$mes."-31 23:59:59";
         //$datos['incidencias'] = Incidencia::paginate();
-        $datos['incidencias'] = Incidencia::whereBetween('inicio', [$dateFrom, $dateTo])->paginate();
+        $queryBuilder = Incidencia::whereBetween('inicio', [$dateFrom, $dateTo]);
+        
+        if (request(key: 'selectCategory') ?? false) {
+            $queryBuilder->where('tipo','=',request(key: 'selectCategory'));
+        }
+
+        $datos['incidencias'] = $queryBuilder->paginate();
+
         return view('incidencias.index', $datos);
-        //return $datos;
     }
 
     /**
@@ -57,19 +64,16 @@ class IncidenciaController extends Controller
             'ticket' => 'required|string|min:10|max:10',
             'inicio' => 'required|string',
             'descripcion' => 'required|string|max:250',
+            'tipo' => 'required|string',
             'solicitante' => 'required|string',
         ];
 
         $this->validate($request,$campos);
 
-        $vartmp = $request->tipo;
-
         $datosIncidencia = request()->except('_token', 'agregar');
 
         $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-
-        unset($datosIncidencia['tipo']);
 
         Incidencia::insert($datosIncidencia);
 
@@ -116,10 +120,14 @@ class IncidenciaController extends Controller
             'inicio' => 'required|string',
             'fin' => 'required|string',
             'descripcion' => 'required|string|max:250',
+            'tipo' => 'required|string',
             'solicitante' => 'required|string',
           ]);
+
           $incidencia = Incidencia::find($id);
+          
           $incidencia->update($request->all());
+
           return redirect()->route('incidencias.index')
             ->with('mensaje', 'Registro actualizado.');
     }

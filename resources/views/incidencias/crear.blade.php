@@ -44,10 +44,18 @@
         <div class="form-floating mb-3">
           <textarea name="descripcion" id="descripcion" cols="35" rows="5">{{old('descripcion')}}</textarea>
       </div>
+      <div class="mb-3">
+        <label for="tipo" class="form-label">Tipo</label>
+        <select name="tipo" id="tipo" class="form-control custom-select">
+            <option value="">Seleccione</option>
+            <option value="incidencia">Incidencia</option>
+            <option value="requerimiento">Requerimiento</option>
+        </select>
+      </div>
       <div class="form-floating mb-3">
         <input type="text" name="solicitante" id="solicitante" class="form-control"
             value="{{old('solicitante')}}" placeholder="">
-        <label for="ticket" class="form-label">Solicitante</label>
+        <label for="solicitante" class="form-label">Solicitante</label>
     </div>
         <div class="text-center">
             <button type="submit" name="agregar" id="agregar" class="btn btn-secondary">

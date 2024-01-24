@@ -380,27 +380,36 @@
 </div>
 <!-- Footer End -->
 
-<!-- JavaScript Libraries -->
-<script src="{{asset('js/jquery-3.4.1.min.js')}}" crossorigin="anonymous"></script>
-<script src="{{asset('js/popper.min.js')}}" crossorigin="anonymous"> </script>
-<script src="{{asset('js/bootstrap.min.js')}}" crossorigin="anonymous"></script>
-<script src="{{asset('js/bootstrap.bundle.min.js')}}" crossorigin="anonymous"></script>
- <script src="{{asset('js/easing.min.js')}}" crossorigin="anonymous"></script> 
- <script src="{{asset('js/owl.carousel.min.js')}}" crossorigin="anonymous"></script> 
+    <!-- JavaScript Libraries -->
+    <script src="{{asset('js/jquery-3.4.1.min.js')}}" crossorigin="anonymous"></script>
+    <script src="{{asset('js/jquery.min.js')}}" crossorigin="anonymous"></script>
+    <script src="{{asset('js/popper.min.js')}}" crossorigin="anonymous"> </script>
+    <script src="{{asset('js/bootstrap.min.js')}}" crossorigin="anonymous"></script>
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}" crossorigin="anonymous"></script>
+    <script src="{{asset('js/easing.min.js')}}" crossorigin="anonymous"></script> 
+    <script src="{{asset('js/owl.carousel.min.js')}}" crossorigin="anonymous"></script> 
 
-  <!-- Contact Javascript File -->
- <script src="{{asset('js/jqBootstrapValidation.min.js')}}" crossorigin="anonymous"></script> 
- <script src="{{asset('js/contact.js')}}" crossorigin="anonymous"></script> 
+      <!-- Contact Javascript File -->
+    <script src="{{asset('js/jqBootstrapValidation.min.js')}}" crossorigin="anonymous"></script> 
+    <script src="{{asset('js/contact.js')}}" crossorigin="anonymous"></script> 
 
-<!-- Template Javascript -->
+    <!-- Template Javascript -->
 
-<script src="{{asset('js/color-modes.js')}}" crossorigin="anonymous"></script>
-<script src="{{asset('js/main.js')}}" crossorigin="anonymous"></script>
+    <script src="{{asset('js/color-modes.js')}}" crossorigin="anonymous"></script>
+    <script src="{{asset('js/main.js')}}" crossorigin="anonymous"></script>
 
-<script src="{{asset('js/dashboard.js')}}" crossorigin="anonymous"></script>
-<script>
-  const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
-  const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
-</script>
+    <script src="{{asset('js/dashboard.js')}}" crossorigin="anonymous"></script>
+    <script>
+      const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+      const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+    </script>
+    <script>
+      let form = $('#search-form');
+
+      $("#selectCategory").change(function () {
+          form.submit();
+        }
+      );
+    </script>
   </body>
 </html>

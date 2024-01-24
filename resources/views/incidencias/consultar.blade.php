@@ -30,6 +30,7 @@
                 <th>Inicio</th>
                 <th>Fin</th>
                 <th>Descripcion</th>
+                <th>Tipo</th>
                 <th>Solicitante</th>
                 <th>Acciones</th>
             </tr>
@@ -42,6 +43,7 @@
                 <td>{{$incidencia->inicio}}</td>
                 <td>{{$incidencia->fin}}</td>
                 <td>{{$incidencia->descripcion}}</td>
+                <td>{{$incidencia->tipo}}</td>
                 <td>{{$incidencia->solicitante}}</td>
                 <td style="display: flex; align-items: center;justify-content: center;">
                     <a href="{{route('incidencias.edit',$incidencia->id)}}" class="btn btn-secondary" title="Editar" id="editar" name="editar">

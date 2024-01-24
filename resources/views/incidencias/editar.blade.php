@@ -42,6 +42,14 @@
         <div class="form-floating mb-3">
           <textarea name="descripcion" id="descripcion" cols="35" rows="5" required>{{ $incidencia->descripcion }}</textarea>
       </div>
+      <div class="mb-3">
+        <label for="tipo" class="form-label">Tipo</label>
+        <select name="tipo" id="tipo" class="form-control custom-select">
+            <option value="">Seleccione</option>
+            <option value="incidencia" @if ($incidencia->tipo == "incidencia") selected @endif>Incidencia</option>
+            <option value="requerimiento" @if ($incidencia->tipo == "requerimiento") selected @endif>Requerimiento</option>
+        </select>
+      </div>
       <div class="form-floating mb-3">
         <input type="text" name="solicitante" id="solicitante" class="form-control"
         value="{{ $incidencia->solicitante }}" required placeholder="Solicitante">

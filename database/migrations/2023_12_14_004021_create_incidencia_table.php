@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('inicio');
             $table->string('fin')->nullable();
             $table->text('descripcion');
+            $table->string('tipo');
             $table->text('solicitante');
             $table->timestamps();
         });

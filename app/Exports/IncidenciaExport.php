@@ -22,6 +22,7 @@ class IncidenciaExport implements FromCollection
             'incicio',
             'fin',
             'descripcion',
+            'tipo',
             'solicitante',
         ];
     }

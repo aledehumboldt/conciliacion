@@ -67,7 +67,18 @@
 @section('contenido')
     @include('layouts.partials.messages')
 
-        <table class="table">
+    <div class="mb-3">
+        <form action="#" method="GET" id="search-form">
+            <label for="selectCategory">Filtrar:</label>
+            <select id="selectCategory" name="selectCategory" class="form-control custom-select" style="width: 200px">
+                <option value="">Ambos</option>
+                <option value="incidencia">Incidencias</option>
+                <option value="requerimiento">Requerimientos</option>
+            </select>
+        </form>
+    </div>
+
+        <table class="table" id="fbody">
             <thead class="table">
                 <tr>
                     <th style="display: none">#</th>
@@ -75,6 +86,7 @@
                     <th>Inicio</th>
                     <th>Fin</th>
                     <th>Descripcion</th>
+                    <th>Tipo</th>
                     <th>Solicitante</th>
                     <th>Acciones</th>
                 </tr>
@@ -87,6 +99,7 @@
                     <td>{{$incidencia->inicio}}</td>
                     <td>{{$incidencia->fin}}</td>
                     <td>{{$incidencia->descripcion}}</td>
+                    <td>{{ucwords($incidencia->tipo)}}</td>
                     <td>{{$incidencia->solicitante}}</td>
                     <td style="display: flex; align-items: center;justify-content: center;">
                         <a href="{{route('incidencias.edit',$incidencia->id)}}">
@@ -110,5 +123,6 @@
                 @endforeach
             </tbody>
         </table>
-        {{$incidencias->links()}}
+        {{$incidencias->appends(request()->query())->links()}}
+
 @endsection

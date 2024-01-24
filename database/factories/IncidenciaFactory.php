@@ -20,6 +20,7 @@ class IncidenciaFactory extends Factory
             'inicio' => fake()->dateTimeThisMonth()->format('Y-m-d H:i:s'),
             'fin' => fake()->dateTimeThisMonth()->format('Y-m-d H:i:s'),
             'descripcion' => fake()->sentence(),
+            'tipo' => fake()->randomElement(['incidencia', 'requerimiento']),
             'solicitante' => fake()->randomElement(['CYA', 'Soporte de Averias'])
         ];
     }
