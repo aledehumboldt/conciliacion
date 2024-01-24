@@ -58,7 +58,6 @@
                   <li data-target="#header-carousel" data-slide-to="0" class="active"></li>
                   <li data-target="#header-carousel" data-slide-to="1"></li>
                   <li data-target="#header-carousel" data-slide-to="2"></li>
-                  <li data-target="#header-carousel" data-slide-to="3"></li>
                 </ol>
                 <div class="carousel-inner">
                   <div class="carousel-item position-relative active" style="height: 430px;">
@@ -76,15 +75,6 @@
                       <div class="p-3" style="max-width: 700px;">
                         <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">¿Olvidaste tu contraseña?</h1>
                         <p class="mx-md-5 px-5 animate__animated animate__bounceIn text-white">Solicita el reestablecimiento de tu clave al equipo de Aprovisionamiento.</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="carousel-item position-relative" style="height: 430px;">
-                    <img class="position-absolute w-100 h-100" src="{{asset('assets/carousel-3.jpg')}}" style="object-fit: cover;">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                      <div class="p-3" style="max-width: 700px;">
-                        <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Antes de excluir...</h1>
-                        <p class="mx-md-5 px-5 animate__animated animate__bounceIn text-white">Verifica si el abonado ya esta excluido hasta la fecha que requieres.</p>
                       </div>
                     </div>
                   </div>
