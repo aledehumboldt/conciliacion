@@ -13,7 +13,10 @@
     @endif
     <input type="hidden" name="estatus" id="estatus" value="{{isset($usuario->estatus) ? $usuario->estatus : 'Iniciado'}}">
     <div class="mb-3">
-        <select id="perfil" name="perfil" class="custom-select" >
+        <select id="perfil" name="perfil" class="custom-select" 
+        @isset($usuario->perfil)
+            @if ($usuario->perfil == "SA") disabled @endif >
+        @endisset
             <option value="">Selecciona el área</option>
             <option value="SA"
             @isset($usuario->perfil)

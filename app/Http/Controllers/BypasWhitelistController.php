@@ -11,13 +11,10 @@ use Carbon\Carbon;
 class BypasWhitelistController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    /**
-     * Display a listing of the resource.
+     * Verify if the user can see these views.
      */
     protected function verify() {
-        if (Auth::user()->perfil == "CYA" && Auth::user()->estatus != "Iniciado") {
+        if (Auth::user()->estatus != "Iniciado") {
             return true;
         } else {
             return false;

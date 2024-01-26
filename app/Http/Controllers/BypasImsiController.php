@@ -11,10 +11,7 @@ use Carbon\Carbon;
 class BypasImsiController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    /**
-     * Display a listing of the resource.
+     * Verify if the user can see these views.
      */
     protected function verify() {
         if (Auth::user()->estatus != "Iniciado") {
