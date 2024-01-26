@@ -131,7 +131,7 @@
 
 
 <header class="navbar sticky-top bg-nav flex-md-nowrap p-0 shadow" data-bs-theme="dark" style="background-color: #fd585f">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white">{{auth()->user()->nombre}}</a>
+  <a class="col-md-3 col-lg-2 me-0 px-3 fs-6 text-white"></a>
   <img src="{{asset('assets/1699301436808.png')}}" style="width: 45px; position:absolute; left:17%" alt="logo">
   <img src="{{asset('assets/logoMovilnet.png')}}" style="width: 150px; position:absolute; right:0%" alt="logo">
   <h2 class="text-white col-md" style="text-align:center">Aprovisionamiento</h2>
@@ -142,99 +142,41 @@
     <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
       <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="sidebarMenuLabel">{{auth()->user()->nombre}}</h5>
+          <h5 class="offcanvas-title" id="sidebarMenuLabel"></h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
-          <ul class="nav flex-column">
-          @if (auth()->user()->estatus != "Iniciado")
-            <li class="nav-item">
-              <a aria-current="page" href="{{route('home')}}" class="nav-link d-flex align-items-center gap-2
-                @if(route('home') == url()->current()) active @endif ">
-                <svg class="bi"><use xlink:href="#house-fill"/></svg>
-                Inicio
-              </a>
-            </li>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a aria-current="page" href="{{route('home')}}" class="nav-link d-flex align-items-center gap-2">
+                        <svg class="bi"><use xlink:href="#house-fill"/></svg>
+                        Inicio
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('exclusiones.index')}}" class="nav-link d-flex align-items-center gap-2">
+                        <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+                        Exclusiones
+                    </a>
+                </li>
 
-            @if (auth()->user()->perfil == "CYA")
-            <li class="nav-item">
-              <a href="{{route('usuarios.index')}}" class="nav-link d-flex align-items-center gap-2
-                @if(route('usuarios.index') == url()->current()) active @endif ">
-                <svg class="bi"><use xlink:href="#people"/></svg>
-                Usuarios
-              </a>
-            </li>
-            
-            <li class="nav-item">
-              <a href="{{route('documentacion.index')}}" class="nav-link d-flex align-items-center gap-2
-              @if(route('documentacion.index') == url()->current()) active @endif ">
-              <svg class="bi"><use xlink:href="#file-earmark"/></svg>
-                Documentacion
-              </a>
-            </li>
-            
-            <li class="nav-item">
-              <a href="{{ route('incidencias.index') }}" class="nav-link d-flex align-items-center gap-2
-                @if(route('incidencias.index') == url()->current()) active @endif ">
-                <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
-                Incidencias o Requerimientos
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="{{route('aprovisionamientos')}}" class="nav-link d-flex align-items-center gap-2
-              @if(route('aprovisionamientos') == url()->current()) active @endif ">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart" viewBox="0 0 16 16">
-                  <path d="M4 11H2v3h2zm5-4H7v7h2zm5-5v12h-2V2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1z"/>
-                </svg>
-                Conexion y Desconexion de abonados
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="#" class="nav-link d-flex align-items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
-                  <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.15.15 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.2.2 0 0 1-.054.06.1.1 0 0 1-.066.017H1.146a.1.1 0 0 1-.066-.017.2.2 0 0 1-.054-.06.18.18 0 0 1 .002-.183L7.884 2.073a.15.15 0 0 1 .054-.057m1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767z"/>
-                  <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
-                </svg>
-                Suspension y Reactivacion de abonados
-              </a>
-            </li>
-            @endif
-            
-            <li class="nav-item">
-              <a href="{{route('exclusiones.index')}}" class="nav-link d-flex align-items-center gap-2
-                @if(route('exclusiones.index') == url()->current()) active @endif ">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
-                  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
-                  <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z"/>
-                </svg>
-                Exclusiones
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="{{route('bypass.index')}}"  class="nav-link d-flex align-items-center gap-2
-              @if(route('bypass.index') == url()->current()) active @endif ">
-                <svg class="bi"><use xlink:href="#graph-up"/></svg>
-                Trafico Gris (Bypass)
-              </a>
-            </li>
-          </ul>
-          @endif
+                <li class="nav-item">
+                    <a href="{{route('bypass.index')}}"  class="nav-link d-flex align-items-center gap-2">
+                        <svg class="bi"><use xlink:href="#graph-up"/></svg>
+                        Trafico Gris (Bypass)
+                    </a>
+                </li>
+            </ul>
 
           <hr class="my-3">
 
           <ul class="nav flex-column mb-auto">
-            @if (auth()->user()->estatus != "Iniciado")
             <li class="nav-item">
-              <a href="{{route('usuarios.edit',auth()->user()->id)}}" class="nav-link d-flex align-items-center gap-2
-                @if(route('usuarios.edit',auth()->user()->id) == url()->current()) active @endif ">
+              <a href="#" class="nav-link d-flex align-items-center gap-2">
                 <svg class="bi"><use xlink:href="#gear-wide-connected"/></svg>
                 Configuracion
               </a>
             </li>
-            @endif
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{route('logout')}}">
                 <svg class="bi"><use xlink:href="#door-closed"/></svg>
