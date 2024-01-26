@@ -13,12 +13,12 @@
                     <div class="form-container">
                     <label for="celular" class="form-label">Celular</label>
                     <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
-                    <select name="codarea" id="codarea" class="custom-select" style="width:100px">
+                    <select name="codigo" id="codigo" class="custom-select" style="width:100px">
                     <option value="">Código</option>
                     <option value="416">416</option>
                     <option value="426">426</option>
                 </select>
-                <input type="text" name="min" id="min" class="form-control" value="{{old('min')}}" placeholder="Ingrese abonado" pattern=".{7,7}">
+                <input type="text" name="celular" id="celular" class="form-control" value="{{old('min')}}" placeholder="Ingrese abonado" pattern=".{7,7}">
                     </div>
                         <button type="submit" class="btn btn-secondary" name="buscar" id="buscar">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">

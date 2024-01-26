@@ -7,6 +7,7 @@ use App\Models\Incidencia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Http\Requests\StoreBypassMinRequest;
 
 class BypasMinController extends Controller
 {
@@ -46,22 +47,11 @@ class BypasMinController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) {
-        //Validando parametros enviados
-        $campos = [
-            'ticket' => 'required|string',
-            'fecha' => 'required|string',
-            'codarea' => 'required|string',
-            'min' => 'required|numeric',
-            'observaciones' => 'required|string',
-            'tcliente' => 'required|string',
-        ];
-
-        $this->validate($request,$campos);
+    public function store(StoreBypassMinRequest $request) {
 
         //-------------------Bypass--------------
         //Sustituyendo valores necesarios
-        $datosMinbypas = request()->except('_token', 'incluir');
+        $datosMinbypas = $request->except('_token', 'incluir');
         $min = $datosMinbypas['codarea'].$datosMinbypas['min'];
 
         //Agregando valores necesarios
@@ -77,7 +67,7 @@ class BypasMinController extends Controller
         BypasMin::insert($datosMinbypas);
         //-------------------Bypass--------------
 
-        //-------------------Incidencia--------------
+        //---------------Incidencia------------------
         //Agregando valores necesarios
         $datosMinbypas['inicio'] = $request->fecha;
         $datosMinbypas['fin'] = $request->fecha;
@@ -85,7 +75,14 @@ class BypasMinController extends Controller
         $datosMinbypas['solicitante'] = auth()->user()->perfil;
 
         //Eliminando del array
-        unset($datosMinbypas['usuario'],$datosMinbypas['min'],$datosMinbypas['codarea'],$datosMinbypas['observaciones'],$datosMinbypas['tcliente'],$datosMinbypas['fecha']);
+        unset(
+            $datosMinbypas['usuario'],
+            $datosMinbypas['min'],
+            $datosMinbypas['codarea'],
+            $datosMinbypas['observaciones'],
+            $datosMinbypas['tcliente'],
+            $datosMinbypas['fecha']
+        );
 
         //Insertando la tabla Incidencias
         Incidencia::insert($datosMinbypas);
@@ -102,8 +99,8 @@ class BypasMinController extends Controller
     public function show(Request $request) {
 
         $campos = [
-            'codarea' => 'required|string',
-            'min' => 'required|string',
+            'codigo' => 'required|string',
+            'celular' => 'required|numeric',
         ];
 
         $this->validate($request,$campos);
@@ -125,18 +122,8 @@ class BypasMinController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id) {
-        $campos = [
-
-            'ticket' => 'required|string',
-            'fecha' => 'required|string',
-            'codarea' => 'required|string',
-            'min' => 'required|numeric',
-            'observaciones' => 'required|string',
-            'tcliente' => 'required|string',
-        ];
-
-        $datosMinbypas = request()->except('_token', 'editar', '_method');
+    public function update(StoreBypassMinRequest $request, $id) {
+        $datosMinbypas = $request->except('_token', 'editar', '_method');
 
         //Sustituyendo valores necesarios
         $min = $datosMinbypas['codarea'].$datosMinbypas['min'];
@@ -150,9 +137,11 @@ class BypasMinController extends Controller
         //Eliminando del array
         unset($datosMinbypas['codarea']);
 
+        //Actualizando el registro
         BypasMin::where('id','=',$id)->update($datosMinbypas);
-        $bypas_min = BypasMin::findOrFail($id);
-          return redirect()->route('bypassMin.index')
+        
+        //Redireccionando
+        return redirect()->route('bypassMin.index')
             ->with('mensaje', 'Registro actualizado.');
     }
 
