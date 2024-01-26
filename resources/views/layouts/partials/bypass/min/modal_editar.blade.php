@@ -18,7 +18,7 @@
         </div>
         <label for="min" class="form-label">Celular</label>
         <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
-        <select name="codarea" id="codarea" class="form-control" style="width:100px" required>
+        <select name="codarea" id="codarea" class="custom-select" style="width:100px" required>
         <option value="416"
         @if (substr($bypas_min->min, 0, 3) == "416") selected @endif>0416</option>
         <option value="426"
@@ -32,7 +32,7 @@
             this.type='text'">
         </div>
     <div class="mb-3">
-            <select id="tcliente" name="tcliente" class="form-control" required>
+            <select id="tcliente" name="tcliente" class="custom-select" required>
                 <option value="PREPAGO"
                 @if ($bypas_min->tcliente == "PREPAGO") selected @endif>Prepago</option>
                 <option value="POSTPAGO"

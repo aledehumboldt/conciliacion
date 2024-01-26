@@ -13,7 +13,7 @@
                     <div class="form-container">
                     <label for="celular" class="form-label">Celular</label>
                     <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
-                    <select name="codarea" id="codarea" class="form-control" style="width:100px">
+                    <select name="codarea" id="codarea" class="custom-select" style="width:100px">
                     <option value="">Código</option>
                     <option value="416">416</option>
                     <option value="426">426</option>

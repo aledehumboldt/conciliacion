@@ -1,10 +1,10 @@
-    <div class="modal fade" id="exampleModal3{{$bypas_min->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+<div class="modal fade" id="exampleModal3{{$bypas_min->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edicion incluir Trafico gris</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
@@ -18,7 +18,7 @@
                         </div>
                         <label for="min" class="form-label">Celular</label>
                         <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
-                            <select name="codarea" id="codarea" class="form-control" style="width:100px" required>
+                            <select name="codarea" id="codarea" class="custom-select" style="width:100px" required>
                                 <option value="416"
                                 @if (substr($bypas_min->min, 0, 3) == "416") selected @endif>0416</option>
                                 <option value="426"

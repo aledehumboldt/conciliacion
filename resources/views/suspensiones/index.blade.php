@@ -32,7 +32,7 @@
             </div>
             <label for="min" class="form-label">Celular</label>
             <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
-                <select name="codarea" id="codarea" class="form-control" style="width:100px" required>
+                <select name="codarea" id="codarea" class="custom-select" style="width:100px" required>
                     <option value="">Código</option>
                     <option value="416">0416</option>
                     <option value="426">0426</option>
@@ -49,7 +49,7 @@
                 this.type='text'">
             </div>
             <div class="mb-3">
-                <select id="tcliente" name="tcliente" class="form-control" >
+                <select id="tcliente" name="tcliente" class="custom-select">
                     <option value="">Tipo de cliente</option>
                     <option value="PREPAGO">Prepago</option>
                     <option value="POSTPAGO">Postpago</option>
