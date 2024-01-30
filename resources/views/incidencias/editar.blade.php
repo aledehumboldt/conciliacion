@@ -36,7 +36,7 @@
         </div>        
         <div class="mb-3">
             <label for="fin" class="form-label">Fecha Fin</label>
-            <input type="datetime-local" name="fin" id="fin" class="form-control" value="{{ $incidencia->fin }}" required placeholder="Día/Mes/Año">
+            <input type="datetime-local" name="fin" id="fin" class="form-control" value="{{ $incidencia->fin }}" placeholder="Día/Mes/Año">
         </div>
         <label for="descripcion" class="form-label">Descripcion</label>
         <div class="form-floating mb-3">

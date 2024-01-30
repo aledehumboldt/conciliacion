@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('usuario');
             $table->string('min', 10);
             $table->text('observaciones');
-            $table->text('tcliente');
+            $table->string('tcliente');
             $table->timestamps();
         });
     }

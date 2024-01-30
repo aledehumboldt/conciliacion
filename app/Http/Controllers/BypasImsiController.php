@@ -58,6 +58,30 @@ class BypasImsiController extends Controller
         $this->validate($request,$campos);
 
         //-------------------Bypass--------------
+        //En caso de ser una exclusion vista SA
+        if (isset($request->excluir)) {
+            //Agregando valores necesarios para Incidencia
+            $request['inicio'] = $request->fecha;
+            $request['descripcion'] = $request->observaciones;
+            $request['solicitante'] = auth()->user()->perfil;
+            $request['tipo'] = "requerimiento";
+
+            //Buscando registro para realizar exclusion
+            $bypass = BypasImsi::where([
+                ['imsi',$request->imsi],
+                ['ticket',$request->ticket]
+            ])->first();
+
+            //Eliminando del array
+            unset(
+                $request['imsi'],
+                $request['fecha'],
+                $request['observaciones'],
+            );
+
+            return $this->destroy($request,$bypass->id);
+        }
+
         //Sustituyendo valores necesarios
         $datosImsibypas = request()->except('_token', 'incluir');
 
@@ -67,23 +91,28 @@ class BypasImsiController extends Controller
         $datosImsibypas['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
 
 
-        //Insertando la tabla Bypass MIN
+        //Insertando la tabla Bypass IMSI
         BypasImsi::insert($datosImsibypas);
         //-------------------Bypass--------------
 
-        //-------------------Incidencia--------------
+        //---------------Incidencia--------------
         //Agregando valores necesarios
-        $datosImsibypas['inicio'] = $request->fecha;
-        $datosImsibypas['fin'] = $request->fecha;
+        $datosImsibypas['inicio'] = date("Y-m-d H:i:s", strtotime($request->fecha));
         $datosImsibypas['descripcion'] = $request->observaciones;
         $datosImsibypas['solicitante'] = auth()->user()->perfil;
+        $datosImsibypas['tipo'] = "requerimiento";
 
         //Eliminando del array
-        unset($datosImsibypas['usuario'],$datosImsibypas['imsi'],$datosImsibypas['observaciones'],$datosImsibypas['fecha']);
+        unset(
+            $datosImsibypas['usuario'],
+            $datosImsibypas['imsi'],
+            $datosImsibypas['observaciones'],
+            $datosImsibypas['fecha']
+        );
 
         //Insertando la tabla Incidencias
         Incidencia::insert($datosImsibypas);
-        //-------------------Incidencia--------------
+        //---------------Incidencia--------------
         
         //Redireccionando
         return redirect()->route('bypassImsi.index')
@@ -101,7 +130,7 @@ class BypasImsiController extends Controller
 
         $this->validate($request,$campos);
 
-        $bypas_imsis = BypasImsi::where('min',$campos)->get();
+        $bypas_imsis = BypasImsi::where('imsi',$request->imsi)->get();
 
         return view('bypass.bypassImsi.consultar',compact('bypas_imsis'));
     }
@@ -143,31 +172,35 @@ class BypasImsiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, $id) {       //Eliminando de la tabla Bypass MIN
-            $imsi = BypasImsi::find($id);
-            $imsi->delete();
+    public function destroy(Request $request, $id) {
+        //Eliminando de la tabla Bypass MIN
+        $imsi = BypasImsi::find($id);
+        $imsi->delete();
 
-            //Validando los datos enviados
-            $campos = [
-                'ticket' => 'required|string|min:10|max:10',
-                'inicio' => 'required|string',
-                'descripcion' => 'required|string|max:250',
-                'solicitante' => 'required|string',
-            ];
-    
-            $this->validate($request,$campos);
+        //Validando los datos enviados
+        $campos = [
+            'ticket' => 'required|string|min:10|max:10',
+            'inicio' => 'required|string',
+            'descripcion' => 'required|string|max:250',
+            'solicitante' => 'required|string',
+        ];
 
-            $datosIncidencia = request()->except('_token', 'excluir');
+        $this->validate($request,$campos);
 
-            //Agregando valores necesarios
-            $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-            $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-            
-            //Agregando registro a Incidencia
-            Incidencia::insert($datosIncidencia);
+        $datosIncidencia = request()->except('_token', 'excluir');
 
-            return redirect()->route('bypassImsi.index')
-            ->with('mensaje', 'IMSI excluido exitosamente.');
-        }
+        //Agregando valores necesarios
+        $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $newDate = date("Y-m-d H:i:s", strtotime($datosIncidencia['inicio']));
+
+        $datosIncidencia['inicio'] = $newDate;
+        
+        //Agregando registro a Incidencia
+        Incidencia::insert($datosIncidencia);
+
+        return redirect()->route('bypassImsi.index')
+        ->with('mensaje', 'IMSI excluido exitosamente.');
+    }
 }
 

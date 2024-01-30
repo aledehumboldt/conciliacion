@@ -17,7 +17,7 @@
 @endsection
 
 @section('encabezado')
-    <h3 class="editor-toolbar-item">Incluir abonado al listado Bypass</h3>
+    <h3 class="editor-toolbar-item">Incluir al listado Bypass</h3>
 @endsection
 
 @section('contenido')
@@ -39,9 +39,9 @@
                 </select>
                 <input type="text" name="min" id="min" value="{{old('min')}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
             </div>
-            <label for="imsi" class="form-label">IMSI</label>
-            <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
+            <div class="form-floating mb-3">
                 <input type="text" name="imsi" id="imsi" value="{{old('imsi')}}" class="form-control" placeholder="Ingrese imsi" pattern=".{15,15}">
+                <label for="imsi" class="form-label">IMSI</label>
             </div>
             <div class="mb-3">
                 <label for="fecha" class="form-label">Fecha</label>
@@ -56,7 +56,7 @@
                 </select>
             </div>
             <label for="observaciones" class="form-label">Observaciones</label>
-            <div class="form-floating mb-3">
+            <div class="mb-3">
                 <textarea name="observaciones" id="observaciones" cols="35" rows="5">{{old('observaciones')}}</textarea>
             </div>
             <div class="text-center">

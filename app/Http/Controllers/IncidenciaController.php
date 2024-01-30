@@ -75,8 +75,11 @@ class IncidenciaController extends Controller
         $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
 
-        Incidencia::insert($datosIncidencia);
+        $newDate = date("Y-m-d H:i:s", strtotime($datosIncidencia['inicio']));
 
+        $datosIncidencia['inicio'] = $newDate;
+
+        Incidencia::insert($datosIncidencia);
        
         return redirect()->route('incidencias.index')
         ->with('mensaje', 'Registro agregado correctamente.');
@@ -118,7 +121,6 @@ class IncidenciaController extends Controller
         $request->validate([
             'ticket' => 'required|string|min:10|max:10',
             'inicio' => 'required|string',
-            'fin' => 'required|string',
             'descripcion' => 'required|string|max:250',
             'tipo' => 'required|string',
             'solicitante' => 'required|string',

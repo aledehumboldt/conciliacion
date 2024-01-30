@@ -73,6 +73,8 @@ Route::post('bypassMin', [BypasMinController::class, 'store'])->name('bypassMin.
 Route::post('bypassMin/{id}', [BypasMinController::class, 'destroy'])->name('bypassMin.destroy');
 
 Route::put('bypassMin/{id}', [BypasMinController::class, 'update'])->name('bypassMin.update');
+
+Route::get('bypassMin/create', [BypasMinController::class, 'create'])->name('bypassMin.create');
 //-------------------------------------------------Fin Bypass MIN------------------------------------------------
 
 //-------------------------------------------------Bypass IMSI------------------------------------------------
@@ -85,6 +87,8 @@ Route::post('bypassImsi', [BypasImsiController::class, 'store'])->name('bypassIm
 Route::post('bypassImsi/{id}', [BypasImsiController::class, 'destroy'])->name('bypassImsi.destroy');
 
 Route::put('bypassImsi/{id}', [BypasImsiController::class, 'update'])->name('bypassImsi.update');
+
+Route::get('bypassImsi/create', [BypasImsiController::class, 'create'])->name('bypassImsi.create');
 //-------------------------------------------------Fin Bypass IMSI------------------------------------------------
 
 //-------------------------------------------------Bypass Whitelist------------------------------------------------
@@ -97,6 +101,8 @@ Route::post('bypassWhitelist', [BypasWhitelistController::class, 'store'])->name
 Route::post('bypassWhitelist/{id}', [BypasWhitelistController::class, 'destroy'])->name('bypassWhitelist.destroy');
 
 Route::put('bypassWhitelist/{id}', [BypasWhitelistController::class, 'update'])->name('bypassWhitelist.update');
+
+Route::get('bypassWhitelist/create', [BypasWhitelistController::class, 'create'])->name('bypassWhitelist.create');
 //-------------------------------------------------Fin Bypass Whitelist------------------------------------------------
 
 //-------------------------------------------------Bypass Ambos------------------------------------------------

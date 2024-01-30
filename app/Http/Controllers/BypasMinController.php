@@ -36,7 +36,7 @@ class BypasMinController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request) {
+    public function create() {
         if(!$this->verify()) {
             return back();
         }
@@ -50,6 +50,34 @@ class BypasMinController extends Controller
     public function store(StoreBypassMinRequest $request) {
 
         //-------------------Bypass--------------
+        //En caso de ser una exclusion vista SA
+        if (isset($request->excluir)) {
+            //Agregando valores necesarios para Incidencia
+            $numero = $request->codarea.$request->min;
+            $request['inicio'] = $request->fecha;
+            $request['descripcion'] = $request->observaciones;
+            $request['solicitante'] = auth()->user()->perfil;
+            $request['tipo'] = "requerimiento";
+
+            //Buscando registro para realizar exclusion
+            $bypass = BypasMin::where([
+                ['min',$numero],
+                ['ticket',$request->ticket]
+            ])->first();
+
+            //Eliminando del array
+            unset(
+                $request['codarea'],
+                $request['min'],
+                $request['fecha'],
+                $request['observaciones'],
+                $request['tcliente'],
+            );
+
+            //return $request;
+            return $this->destroy($request,$bypass->id);
+        }
+
         //Sustituyendo valores necesarios
         $datosMinbypas = $request->except('_token', 'incluir');
         $min = $datosMinbypas['codarea'].$datosMinbypas['min'];
@@ -69,10 +97,10 @@ class BypasMinController extends Controller
 
         //---------------Incidencia------------------
         //Agregando valores necesarios
-        $datosMinbypas['inicio'] = $request->fecha;
-        $datosMinbypas['fin'] = $request->fecha;
+        $datosMinbypas['inicio'] = date("Y-m-d H:i:s", strtotime($request->fecha));
         $datosMinbypas['descripcion'] = $request->observaciones;
         $datosMinbypas['solicitante'] = auth()->user()->perfil;
+        $datosMinbypas['tipo'] = "requerimiento";
 
         //Eliminando del array
         unset(
@@ -105,7 +133,7 @@ class BypasMinController extends Controller
 
         $this->validate($request,$campos);
 
-        $vartmp = $request->codarea.$request->min;
+        $vartmp = $request->codigo.$request->celular;
 
         $bypas_mins = BypasMin::where('min',$vartmp)->get();
 
@@ -148,30 +176,34 @@ class BypasMinController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, $id) {       //Eliminando de la tabla Bypass MIN
-            $numero = BypasMin::find($id);
-            $numero->delete();
+    public function destroy(Request $request, $id) {
+        //Validando los datos enviados
+        $campos = [
+            'ticket' => 'required|string|min:10|max:10',
+            'inicio' => 'required|string',
+            'descripcion' => 'required|string|max:250',
+            'solicitante' => 'required|string',
+        ];
 
-            //Validando los datos enviados
-            $campos = [
-                'ticket' => 'required|string|min:10|max:10',
-                'inicio' => 'required|string',
-                'descripcion' => 'required|string|max:250',
-                'solicitante' => 'required|string',
-            ];
-    
-            $this->validate($request,$campos);
+        $this->validate($request,$campos);
 
-            $datosIncidencia = request()->except('_token', 'excluir');
+        //Eliminando de la tabla Bypass MIN
+        $numero = BypasMin::find($id);
+        $numero->delete();
+        
+        $datosIncidencia = $request->except('_token', 'excluir');
 
-            //Agregando valores necesarios
-            $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-            $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-            
-            //Agregando registro a Incidencia
-            Incidencia::insert($datosIncidencia);
+        //Agregando valores necesarios
+        $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $newDate = date("Y-m-d H:i:s", strtotime($datosIncidencia['inicio']));
 
-            return redirect()->route('bypassMin.index')
-            ->with('mensaje', 'Abonado excluido exitosamente.');
-        }
+        $datosIncidencia['inicio'] = $newDate;
+
+        //Agregando registro a Incidencia
+        Incidencia::insert($datosIncidencia);
+
+        return redirect()->route('bypassMin.index')
+        ->with('mensaje', 'Abonado excluido exitosamente.');
+    }
 }
