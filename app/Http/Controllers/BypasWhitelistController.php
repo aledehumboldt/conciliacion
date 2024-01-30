@@ -28,14 +28,20 @@ class BypasWhitelistController extends Controller
         if(!$this->verify()) {
             return back();
         }
-        $datos['bypas_mins'] = BypasWhitelist::paginate();
+
+        //validando el perfil de usuario
+        if (Auth::user()->perfil == "SA") {
+            return $this->create();
+        }
+
+        $datos['bypas_mins'] = BypasWhitelist::orderBy('id','asc')->paginate();
         return view('bypass.bypassWhitelist.index', $datos);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request) {
+    public function create() {
         if(!$this->verify()) {
             return back();
         }

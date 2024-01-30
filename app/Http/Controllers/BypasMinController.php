@@ -29,7 +29,13 @@ class BypasMinController extends Controller
         if(!$this->verify()) {
             return back();
         }
-        $datos['bypas_mins'] = BypasMin::paginate();
+        
+        //validando el perfil de usuario
+        if (Auth::user()->perfil == "SA") {
+            return $this->create();
+        }
+
+        $datos['bypas_mins'] = BypasMin::orderBy('id','asc')->paginate();
         return view('bypass.bypassMin.index', $datos);
     }
 

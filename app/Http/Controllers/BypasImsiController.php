@@ -28,6 +28,12 @@ class BypasImsiController extends Controller
         if(!$this->verify()) {
             return back();
         }
+
+        //validando el perfil de usuario
+        if (Auth::user()->perfil == "SA") {
+            return $this->create();
+        }
+        
         $datos['bypas_imsis'] = BypasImsi::orderBy('id','asc')->paginate();
         return view('bypass.bypassImsi.index', $datos);
     }
@@ -35,7 +41,7 @@ class BypasImsiController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request) {
+    public function create() {
         if(!$this->verify()) {
             return back();
         }
