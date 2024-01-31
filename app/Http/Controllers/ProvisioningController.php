@@ -3,55 +3,105 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProvisioningController extends Controller
 {
+    private $disk = "public";
+
+    protected function verify() {
+        if (Auth::user()->perfil == "CYA" && Auth::user()->estatus != "Iniciado") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index() {
-        return view('provisioning.documents');
+        if(!$this->verify()) {
+            return back();
+        }
+
+    $archivos = array();
+
+        foreach (Storage::disk($this->disk)->files() as $file) {
+
+            $arrFiles = array();
+            $link = array();
+
+            $arrFiles = scandir('storage');
+
+            foreach ($arrFiles as $arrFile) {
+                if ($arrFile != ".." && $arrFile != ".") {
+                    $titles [] = $arrFile;
+                    if (is_dir('storage/'.$arrFile)) {
+
+                        $arrFilesDos = array();
+                        $arrFilesDos = scandir('storage/'.$arrFile);
+
+                        foreach ($arrFilesDos as $fileDos) {
+                            if ($fileDos != ".." && $fileDos != ".") {
+
+                                $arraylink = $arrFile."/".$fileDos;
+
+                                $archivos[] = [
+                                    'name' => $fileDos,
+                                    'link' => route("download",$arraylink),
+                                    'title' => $arrFile,
+                                ];
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return view('documentacion.index',compact('archivos','titles'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create() {
-        //
+    public function storeFile(Request $request) {
+        if ($request->isMethod('POST')) {
+            
+            $file = $request->categoria."/".$request->file('file')->getClientOriginalName();
+
+            $request->file('file')->storeAs($this->disk,$file);
+
+        }
+
+        return redirect()->route('documentacion.index')->with('mensaje', 'Documento subido exitosamente.');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request) {
-        //
+    public function downLoadfile($name) {
+        if (Storage::disk($this->disk)->exists($name)) {
+            return Storage::disk($this->disk)->download($name);
+        }
+
+        return response('',404);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id) {
-        //
-    }
+    public function storeCategory (Request $request){
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id) {
-        //
-    }
+        $campos = [
+            'categoria' => 'required|string',
+        ];
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id) {
-        //
-    }
+        $this->validate($request,$campos);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id) {
-        //
+        $datosCategory = request()->except('_token', 'guardar');
+
+        $categoria = $datosCategory['categoria'];
+
+        $dir = "storage/";
+
+        $rutdir = $dir.$categoria;
+
+        mkdir($rutdir,0777);
+
+        return redirect()->route('documentacion.index')->with('mensaje', 'Categoria cargada exitosamente.');
     }
 }

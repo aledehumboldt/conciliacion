@@ -5,13 +5,30 @@ namespace App\Http\Controllers;
 use App\Models\Exclusione;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreExclusioneRequest;
 
 class ExclusioneController extends Controller
 {
+    protected function verify() {
+        if (Auth::user()->estatus != "Iniciado") {
+            return true;
+        } else {
+            return false;
+        }
+    }
     /**
      * Display a listing of the resource.
      */
     public function index() {
+        if(!$this->verify()) {
+            return back();
+        }
+
+        if(auth()->user()->perfil == "SA") {
+            return redirect()->route('exclusiones.create');
+        }
+
         $datos['exclusiones'] = Exclusione::where('fechae', '>=', now()->format('Y-m-d H:i:s'))->paginate();
         return view('exclusiones.index', $datos);
     }
@@ -26,22 +43,9 @@ class ExclusioneController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) {
-        //Validando valores del formulario
-        $campos = [
-            'ticket' => 'required|string|min:10|max:10',
-            'codarea' => 'required|string',
-            'celular' => 'required|numeric',
-            'fechae' => 'required|date|after:today',
-            'tcliente' => 'required|string|min:7|max:8',
-            'observaciones' => 'required|string|max:250',
-
-        ];
-
-        $this->validate($request,$campos);
-
+    public function store(StoreExclusioneRequest $request) {
         //Guardando datos del formulario
-        $datosExclusion = request()->except('_token', 'excluir');
+        $datosExclusion = $request->except('_token', 'excluir');
 
         //Sustituyendo valores necesarios
         $fechae = Carbon::parse($datosExclusion['fechae'])->format('Ymd');
@@ -69,8 +73,18 @@ class ExclusioneController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show() {
-        return view('exclusiones.consultar');
+    public function show(Request $request) {
+        //Validando valores del formulario
+        $campos = [
+            'codigo' => 'required|string',
+            'celular' => 'required|numeric',
+        ];
+
+        $this->validate($request,$campos);
+
+        $abonado = $request->codareaB.$request->celularB;
+        $exclusiones = Exclusione::where('celular',$abonado)->get();
+        return view('exclusiones.consultar',compact('exclusiones'));
     }
 
     /**
@@ -91,10 +105,6 @@ class ExclusioneController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy() {
-        //
-    }
-
-    public function query (Request $request) {
         //
     }
 }

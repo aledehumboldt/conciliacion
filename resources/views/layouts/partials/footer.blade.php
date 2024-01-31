@@ -1,1 +1,0 @@
-<a href="{{url('exclusiones/usuarios')}}">Regresar</a>

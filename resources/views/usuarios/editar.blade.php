@@ -1,12 +1,11 @@
-@extends('layouts.bootstrap')
+@extends('layouts.app')
 
-@section('titulo', 'Edición usuarios')
+@section('titulo', 'Edición usuario')
 
 @section('estilos')
     <style>
         form {
             width: 100%;
-            height: 70vh;
             display: flex;
             align-items: center;
             justify-content: center;

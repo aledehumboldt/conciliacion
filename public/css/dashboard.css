@@ -136,7 +136,7 @@ textarea:focus, input:focus, input[type]:focus{
   color: #666666;
 }
 .nav-link:focus {
-  color: #666666;
+  color: #bbb2b2;
 }
 
 .dropdown-item.active {

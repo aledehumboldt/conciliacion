@@ -1,74 +1,80 @@
-	@extends('layouts.bootstrap')
+	@extends('layouts.app')
 
 	@section('titulo', 'Inicio')
 
-		@section('encabezado')
-		hola
-		@endsection
+	@section('estilos')
+	@endsection
 
-<style>
+	@section('encabezado')
+	
+	@endsection
 
-.carousel-caption{
-    position: absolute; 
-    right: 15%;
-    left: 15%;
-    z-index: 10;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    text-align: center;
-	background-color: rgba(0, 0, 0, 0.7);
-}
-
-.carousel-item{
-  	height: 60%;
-}
-
-.carousel-inner img{
-  height: 100%;
-  opacity: 0.8;																								
-}
-
-</style>
-
-		@section('contenido')
-		<div id="carouselExampleCaptions" class="carousel slide">
-			<div class="carousel-indicators">
-			  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-			  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-			  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+	@section('contenido')
+		<!-- Carousel Start --> 
+		<div class="container-fluid mb-3">
+			<div class="row px-xl-5">
+				<div class="col-lg-8">
+					<div id="header-carousel" class="carousel slide carousel-fade mb-30 mb-lg-0" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#header-carousel" data-slide-to="0" class="active"></li>
+							<li data-target="#header-carousel" data-slide-to="1"></li>
+							<li data-target="#header-carousel" data-slide-to="2"></li>
+						</ol>
+						<div class="carousel-inner">
+							<div class="carousel-item position-relative active" style="height: 430px;">
+								<img class="position-absolute w-100 h-100" src="{{asset('assets/carousel-5.jpg')}}" style="object-fit: cover;">
+								<div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+									<div class="p-3" style="max-width: 700px;">
+										<h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">¿Sabes qué es el tráfico gris?</h1>
+										<p class="mx-md-5 px-5 animate__animated animate__bounceIn text-white">El llamado tráfico gris disfraza las llamadas internacionales como locales, evadiendo así los costos asociados y por ende, haciendo fraude al proveedor.</p>
+										<a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="{{ route('bypass.index') }}">Gestionar</a>
+									</div>
+								</div>
+							</div>
+							<div class="carousel-item position-relative" style="height: 430px;">
+								<img class="position-absolute w-100 h-100" src="{{asset('assets/carousel-6.jpg')}}" style="object-fit: cover;">
+								<div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+									<div class="p-3" style="max-width: 700px;">
+										<h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">¿Sabías que...?</h1>
+										<p class="mx-md-5 px-5 animate__animated animate__bounceIn text-white">En el fraude llamado “SIM Box Bypass” un individuo o empresa utiliza cientos de líneas en un aparato especializado para evitar cargos internacionales en sus llamadas.</p>
+										<a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="{{ route('bypass.index') }}">Gestionar</a>
+									</div>
+								</div>
+							</div>
+							<div class="carousel-item position-relative" style="height: 430px;">
+								<img class="position-absolute w-100 h-100" src="{{asset('assets/carousel-3.jpg')}}" style="object-fit: cover;">
+								<div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+									<div class="p-3" style="max-width: 700px;">
+										<h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Antes de excluir...</h1>
+										<p class="mx-md-5 px-5 animate__animated animate__bounceIn text-white">Verifica si el abonado ya esta excluido hasta la fecha que requieres.</p>
+										<a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="{{ route('exclusiones.create') }}">Excluir</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="product-offer mb-30" style="height: 200px;">
+						<img class="img-fluid" src="{{asset('assets/offer-1.jpg')}}" alt="">
+						<div class="offer-text">
+							<h6 class="text-white text-uppercase">Procesos de Conciliación</h6>
+							<h3 class="text-white mb-3">Gestión Exclusiones</h3>
+							<a href="{{route('exclusiones.index')}}" class="btn btn-secondary">Excluir</a>
+						</div>
+					</div>
+					<div class="product-offer mb-30" style="height: 200px;">
+						<img class="img-fluid" src="{{asset('assets/offer-2.jpg')}}" alt="">
+						<div class="offer-text">
+							<h6 class="text-white text-uppercase">Tráfico Gris</h6>
+							<h3 class="text-white mb-3">Gestión Bypass</h3>
+							<a href="{{route('bypass.index')}}" class="btn btn-secondary">Gestionar</a>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="carousel-inner">
-			  <div class="carousel-item active">
-				<img src="{{asset('assets/1.png')}}" alt="...">
-				<div class="carousel-caption">
-				  <h5>ffffff</h5>
-				  <p>solicitud</p>
-				</div>
-			  </div>
-			  <div class="carousel-item">
-				<img src="{{asset('assets/2.png')}}" alt="...">
-				<div class="carousel-caption">
-				  <h5>¿Extravío de clave?</h5>
-				  <p>Pídele al equipo de Aprovisionamiento el reestablecimiento de la misma, mediante el formato correspondiente a la solicitud</p>
-				</div>
-			  </div>
-			  <div class="carousel-item">
-				<img src="{{asset('assets/3.png')}}" alt="...">
-				<div class="carousel-caption">
-				  <h5>Para ti, usuario nuevo</h5>
-				  <p>Es necesario realizar la solicitud de creación de usuario, para accerder a las distintas funcionalidades.</p>
-				</div>
-			  </div>
-			</div>
-			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-			  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			  <span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-			  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			  <span class="visually-hidden">Next</span>
-			</button>
-		  </div>
-		@endsection
+		</div>
+		<!-- Carousel End -->
+	@endsection
 
 

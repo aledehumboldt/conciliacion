@@ -49,7 +49,7 @@ class LoginController extends Controller
                 return redirect('/password')->with('mensaje','Por favor cambie su contraseña');
             }
 
-            return redirect('/');
+            return redirect()->route('home');
         }
 
         return view('auth.login')->withErrors('Inicio fallido');
@@ -64,6 +64,6 @@ class LoginController extends Controller
     }
 
     public function authenticated(Request $request, $user) {
-        return redirect('/');
+        return redirect()->route('home');
     }
 }
