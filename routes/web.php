@@ -47,7 +47,7 @@ Route::get('documentacion', [ProvisioningController::class, 'index'])->name('doc
 
 //Route::get('documentacion', [ProvisioningController::class, 'loadView'])->name('subirArchivo');
 
-Route::post('documentacion', [ProvisioningController::class, 'store'])->name('storeFile');
+Route::post('documentacion', [ProvisioningController::class, 'storeFile'])->name('storeFile');
 
 Route::get('storage/{name}', [ProvisioningController::class, 'downloadFile'])->name('download');
 
