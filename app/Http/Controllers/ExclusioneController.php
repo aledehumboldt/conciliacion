@@ -29,7 +29,9 @@ class ExclusioneController extends Controller
             return redirect()->route('exclusiones.create');
         }
 
-        $datos['exclusiones'] = Exclusione::where('fechae', '>=', now()->format('Y-m-d H:i:s'))->paginate();
+        $datos['exclusiones'] = Exclusione::where('fechae', '>=', now()->format('Y-m-d H:i:s'))
+        ->paginate();
+        
         return view('exclusiones.index', $datos);
     }
 
@@ -83,7 +85,9 @@ class ExclusioneController extends Controller
         $this->validate($request,$campos);
 
         $abonado = $request->codareaB.$request->celularB;
-        $exclusiones = Exclusione::where('celular',$abonado)->get();
+        $exclusiones = Exclusione::where('celular',$abonado)
+        ->where('fechae', '>=', now()->format('Y-m-d H:i:s'))
+        ->get();
         return view('exclusiones.consultar',compact('exclusiones'));
     }
 

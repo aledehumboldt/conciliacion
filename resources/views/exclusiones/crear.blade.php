@@ -17,7 +17,7 @@
 @endsection
 
 @section('encabezado')
-    <h3 class="">Excluir Abonado</h3>
+    <h3 class="">Excluir Abonado de Conciliación</h3>
     <div style="position: absolute; right: 2%;">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-secondary" name="buscar" id="buscar"  data-toggle="modal" data-target="#exampleModal">
@@ -90,7 +90,7 @@
         <div class="mb-3">
             <label for="fechae" class="form-label">Fin de exclusión</label>
             <input type="text" name="fechae" id="fechae" class="form-control" value="{{old('fechae')}}" placeholder="Día/Mes/Año" onfocus="this.type='date'" onblur="
-            this.type='text'">
+            this.type='text'" max="{{date(('Y-m-d'),strtotime('+3 months'))}}">
         </div>
         <div class="mb-3">
             <select id="tcliente" name="tcliente" class="custom-select">

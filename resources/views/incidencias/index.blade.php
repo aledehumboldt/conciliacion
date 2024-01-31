@@ -27,8 +27,7 @@
                 <form action="{{ route('incidencias.show',auth()->user()->id) }}" enctype="multipart/form-data" method="get">
                     @csrf
                     <div class="form-container">
-                        <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
-                        <label for="ticket" class="form-label">Ingresa ticket</label>
+                        <div class="mb-3">
                             <input type="text" name="ticket" id="ticket" value="{{old('ticket')}}" class="form-control" placeholder="Ingrese ticket">
                         </div>
                         <button type="submit" class="btn btn-secondary" name="buscar" id="buscar">

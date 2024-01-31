@@ -60,7 +60,6 @@ class BypasMinController extends Controller
         if (isset($request->excluir)) {
             //Agregando valores necesarios para Incidencia
             $numero = $request->codarea.$request->min;
-            $request['inicio'] = $request->fecha;
             $request['descripcion'] = $request->observaciones;
             $request['solicitante'] = auth()->user()->perfil;
             $request['tipo'] = "requerimiento";
@@ -75,7 +74,6 @@ class BypasMinController extends Controller
             unset(
                 $request['codarea'],
                 $request['min'],
-                $request['fecha'],
                 $request['observaciones'],
                 $request['tcliente'],
             );
@@ -93,9 +91,14 @@ class BypasMinController extends Controller
         $datosMinbypas['min'] = $min;
         $datosMinbypas['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosMinbypas['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosMinbypas['fecha'] = date("Y-m-d H:i:s", strtotime($request->fin));
 
         //Eliminando del array
-        unset($datosMinbypas['codarea']);
+        unset(
+            $datosMinbypas['codarea'],
+            $datosMinbypas['inicio'],
+            $datosMinbypas['fin']
+        );
 
         //Insertando la tabla Bypass MIN
         BypasMin::insert($datosMinbypas);
@@ -103,7 +106,8 @@ class BypasMinController extends Controller
 
         //---------------Incidencia------------------
         //Agregando valores necesarios
-        $datosMinbypas['inicio'] = date("Y-m-d H:i:s", strtotime($request->fecha));
+        $datosMinbypas['inicio'] = date("Y-m-d H:i:s", strtotime($request->inicio));
+        $datosMinbypas['fin'] = date("Y-m-d H:i:s", strtotime($request->fin));
         $datosMinbypas['descripcion'] = $request->observaciones;
         $datosMinbypas['solicitante'] = auth()->user()->perfil;
         $datosMinbypas['tipo'] = "requerimiento";
@@ -114,8 +118,7 @@ class BypasMinController extends Controller
             $datosMinbypas['min'],
             $datosMinbypas['codarea'],
             $datosMinbypas['observaciones'],
-            $datosMinbypas['tcliente'],
-            $datosMinbypas['fecha']
+            $datosMinbypas['tcliente']
         );
 
         //Insertando la tabla Incidencias
@@ -202,9 +205,11 @@ class BypasMinController extends Controller
         //Agregando valores necesarios
         $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-        $newDate = date("Y-m-d H:i:s", strtotime($datosIncidencia['inicio']));
+        $datosMinbypas['inicio'] = date("Y-m-d H:i:s", strtotime($request->inicio));
 
-        $datosIncidencia['inicio'] = $newDate;
+        if (isset($request->fin)) {
+            $datosMinbypas['fin'] = date("Y-m-d H:i:s", strtotime($request->fin));
+        }
 
         //Agregando registro a Incidencia
         Incidencia::insert($datosIncidencia);
