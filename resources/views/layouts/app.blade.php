@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="auto">
+<html data-bs-theme="auto" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="{{asset('assets/1699301436808.png')}}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,6 +26,32 @@
 		<link href="{{asset('css/owl.carousel.min.css')}}" rel="stylesheet" crossorigin="anonymous">
     @yield('estilos')
 
+<style>
+    body {
+        background-color: var(--bg);
+        color: var(--text); 
+        transition: background-color 0.5s, color 0.5s;
+      }
+
+      .dark-mode {
+        background-color: #3b4252;
+        color: #eee;
+      }
+
+      .dark-mode table, .dark-mode table td, .dark-mode table th {
+      background-color: #4b5264;
+      color: #eee;
+      } 
+
+      .dark-mode .editor-toolbar-item{
+        color: #eee;
+      }
+
+      .dark-mode a.page-link, .dark-mode li.page-item.disabled span{
+        background-color: #4b5264;
+      }
+</style>
+
   </head>
   <body>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -43,7 +70,13 @@
       </symbol>
     </svg>
 
-    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+    <div class="position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+    <button class="btn btn-secondary rounded-circle" id="dark-mode-toggle" title="Cambiar modo">
+      <svg class="bi opacity-50 theme-icon" width="1em" height="1em"><use href="#circle-half"></use></svg>
+    </button>
+    </div>
+
+    <!-- <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
       <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
               id="bd-theme"
               type="button"
@@ -76,9 +109,8 @@
           </button>
         </li>
       </ul>
-    </div>
+    </div> -->
 
-    
 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
   <symbol id="calendar3" viewBox="0 0 16 16">
     <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
@@ -437,24 +469,44 @@
 <!-- Footer End -->
 
     <!-- JavaScript Libraries -->
+
+    <script src="{{asset('js/color-modes.js')}}" crossorigin="anonymous"></script> 
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}" crossorigin="anonymous"></script>
+    <script src="{{asset('js/main.js')}}" crossorigin="anonymous"></script>
+    <script src="{{asset('js/jqBootstrapValidation.min.js')}}" crossorigin="anonymous"></script> 
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous"></script>
+    <script src="dashboard.js"></script>
     <script src="{{asset('js/jquery-3.4.1.min.js')}}" crossorigin="anonymous"></script>
     <script src="{{asset('js/jquery.min.js')}}" crossorigin="anonymous"></script>
     <script src="{{asset('js/popper.min.js')}}" crossorigin="anonymous"> </script>
-    <script src="{{asset('js/bootstrap.min.js')}}" crossorigin="anonymous"></script>
-    <script src="{{asset('js/bootstrap.bundle.min.js')}}" crossorigin="anonymous"></script>
-    <script src="{{asset('js/easing.min.js')}}" crossorigin="anonymous"></script> 
-    <script src="{{asset('js/owl.carousel.min.js')}}" crossorigin="anonymous"></script> 
-
-      <!-- Contact Javascript File -->
-    <script src="{{asset('js/jqBootstrapValidation.min.js')}}" crossorigin="anonymous"></script> 
-    <script src="{{asset('js/contact.js')}}" crossorigin="anonymous"></script> 
-
-    <!-- Template Javascript -->
-
-    <script src="{{asset('js/color-modes.js')}}" crossorigin="anonymous"></script>
-    <script src="{{asset('js/main.js')}}" crossorigin="anonymous"></script>
-
     <script src="{{asset('js/dashboard.js')}}" crossorigin="anonymous"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}" crossorigin="anonymous"></script>
+    <script src="{{asset('js/easing.min.js')}}" crossorigin="anonymous"></script> 
+    <script src="{{asset('js/owl.carousel.min.js')}}" crossorigin="anonymous"></script>
+
+    <script>
+      const darkModeToggle = document.getElementById('dark-mode-toggle');
+      const isDarkMode = localStorage.getItem('darkMode') === 'true';
+      const darkMode = document.body.classList.contains('dark-mode');
+
+      if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+      }
+
+      darkModeToggle.addEventListener('click', () => {
+          document.body.classList.toggle('dark-mode');
+          localStorage.setItem('darkMode', !isDarkMode);
+      });
+    </script>
+
+
+      <!-- Contact Javascript File 
+    <script src="{{asset('js/jqBootstrapValidation.min.js')}}" crossorigin="anonymous"></script> 
+    <script src="{{asset('js/contact.js')}}" crossorigin="anonymous"></script> -->
+
+    <!-- Template Javascript 
+
     <script>
       const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
       const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
@@ -466,6 +518,6 @@
           form.submit();
         }
       );
-    </script>
+    </script>-->
   </body>
 </html>

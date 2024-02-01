@@ -7,7 +7,7 @@
 
 @section('encabezado')
 
-<h3>Registro y control de documentos</h3>
+<h3 class="editor-toolbar-item">Registro y control de documentos</h3>
 <div style="position: absolute; right: 2%;">
     @include('layouts.partials.documentos.modal_cargar')
         <button type="submit" class="btn btn-secondary" type="button" name="guardar" id="guardar"  data-toggle="modal" data-target="#exampleModal">
@@ -35,7 +35,7 @@
     <div class="">
         @if(isset($archivos) && isset($titles))
             @foreach($titles as $title)
-                <h4>{{$title}}</h4>
+                <h4 class="editor-toolbar-item">{{$title}}</h4>
                     @foreach($archivos as $archivo)
                         @if ($archivo['title'] == $title)
                         <a class="btn btn-secondary" href="{{$archivo['link']}}" target="_blank"><h5 class="text-white" style="text-transform:uppercase">{{$archivo['name']}}</h5></a>
