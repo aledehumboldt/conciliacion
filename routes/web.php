@@ -5,11 +5,11 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ResetController;
-use App\Http\Controllers\BypasMinController;
-use App\Http\Controllers\BypasImsiController;
-use App\Http\Controllers\BypasWhitelistController;
-use App\Http\Controllers\BypassController;
-use App\Http\Controllers\BypassAmbosController;
+use App\Http\Controllers\Bypass\BypasMinController;
+use App\Http\Controllers\Bypass\BypasImsiController;
+use App\Http\Controllers\Bypass\BypasWhitelistController;
+use App\Http\Controllers\Bypass\BypassController;
+use App\Http\Controllers\Bypass\BypassAmbosController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ExclusioneController;
 use App\Http\Controllers\IncidenciaController;
@@ -44,8 +44,6 @@ Route::post('/exclusiones/query', [ExclusioneController::class, 'query'])->name(
 
 //-------------------------------------------------Almacenamiento de archivos------------------------------------------------
 Route::get('documentacion', [ProvisioningController::class, 'index'])->name('documentacion.index');
-
-//Route::get('documentacion', [ProvisioningController::class, 'loadView'])->name('subirArchivo');
 
 Route::post('documentacion', [ProvisioningController::class, 'storeFile'])->name('storeFile');
 
