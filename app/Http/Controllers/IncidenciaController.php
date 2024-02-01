@@ -74,10 +74,13 @@ class IncidenciaController extends Controller
 
         $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $newStart = date("Y-m-d H:i:s", strtotime($datosIncidencia['inicio']));
+        $datosIncidencia['inicio'] = $newStart;
 
-        $newDate = date("Y-m-d H:i:s", strtotime($datosIncidencia['inicio']));
-
-        $datosIncidencia['inicio'] = $newDate;
+        if (isset($datosIncidencia['fin'])) {
+            $newEnd = date("Y-m-d H:i:s", strtotime($datosIncidencia['fin']));
+            $datosIncidencia['inicio'] = $newEnd;
+        }
 
         Incidencia::insert($datosIncidencia);
        
@@ -126,8 +129,18 @@ class IncidenciaController extends Controller
             'solicitante' => 'required|string',
           ]);
 
+          $newStart = date("Y-m-d H:i:s", strtotime($request->inicio));
+          if (isset($request->fin)) {
+            $newEnd = date("Y-m-d H:i:s", strtotime($request->fin));
+          }
+
           $incidencia = Incidencia::find($id);
-          
+
+          $request['inicio'] = $newStart;
+          if (isset($newEnd)) {
+            $request['fin'] = $newEnd;
+          }
+
           $incidencia->update($request->all());
 
           return redirect()->route('incidencias.index')

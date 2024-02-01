@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Bypass;
 
-use App\Models\BypasImsi;
+use App\Http\Controllers\Controller;
+use App\Models\BypasWhitelist;
 use App\Models\Incidencia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
-class BypasImsiController extends Controller
+class BypasWhitelistController extends Controller
 {
     /**
      * Verify if the user can see these views.
@@ -33,9 +34,9 @@ class BypasImsiController extends Controller
         if (Auth::user()->perfil == "SA") {
             return $this->create();
         }
-        
-        $datos['bypas_imsis'] = BypasImsi::orderBy('id','asc')->paginate();
-        return view('bypass.bypassImsi.index', $datos);
+
+        $datos['bypas_mins'] = BypasWhitelist::orderBy('id','asc')->paginate();
+        return view('bypass.bypassWhitelist.index', $datos);
     }
 
     /**
@@ -46,7 +47,7 @@ class BypasImsiController extends Controller
             return back();
         }
 
-        return view('bypass.bypassImsi.crear');
+        return view('bypass.bypassWhitelist.crear');
     }
 
     /**
@@ -57,7 +58,8 @@ class BypasImsiController extends Controller
         $campos = [
             'ticket' => 'required|string',
             'fecha' => 'required|string',
-            'imsi' => 'required|numeric',
+            'codarea' => 'required|string',
+            'min' => 'required|numeric',
             'observaciones' => 'required|string',
         ];
 
@@ -67,62 +69,71 @@ class BypasImsiController extends Controller
         //En caso de ser una exclusion vista SA
         if (isset($request->excluir)) {
             //Agregando valores necesarios para Incidencia
+            $numero = $request->codarea.$request->min;
             $request['inicio'] = $request->fecha;
             $request['descripcion'] = $request->observaciones;
             $request['solicitante'] = auth()->user()->perfil;
             $request['tipo'] = "requerimiento";
 
             //Buscando registro para realizar exclusion
-            $bypass = BypasImsi::where([
-                ['imsi',$request->imsi],
+            $bypass = BypasWhitelist::where([
+                ['min',$numero],
                 ['ticket',$request->ticket]
             ])->first();
 
             //Eliminando del array
             unset(
-                $request['imsi'],
+                $request['codarea'],
+                $request['min'],
                 $request['fecha'],
-                $request['observaciones'],
+                $request['observaciones'], 
             );
 
+            //return $request;
             return $this->destroy($request,$bypass->id);
         }
 
         //Sustituyendo valores necesarios
-        $datosImsibypas = request()->except('_token', 'incluir');
+        $datosMinbypas = request()->except('_token', 'incluir');
+        $min = $datosMinbypas['codarea'].$datosMinbypas['min'];
 
         //Agregando valores necesarios
-        $datosImsibypas['usuario'] = auth()->user()->usuario;
-        $datosImsibypas['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-        $datosImsibypas['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosMinbypas['usuario'] = auth()->user()->usuario;
+        $datosMinbypas['min'] = $min;
+        $datosMinbypas['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosMinbypas['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
 
+        //Eliminando del array
+        unset($datosMinbypas['codarea']);
 
-        //Insertando la tabla Bypass IMSI
-        BypasImsi::insert($datosImsibypas);
+        //Insertando la tabla Bypass MIN
+        BypasWhitelist::insert($datosMinbypas);
         //-------------------Bypass--------------
 
         //---------------Incidencia--------------
         //Agregando valores necesarios
-        $datosImsibypas['inicio'] = date("Y-m-d H:i:s", strtotime($request->fecha));
-        $datosImsibypas['descripcion'] = $request->observaciones;
-        $datosImsibypas['solicitante'] = auth()->user()->perfil;
-        $datosImsibypas['tipo'] = "requerimiento";
+        $datosMinbypas['inicio'] = date("Y-m-d H:i:s", strtotime($request->fecha));
+        $datosMinbypas['fin'] = $request->fecha;
+        $datosMinbypas['descripcion'] = $request->observaciones;
+        $datosMinbypas['solicitante'] = auth()->user()->perfil;
+        $datosMinbypas['tipo'] = "requerimiento";
 
         //Eliminando del array
         unset(
-            $datosImsibypas['usuario'],
-            $datosImsibypas['imsi'],
-            $datosImsibypas['observaciones'],
-            $datosImsibypas['fecha']
+            $datosMinbypas['usuario'],
+            $datosMinbypas['min'],
+            $datosMinbypas['codarea'],
+            $datosMinbypas['observaciones'],
+            $datosMinbypas['fecha']
         );
 
         //Insertando la tabla Incidencias
-        Incidencia::insert($datosImsibypas);
+        Incidencia::insert($datosMinbypas);
         //---------------Incidencia--------------
         
         //Redireccionando
-        return redirect()->route('bypassImsi.index')
-        ->with('mensaje', 'IMSI incluido exitosamente.');
+        return redirect()->route('bypassWhitelist.index')
+        ->with('mensaje', 'Abonado incluido exitosamente.');
     }
 
     /**
@@ -131,14 +142,17 @@ class BypasImsiController extends Controller
     public function show(Request $request) {
 
         $campos = [
-            'imsi' => 'required|string',
+            'codarea' => 'required|string',
+            'min' => 'required|string',
         ];
 
         $this->validate($request,$campos);
 
-        $bypas_imsis = BypasImsi::where('imsi',$request->imsi)->get();
+        $vartmp = $request->codarea.$request->min;
 
-        return view('bypass.bypassImsi.consultar',compact('bypas_imsis'));
+        $bypas_mins = BypasWhitelist::where('min',$vartmp)->get();
+
+        return view('bypass.bypassWhitelist.consultar',compact('bypas_mins'));
     }
 
     /**
@@ -156,22 +170,28 @@ class BypasImsiController extends Controller
 
             'ticket' => 'required|string',
             'fecha' => 'required|string',
-            'imsi' => 'required|numeric',
+            'codarea' => 'required|string',
+            'min' => 'required|numeric',
             'observaciones' => 'required|string',
         ];
 
-        $datosImsibypas = request()->except('_token', 'editar', '_method');
+        $datosMinbypas = request()->except('_token', 'editar', '_method');
 
         //Sustituyendo valores necesarios
+        $min = $datosMinbypas['codarea'].$datosMinbypas['min'];
 
         //Agregando valores necesarios
-        $datosImsibypas['usuario'] = auth()->user()->usuario;
-        $datosImsibypas['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-        $datosImsibypas['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosMinbypas['usuario'] = auth()->user()->usuario;
+        $datosMinbypas['min'] = $min;
+        $datosMinbypas['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosMinbypas['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
 
-        BypasImsi::where('id','=',$id)->update($datosImsibypas);
-        $bypas_min = BypasImsi::findOrFail($id);
-          return redirect()->route('bypassImsi.index')
+        //Eliminando del array
+        unset($datosMinbypas['codarea']);
+
+        BypasWhitelist::where('id','=',$id)->update($datosMinbypas);
+        $bypas_min = BypasWhitelist::findOrFail($id);
+          return redirect()->route('bypassWhitelist.index')
             ->with('mensaje', 'Registro actualizado.');
     }
 
@@ -180,8 +200,8 @@ class BypasImsiController extends Controller
      */
     public function destroy(Request $request, $id) {
         //Eliminando de la tabla Bypass MIN
-        $imsi = BypasImsi::find($id);
-        $imsi->delete();
+        $numero = BypasWhitelist::find($id);
+        $numero->delete();
 
         //Validando los datos enviados
         $campos = [
@@ -205,8 +225,7 @@ class BypasImsiController extends Controller
         //Agregando registro a Incidencia
         Incidencia::insert($datosIncidencia);
 
-        return redirect()->route('bypassImsi.index')
-        ->with('mensaje', 'IMSI excluido exitosamente.');
+        return redirect()->route('bypassWhitelist.index')
+        ->with('mensaje', 'Abonado excluido exitosamente.');
     }
 }
-
