@@ -24,13 +24,13 @@
     @include('layouts.partials.messages')
     <form action="{{ route('bypassMin.storesa')}}" enctype="multipart/form-data" method="POST">
         @csrf
-        <div class="form-container">
+        <div class="form-container my-text-class">
             <div class="form-floating mb-3">
                 <input type="text" name="ticket" id="ticket" class="form-control"
                     value="{{old('ticket')}}" placeholder="">
                 <label for="ticket" class="form-label">Ingresa ticket</label>
             </div>
-            <label for="min" class="form-label">Celular</label>
+            <label for="min" class="form-label text-black">Celular</label>
             <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
                 <select name="codarea" id="codarea" class="custom-select" style="width:100px" required>
                     <option value="">Código</option>

@@ -34,12 +34,12 @@
       }
 
       .dark-mode {
-        background-color: #3b4252;
-        color: #eee;
+        background-color: #3d464d;
+        color: #eee ;
       }
 
       .dark-mode table, .dark-mode table td, .dark-mode table th {
-      background-color: #4b5264;
+      background-color: #3d464d;
       color: #eee;
       } 
 
@@ -48,8 +48,9 @@
       }
 
       .dark-mode a.page-link, .dark-mode li.page-item.disabled span{
-        background-color: #4b5264;
+        background-color: #3d464d;
       }
+
 </style>
 
   </head>
@@ -469,55 +470,53 @@
 <!-- Footer End -->
 
     <!-- JavaScript Libraries -->
-
-    <script src="{{asset('js/color-modes.js')}}" crossorigin="anonymous"></script> 
-    <script src="{{asset('js/bootstrap.bundle.min.js')}}" crossorigin="anonymous"></script>
-    <script src="{{asset('js/main.js')}}" crossorigin="anonymous"></script>
-    <script src="{{asset('js/jqBootstrapValidation.min.js')}}" crossorigin="anonymous"></script> 
-    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous"></script>
-    <script src="dashboard.js"></script>
     <script src="{{asset('js/jquery-3.4.1.min.js')}}" crossorigin="anonymous"></script>
-    <script src="{{asset('js/jquery.min.js')}}" crossorigin="anonymous"></script>
-    <script src="{{asset('js/popper.min.js')}}" crossorigin="anonymous"> </script>
-    <script src="{{asset('js/dashboard.js')}}" crossorigin="anonymous"></script>
-    <script src="{{asset('js/bootstrap.min.js')}}" crossorigin="anonymous"></script>
-    <script src="{{asset('js/easing.min.js')}}" crossorigin="anonymous"></script> 
-    <script src="{{asset('js/owl.carousel.min.js')}}" crossorigin="anonymous"></script>
+    <script src="{{asset('js/jquery.min.js')}}" crossorigin="anonymous"></script>    
+    <script src="{{asset('js/popper.min.js')}}" crossorigin="anonymous"></script>   
+    <script src="{{asset('js/bootstrap.min.js')}}" crossorigin="anonymous"></script>    
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}" crossorigin="anonymous"></script>    
+    <script src="{{asset('js/easing.min.js')}}" crossorigin="anonymous"></script>     
+    <script src="{{asset('js/owl.carousel.min.js')}}" crossorigin="anonymous"></script>    
 
-    <script>
-      const darkModeToggle = document.getElementById('dark-mode-toggle');
-      const isDarkMode = localStorage.getItem('darkMode') === 'true';
-      const darkMode = document.body.classList.contains('dark-mode');
-
-      if (isDarkMode) {
-        document.body.classList.add('dark-mode');
-      }
-
-      darkModeToggle.addEventListener('click', () => {
-          document.body.classList.toggle('dark-mode');
-          localStorage.setItem('darkMode', !isDarkMode);
-      });
-    </script>
-
-
-      <!-- Contact Javascript File 
+    <!-- Contact Javascript File -->
     <script src="{{asset('js/jqBootstrapValidation.min.js')}}" crossorigin="anonymous"></script> 
-    <script src="{{asset('js/contact.js')}}" crossorigin="anonymous"></script> -->
+    <script src="{{asset('js/contact.js')}}" crossorigin="anonymous"></script> 
 
-    <!-- Template Javascript 
+    <!-- Template Javascript -->   
+    <script src="{{asset('js/color-modes.js')}}" crossorigin="anonymous"></script>    
+    <script src="{{asset('js/main.js')}}" crossorigin="anonymous"></script>    
+    <script src="{{asset('js/dashboard.js')}}" crossorigin="anonymous"></script>    
 
-    <script>
-      const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
-      const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
-    </script>
-    <script>
-      let form = $('#search-form');
+<!-- Cambio de modo -->
+<script>
+  const darkModeToggle = document.getElementById('dark-mode-toggle');
+  const isDarkMode = localStorage.getItem('darkMode') === 'true';
+  const darkMode = document.body.classList.contains('dark-mode');
 
-      $("#selectCategory").change(function () {
-          form.submit();
-        }
-      );
-    </script>-->
-  </body>
+  if (isDarkMode) {
+    document.body.classList.add('dark-mode');
+  }
+
+    darkModeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', !isDarkMode);
+    });
+</script>
+
+<!-- Funcionalidad PopOver -->
+<script>
+  const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+  const popoverList = [...popoverTriggerList].map(popoverTriggerEL => new bootstrap.Popover(popoverTriggerEL))
+</script>
+
+<!-- Filtro Incidencia -->
+<script>
+  let form = $('#search-form');
+
+  $("#selectCategory").change(function () {
+      form.submit();
+    }
+  );
+  </script>
+ </body>
 </html>

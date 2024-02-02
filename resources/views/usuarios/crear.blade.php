@@ -22,7 +22,7 @@
 
 @section('contenido')
 @include('layouts.partials.messages')
-    <div class="editor-textarea-editable">
+    <div class="editor-textarea-editable text-black">
         <form action="{{route('usuarios.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             @include('layouts.form',['mod'=>'Crear'])
