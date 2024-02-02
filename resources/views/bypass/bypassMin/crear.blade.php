@@ -22,7 +22,7 @@
 
 @section('contenido')
     @include('layouts.partials.messages')
-    <form action="{{ route('bypassMin.store')}}" enctype="multipart/form-data" method="POST">
+    <form action="{{ route('bypassMin.storesa')}}" enctype="multipart/form-data" method="POST">
         @csrf
         <div class="form-container">
             <div class="form-floating mb-3">

@@ -23,8 +23,7 @@ class StoreBypassMinRequest extends FormRequest
     {
         return [
             'ticket' => 'required|string|min:10|max:10',
-            'inicio' => 'required|date',
-            'fin' => 'required|date',
+            'fecha' => 'required|date',
             'codarea' => 'required|string',
             'min' => 'required|numeric',
             'observaciones' => 'required|string|max:250',
@@ -43,10 +42,8 @@ class StoreBypassMinRequest extends FormRequest
             'codarea.string' => 'El campo código debe ser una cadena.',
             'min.required' => 'El campo celular es obligatorio.',
             'min.numeric' => 'El campo celular debe ser un número.',
-            'inicio.required' => 'El campo inicio es obligatorio.',
-            'inicio.date' => 'Por favor, ingrese una inicio válida.',
-            'fin.required' => 'El campo fin es obligatorio.',
-            'fin.date' => 'Por favor, ingrese una fin válida.',
+            'fecha.required' => 'El campo fecha es obligatorio.',
+            'fecha.date' => 'Por favor, ingrese una fecha válida.',
             'tcliente.required' => 'El tipo de cliente es obligatorio.',
             'tcliente.string' => 'El tipo de cliente debe ser una cadena.',
             'tcliente.min' => 'El tipo de cliente debe tener mínimo 7 caracteres.',

@@ -26,8 +26,13 @@
                                 <input type="text" name="min" id="min" value="{{old('min')}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
                             </div>
                             <div class="mb-3">
-                                <label for="fecha" class="form-label">Fecha</label>
-                                <input type="text" name="fecha" id="fecha" class="form-control" value="{{old('fecha')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
+                                <label for="fecha" class="form-label">Fecha Inicio</label>
+                                <input type="text" name="inicio" id="inicio" class="form-control" value="{{old('inicio')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
+                                this.type='text'">
+                            </div>
+                            <div class="mb-3">
+                                <label for="fecha" class="form-label">Fecha Fin</label>
+                                <input type="text" name="fin" id="fin" class="form-control" value="{{old('fin')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
                                 this.type='text'">
                             </div>
                             <div class="mb-3">

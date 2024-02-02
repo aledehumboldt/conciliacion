@@ -68,6 +68,8 @@ Route::get('bypassMin/show', [BypasMinController::class, 'show'])->name('bypassM
 
 Route::post('bypassMin', [BypasMinController::class, 'store'])->name('bypassMin.store');
 
+Route::post('bypassMin/SA', [BypasMinController::class, 'storeSA'])->name('bypassMin.storesa');
+
 Route::post('bypassMin/{id}', [BypasMinController::class, 'destroy'])->name('bypassMin.destroy');
 
 Route::put('bypassMin/{id}', [BypasMinController::class, 'update'])->name('bypassMin.update');
