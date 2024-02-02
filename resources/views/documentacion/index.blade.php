@@ -3,6 +3,43 @@
 @section('titulo', 'Documentación')
 
 @section('estilos')
+<style>
+    .titulo {
+        width:400px;
+        height:40px;
+        text-align:center;
+        background:#fd585f;
+        margin:10px auto;
+        border-radius:10px;
+        font-weight:bold; 
+        box-shadow:inset 0 0 10px 3px #666666;
+        border-size:25px;
+    }
+
+    .casilla-grande {
+        display: table;
+        width: 990px;
+        margin: auto;
+    }
+
+    .casilla {
+        float:left;
+        width:145px;
+        height:100px;
+        padding:4px;
+        text-align:center;
+        background:none repeat scroll 0% 0% #fd585f;
+        margin:1% 1%;
+        border-radius:10px;
+        box-shadow:0 0 10px 3px #666666 inset
+    }
+
+    .casilla-texto {
+        box-sizing:border-box;
+        width:100%;
+        overflow:hidden;
+    }
+</style>
 @endsection
 
 @section('encabezado')
@@ -31,20 +68,26 @@
 @section('contenido')
     @include('layouts.partials.messages')
 
-<div class="grid">
-    <div class="">
-        @if(isset($archivos) && isset($titles))
-            @foreach($titles as $title)
-                <h4 class="editor-toolbar-item">{{$title}}</h4>
-                    @foreach($archivos as $archivo)
-                        @if ($archivo['title'] == $title)
-                        <a class="btn btn-secondary" href="{{$archivo['link']}}" target="_blank"><h5 class="text-white" style="text-transform:uppercase">{{$archivo['name']}}</h5></a>
-                        @endif
-                    @endforeach
-            @endforeach
-        @else
-            <h3 style="text-transform:uppercase">No hay datos</h3>
-        @endif
-    </div>
+<div class="">
+    @if(isset($archivos) && isset($titles))
+        @foreach($titles as $title)
+            <h4 class="text-white titulo" style="@if($title == "cpa") display:none; @endif">
+                {{$title}}
+            </h4>
+            <div class="casilla-grande">
+                @foreach($archivos as $archivo)
+                    @if ($archivo['title'] == $title)
+                        <a class="btn btn-secondary casilla" href="{{$archivo['link']}}" target="_blank">
+                            <div class="casilla-texto">
+                                {{$archivo['name']}}
+                            </div>
+                        </a>
+                    @endif
+                @endforeach
+            </div>
+        @endforeach
+    @else
+        <h3 style="text-transform:uppercase">No hay datos</h3>
+    @endif
 </div>
 @endsection
