@@ -26,6 +26,10 @@
 		<link href="{{asset('css/owl.carousel.min.css')}}" rel="stylesheet" crossorigin="anonymous">
     @yield('estilos')
 
+    <!-- Para los text's areas 
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl7/1L_dstPt3HV5HzF6Gvk/e3s4Wz6iJgD/+ub2oU" crossorigin="anonymous">
+-->
 <style>
     body {
         background-color: var(--bg);
@@ -49,6 +53,10 @@
 
       .dark-mode a.page-link, .dark-mode li.page-item.disabled span{
         background-color: #3d464d;
+      }
+
+      .my-custom-textarea {
+        height: 200px;
       }
 
 </style>

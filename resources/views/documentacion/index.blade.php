@@ -8,7 +8,7 @@
 @section('encabezado')
 
 <h3 class="editor-toolbar-item">Registro y control de documentos</h3>
-<div style="position: absolute; right: 2%;">
+<div>
     @include('layouts.partials.documentos.modal_cargar')
         <button type="submit" class="btn btn-secondary" type="button" name="guardar" id="guardar"  data-toggle="modal" data-target="#exampleModal">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-arrow-up" viewBox="0 0 16 16">

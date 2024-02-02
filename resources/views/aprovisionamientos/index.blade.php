@@ -29,7 +29,7 @@
             <div class="form-floating mb-3">
                 <input type="text" name="ticket" id="ticket" class="form-control"
                 value="{{old('ticket')}}" placeholder="">
-                <label for="ticket" class="form-label text-black">Ingresa ticket</label>
+                <label for="ticket" class="form-label text-secondary">Ingresa ticket</label>
             </div>
             <label for="min" class="form-label">Celular</label>
             <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
@@ -58,7 +58,7 @@
             </div>
             <label for="observaciones" class="form-label">Observaciones</label>
             <div class="form-floating mb-3">
-                <textarea name="observaciones" id="observaciones" cols="35" rows="5">{{old('observaciones')}}</textarea>
+                <textarea name="observaciones" id="observaciones" cols="36" rows="5">{{old('observaciones')}}</textarea>
             </div>
             <div class="text-center">
                 <button type="submit" name="incluir" id="incluir" class="btn btn-secondary" value="incluir">

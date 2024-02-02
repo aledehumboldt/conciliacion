@@ -46,10 +46,11 @@
                 </button>
             </div>
             <div class="modal-body">
+                <div class="align">
                 <form action="{{ route('exclusiones.show',auth()->user()->id) }}" enctype="multipart/form-data" method="get">
                     @csrf
                     <div class="form-container">
-                        <label for="celularB" class="form-label">Celular</label>
+                        <label for="celularB" class="form-label text-secondary">Celular</label>
                         <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
                             <select name="codigo" id="codigo" class="custom-select" style="width:100px">
                                 <option value="">Código</option>
@@ -66,6 +67,7 @@
                         </button>
                     </div>
                 </form>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -83,7 +85,7 @@
         <div class="form-floating mb-3">
             <input type="text" name="ticket" id="ticket" class="form-control"
                 value="{{old('ticket')}}" placeholder="">
-            <label for="ticket" class="form-label text-black">Ingresa ticket</label>
+            <label for="ticket" class="form-label text-secondary">Ingresa ticket</label>
         </div>
         <label for="celular" class="form-label">Celular</label>
         <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
@@ -108,7 +110,7 @@
           </div>
           <label for="observaciones" class="form-label">Observaciones</label>
           <div class="form-floating mb-3">
-            <textarea name="observaciones" id="observaciones" cols="35" rows="5">{{old('observaciones')}}</textarea>
+            <textarea name="observaciones" id="observaciones" cols="36" rows="5">{{old('observaciones')}}</textarea>
         </div>
         <div class="text-center pt-1 mb-5 pb-1">
             <button type="submit" name="excluir" id="excluir" class="btn btn-secondary">

@@ -14,9 +14,9 @@
     <div class="form-container">
         <div class="form-floating mb-3">
             <input type="text" name="ticket" id="ticket" class="form-control" placeholder="Ingresar ticket" value="{{ $bypas_min->ticket }}" required>
-            <label for="ticket" class="form-label">Ingresa ticket</label>
+            <label for="ticket" class="form-label text-secondary">Ingresa ticket</label>
         </div>
-        <label for="min" class="form-label">Celular</label>
+        <label for="min" class="form-label text-secondary">Celular</label>
         <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
         <select name="codarea" id="codarea" class="custom-select" style="width:100px" required>
         <option value="416"
@@ -27,7 +27,7 @@
         <input type="text" name="min" id="min" value="{{substr($bypas_min->min, 3)}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
         </div>
         <div class="mb-3">
-            <label for="fecha" class="form-label">Fecha</label>
+            <label for="fecha" class="form-label text-secondary">Fecha</label>
             <input type="text" name="fecha" id="fecha" class="form-control" value="{{ $bypas_min->fecha }}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
             this.type='text'">
         </div>
@@ -39,7 +39,7 @@
                 @if ($bypas_min->tcliente == "POSTPAGO") selected @endif>Postpago</option>
             </select>
     </div>
-    <label for="observaciones" class="form-label">Observaciones</label>
+    <label for="observaciones" class="form-label text-secondary">Observaciones</label>
     <div class="form-floating mb-3">
           <textarea name="observaciones" id="observaciones" cols="35" rows="5">{{ $bypas_min->observaciones }}</textarea>
     </div>
