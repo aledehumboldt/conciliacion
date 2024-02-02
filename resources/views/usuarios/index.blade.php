@@ -21,7 +21,7 @@
 @section('contenido')
     @include('layouts.partials.messages')
 
-        <table style="margin-bottom: 20px">
+        <table class="table">
             <thead class="table">
                 <tr>
                     <th style="display: none">#</th>

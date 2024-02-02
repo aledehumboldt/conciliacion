@@ -1,12 +1,14 @@
 	@extends('layouts.app')
-
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	@section('titulo', 'Gestión Bypass')
 
 	@section('estilos')
 	@endsection
 
 	@section('encabezado')
-	<h3 class="editor-toolbar-item">Gestión Tráfico Gris (Bypass)</h3>
+	
+	<h3 class="editor-toolbar-item">Gestión Tráfico Griss (Bypass)</h3>
+
 	<div style="position: absolute; right: 2%;">
 		<button type="button" class="btn btn-secondary rounded-circle" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-title="¿Sabes qué es el Tráfico Gris?" data-bs-content="
 		El llamado tráfico gris disfraza las llamadas internacionales como locales, evadiendo así los costos asociados y por ende, haciendo fraude al proveedor.">
@@ -16,6 +18,7 @@
 			</svg>
 		</button>
 	</div>
+
 	@endsection
 
 	@section('contenido')
@@ -59,6 +62,4 @@
 				</div>
 			</div>
 		</div>
-	@endsection
-
-
+@endsection

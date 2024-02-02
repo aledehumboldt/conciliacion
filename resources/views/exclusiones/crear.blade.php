@@ -17,7 +17,7 @@
 @endsection
 
 @section('encabezado')
-    <h3 class="">Excluir Abonado de Conciliación</h3>
+    <h3 class="editor-toolbar-item">Excluir Abonado de Conciliación</h3>
     <div style="position: absolute; right: 2%;">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-secondary" name="buscar" id="buscar"  data-toggle="modal" data-target="#exampleModal">
@@ -75,8 +75,8 @@
     <div class="form-container">
         <div class="form-floating mb-3">
             <input type="text" name="ticket" id="ticket" class="form-control"
-                value="{{old('ticket')}}" placeholder="Ingresar ticket">
-            <label for="ticket" class="form-label">Ingresa ticket</label>
+                value="{{old('ticket')}}" placeholder="">
+            <label for="ticket" class="form-label text-black">Ingresa ticket</label>
         </div>
         <label for="celular" class="form-label">Celular</label>
         <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">

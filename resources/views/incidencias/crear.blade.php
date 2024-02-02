@@ -28,7 +28,7 @@
         <div class="form-floating mb-3">
             <input type="text" name="ticket" id="ticket" class="form-control"
                 value="{{old('ticket')}}" placeholder="">
-            <label for="ticket" class="form-label">Ingresa ticket</label>
+            <label for="ticket" class="form-label text-black">Ingresa ticket</label>
         </div>
         <div class="mb-3">
             <label for="inicio" class="form-label">Fecha Inicio</label>
