@@ -34,12 +34,12 @@
                         <p>Por favor, inicie sesión.</p>
                         @include('layouts.partials.messages')
                         <div class="form-floating form-outline mb-4">
-                          <input type="text" autocomplete="off" class="form-control" style="border-color:#27c6d9" placeholder="" name="usuario" id="usuario"/>
+                          <input type="text" autocomplete="off" class="form-control" placeholder="" name="usuario" id="usuario"/>
                           <label class="form-label" for="usuario">Usuario</label>
                         </div>
       
                         <div class="form-floating form-outline mb-4">
-                          <input type="password" class="form-control" style="border-color:#27c6d9" placeholder="" name="clave" id="password"/>
+                          <input type="password" class="form-control" placeholder="" name="clave" id="password"/>
                           <label class="form-label" for="clave">Contraseña</label>
                         </div>
       
