@@ -1,4 +1,4 @@
-<div class="modal fade text-black" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade text-secondary" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -18,7 +18,7 @@
                                 <option value="416">0416</option>
                                 <option value="426">0426</option>
                             </select>
-                            <input type="text" name="celular" id="celular" class="form-control" value="{{old('min')}}" placeholder="Ingrese abonado" pattern=".{7,7}">
+                            <input type="text" autocomplete="off" name="celular" id="celular" class="form-control" value="{{old('min')}}" placeholder="Ingrese abonado" pattern=".{7,7}">
                         </div>
                         <button type="submit" class="btn btn-secondary" name="buscar" id="buscar">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">

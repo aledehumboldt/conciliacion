@@ -46,18 +46,17 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="align">
                 <form action="{{ route('exclusiones.show',auth()->user()->id) }}" enctype="multipart/form-data" method="get">
                     @csrf
-                    <div class="form-container">
-                        <label for="celularB" class="form-label text-secondary">Celular</label>
+                    <div class="mb-3">
+                        <label for="celularB" class="form-label">Celular</label>
                         <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
                             <select name="codigo" id="codigo" class="custom-select" style="width:100px">
                                 <option value="">Código</option>
                                 <option value="416">0416</option>
                                 <option value="426">0426</option>
                             </select>
-                            <input type="text" name="celular" id="celular" value="{{old('celular')}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
+                            <input type="text" autocomplete="off" name="celular" id="celular" value="{{old('celular')}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
                         </div>
                         <button type="submit" class="btn btn-secondary" name="buscar" id="buscar">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -67,7 +66,6 @@
                         </button>
                     </div>
                 </form>
-                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -83,7 +81,7 @@
         @csrf
     <div class="form-container">
         <div class="form-floating mb-3">
-            <input type="text" name="ticket" id="ticket" class="form-control"
+            <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
                 value="{{old('ticket')}}" placeholder="">
             <label for="ticket" class="form-label text-secondary">Ingresa ticket</label>
         </div>
@@ -94,11 +92,11 @@
                 <option value="416">0416</option>
                 <option value="426">0426</option>
             </select>
-            <input type="text" name="celular" id="celular" value="{{old('celular')}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
+            <input type="text" autocomplete="off" name="celular" id="celular" value="{{old('celular')}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
         </div>
         <div class="mb-3">
             <label for="fechae" class="form-label">Fin de exclusión</label>
-            <input type="text" name="fechae" id="fechae" class="form-control" value="{{old('fechae')}}" placeholder="Día/Mes/Año" onfocus="this.type='date'" onblur="
+            <input type="text" autocomplete="off" name="fechae" id="fechae" class="form-control" value="{{old('fechae')}}" placeholder="Día/Mes/Año" onfocus="this.type='date'" onblur="
             this.type='text'" max="{{date(('Y-m-d'),strtotime('+3 months'))}}">
         </div>
         <div class="mb-3">
@@ -110,7 +108,7 @@
           </div>
           <label for="observaciones" class="form-label">Observaciones</label>
           <div class="form-floating mb-3">
-            <textarea name="observaciones" id="observaciones" cols="36" rows="5">{{old('observaciones')}}</textarea>
+            <textarea name="observaciones" id="observaciones" cols="35" rows="5">{{old('observaciones')}}</textarea>
         </div>
         <div class="text-center pt-1 mb-5 pb-1">
             <button type="submit" name="excluir" id="excluir" class="btn btn-secondary">

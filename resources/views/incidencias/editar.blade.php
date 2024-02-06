@@ -27,8 +27,8 @@
         @method('PUT')
     <div class="form-container">
         <div class="form-floating mb-3">
-            <input type="text" name="ticket" id="ticket" class="form-control" placeholder="Ingresar ticket" value="{{ $incidencia->ticket }}" required>
-            <label for="ticket" class="form-label">Ingresa ticket</label>
+            <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control" placeholder="" value="{{ $incidencia->ticket }}" required>
+            <label for="ticket" class="form-label text-secondary">Ingresa ticket</label>
         </div>
         <div class="mb-3">
             <label for="inicio" class="form-label">Fecha Inicio</label>
@@ -40,7 +40,7 @@
         </div>
         <label for="descripcion" class="form-label">Descripcion</label>
         <div class="form-floating mb-3">
-          <textarea name="descripcion" id="descripcion" cols="35" rows="5" required>{{ $incidencia->descripcion }}</textarea>
+          <textarea name="descripcion" id="descripcion" cols="36" rows="5" required>{{ $incidencia->descripcion }}</textarea>
       </div>
       <div class="mb-3">
         <label for="tipo" class="form-label">Tipo</label>
@@ -51,9 +51,9 @@
         </select>
       </div>
       <div class="form-floating mb-3">
-        <input type="text" name="solicitante" id="solicitante" class="form-control"
-        value="{{ $incidencia->solicitante }}" required placeholder="Solicitante">
-        <label for="ticket" class="form-label">Solicitante</label>
+        <input type="text" autocomplete="off" name="solicitante" id="solicitante" class="form-control"
+        value="{{ $incidencia->solicitante }}" required placeholder="">
+        <label for="ticket" class="form-label text-secondary">Solicitante</label>
     </div>
         <div class="text-center pt-1 mb-5 pb-1">
             <button type="submit" name="añadir" id="añadir" class="btn btn-secondary">

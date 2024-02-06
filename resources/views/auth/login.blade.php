@@ -25,7 +25,7 @@
                     <div class="card-body p-md-2 mx-md-4">
                       <div class="text-center">
                         <img src="{{asset('assets/1699298393389.png')}}"
-                          style="width: 185px;" alt="logo">
+                          style="width: 185px; margin-bottom: 15px" alt="logo">
                         <h4 class="mt-1 mb-5 pb-1">Coordinación de Aprovisionamiento</h4>
                       </div>
       
@@ -34,12 +34,12 @@
                         <p>Por favor, inicie sesión.</p>
                         @include('layouts.partials.messages')
                         <div class="form-floating form-outline mb-4">
-                          <input type="text" class="form-control" placeholder="Ingrese su cédula" name="usuario" id="usuario"/>
+                          <input type="text" autocomplete="off" class="form-control" style="border-color:#27c6d9" placeholder="" name="usuario" id="usuario"/>
                           <label class="form-label" for="usuario">Usuario</label>
                         </div>
       
                         <div class="form-floating form-outline mb-4">
-                          <input type="password" class="form-control" placeholder="Ingrese su contraseña" name="clave" id="password"/>
+                          <input type="password" class="form-control" style="border-color:#27c6d9" placeholder="" name="clave" id="password"/>
                           <label class="form-label" for="clave">Contraseña</label>
                         </div>
       

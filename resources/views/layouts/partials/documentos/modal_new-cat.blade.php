@@ -11,7 +11,7 @@
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                        <input type="text" class="form-control" name="categoria" id="categoria" value="{{old('categoria')}}" placeholder="Introduzca Categoria">
+                        <input type="text" autocomplete="off" class="form-control" name="categoria" id="categoria" value="{{old('categoria')}}" placeholder="Introduzca Categoria">
                     </div>
                     <div class="mb-3">
                         <button type="submit" name="guardar" id="guardar" class="btn btn-secondary">

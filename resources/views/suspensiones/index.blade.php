@@ -26,7 +26,7 @@
         @csrf
         <div class="form-container">
             <div class="form-floating mb-3">
-                <input type="text" name="ticket" id="ticket" class="form-control"
+                <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
                 value="{{old('ticket')}}" placeholder="">
                 <label for="ticket" class="form-label">Ingresa ticket</label>
             </div>
@@ -37,15 +37,15 @@
                     <option value="416">0416</option>
                     <option value="426">0426</option>
                 </select>
-                <input type="text" name="min" id="min" value="{{old('min')}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
+                <input type="text" autocomplete="off" name="min" id="min" value="{{old('min')}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
             </div>
             <label for="imsi" class="form-label">IMSI</label>
             <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
-                <input type="text" name="imsi" id="imsi" value="{{old('imsi')}}" class="form-control" placeholder="Ingrese imsi" pattern=".{15,15}">
+                <input type="text" autocomplete="off" name="imsi" id="imsi" value="{{old('imsi')}}" class="form-control" placeholder="Ingrese imsi" pattern=".{15,15}">
             </div>
             <div class="mb-3">
                 <label for="fecha" class="form-label">Fecha</label>
-                <input type="text" name="fecha" id="fecha" class="form-control" value="{{old('fecha')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
+                <input type="text" autocomplete="off" name="fecha" id="fecha" class="form-control" value="{{old('fecha')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
                 this.type='text'">
             </div>
             <div class="mb-3">

@@ -12,7 +12,7 @@
                     @csrf
                     <div class="form-container">
                         <div class="form-floating mb-3">
-                            <input type="text" name="imsi" id="imsi" class="form-control" value="{{old('min')}}" placeholder="Ingrese IMSI" pattern=".{15,15}">
+                            <input type="text" autocomplete="off" name="imsi" id="imsi" class="form-control" value="{{old('min')}}" placeholder="Ingrese IMSI" pattern=".{15,15}">
                             <label for="ismi" class="form-label">Ingrese IMSI</label>
                         </div>
                         <button type="submit" class="btn btn-secondary" name="buscar" id="buscar">

@@ -13,16 +13,16 @@
         @method('PUT')
     <div class="form-container">
         <div class="form-floating mb-3">
-            <input type="text" name="ticket" id="ticket" class="form-control" placeholder="Ingresar ticket" value="{{ $bypas_imsi->ticket }}" required>
+            <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control" placeholder="Ingresar ticket" value="{{ $bypas_imsi->ticket }}" required>
             <label for="ticket" class="form-label">Ingresa ticket</label>
         </div>
         <label for="imsi" class="form-label">Imsi</label>
         <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
-        <input type="text" name="imsi" id="imsi" value="{{ $bypas_imsi->imsi }}" class="form-control" placeholder="Ingrese imsi" pattern=".{15,15}">
+        <input type="text" autocomplete="off" name="imsi" id="imsi" value="{{ $bypas_imsi->imsi }}" class="form-control" placeholder="Ingrese imsi" pattern=".{15,15}">
         </div>
         <div class="mb-3">
             <label for="fecha" class="form-label">Fecha</label>
-            <input type="text" name="fecha" id="fecha" class="form-control" value="{{ $bypas_imsi->fecha }}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
+            <input type="text" autocomplete="off" name="fecha" id="fecha" class="form-control" value="{{ $bypas_imsi->fecha }}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
             this.type='text'">
         </div>
     <label for="observaciones" class="form-label">Observaciones</label>

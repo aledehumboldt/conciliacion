@@ -28,7 +28,7 @@
                     @csrf
                     <div class="form-container">
                         <div class="mb-3">
-                            <input type="text" name="ticket" id="ticket" value="{{old('ticket')}}" class="form-control" placeholder="Ingrese ticket">
+                            <input type="text" autocomplete="off" name="ticket" id="ticket" value="{{old('ticket')}}" class="form-control" placeholder="Ingrese ticket">
                         </div>
                         <button type="submit" class="btn btn-secondary" name="buscar" id="buscar">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">

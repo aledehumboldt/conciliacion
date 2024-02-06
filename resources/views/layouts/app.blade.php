@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html data-bs-theme="auto" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="{{asset('assets/1699301436808.png')}}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,7 +33,6 @@
     body {
         background-color: var(--bg);
         color: var(--text); 
-        transition: background-color 0.5s, color 0.5s;
       }
 
       .dark-mode {
@@ -424,7 +422,7 @@
           <p>Duo stet tempor ipsum sit amet magna ipsum tempor est</p>
           <form action="">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Your Email Address">
+              <input type="text" autocomplete="off" class="form-control" placeholder="Your Email Address">
               <div class="input-group-append">
                 <button class="btn btn-secondary">Escríbenos</button>
               </div>
@@ -499,7 +497,6 @@
 <script>
   const darkModeToggle = document.getElementById('dark-mode-toggle');
   const isDarkMode = localStorage.getItem('darkMode') === 'true';
-  const darkMode = document.body.classList.contains('dark-mode');
 
   if (isDarkMode) {
     document.body.classList.add('dark-mode');
@@ -509,6 +506,28 @@
     document.body.classList.toggle('dark-mode');
     localStorage.setItem('darkMode', !isDarkMode);
     });
+
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+function toggleDarkMode(isDarkMode) {
+  if (isDarkMode) {
+    // Aplicar estilos de modo oscuro
+    document.body.classList.add('dark-mode');
+  } else {
+    // Aplicar estilos de modo claro
+    document.body.classList.remove('dark-mode');
+  }
+}
+
+// Aplicar estilos de modo oscuro si el usuario prefiere el modo oscuro
+if (prefersDarkScheme.matches) {
+  toggleDarkMode(true);
+}
+
+// Escuchar cambios en el esquema de color preferido del usuario
+prefersDarkScheme.addListener(event => {
+  toggleDarkMode(event.matches);
+});
 </script>
 
 <!-- Funcionalidad PopOver -->

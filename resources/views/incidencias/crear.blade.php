@@ -26,23 +26,23 @@
         @csrf
     <div class="form-container">
         <div class="form-floating mb-3">
-            <input type="text" name="ticket" id="ticket" class="form-control"
-                value="{{old('ticket')}}" placeholder="">
+            <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
+                value="{{old('ticket')}}" placeholder="" autocomplete="off">
             <label for="ticket" class="form-label text-secondary">Ingresa ticket</label>
         </div>
         <div class="mb-3">
             <label for="inicio" class="form-label">Fecha Inicio</label>
-            <input type="text" name="inicio" id="inicio" class="form-control" value="{{old('inicio')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
+            <input type="text" autocomplete="off" name="inicio" id="inicio" class="form-control" value="{{old('inicio')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
             this.type='text'">
         </div>        
         <div class="mb-3">
             <label for="fin" class="form-label">Fecha Fin</label>
-            <input type="text" name="fin" id="fin" class="form-control" value="{{old('fin')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
+            <input type="text" autocomplete="off" name="fin" id="fin" class="form-control" value="{{old('fin')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
             this.type='text'">
         </div>
         <label for="descripcion" class="form-label">Descripcion</label>
         <div class="form-floating mb-3">
-          <textarea name="descripcion" id="descripcion" cols="35" rows="5">{{old('descripcion')}}</textarea>
+          <textarea name="descripcion" id="descripcion" cols="36" rows="5">{{old('descripcion')}}</textarea>
       </div>
       <div class="mb-3">
         <label for="tipo" class="form-label">Tipo</label>
@@ -53,7 +53,7 @@
         </select>
       </div>
       <div class="form-floating mb-3">
-        <input type="text" name="solicitante" id="solicitante" class="form-control"
+        <input type="text" autocomplete="off" name="solicitante" id="solicitante" class="form-control"
             value="{{old('solicitante')}}" placeholder="">
         <label for="solicitante" class="form-label text-secondary">Solicitante</label>
     </div>

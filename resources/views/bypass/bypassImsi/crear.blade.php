@@ -26,17 +26,17 @@
         @csrf
         <div class="form-container">
             <div class="form-floating mb-3">
-                <input type="text" name="ticket" id="ticket" class="form-control"
+                <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
                     value="{{old('ticket')}}" placeholder="">
                 <label for="ticket" class="form-label">Ingresa ticket</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" name="imsi" id="imsi" value="{{old('imsi')}}" class="form-control" placeholder="Ingrese IMSI" >
+                <input type="text" autocomplete="off" name="imsi" id="imsi" value="{{old('imsi')}}" class="form-control" placeholder="Ingrese IMSI" >
                 <label for="min" class="form-label">Ingrese IMSI</label>
             </div>
             <div class="mb-3">
                 <label for="fecha" class="form-label">Fecha</label>
-                <input type="text" name="fecha" id="fecha" class="form-control" value="{{old('fecha')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
+                <input type="text" autocomplete="off" name="fecha" id="fecha" class="form-control" value="{{old('fecha')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
                 this.type='text'">
             </div>
             <label for="observaciones" class="form-label">Observaciones</label>
