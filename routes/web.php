@@ -16,6 +16,7 @@ use App\Http\Controllers\IncidenciaController;
 use App\Http\Controllers\ContactarController;
 use App\Http\Controllers\ProvisioningController;
 use App\Http\Controllers\AprovisionamientosController;
+use App\Http\Controllers\minMasivoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,7 +76,24 @@ Route::post('bypassMin/{id}', [BypasMinController::class, 'destroy'])->name('byp
 Route::put('bypassMin/{id}', [BypasMinController::class, 'update'])->name('bypassMin.update');
 
 Route::get('bypassMin/create', [BypasMinController::class, 'create'])->name('bypassMin.create');
-//-------------------------------------------------Fin Bypass MIN------------------------------------------------
+
+Route::get('bypassMin/import', [BypasMinController::class, 'import'])->name('bypassMin.import');
+//-------------------------------------------------Fin Bypass MIN-----------------------------------------------
+//-------------------------------------------------Bypass MIN Masivo-----------------------------------------
+Route::get('minMasivo', [minMasivoController::class, 'index'])->name('minMasivo.index');
+
+Route::get('minMasivo/show', [minMasivoController::class, 'show'])->name('minMasivo.show');
+
+Route::post('minMasivo', [minMasivoController::class, 'store'])->name('minMasivo.store');
+
+Route::post('minMasivo/{id}', [minMasivoController::class, 'destroy'])->name('minMasivo.destroy');
+
+Route::put('minMasivo/{id}', [minMasivoController::class, 'update'])->name('minMasivo.update');
+
+Route::get('minMasivo/create', [minMasivoController::class, 'create'])->name('minMasivo.create');
+
+Route::get('minMasivo/import', [minMasivoController::class, 'import'])->name('minMasivo.import');
+//-------------------------------------------------Fin Bypass MIN Masivo-------------------------------
 
 //-------------------------------------------------Bypass IMSI------------------------------------------------
 Route::get('bypassImsi', [BypasImsiController::class, 'index'])->name('bypassImsi.index');
