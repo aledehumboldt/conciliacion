@@ -57,7 +57,8 @@ class BypasImsiController extends Controller
         //Validando parametros enviados
         $campos = [
             'ticket' => 'required|string',
-            'fecha' => 'required|string',
+            'inicio' => 'required|string',
+            'fin' => 'required|string',
             'imsi' => 'required|numeric',
             'observaciones' => 'required|string',
         ];
@@ -68,7 +69,6 @@ class BypasImsiController extends Controller
         //En caso de ser una exclusion vista SA
         if (isset($request->excluir)) {
             //Agregando valores necesarios para Incidencia
-            $request['inicio'] = $request->fecha;
             $request['descripcion'] = $request->observaciones;
             $request['solicitante'] = auth()->user()->perfil;
             $request['tipo'] = "requerimiento";
@@ -82,7 +82,6 @@ class BypasImsiController extends Controller
             //Eliminando del array
             unset(
                 $request['imsi'],
-                $request['fecha'],
                 $request['observaciones'],
             );
 
@@ -96,7 +95,13 @@ class BypasImsiController extends Controller
         $datosImsibypas['usuario'] = auth()->user()->usuario;
         $datosImsibypas['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosImsibypas['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosImsibypas['fecha'] = date("Y-m-d H:i:s", strtotime($request->fin));
 
+        //Eliminando del array
+        unset(
+            $datosImsibypas['inicio'],
+            $datosImsibypas['fin']
+        );
 
         //Insertando la tabla Bypass IMSI
         BypasImsi::insert($datosImsibypas);
@@ -104,7 +109,8 @@ class BypasImsiController extends Controller
 
         //---------------Incidencia--------------
         //Agregando valores necesarios
-        $datosImsibypas['inicio'] = date("Y-m-d H:i:s", strtotime($request->fecha));
+        $datosImsibypas['inicio'] = date("Y-m-d H:i:s", strtotime($request->inicio));
+        $datosImsibypas['fin'] = date("Y-m-d H:i:s", strtotime($request->fin));
         $datosImsibypas['descripcion'] = $request->observaciones;
         $datosImsibypas['solicitante'] = auth()->user()->perfil;
         $datosImsibypas['tipo'] = "requerimiento";
@@ -117,8 +123,12 @@ class BypasImsiController extends Controller
             $datosImsibypas['fecha']
         );
 
+        $incidencia = Incidencia::where('ticket',$datosImsibypas['ticket']);
+
         //Insertando la tabla Incidencias
-        Incidencia::insert($datosImsibypas);
+        if (empty($incidencia)) {
+            Incidencia::insert($datosImsibypas);
+        }
         //---------------Incidencia--------------
         
         //Redireccionando
@@ -199,12 +209,20 @@ class BypasImsiController extends Controller
         //Agregando valores necesarios
         $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-        $newDate = date("Y-m-d H:i:s", strtotime($datosIncidencia['inicio']));
+        $newStart = date("Y-m-d H:i:s", strtotime($datosIncidencia['inicio']));
+        $datosIncidencia['inicio'] = $newStart;
 
-        $datosIncidencia['inicio'] = $newDate;
+        if ($datosIncidencia['fin']) {
+            $newEnd = date("Y-m-d H:i:s", strtotime($datosIncidencia['fin']));
+            $datosIncidencia['fin'] = $newEnd;
+        }
         
-        //Agregando registro a Incidencia
-        Incidencia::insert($datosIncidencia);
+        $incidencia = Incidencia::where('ticket',$datosIncidencia['ticket']);
+
+        //Insertando la tabla Incidencias
+        if (empty($incidencia)) {
+            Incidencia::insert($datosIncidencia);
+        }
 
         return redirect()->route('bypassImsi.index')
         ->with('mensaje', 'IMSI excluido exitosamente.');
