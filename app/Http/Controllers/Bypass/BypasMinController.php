@@ -125,88 +125,10 @@ class BypasMinController extends Controller
             $datosMinbypas['fecha']
         );
 
+        $incidencia = Incidencia::where('ticket',$datosMinbypas['ticket']);
+
         //Insertando la tabla Incidencias
-        Incidencia::insert($datosMinbypas);
-        //-------------------Incidencia--------------
-        
-        //Redireccionando
-        return redirect()->route('bypassMin.index')
-        ->with('mensaje', 'Abonado incluido exitosamente.');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function storeSA(Request $request) {
-        if (isset($request->excluir)) {
-            //Agregando valores necesarios para Incidencia
-            $numero = $request->codarea.$request->min;
-            $request['descripcion'] = $request->observaciones;
-            $request['solicitante'] = auth()->user()->perfil;
-            $request['tipo'] = "requerimiento";
-
-            //Buscando registro para realizar exclusion
-            $bypass = BypasMin::where([
-                ['min',$numero],
-                ['ticket',$request->ticket]
-            ])->first();
-
-            //Eliminando del array
-            unset(
-                $request['codarea'],
-                $request['min'],
-                $request['observaciones'],
-                $request['tcliente'],
-            );
-
-            //return $request;
-            return $this->destroy($request,$bypass->id);
-        }
-
-        //Sustituyendo valores necesarios
-        $datosMinbypas = $request->except('_token', 'incluir');
-        $min = $datosMinbypas['codarea'].$datosMinbypas['min'];
-
-        //Agregando valores necesarios
-        $datosMinbypas['usuario'] = auth()->user()->usuario;
-        $datosMinbypas['min'] = $min;
-        $datosMinbypas['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-        $datosMinbypas['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-        $datosMinbypas['fecha'] = date("Y-m-d H:i:s", strtotime($request->fin));
-
-        //Eliminando del array
-        unset(
-            $datosMinbypas['codarea'],
-            $datosMinbypas['inicio'],
-            $datosMinbypas['fin']
-        );
-
-        //Insertando la tabla Bypass MIN
-        BypasMin::insert($datosMinbypas);
-        //-------------------Bypass--------------
-
-        //---------------Incidencia------------------
-        //Agregando valores necesarios
-        $datosMinbypas['inicio'] = date("Y-m-d H:i:s", strtotime($request->inicio));
-        $datosMinbypas['fin'] = date("Y-m-d H:i:s", strtotime($request->fin));
-        $datosMinbypas['descripcion'] = $request->observaciones;
-        $datosMinbypas['solicitante'] = auth()->user()->perfil;
-        $datosMinbypas['tipo'] = "requerimiento";
-
-        //Eliminando del array
-        unset(
-            $datosMinbypas['usuario'],
-            $datosMinbypas['min'],
-            $datosMinbypas['codarea'],
-            $datosMinbypas['observaciones'],
-            $datosMinbypas['tcliente'],
-            $datosMinbypas['fecha']
-        );
-
-        $ticket = Incidencia::where('ticket',$datosMinbypas['ticket'])->first();
-
-        if (!empty($ticket)) {
-            //Insertando la tabla Incidencias
+        if (empty($incidencia)) {
             Incidencia::insert($datosMinbypas);
         }
         //-------------------Incidencia--------------
@@ -214,7 +136,6 @@ class BypasMinController extends Controller
         //Redireccionando
         return redirect()->route('bypassMin.index')
         ->with('mensaje', 'Abonado incluido exitosamente.');
-
     }
 
     /**
@@ -298,8 +219,12 @@ class BypasMinController extends Controller
             $datosIncidencia['fin'] = date("Y-m-d H:i:s", strtotime($request->fin));
         }
 
-        //Agregando registro a Incidencia
-        Incidencia::insert($datosIncidencia);
+        $incidencia = Incidencia::where('ticket',$datosIncidencia['ticket']);
+
+        //Insertando la tabla Incidencias
+        if (empty($incidencia)) {
+            Incidencia::insert($datosIncidencia);
+        }
 
         return redirect()->route('bypassMin.index')
         ->with('mensaje', 'Abonado excluido exitosamente.');
