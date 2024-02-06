@@ -10,6 +10,7 @@
 .dark-mode {
   background-color: #3d464d;
   color: #eee ;
+   
   transition: XXXXX;
 }
 
@@ -28,6 +29,12 @@ color: #eee;
 
 .my-custom-textarea {
   height: 200px;
+}
+
+.dark-mode .alert-secondary {
+  color: #666666;
+  background-color: #eee;
+  border-color: #c3e6cb;
 }
 
 /* *-*-*-*-*-*-*-* */
@@ -4878,8 +4885,8 @@ a.badge-dark:focus, a.badge-dark.focus {
 }
 
 .alert-secondary {
-  color: #7f7f7f;
-  background-color: #fdfdfd;
+  color: #eee;
+  background-color: #666666;
   border-color: #fcfcfc;
 }
 
