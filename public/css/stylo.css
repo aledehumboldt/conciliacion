@@ -3653,7 +3653,7 @@ input[type="button"].btn-block {
 .custom-select:focus {
   border-color: #ffefb3;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(255, 211, 51, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(253, 88, 95);
 }
 
 .custom-select:focus::-ms-value {
