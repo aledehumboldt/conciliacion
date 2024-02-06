@@ -84,7 +84,7 @@ class IncidenciaController extends Controller
 
         Incidencia::insert($datosIncidencia);
        
-        return redirect()->route('incidencias.index')
+        return redirect()->route('incidencias.create')
         ->with('mensaje', 'Registro agregado correctamente.');
     }
 
