@@ -493,15 +493,6 @@ function toggleDarkMode(isDarkMode) {
   }
 }
 
-// Aplicar estilos de modo oscuro si el usuario prefiere el modo oscuro
-if (prefersDarkScheme.matches) {
-  toggleDarkMode(true);
-}
-
-// Escuchar cambios en el esquema de color preferido del usuario
-prefersDarkScheme.addListener(event => {
-  toggleDarkMode(event.matches);
-});
 </script>
 
 <!-- Funcionalidad PopOver -->
