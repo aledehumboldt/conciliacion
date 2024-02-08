@@ -9,6 +9,7 @@ use Database\Seeders\BypasWhitelistSeeder;
 use Database\Seeders\IncidenciaSeeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\AprovisionamientoSeeder;
+use Database\Seeders\AdminSeriesSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
             BypasImsiSeeder::class,
             BypasWhitelistSeeder::class,
             AprovisionamientoSeeder::class,
+            AdminSeriesSeeder::class,
         ]);
     }
 }
