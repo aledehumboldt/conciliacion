@@ -91,6 +91,7 @@
 						</div>
 					</div>
 					<div class="product-offer mb-30" style="height: 300px;">
+						@if (auth()->user()->perfil != "SA")
 						<img class="img-fluid" src="{{asset('assets/whitelist.jpg')}}" alt="">
 						<div class="offer-text">
 							<h6 class="text-white text-uppercase">Gestión Tráfico Gris</h6>
@@ -110,6 +111,7 @@
 								</a>
 							</div>
 						</div>
+						@endif
 					</div>
 				</div>
 			</div>
