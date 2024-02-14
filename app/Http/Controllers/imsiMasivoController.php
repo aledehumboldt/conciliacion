@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Imports\bypassMinImport;
+use App\Imports\bypassImsiImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use App\Models\BypasMin;
+use App\Models\BypasImsi;
 use App\Models\Incidencia;
 
-class minMasivoController extends Controller
+class imsiMasivoController extends Controller
 {
     protected function verify() {
         if (Auth::user()->estatus != "Iniciado") {
@@ -33,18 +33,17 @@ class minMasivoController extends Controller
             return $this->create();
         }
 
-        $datos['bypas_mins'] = BypasMin::orderBy('id','asc')->paginate();
-        return view('bypass.bypasMasivMin.index', $datos);
+        return view('bypass.bypasMasivImsi.index');
     }
 
     public function import(Request $request)
     {
         $file = $request->file('file');
-        $exclusions = Excel::toCollection(new bypassMinImport, $file);
+        $exclusions = Excel::toCollection(new bypassImsiImport, $file);
         //return $file2;
         if (isset($request->incluir)) {
             
-            Excel::import(new bypassMinImport, $file);
+            Excel::import(new bypassImsiImport, $file);
 
             return back()->with('message', 'importacion completada');
 
@@ -52,10 +51,9 @@ class minMasivoController extends Controller
 
         foreach($exclusions[0] as $exclusion){
 
-            BypasMin::where('min', $exclusion[1])->delete();
+            BypasImsi::where('imsi', $exclusion[1])->delete();
         }
 
         return back()->with('message', 'Depurados Correctamente');
     }
-
 }

@@ -74,9 +74,14 @@
                 <option value="incidencia">Incidencias</option>
                 <option value="requerimiento">Requerimientos</option>
             </select>
+            <label for="selectEstatus">Estatus:</label>
+            <select id="selectEstatus" name="selectEstatus" class="form-control custom-select" style="width: 200px">
+                <option></option>
+                <option value="incidencia">Abiertos</option>
+                <option value="">Cerrados</option>
+            </select>
         </form>
     </div>
-
         <table class="table" id="fbody">
             <thead class="table">
                 <tr>
