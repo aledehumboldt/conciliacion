@@ -85,7 +85,7 @@ class IncidenciaController extends Controller
         $incidencia = Incidencia::where('ticket',$datosIncidencia['ticket']);
 
         //Validando si el ticket ya existe
-        if (!empty($incidencia)) {
+        if (empty($incidencia)) {
             return redirect()->route('incidencias.create')
             ->withErrors('El ticket ya posee un registro.');
         }

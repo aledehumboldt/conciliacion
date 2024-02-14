@@ -71,7 +71,7 @@
 <div class="">
     @if(isset($archivos) && isset($titles))
         @foreach($titles as $title)
-            <h4 class="text-white titulo" style="@if($title == "cpa") display:none; @endif">
+            <h4 class="text-white titulo" style="@if($title == "file.txt") display:none; @endif">
                 {{$title}}
             </h4>
             <div class="casilla-grande">
