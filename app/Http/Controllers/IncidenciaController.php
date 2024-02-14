@@ -28,8 +28,10 @@ class IncidenciaController extends Controller
             return back();
         }
 
-        $mes = date("m")-1;
-        //$mes = date('m');
+        //$fecha = date('Y-m-j');
+        //mes = strtotime ( '-1 month' , strtotime ( $fecha ) ) ;
+        //$mes = date ( 'm' , $mes );
+        $mes = date('m');
         $anio = date('Y');
         $dateFrom = $anio."-".$mes."-01 00:00:00";
         $dateTo = $anio."-".$mes."-31 23:59:59";
@@ -41,8 +43,10 @@ class IncidenciaController extends Controller
         }
 
         if (request(key: 'selectEstatus') ?? false) {
-            $queryBuilder->where('fin','=',request(key: 'selectEstatus'));
+            $queryBuilder->where('fin','!=',request(key: 'selectEstatus'));
         }
+
+        //return $queryBuilder;
 
         $datos['incidencias'] = $queryBuilder->paginate();
 

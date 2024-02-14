@@ -77,7 +77,7 @@
             <label for="selectEstatus">Estatus:</label>
             <select id="selectEstatus" name="selectEstatus" class="form-control custom-select" style="width: 200px">
                 <option></option>
-                <option value="incidencia">Abiertos</option>
+                <option value="a">Abiertos</option>
                 <option value="">Cerrados</option>
             </select>
         </form>

@@ -505,10 +505,15 @@ function toggleDarkMode(isDarkMode) {
 <script>
   let form = $('#search-form');
 
+
   $("#selectCategory").change(function () {
       form.submit();
     }
   );
-  </script>
+  $("#selectEstatus").change(function () {
+      form.submit();
+    }
+  );
+</script>
  </body>
 </html>
