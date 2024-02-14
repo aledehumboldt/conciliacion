@@ -17,6 +17,9 @@ use App\Http\Controllers\ContactarController;
 use App\Http\Controllers\ProvisioningController;
 use App\Http\Controllers\AprovisionamientosController;
 use App\Http\Controllers\minMasivoController;
+use App\Http\Controllers\imsiMasivoController;
+use App\Http\Controllers\ambosMasivoController;
+use App\Http\Controllers\whitelistMasivoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,22 +81,31 @@ Route::put('bypassMin/{id}', [BypasMinController::class, 'update'])->name('bypas
 Route::get('bypassMin/create', [BypasMinController::class, 'create'])->name('bypassMin.create');
 
 Route::get('bypassMin/import', [BypasMinController::class, 'import'])->name('bypassMin.import');
-//-------------------------------------------------Fin Bypass MIN-----------------------------------------------
-//-------------------------------------------------Bypass MIN Masivo-----------------------------------------
+//-------------------------------------------------Fin BypassMIN-----------------------------------------------
+
+//-------------------------------------------------Bypass MIN Masivo-------------------------------------------
 Route::get('minMasivo', [minMasivoController::class, 'index'])->name('minMasivo.index');
 
-Route::get('minMasivo/show', [minMasivoController::class, 'show'])->name('minMasivo.show');
+Route::post('minMasivo/import', [minMasivoController::class, 'import'])->name('minMasivo.import');
+//-------------------------------------------------Fin Bypass MIN Masivo---------------------------------------
 
-Route::post('minMasivo', [minMasivoController::class, 'store'])->name('minMasivo.store');
+//-------------------------------------------------Bypass imsi Masivo-----------------------------------------
+Route::get('imsiMasivo', [imsiMasivoController::class, 'index'])->name('imsiMasivo.index');
 
-Route::post('minMasivo/{id}', [minMasivoController::class, 'destroy'])->name('minMasivo.destroy');
+Route::post('imsiMasivo/import', [imsiMasivoController::class, 'import'])->name('imsiMasivo.import');
+//-------------------------------------------------Fin Bypass imsi Masivo-------------------------------
 
-Route::put('minMasivo/{id}', [minMasivoController::class, 'update'])->name('minMasivo.update');
+//-------------------------------------------------Bypass ambos Masivo-----------------------------------------
+Route::get('ambosMasivo', [ambosMasivoController::class, 'index'])->name('ambosMasivo.index');
 
-Route::get('minMasivo/create', [minMasivoController::class, 'create'])->name('minMasivo.create');
+Route::post('ambosMasivo/import', [ambosMasivoController::class, 'import'])->name('ambosMasivo.import');
+//-------------------------------------------------Fin Bypass ambos Masivo-------------------------------
 
-Route::get('minMasivo/import', [minMasivoController::class, 'import'])->name('minMasivo.import');
-//-------------------------------------------------Fin Bypass MIN Masivo-------------------------------
+//-------------------------------------------------Bypass Whitelist Masivo-------------------------------------
+Route::get('whitelistMasivo', [whitelistMasivoController::class, 'index'])->name('whitelistMasivo.index');
+
+Route::post('whitelistMasivo/import', [whitelistMasivoController::class, 'import'])->name('whitelistMasivo.import');
+//-------------------------------------------------Fin Bypass Whitelist Masivo---------------------------------
 
 //-------------------------------------------------Bypass IMSI------------------------------------------------
 Route::get('bypassImsi', [BypasImsiController::class, 'index'])->name('bypassImsi.index');
@@ -107,9 +119,9 @@ Route::post('bypassImsi/{id}', [BypasImsiController::class, 'destroy'])->name('b
 Route::put('bypassImsi/{id}', [BypasImsiController::class, 'update'])->name('bypassImsi.update');
 
 Route::get('bypassImsi/create', [BypasImsiController::class, 'create'])->name('bypassImsi.create');
-//-------------------------------------------------Fin Bypass IMSI------------------------------------------------
+//-------------------------------------------------Fin Bypass IMSI---------------------------------------------
 
-//-------------------------------------------------Bypass Whitelist------------------------------------------------
+//-------------------------------------------------Bypass Whitelist--------------------------------------------
 Route::get('bypassWhitelist', [BypasWhitelistController::class, 'index'])->name('bypassWhitelist.index');
 
 Route::get('bypassWhitelist/show', [BypasWhitelistController::class, 'show'])->name('bypassWhitelist.show');

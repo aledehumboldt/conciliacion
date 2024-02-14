@@ -4,6 +4,9 @@ namespace App\Imports;
 
 use App\Models\BypasMin;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class bypassMinImport implements ToModel
 {
@@ -13,13 +16,24 @@ class bypassMinImport implements ToModel
     * @return \Illuminate\Database\Eloquent\Model|null
     */
     public function model(array $row) {
-        return new BypasMin([
-            'ticket' => $row[0],
-            'fecha' => $row[1],
-            'usuario' => $row[2],
-            'min' => $row[3],
-            'observaciones' => $row[4],
-            'tcliente' => $row[5],
+
+        if (str_contains($row[2], '73406')) {
+            return new BypasMin([
+                'ticket' => $row[0],
+                'fecha' => Carbon::now()->format('Y-m-d H:i:s'),
+                'usuario' => auth()->user()->usuario,
+                'min' => $row[1],
+                'observaciones' => $row[4],
+                'tcliente' => $row[3],
+            ]);
+        }
+            return new BypasMin([
+                'ticket' => $row[0],
+                'fecha' => Carbon::now()->format('Y-m-d H:i:s'),
+                'usuario' => auth()->user()->usuario,
+                'min' => $row[1],
+                'observaciones' => $row[3],
+                'tcliente' => $row[2],
         ]);
     }
 }

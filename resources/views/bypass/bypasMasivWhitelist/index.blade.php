@@ -5,14 +5,14 @@
 @endsection
 
 @section('encabezado')
-<h3 class="editor-toolbar-item">Masivo Abonados trafico gris</h3>
+<h3 class="editor-toolbar-item">Masivo Whitelist trafico gris</h3>
 
 @endsection
 
 @section('contenido')
     @include('layouts.partials.messages')
     <div style="display: flex; align-items: center;justify-content: center;">
-    <form action="{{route('minMasivo.import')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('whitelistMasivo.import')}}" method="post" enctype="multipart/form-data">
         @csrf
         @if(Session::has('message'))
         <p>{{ Session::get('message') }}</p>

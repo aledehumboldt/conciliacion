@@ -3,21 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Imports\bypassAmbosImport;
+use App\Imports\bypassImsiImport;
 use App\Imports\bypassMinImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\BypasMin;
-use App\Models\Incidencia;
+use App\Models\BypasImsi;
 
-class minMasivoController extends Controller
+class ambosMasivoController extends Controller
 {
     protected function verify() {
-        if (Auth::user()->estatus != "Iniciado") {
-            return true;
-        } else {
-            return false;
-        }
+    if (Auth::user()->estatus != "Iniciado") {
+        return true;
+    } else {
+        return false;
+    }
     }
 
     /**
@@ -33,20 +35,21 @@ class minMasivoController extends Controller
             return $this->create();
         }
 
-        $datos['bypas_mins'] = BypasMin::orderBy('id','asc')->paginate();
-        return view('bypass.bypasMasivMin.index', $datos);
+        return view('bypass.bypasMasivAmbos.index');
     }
 
     public function import(Request $request)
     {
         $file = $request->file('file');
         $exclusions = Excel::toCollection(new bypassMinImport, $file);
+        $exclusions1 = Excel::toCollection(new bypassImsiImport, $file);
         //return $file2;
         if (isset($request->incluir)) {
             
             Excel::import(new bypassMinImport, $file);
+            Excel::import(new bypassImsiImport, $file);
 
-            return back()->with('message', 'importacion completada');
+            return back()->with('mensaje', 'importacion completada');
 
         }
 
@@ -55,7 +58,11 @@ class minMasivoController extends Controller
             BypasMin::where('min', $exclusion[1])->delete();
         }
 
-        return back()->with('message', 'Depurados Correctamente');
-    }
+        foreach($exclusions1[0] as $exclusion1){
 
+            BypasImsi::where('imsi', $exclusion1[2])->delete();
+        }
+
+        return back()->with('mensaje', 'Depurados Correctamente');
+    }
 }
