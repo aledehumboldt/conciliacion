@@ -28,7 +28,7 @@ class IncidenciaController extends Controller
             return back();
         }
 
-        $mes = date("m")-1;
+        $mes = date("m");
         //$mes = date('m');
         $anio = date('Y');
         $dateFrom = $anio."-".$mes."-01 00:00:00";
@@ -87,10 +87,10 @@ class IncidenciaController extends Controller
             $datosIncidencia['inicio'] = $newEnd;
         }
 
-        $incidencia = Incidencia::where('ticket',$datosIncidencia['ticket']);
+        $incidencia = Incidencia::where('ticket',$datosIncidencia['ticket'])->first();
 
         //Validando si el ticket ya existe
-        if (empty($incidencia)) {
+        if (!empty($incidencia)) {
             return redirect()->route('incidencias.create')
             ->withErrors('El ticket ya posee un registro.');
         }
