@@ -53,7 +53,7 @@
         </select>
       </div>
       <div class="form-floating mb-3">
-        <input type="text" autocomplete="off" name="solicitante" id="solicitante" class="form-control"
+        <input type="text" name="solicitante" id="solicitante" class="form-control"
             value="{{old('solicitante')}}" placeholder="">
         <label for="solicitante" class="form-label text-secondary">Solicitante</label>
     </div>
