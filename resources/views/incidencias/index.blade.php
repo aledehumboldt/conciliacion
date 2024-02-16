@@ -67,19 +67,21 @@
     @include('layouts.partials.messages')
 
     <div class="mb-3">
-        <form action="#" method="GET" id="search-form">
-            <label for="selectCategory">Filtrar:</label>
+        <form action="{{route('incidencias.filtro')}}" enctype="multipart/form-data" method="get">
+            @csrf
+            <label for="selectCategory">Tipo:</label>
             <select id="selectCategory" name="selectCategory" class="form-control custom-select" style="width: 200px">
-                <option value="">Ambos</option>
+                <option value="ambos">Ambos</option>
                 <option value="incidencia">Incidencias</option>
                 <option value="requerimiento">Requerimientos</option>
             </select>
             <label for="selectEstatus">Estatus:</label>
             <select id="selectEstatus" name="selectEstatus" class="form-control custom-select" style="width: 200px">
-                <option></option>
+                <option value="ambos">Ambos</option>
                 <option value="a">Abiertos</option>
-                <option value="">Cerrados</option>
+                <option value="c">Cerrados</option>
             </select>
+            <button type="submit" class="btn btn-secondary">Buscar</button>
         </form>
     </div>
         <table class="table" id="fbody">

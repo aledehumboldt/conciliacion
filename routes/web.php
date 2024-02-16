@@ -62,6 +62,8 @@ Route::get('incidencias/show', [IncidenciaController::class, 'show'])->name('inc
 
 Route::post('incidencias/{incidencia}', [IncidenciaController::class, 'store'])->name('incidencias.store');
 
+Route::get('incidencias/filtro', [IncidenciaController::class, 'filtro'])->name('incidencias.filtro');
+
 Route::get('incidencias/export', [IncidenciaController::class, 'export'])->name('incidencias.export');
 //--------------------------------------------------Fin Incidencias--------------------------------
 
