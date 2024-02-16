@@ -79,6 +79,11 @@ class BypasImsiController extends Controller
                 ['ticket',$request->ticket]
             ])->first();
 
+            if(empty($bypass)) {
+                return redirect()->route('bypassMin.index')
+                ->with('mensaje', 'IMSI no existe en el listado.');
+            }
+
             //Eliminando del array
             unset(
                 $request['imsi'],
@@ -123,7 +128,7 @@ class BypasImsiController extends Controller
             $datosImsibypas['fecha']
         );
 
-        $incidencia = Incidencia::where('ticket',$datosImsibypas['ticket']);
+        $incidencia = Incidencia::where('ticket',$datosImsibypas['ticket'])->first();
 
         //Insertando la tabla Incidencias
         if (empty($incidencia)) {

@@ -21,8 +21,13 @@
                             <input type="text" autocomplete="off" name="imsi" id="imsi" value="{{old('imsi')}}" class="form-control" placeholder="Ingrese imsi" pattern=".{15,15}">
                         </div>
                         <div class="mb-3">
-                            <label for="fecha" class="form-label">Fecha</label>
-                            <input type="text" autocomplete="off" name="fecha" id="fecha" class="form-control" value="{{old('fecha')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
+                            <label for="inicio" class="form-label">Fecha Inicio</label>
+                            <input type="text" autocomplete="off" name="inicio" id="inicio" class="form-control" value="{{old('inicio')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
+                            this.type='text'">
+                        </div>
+                        <div class="mb-3">
+                            <label for="fin" class="form-label">Fecha Fin</label>
+                            <input type="text" autocomplete="off" name="fin" id="fin" class="form-control" value="{{old('fin')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
                             this.type='text'">
                         </div>
                         <label for="observaciones" class="form-label">Observaciones</label>

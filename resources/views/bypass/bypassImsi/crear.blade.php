@@ -28,11 +28,11 @@
             <div class="form-floating mb-3">
                 <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
                     value="{{old('ticket')}}" placeholder="">
-                <label for="ticket" class="form-label">Ingresa ticket</label>
+                <label for="ticket" class="form-label text-secondary">Ingrese ticket</label>
             </div>
             <div class="form-floating mb-3">
                 <input type="text" autocomplete="off" name="imsi" id="imsi" value="{{old('imsi')}}" class="form-control" placeholder="Ingrese IMSI" >
-                <label for="min" class="form-label">Ingrese IMSI</label>
+                <label for="min" class="form-label text-secondary">Ingrese IMSI</label>
             </div>
             <div class="mb-3">
                 <label for="fecha" class="form-label">Recepcion de requerimiento</label>

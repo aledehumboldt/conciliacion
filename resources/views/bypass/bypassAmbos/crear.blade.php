@@ -28,7 +28,7 @@
             <div class="form-floating mb-3">
                 <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
                 value="{{old('ticket')}}" placeholder="">
-                <label for="ticket" class="form-label text-black">Ingresa ticket</label>
+                <label for="ticket" class="form-label text-secondary">Ingresa ticket</label>
             </div>
             <label for="min" class="form-label">Celular</label>
             <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
@@ -41,11 +41,16 @@
             </div>
             <div class="form-floating mb-3">
                 <input type="text" autocomplete="off" name="imsi" id="imsi" value="{{old('imsi')}}" class="form-control" placeholder="" pattern=".{15,15}">
-                <label for="imsi" class="form-label text-black">IMSI</label>
+                <label for="imsi" class="form-label text-secondary">IMSI</label>
             </div>
             <div class="mb-3">
-                <label for="fecha" class="form-label">Fecha</label>
-                <input type="text" autocomplete="off" name="fecha" id="fecha" class="form-control" value="{{old('fecha')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
+                <label for="incio" class="form-label">Fecha inicio</label>
+                <input type="text" autocomplete="off" name="inicio" id="inicio" class="form-control" value="{{old('inicio')}}" placeholder="Recepcion del requerimiento" onfocus="this.type='datetime-local'" onblur="
+                this.type='text'">
+            </div>
+            <div class="mb-3">
+                <label for="fin" class="form-label">Fecha fin</label>
+                <input type="text" autocomplete="off" name="fin" id="fin" class="form-control" value="{{old('fin')}}" placeholder="Fin del requerimiento" onfocus="this.type='datetime-local'" onblur="
                 this.type='text'">
             </div>
             <div class="mb-3">
