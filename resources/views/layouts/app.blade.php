@@ -501,19 +501,5 @@ function toggleDarkMode(isDarkMode) {
   const popoverList = [...popoverTriggerList].map(popoverTriggerEL => new bootstrap.Popover(popoverTriggerEL))
 </script>
 
-<!-- Filtro Incidencia -->
-<script>
-  let form = $('#search-form');
-
-
-  $("#selectCategory").change(function () {
-      form.submit();
-    }
-  );
-  $("#selectEstatus").change(function () {
-      form.submit();
-    }
-  );
-</script>
  </body>
 </html>
