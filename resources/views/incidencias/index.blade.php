@@ -87,7 +87,7 @@
                     <th>Descripcion</th>
                     <th>Tipo</th>
                     <th>Solicitante</th>
-                    <th>Acciones</th>
+                    <th style="text-align: center">Acciones</th>
                 </tr>
             </thead>
             <tbody class="table">
@@ -100,7 +100,8 @@
                     <td>{{$incidencia->descripcion}}</td>
                     <td>{{ucwords($incidencia->tipo)}}</td>
                     <td>{{$incidencia->solicitante}}</td>
-                    <td style="display: flex; align-items: center;justify-content: center;">
+                    <td>
+                        <div style="display: flex; align-items: center;justify-content: center;">
                         <a href="{{route('incidencias.edit',$incidencia->id)}}">
                             <button class="btn btn-secondary" title="Editar" id="editar" name="editar">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
@@ -117,6 +118,7 @@
                                 </svg>
                             </button>
                          </form>
+                         </div>
                     </td>
                 </tr>
                 @endforeach

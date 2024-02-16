@@ -10,8 +10,6 @@
 .dark-mode {
   background-color: #3d464d;
   color: #eee ;
-   
-  transition: XXXXX;
 }
 
 .dark-mode table, .dark-mode table td, .dark-mode table th {
