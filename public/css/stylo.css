@@ -3384,6 +3384,14 @@ input[type="button"].btn-block {
   width: 100%;
 }
 
+.input-group-file {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 150%;
+}
+
 .input-group > .form-control,
 .input-group > .form-control-plaintext,
 .input-group > .custom-select,

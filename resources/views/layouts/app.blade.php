@@ -319,25 +319,6 @@
               Apoyo especializado
             </a>
           </div>
-        </div>
-        <div class="col-md-4 mb-5">
-          <h5 class="text-secondar text-uppercase mb-4">¿Estas interesado/a en un vacante?</h5>
-          <p>Estamos en busqueda de personal proactivo, con la capacidad de trabajar bajo presion y adaptarse a cualquier grupo de trabajo</p>
-          <form action="">
-            <div class="input-group">
-              <input type="text" autocomplete="off" class="form-control" placeholder="Introduce tu correo personal">
-              <div class="input-group-append">
-                <button class="btn btn-secondary">Escríbenos</button>
-              </div>
-            </div>
-            <br>
-            <div class="input-group">
-              <input type="file" autocomplete="off" class="form-control">
-              <div class="input-group-append">
-                <button class="btn btn-secondary">Adjuntar</button>
-              </div>
-            </div>
-          </form>
           <h6 class="text-secondar text-uppercase mt-4 mb-3">Síguenos</h6>
           <div class="d-flex">
             <a class="btn btn-secondary btn-square mr-2" href="https://twitter.com/SomosMovilnet_">
@@ -366,6 +347,25 @@
               </svg>
             </a>
           </div>
+        </div>
+        <div class="col-md-4 mb-5">
+          <h5 class="text-secondar text-uppercase mb-4">¿Estas interesado/a en un vacante?</h5>
+          <p>Estamos en busqueda de personal proactivo, con la capacidad de trabajar bajo presion y adaptarse a cualquier grupo de trabajo</p>
+          <form action="">
+            <div class="input-group">
+              <input type="text" autocomplete="off" class="form-control" placeholder="Introduce tu correo personal">
+              <div class="input-group-append">
+                <button class="btn btn-secondary">Escríbenos</button>
+              </div>
+            </div>
+            <br>
+            <div class="input-group-file">
+              <input type="file" autocomplete="off" class="form-control">
+              <div class="input-group-append">
+                <button class="btn btn-secondary">Adjuntar</button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
