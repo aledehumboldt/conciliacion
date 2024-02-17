@@ -21,8 +21,19 @@ class ResetController extends Controller {
 
         $this->validate($request,$campos);
 
-        //Actualizando contraseña
+        //Validando contraseña
         $usuario = User::find(auth()->user()->id);
+        
+        if ($usuario->clave != md5($request['clave'])) {
+            return back()->withErrors('Contraseña errada.');
+        }
+
+        //Validando contraseña nueva
+        if ($usuario->clave == md5($request['nueva-clave'])) {
+            return back()->withErrors('La contraseña debe ser distinta a la anterior.');
+        }
+
+        //Actualizando contraseña
         $usuario->clave = md5($request['nueva-clave']);
         $usuario->estatus = "Activo";
         $usuario->save();
@@ -32,7 +43,7 @@ class ResetController extends Controller {
 
         Auth::logout();
 
-        return redirect('/login')->withErrors('Contraseña actualizada.');
+        return redirect('/login')->with('mensaje', 'Contraseña actualizada.');
     }
 
     public function edit($id) {

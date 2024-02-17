@@ -1,4 +1,4 @@
-@extends('layouts.bootstrap')
+@extends('layouts.app')
 @section('titulo', 'Exclusión Abonado')
 
 @section('estilos')
@@ -17,7 +17,7 @@
 @endsection
 
 @section('encabezado')
-    <h3 class="">Excluir Abonado</h3>
+    <h3 class="editor-toolbar-item">Excluir Abonado de Conciliación</h3>
     <div style="position: absolute; right: 2%;">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-secondary" name="buscar" id="buscar"  data-toggle="modal" data-target="#exampleModal">
@@ -26,6 +26,13 @@
             </svg>
             Buscar abonado
         </button>
+        <button type="button" class="btn btn-secondary rounded-circle" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-title="Si excluyes una línea..." data-bs-content="
+		Esta no se verá afectada por los cambios que realiza la Conciliación en las plataformas. Es importante contar con la solicitud de un coordinador o mayor, y su respectivo ticket.">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+				<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+				<path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+			</svg>
+		</button>
     </div>
 
 <!-- Modal -->
@@ -41,15 +48,15 @@
             <div class="modal-body">
                 <form action="{{ route('exclusiones.show',auth()->user()->id) }}" enctype="multipart/form-data" method="get">
                     @csrf
-                    <div class="form-container">
+                    <div class="mb-3">
                         <label for="celularB" class="form-label">Celular</label>
                         <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
-                            <select name="codigo" id="codigo" class="form-control" style="width:100px">
+                            <select name="codigo" id="codigo" class="custom-select" style="width:100px">
                                 <option value="">Código</option>
                                 <option value="416">0416</option>
                                 <option value="426">0426</option>
                             </select>
-                            <input type="text" name="celular" id="celular" value="{{old('celular')}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
+                            <input type="text" autocomplete="off" name="celular" id="celular" value="{{old('celular')}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
                         </div>
                         <button type="submit" class="btn btn-secondary" name="buscar" id="buscar">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -61,7 +68,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
@@ -74,26 +81,26 @@
         @csrf
     <div class="form-container">
         <div class="form-floating mb-3">
-            <input type="text" name="ticket" id="ticket" class="form-control"
-                value="{{old('ticket')}}" placeholder="Ingresar ticket">
-            <label for="ticket" class="form-label">Ingresa ticket</label>
+            <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
+                value="{{old('ticket')}}" placeholder="">
+            <label for="ticket" class="form-label text-secondary">Ingresa ticket</label>
         </div>
         <label for="celular" class="form-label">Celular</label>
         <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
-            <select name="codarea" id="codaera" class="form-control" style="width:100px">
+            <select name="codarea" id="codaera" class="custom-select" style="width:100px">
                 <option value="">Código</option>
                 <option value="416">0416</option>
                 <option value="426">0426</option>
             </select>
-            <input type="text" name="celular" id="celular" value="{{old('celular')}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
+            <input type="text" autocomplete="off" name="celular" id="celular" value="{{old('celular')}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
         </div>
         <div class="mb-3">
             <label for="fechae" class="form-label">Fin de exclusión</label>
-            <input type="text" name="fechae" id="fechae" class="form-control" value="{{old('fechae')}}" placeholder="Día/Mes/Año" onfocus="this.type='date'" onblur="
-            this.type='text'">
+            <input type="text" autocomplete="off" name="fechae" id="fechae" class="form-control" value="{{old('fechae')}}" placeholder="Día/Mes/Año" onfocus="this.type='date'" onblur="
+            this.type='text'" max="{{date(('Y-m-d'),strtotime('+3 months'))}}">
         </div>
         <div class="mb-3">
-            <select id="tcliente" name="tcliente" class="form-control" >
+            <select id="tcliente" name="tcliente" class="custom-select">
                 <option value="">Tipo de cliente</option>
                 <option value="PREPAGO">Prepago</option>
                 <option value="POSTPAGO">Postpago</option>
@@ -121,12 +128,4 @@
         </div>
     </div>
 </form>
-
-
-<script>
-    $(document).on('click', '.btnShowInfo', function(e){
-    e.preventDefault();
-    $('#exampleModal').modal('show');
-});
-</script>
 @endsection

@@ -12,8 +12,7 @@ class IncidenciaSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
-    {
+    public function run(): void {
         Incidencia::factory(50)->create();
     }
 }

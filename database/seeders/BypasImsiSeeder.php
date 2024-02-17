@@ -12,8 +12,7 @@ class BypasImsiSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
-    {
+    public function run(): void {
         BypasImsi::factory(50)->create();
     }
 }

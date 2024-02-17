@@ -721,3 +721,58 @@ img {
 .hide {
   display: none;
 }
+
+.grid {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  max-height: 200px;
+  min-height: 200px;
+  min-width: 100%;
+  max-width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(80px, auto);
+  grid-gap: 15px;
+  text-align: center;
+  margin: auto;
+}
+
+.grid-item {
+  margin: auto;
+}
+
+
+.container-btn-mode{
+  position: absolute;
+  top:20px;
+  right: 30px;
+  cursor: pointer;
+  z-index: 2;
+  font-size:0;
+}
+.btn-mode{
+  display: inline-block;
+  width: 50px;
+  height: 30px;
+  border:2px solid black;
+  transition: background-color .5s;
+}
+.btn-mode i {
+  display: block;
+  font-size: 17px;
+  text-align: center;
+  line-height: 30px;
+}
+.btn-mode.sun{
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-right: 1px solid transparent;
+}
+.btn-mode.moon{
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.active{
+  background-color:black;
+  color:#ffcd5c !important;
+}

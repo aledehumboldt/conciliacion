@@ -9,8 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
+    public function up(): void {
         Schema::create('bypas_mins', function (Blueprint $table) {
             $table->id();
             $table->string('ticket');
@@ -18,7 +17,7 @@ return new class extends Migration
             $table->integer('usuario');
             $table->string('min', 10);
             $table->text('observaciones');
-            $table->text('tcliente');
+            $table->string('tcliente');
             $table->timestamps();
         });
     }
@@ -26,8 +25,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
-    {
+    public function down(): void {
         Schema::dropIfExists('bypas_mins');
     }
 };

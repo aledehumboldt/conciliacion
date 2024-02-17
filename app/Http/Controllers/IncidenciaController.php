@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Incidencia;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\IncidenciaExport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,40 +27,29 @@ class IncidenciaController extends Controller
         if(!$this->verify()) {
             return back();
         }
+
+
+        $mes = date("m");
+        //$mes = date('m');
+        //$fecha = date('Y-m-j');
+        //mes = strtotime ( '-1 month' , strtotime ( $fecha ) ) ;
+        //$mes = date ( 'm' , $mes );
+        $mes = date('m');
+        $anio = date('Y');
+        $dateFrom = $anio."-".$mes."-01 00:00:00";
+        $dateTo = $anio."-".$mes."-31 23:59:59";
+        //$datos['incidencias'] = Incidencia::paginate();
+        $queryBuilder = Incidencia::whereBetween('inicio', [$dateFrom, $dateTo]);
         
-        $datos['incidencias'] = Incidencia::paginate();
+        //return $queryBuilder;
+
+        $datos['incidencias'] = $queryBuilder->paginate();
+
         return view('incidencias.index', $datos);
-        //return $datos;
     }
 
     /**
      * Show the form for creating a new resource.
-     */
-    public function store(Request $request) {
-        $campos = [
-            'ticket' => 'required|string|min:10|max:10',
-            'inicio' => 'required|string',
-            'fin' => 'required|string',
-            'descripcion' => 'required|string|max:250',
-            'solicitante' => 'required|string',
-        ];
-
-        $this->validate($request,$campos);
-
-        $datosIncidencia = request()->except('_token', 'añadir');
-        $inicio = Carbon::parse($datosIncidencia['inicio'])->format('Ymd');
-        $fin = Carbon::parse($datosIncidencia['inicio'])->format('Ymd');
-
-        $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-        $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-
-        Incidencia::insert($datosIncidencia);
-
-        return redirect('incidencias')->with('mensaje', 'Incidencia u/o Requerimiento Creado.');
-    }
-
-    /**
-     * Store a newly created resource in storage.
      */
     public function create(Request $request) {
         if(!$this->verify()) {
@@ -69,12 +60,101 @@ class IncidenciaController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Store a newly created resource in storage.
      */
-    public function show(string $id) {
-        //return view('incidencias.consultar');
+    public function store(Request $request) {
+
+        $campos = [
+            'ticket' => 'required|string|min:10|max:10',
+            'inicio' => 'required|string',
+            'descripcion' => 'required|string|max:250',
+            'tipo' => 'required|string',
+            'solicitante' => 'required|string',
+        ];
+
+        $this->validate($request,$campos);
+
+        $datosIncidencia = request()->except('_token', 'agregar');
+
+        $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $newStart = date("Y-m-d H:i:s", strtotime($datosIncidencia['inicio']));
+        $datosIncidencia['inicio'] = $newStart;
+
+        if (isset($datosIncidencia['fin'])) {
+            $newEnd = date("Y-m-d H:i:s", strtotime($datosIncidencia['fin']));
+            $datosIncidencia['inicio'] = $newEnd;
+        }
+
+        $incidencia = Incidencia::where('ticket',$datosIncidencia['ticket'])->first();
+
+        //Validando si el ticket ya existe
+        if (!empty($incidencia)) {
+            return redirect()->route('incidencias.create')
+            ->withErrors('El ticket ya posee un registro.');
+        }
+        //Insertando la tabla Incidencias
+        Incidencia::insert($datosIncidencia);
+       
+        return redirect()->route('incidencias.create')
+        ->with('mensaje', 'Registro agregado correctamente.');
     }
 
+    /**
+     * Display the specified resource.
+     */
+    public function show(Request $request) {
+
+        $campos = [
+            'ticket' => 'required|string',
+        ];
+
+        $this->validate($request,$campos);
+
+        $vartmp = $request->ticket;
+
+        $incidencias = Incidencia::where('ticket',$vartmp)->get();
+        return view('incidencias.consultar',compact('incidencias'));
+    }
+
+    public function filtro(Request $request) {
+
+        $category = $request->selectCategory;
+        $estatus = $request->selectEstatus;
+        
+        if ($category == 'ambos' && $estatus == 'ambos') {
+            //return $category.$estatus;
+            $incidencias = Incidencia::get();
+        }
+        if ($category != 'ambos' && $estatus == 'ambos') {
+            //return $category.$estatus;
+            $incidencias = Incidencia::where('tipo','=', $category)->get();
+        }
+        if ($category == 'ambos' && $estatus != 'ambos') {
+            //return $category.$estatus;
+            if ($estatus == 'a'){
+                //return $category.$estatus;
+                $incidencias = Incidencia::whereNull('fin')->get();
+            }
+            if ($estatus == 'c'){
+                //return $category.$estatus;
+                $incidencias = Incidencia::where('fin','!=',' ')->get();
+            }
+        }
+        if ($category != 'ambos' && $estatus != 'ambos') {
+            //return $category.$estatus;
+            if ($estatus == 'a'){
+                //return $category.$estatus;
+                $incidencias = Incidencia::where('tipo','=', $category)->orWhereNull('fin')->get();
+            }
+            if ($estatus == 'c'){
+                //return $category.$estatus;
+                $var = " ";
+                $incidencias = Incidencia::where('tipo','=', $category)->orwhere('fin','<>',$var)->get();
+            }
+        }
+        return view('incidencias.consultar',compact('incidencias'));
+    }
     /**
      * Show the form for editing the specified resource.
      */
@@ -94,14 +174,27 @@ class IncidenciaController extends Controller
         $request->validate([
             'ticket' => 'required|string|min:10|max:10',
             'inicio' => 'required|string',
-            'fin' => 'required|string',
             'descripcion' => 'required|string|max:250',
+            'tipo' => 'required|string',
             'solicitante' => 'required|string',
           ]);
+
+          $newStart = date("Y-m-d H:i:s", strtotime($request->inicio));
+          if (isset($request->fin)) {
+            $newEnd = date("Y-m-d H:i:s", strtotime($request->fin));
+          }
+
           $incidencia = Incidencia::find($id);
+
+          $request['inicio'] = $newStart;
+          if (isset($newEnd)) {
+            $request['fin'] = $newEnd;
+          }
+
           $incidencia->update($request->all());
+
           return redirect()->route('incidencias.index')
-            ->with('mensaje', 'Incidencia Actualizada.');
+            ->with('mensaje', 'Registro actualizado.');
     }
 
     /**
@@ -111,6 +204,12 @@ class IncidenciaController extends Controller
           $post = Incidencia::find($id);
           $post->delete();
           return redirect()->route('incidencias.index')
-            ->with('mensaje', 'Incidencia eliminada satisfactoriamente');
+            ->with('mensaje', 'Registro eliminado satisfactoriamente');
         }
+
+    public function export() {
+    
+        return Excel::download(new IncidenciaExport, 'Incidencias.xlsx');
+    
+    }
 }

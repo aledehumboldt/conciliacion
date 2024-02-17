@@ -1,4 +1,4 @@
-@extends('layouts.bootstrap')
+@extends('layouts.app')
 
 @section('titulo', 'Gestión Exclusiones')
 
@@ -6,7 +6,7 @@
 @endsection
 
 @section('encabezado')
-    <h3 class="editor-toolbar-item">Gestion Exclusiones</h3>
+    <h3 class="editor-toolbar-item">Gestión Exclusiones</h3>
     <div style="position: absolute; right: 2%;">
         <a href="{{route('exclusiones.create')}}" class="editor-toolbar-item btn btn-secondary">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-database-add" viewBox="0 0 16 16">
@@ -22,7 +22,7 @@
     @include('layouts.partials.messages')
 
         <table class="table">
-            <thead class="table editor-textarea-editable">
+            <thead class="table">
                 <tr>
                     <th style="display: none">#</th>
                     <th>Ticket</th>
@@ -34,7 +34,7 @@
                     <th>Cliente</th>
                 </tr>
             </thead>
-            <tbody class="table editor-textarea-editable">
+            <tbody class="table">
                 @foreach ($exclusiones as $exclusion)
                 <tr>
                     <td style="display: none">{{$exclusion->id}}</td>
