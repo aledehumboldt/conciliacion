@@ -44,7 +44,7 @@ Route::post('/exclusiones/query', [ExclusioneController::class, 'query'])->name(
 
 //Route::get('pdf',[ReporteController::class, 'generar']);
 
-Route::get('/bypass', [bypasController::class, 'index'])->name('bypass.index');
+//Route::get('/bypass', [bypasController::class, 'index'])->name('bypass.index');
 
 //Route::get('bypass/bypassMin/create', [BypasMinController::class, 'create'])->name('bypass.bypassMin.create');
 
