@@ -141,18 +141,18 @@ class IncidenciaController extends Controller
                 $incidencias = Incidencia::where('fin','!=',' ')->get();
             }
         }
-        if ($category != 'ambos' && $estatus != 'ambos') {
             //return $category.$estatus;
-            if ($estatus == 'a'){
+
+            if ($estatus == 'a' && $category != 'ambos'){
                 //return $category.$estatus;
-                $incidencias = Incidencia::where('tipo','=', $category)->orWhereNull('fin')->get();
+                $incidencias = Incidencia::where('tipo','=', $category)->whereNull('fin')->get();
             }
-            if ($estatus == 'c'){
+            if ($estatus == 'c' && $category != 'ambos'){
                 //return $category.$estatus;
                 $var = " ";
-                $incidencias = Incidencia::where('tipo','=', $category)->orwhere('fin','<>',$var)->get();
+                $incidencias = Incidencia::where('tipo','=', $category)->where('fin','<>',$var)->get();
             }
-        }
+        
         return view('incidencias.consultar',compact('incidencias'));
     }
     /**
