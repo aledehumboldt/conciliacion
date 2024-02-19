@@ -60,8 +60,19 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id) {
-        //
+    public function show(Request $request) {
+
+        $campos = [
+            'usuario' => 'required|numeric'
+        ];
+
+        $this->validate($request,$campos);
+
+        $var = $request->usuario;
+
+        $users = User::where('usuario', $var)->first();
+
+        return view('usuarios.consultar',compact('users'));
     }
 
     /**
