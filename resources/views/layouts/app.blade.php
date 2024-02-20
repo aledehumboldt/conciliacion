@@ -309,7 +309,7 @@
     </div>
     <div class="col-lg-7 col-md-12">
       <div class="row">
-        <div class="col-md-4 mb-5">
+        <div class="col-md-6 mb-5">
           <h5 class="text-secondar text-uppercase mb-4">Vacantes disponibles para la Coordinacion</h5>
           <div class="d-flex flex-column justify-content-start">
             <a class="text-secondar mb-2" href="#">
@@ -348,17 +348,10 @@
             </a>
           </div>
         </div>
-        <div class="col-md-4 mb-5">
+        <div class="col-md-6 mb-5">
           <h5 class="text-secondar text-uppercase mb-4">¿Estas interesado/a en un vacante?</h5>
           <p>Estamos en busqueda de personal proactivo, con la capacidad de trabajar bajo presion y adaptarse a cualquier grupo de trabajo</p>
           <form action="">
-            <div class="input-group">
-              <input type="text" autocomplete="off" class="form-control" placeholder="Introduce tu correo personal">
-              <div class="input-group-append">
-                <button class="btn btn-secondary">Escríbenos</button>
-              </div>
-            </div>
-            <br>
             <div class="input-group-file">
               <input type="file" autocomplete="off" class="form-control">
               <div class="input-group-append">
