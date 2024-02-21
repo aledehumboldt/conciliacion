@@ -41,7 +41,43 @@ class IncidenciaController extends Controller
         //$datos['incidencias'] = Incidencia::paginate();
         $queryBuilder = Incidencia::whereBetween('inicio', [$dateFrom, $dateTo]);
         
-        //return $queryBuilder;
+        $category = request('selectCategory');
+        $estatus = request('selectEstatus');
+        $busqueda = request('busqueda');
+
+        
+        if ($category == 'ambos' && $estatus == 'ambos') {
+            //return $category.$estatus;
+            $queryBuilder;
+        }
+        if ($category != 'ambos' && $estatus == 'ambos') {
+            //return $category.$estatus;
+            $queryBuilder->where('tipo','=', $category);
+        }
+        if ($category == 'ambos' && $estatus != 'ambos') {
+            //return $category.$estatus;
+            if ($estatus == 'a'){
+                //return $category.$estatus;
+                $queryBuilder->whereNull('fin');
+            }
+            if ($estatus == 'c'){
+                //return $category.$estatus;
+                $queryBuilder->where('fin','!=',' ');
+            }
+        }
+        if ($estatus == 'a' && $category != 'ambos'){
+            //return $category.$estatus;
+            $queryBuilder->where('tipo','=', $category)->whereNull('fin');
+        }
+        if ($estatus == 'c' && $category != 'ambos'){
+            //return $category.$estatus;
+            $var = " ";
+            $queryBuilder->where('tipo','=', $category)->where('fin','<>',$var);
+        }
+        
+        if (!empty($busqueda)) {
+            $queryBuilder->where('descripcion','like', '%'.$busqueda.'%');
+        }
 
         $datos['incidencias'] = $queryBuilder->paginate();
 
@@ -114,45 +150,6 @@ class IncidenciaController extends Controller
         $vartmp = $request->ticket;
 
         $incidencias = Incidencia::where('ticket',$vartmp)->get();
-        return view('incidencias.consultar',compact('incidencias'));
-    }
-
-    public function filtro(Request $request) {
-
-        $category = $request->selectCategory;
-        $estatus = $request->selectEstatus;
-        
-        if ($category == 'ambos' && $estatus == 'ambos') {
-            //return $category.$estatus;
-            $incidencias = Incidencia::get();
-        }
-        if ($category != 'ambos' && $estatus == 'ambos') {
-            //return $category.$estatus;
-            $incidencias = Incidencia::where('tipo','=', $category)->get();
-        }
-        if ($category == 'ambos' && $estatus != 'ambos') {
-            //return $category.$estatus;
-            if ($estatus == 'a'){
-                //return $category.$estatus;
-                $incidencias = Incidencia::whereNull('fin')->get();
-            }
-            if ($estatus == 'c'){
-                //return $category.$estatus;
-                $incidencias = Incidencia::where('fin','!=',' ')->get();
-            }
-        }
-            //return $category.$estatus;
-
-            if ($estatus == 'a' && $category != 'ambos'){
-                //return $category.$estatus;
-                $incidencias = Incidencia::where('tipo','=', $category)->whereNull('fin')->get();
-            }
-            if ($estatus == 'c' && $category != 'ambos'){
-                //return $category.$estatus;
-                $var = " ";
-                $incidencias = Incidencia::where('tipo','=', $category)->where('fin','<>',$var)->get();
-            }
-        
         return view('incidencias.consultar',compact('incidencias'));
     }
     /**
