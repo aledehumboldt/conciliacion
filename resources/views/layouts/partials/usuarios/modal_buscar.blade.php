@@ -11,9 +11,9 @@
                 <form action="{{ route('usuarios.show',auth()->user()->id) }}" enctype="multipart/form-data" method="get">
                     @csrf
                     <div class="form-container">
-                        <label for="usuario" class="form-label">Introduzca Cedula</label>
-                        <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
-                            <input type="text" name="usuario" id="usuario" class="form-control" required>
+                        <div class="mb-3 form-floating">
+                            <input type="text" name="usuario" id="usuario" class="form-control" required placeholder="">
+                            <label for="usuario" class="form-label">Introduzca Cedula</label>
                         </div>
                         <button type="submit" class="btn btn-secondary" name="buscar" id="buscar">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">

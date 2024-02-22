@@ -20,34 +20,35 @@
 
 @section('contenido')
     @include('layouts.partials.messages')
-
-        <table class="table">
-            <thead class="table">
-                <tr>
-                    <th style="display: none">#</th>
-                    <th>Ticket</th>
-                    <th>Excluido hasta</th>
-                    <th>Excluido desde</th>
-                    <th>Responsable</th>
-                    <th>Abonado</th>
-                    <th>Observaciones</th>
-                    <th>Cliente</th>
-                </tr>
-            </thead>
-            <tbody class="table">
-                @foreach ($exclusiones as $exclusion)
-                <tr>
-                    <td style="display: none">{{$exclusion->id}}</td>
-                    <td>{{$exclusion->ticket}}</td>
-                    <td>{{$exclusion->fechae}}</td>
-                    <td>{{$exclusion->fechac}}</td>
-                    <td>{{$exclusion->usuario}}</td>
-                    <td>{{$exclusion->celular}}</td>
-                    <td>{{$exclusion->observaciones}}</td>
-                    <td>{{$exclusion->tcliente}}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-        {{$exclusiones->links()}}
+    
+    {{$exclusiones->links()}}
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="display: none">#</th>
+                <th>Ticket</th>
+                <th>Excluido hasta</th>
+                <th>Excluido desde</th>
+                <th>Responsable</th>
+                <th>Abonado</th>
+                <th>Observaciones</th>
+                <th>Cliente</th>
+            </tr>
+        </thead>
+        <tbody class="table">
+            @foreach ($exclusiones as $exclusion)
+            <tr>
+                <td style="display: none">{{$exclusion->id}}</td>
+                <td>{{$exclusion->ticket}}</td>
+                <td>{{$exclusion->fechae}}</td>
+                <td>{{$exclusion->fechac}}</td>
+                <td>{{$exclusion->usuario}}</td>
+                <td>{{$exclusion->celular}}</td>
+                <td>{{$exclusion->observaciones}}</td>
+                <td>{{$exclusion->tcliente}}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+    {{$exclusiones->links()}}
 @endsection

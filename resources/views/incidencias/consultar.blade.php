@@ -90,7 +90,7 @@
         </form>
     </div>
         <table class="table" id="fbody">
-            <thead class="table">
+            <thead>
                 <tr>
                     <th style="display: none">#</th>
                     <th>Ticket</th>
