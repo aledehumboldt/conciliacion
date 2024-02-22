@@ -99,6 +99,7 @@
                     <th>Descripcion</th>
                     <th>Tipo</th>
                     <th>Solicitante</th>
+                    <th>Responsable</th>
                     <th style="text-align: center">Acciones</th>
                 </tr>
             </thead>
@@ -112,6 +113,7 @@
                     <td>{{$incidencia->descripcion}}</td>
                     <td>{{ucwords($incidencia->tipo)}}</td>
                     <td>{{$incidencia->solicitante}}</td>
+                    <td>{{$incidencia->responsable}}</td>
                     <td>
                         <div style="display: flex; align-items: center;justify-content: center;">
                         <a href="{{route('incidencias.edit',$incidencia->id)}}">

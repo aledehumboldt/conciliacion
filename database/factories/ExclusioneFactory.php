@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +20,7 @@ class ExclusioneFactory extends Factory
             'ticket' => fake()->numerify('##########'),
             'fechae' => fake()->dateTimeBetween('now', '+1 year'),
             'fechac' => now(),
-            'usuario' => fake()->numerify('########'),
+            'usuario' => User::inRandomOrder()->first()->usuario,
             'codarea' => fake()->randomElement(['416', '426']),
             'numero' => fake()->numerify('#######'),
             'observaciones' => fake()->sentence(),

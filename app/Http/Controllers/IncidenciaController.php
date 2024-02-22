@@ -32,7 +32,6 @@ class IncidenciaController extends Controller
         $anio = date('Y');
         $dateFrom = $anio."-".$mes."-01 00:00:00";
         $dateTo = $anio."-".$mes."-31 23:59:59";
-        //$datos['incidencias'] = Incidencia::paginate();
         $queryBuilder = Incidencia::whereBetween('inicio', [$dateFrom, $dateTo]);
         
         $category = request('selectCategory');
@@ -100,6 +99,7 @@ class IncidenciaController extends Controller
 
         $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosIncidencia['responsable'] = auth()->user()->usuario;
         $newStart = date("Y-m-d H:i:s", strtotime($datosIncidencia['inicio']));
         $datosIncidencia['inicio'] = $newStart;
 

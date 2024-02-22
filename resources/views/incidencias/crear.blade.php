@@ -32,12 +32,12 @@
         </div>
         <div class="mb-3">
             <label for="inicio" class="form-label">Fecha Inicio</label>
-            <input type="text" autocomplete="off" name="inicio" id="inicio" class="form-control" value="{{old('inicio')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
+            <input type="text" name="inicio" id="inicio" class="form-control" value="{{old('inicio')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
             this.type='text'">
         </div>        
         <div class="mb-3">
             <label for="fin" class="form-label">Fecha Fin</label>
-            <input type="text" autocomplete="off" name="fin" id="fin" class="form-control" value="{{old('fin')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
+            <input type="text" name="fin" id="fin" class="form-control" value="{{old('fin')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
             this.type='text'">
         </div>
         <label for="descripcion" class="form-label">Descripcion</label>
@@ -52,10 +52,13 @@
             <option value="requerimiento">Requerimiento</option>
         </select>
       </div>
-      <div class="form-floating mb-3">
-        <input type="text" name="solicitante" id="solicitante" class="form-control"
-            value="{{old('solicitante')}}" placeholder="">
+      <div class="mb-3">
         <label for="solicitante" class="form-label text-secondary">Solicitante</label>
+        <select name="solicitante" id="solicitante" class="form-control custom-select">
+            <option value="">Seleccione</option>
+            <option value="CYA">CYA</option>
+            <option value="Soporte de Averias">Soporte de Averias</option>
+        </select>
     </div>
         <div class="text-center">
             <button type="submit" name="agregar" id="agregar" class="btn btn-secondary">

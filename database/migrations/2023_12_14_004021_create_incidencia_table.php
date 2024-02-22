@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('fin')->nullable();
             $table->text('descripcion');
             $table->string('tipo');
-            $table->text('solicitante');
+            $table->string('solicitante');
+            $table->string('responsable');
             $table->timestamps();
         });
     }

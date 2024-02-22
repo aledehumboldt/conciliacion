@@ -66,14 +66,18 @@ class BypassAmbosController extends Controller
         $min = $datosBypass['codarea'].$datosBypass['min'];
         $imsi = $datosBypass['imsi'];
 
-        //Agregando valores necesarios
+        //Agregando valores necesarios 
         $datosBypass['min'] = $min;
         $datosBypass['usuario'] = auth()->user()->usuario;
         $datosBypass['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosBypass['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosBypass['fecha'] = date("Y-m-d H:i:s", strtotime($request->fin));
 
         //Eliminando del array
-        unset($datosBypass['codarea'],$datosBypass['imsi']);
+        unset($datosBypass['codarea'],
+        $datosBypass['imsi'],
+        $datosBypass['inicio'],
+        $datosBypass['fin']);
 
         //Insertando la tabla Bypass MIN
         BypasMin::insert($datosBypass);
@@ -93,6 +97,7 @@ class BypassAmbosController extends Controller
         $datosBypass['inicio'] = date("Y-m-d H:i:s", strtotime($request->fecha));
         $datosBypass['descripcion'] = $request->observaciones;
         $datosBypass['solicitante'] = auth()->user()->perfil;
+        $datosBypass['responsable'] = $datosBypass['usuario'];
         $datosBypass['tipo'] = "requerimiento";
 
         //Eliminando del array
@@ -103,8 +108,13 @@ class BypassAmbosController extends Controller
             $datosBypass['fecha']
         );
 
+        $incidencia = Incidencia::where('ticket',$datosBypass['ticket'])
+        ->first();
+
         //Insertando la tabla Incidencias
-        Incidencia::insert($datosBypass);
+        if (empty($incidencia)) {
+            Incidencia::insert($datosBypass);
+        }
         //-------------------Incidencia--------------
         
         //Redireccionando
@@ -167,6 +177,7 @@ class BypassAmbosController extends Controller
         $datosIncidencia['solicitante'] = auth()->user()->perfil;
         $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosIncidencia['responsable'] = auth()->user()->usuario;
         $datosIncidencia['inicio'] = date("Y-m-d H:i:s", strtotime($request->fecha));
         $datosIncidencia['tipo'] = "requerimiento";
 
@@ -177,8 +188,13 @@ class BypassAmbosController extends Controller
             $datosIncidencia['observaciones'],$datosIncidencia['fecha'],
         );
         
+        $incidencia = Incidencia::where('ticket',$datosIncidencia['ticket'])
+        ->first();
+
         //Agregando registro a Incidencia
-        Incidencia::insert($datosIncidencia);
+        if (empty($incidencia)) {
+            Incidencia::insert($datosIncidencia);
+        }
         //-------------------Incidencia--------------
         
         //Redireccionando

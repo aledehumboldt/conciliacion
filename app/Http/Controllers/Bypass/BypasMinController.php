@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Bypass;
 use App\Http\Controllers\Controller;
 use App\Models\BypasMin;
 use App\Models\Incidencia;
-use App\Imports\bypassMinImport;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Http\Requests\StoreBypassMinRequest;
@@ -57,7 +55,6 @@ class BypasMinController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StoreBypassMinRequest $request) {
-
         //-------------------Bypass--------------
         //En caso de ser una exclusion vista SA
         if (isset($request->excluir)) {
@@ -66,6 +63,9 @@ class BypasMinController extends Controller
             $request['descripcion'] = $request->observaciones; 
             $request['solicitante'] = auth()->user()->perfil;
             $request['tipo'] = "requerimiento";
+
+
+        //return $request;
 
             //Buscando registro para realizar exclusion
             $bypass = BypasMin::where([
@@ -118,6 +118,7 @@ class BypasMinController extends Controller
         $datosMinbypas['fin'] = date("Y-m-d H:i:s", strtotime($request->fin));
         $datosMinbypas['descripcion'] = $request->observaciones;
         $datosMinbypas['solicitante'] = auth()->user()->perfil;
+        $datosMinbypas['responsable'] = $datosMinbypas['usuario'];
         $datosMinbypas['tipo'] = "requerimiento";
 
         //Eliminando del array
@@ -130,7 +131,8 @@ class BypasMinController extends Controller
             $datosMinbypas['fecha']
         );
 
-        $incidencia = Incidencia::where('ticket',$datosMinbypas['ticket'])->first();
+        $incidencia = Incidencia::where('ticket',$datosMinbypas['ticket'])
+        ->first();
 
         //Insertando la tabla Incidencias
         if (empty($incidencia)) {
@@ -218,13 +220,15 @@ class BypasMinController extends Controller
         //Agregando valores necesarios
         $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosIncidencia['responsable'] = auth()->user()->usuario;
         $datosIncidencia['inicio'] = date("Y-m-d H:i:s", strtotime($request->inicio));
 
         if (isset($request->fin)) {
             $datosIncidencia['fin'] = date("Y-m-d H:i:s", strtotime($request->fin));
         }
 
-        $incidencia = Incidencia::where('ticket',$datosIncidencia['ticket']);
+        $incidencia = Incidencia::where('ticket',$datosIncidencia['ticket'])
+        ->first();
 
         //Insertando la tabla Incidencias
         if (empty($incidencia)) {

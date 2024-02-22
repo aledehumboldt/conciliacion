@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,7 +22,8 @@ class IncidenciaFactory extends Factory
             'fin' => fake()->dateTimeThisMonth()->format('Y-m-d H:i:s'),
             'descripcion' => fake()->sentence(),
             'tipo' => fake()->randomElement(['incidencia', 'requerimiento']),
-            'solicitante' => fake()->randomElement(['CYA', 'Soporte de Averias'])
+            'solicitante' => fake()->randomElement(['CYA', 'Soporte de Averias']),
+            'responsable' => User::inRandomOrder()->first()->usuario
         ];
     }
 }

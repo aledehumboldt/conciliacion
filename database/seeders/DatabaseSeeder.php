@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void {
         $this->call([
-            ExclusioneSeeder::class,
             UserSeeder::class,
+            ExclusioneSeeder::class,
             IncidenciaSeeder::class,
             BypasMinSeeder::class,
             BypasImsiSeeder::class,
