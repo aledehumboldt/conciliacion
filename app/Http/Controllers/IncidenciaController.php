@@ -41,15 +41,43 @@ class IncidenciaController extends Controller
         //$datos['incidencias'] = Incidencia::paginate();
         $queryBuilder = Incidencia::whereBetween('inicio', [$dateFrom, $dateTo]);
         
-        if (request(key: 'selectCategory') ?? false) {
-            $queryBuilder->where('tipo','=',request(key: 'selectCategory'));
-        }
+        $category = request('selectCategory');
+        $estatus = request('selectEstatus');
+        $busqueda = request('busqueda');
 
-        if (request(key: 'selectEstatus') ?? false) {
-            $queryBuilder->where('fin','!=',request(key: 'selectEstatus'));
+        
+        if ($category == 'ambos' && $estatus == 'ambos') {
+            //return $category.$estatus;
+            $queryBuilder;
         }
-
-        //return $queryBuilder;
+        if ($category != 'ambos' && $estatus == 'ambos') {
+            //return $category.$estatus;
+            $queryBuilder->where('tipo','=', $category);
+        }
+        if ($category == 'ambos' && $estatus != 'ambos') {
+            //return $category.$estatus;
+            if ($estatus == 'a'){
+                //return $category.$estatus;
+                $queryBuilder->whereNull('fin');
+            }
+            if ($estatus == 'c'){
+                //return $category.$estatus;
+                $queryBuilder->where('fin','!=',' ');
+            }
+        }
+        if ($estatus == 'a' && $category != 'ambos'){
+            //return $category.$estatus;
+            $queryBuilder->where('tipo','=', $category)->whereNull('fin');
+        }
+        if ($estatus == 'c' && $category != 'ambos'){
+            //return $category.$estatus;
+            $var = " ";
+            $queryBuilder->where('tipo','=', $category)->where('fin','<>',$var);
+        }
+        
+        if (!empty($busqueda)) {
+            $queryBuilder->where('descripcion','like', '%'.$busqueda.'%');
+        }
 
         $datos['incidencias'] = $queryBuilder->paginate();
 
@@ -124,7 +152,6 @@ class IncidenciaController extends Controller
         $incidencias = Incidencia::where('ticket',$vartmp)->get();
         return view('incidencias.consultar',compact('incidencias'));
     }
-
     /**
      * Show the form for editing the specified resource.
      */

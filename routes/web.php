@@ -62,6 +62,8 @@ Route::get('incidencias/show', [IncidenciaController::class, 'show'])->name('inc
 
 Route::post('incidencias/{incidencia}', [IncidenciaController::class, 'store'])->name('incidencias.store');
 
+Route::get('incidencias/filtro', [IncidenciaController::class, 'filtro'])->name('incidencias.filtro');
+
 Route::get('incidencias/export', [IncidenciaController::class, 'export'])->name('incidencias.export');
 //--------------------------------------------------Fin Incidencias--------------------------------
 
@@ -71,8 +73,6 @@ Route::get('bypassMin', [BypasMinController::class, 'index'])->name('bypassMin.i
 Route::get('bypassMin/show', [BypasMinController::class, 'show'])->name('bypassMin.show');
 
 Route::post('bypassMin', [BypasMinController::class, 'store'])->name('bypassMin.store');
-
-Route::post('bypassMin/SA', [BypasMinController::class, 'storeSA'])->name('bypassMin.storesa');
 
 Route::post('bypassMin/{id}', [BypasMinController::class, 'destroy'])->name('bypassMin.destroy');
 

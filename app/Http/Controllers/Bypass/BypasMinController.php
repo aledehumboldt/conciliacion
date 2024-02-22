@@ -63,7 +63,7 @@ class BypasMinController extends Controller
         if (isset($request->excluir)) {
             //Agregando valores necesarios para Incidencia
             $numero = $request->codarea.$request->min;
-            $request['descripcion'] = $request->observaciones;
+            $request['descripcion'] = $request->observaciones; 
             $request['solicitante'] = auth()->user()->perfil;
             $request['tipo'] = "requerimiento";
 
@@ -72,6 +72,11 @@ class BypasMinController extends Controller
                 ['min',$numero],
                 ['ticket',$request->ticket]
             ])->first();
+
+            if(empty($bypass)) {
+                return redirect()->route('bypassMin.index')
+                ->with('mensaje', 'Abonado no existe en el listado.');
+            }
 
             //Eliminando del array
             unset(
@@ -125,7 +130,7 @@ class BypasMinController extends Controller
             $datosMinbypas['fecha']
         );
 
-        $incidencia = Incidencia::where('ticket',$datosMinbypas['ticket']);
+        $incidencia = Incidencia::where('ticket',$datosMinbypas['ticket'])->first();
 
         //Insertando la tabla Incidencias
         if (empty($incidencia)) {

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class BypassController extends Controller
 {
-        protected function verify() {
+    protected function verify() {
         if (Auth::user()->estatus != "Iniciado") {
             return true;
         } else {
@@ -29,5 +29,4 @@ class BypassController extends Controller
     public function show(Request $request) {
         return view('bypass.bypassMin.index', $request);
     }
-
 }

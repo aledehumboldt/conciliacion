@@ -44,7 +44,8 @@ class BypassAmbosController extends Controller
         //Validando parametros enviados 
         $campos = [
             'ticket' => 'required|string',
-            'fecha' => 'required|string',
+            'inicio' => 'required|string',
+            'fin' => 'required|string',
             'codarea' => 'required|string',
             'min' => 'required|numeric',
             'imsi' => 'required|numeric',
@@ -141,12 +142,22 @@ class BypassAmbosController extends Controller
         $min = $datosIncidencia['codarea'].$datosIncidencia['min'];
 
         //Eliminando de la tabla Bypass MIN
-        $numero = BypasMin::where('min',$min);
-        $numero->delete();
-
+        $numero = BypasMin::where('min',$min)->first();
+        if (empty($numero)) { $a = true; }
+        else { $numero->delete(); }
+        
         //Eliminando de la tabla Bypass IMSI
-        $numero = BypasImsi::where('imsi',$datosIncidencia['imsi']);
-        $numero->delete();
+        $imsi = BypasImsi::where('imsi',$datosIncidencia['imsi'])->first();
+        if (!empty($imsi)) { $imsi->delete(); }
+        else {
+            if($a) { $b = true; }
+            else { $a = true; }
+        }
+
+        if($b) {
+            return redirect()->route('bypassAmbos.create')
+            ->with('mensaje', 'Abonado no existe en los listados.');
+        }
 
         //-------------------Incidencia--------------
         $datosIncidencia = request()->except('_token', 'excluir');
