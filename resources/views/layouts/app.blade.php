@@ -274,7 +274,7 @@
 <!--<a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>-->
 
 <!-- Footer Start -->
-<div class="container-fluid bg-dark text-secondar mt-5 pt-5">
+<div class="container-fluid bg-dark text-secondar mt-5">
   <div class="row px-xl-5 pt-5">
     <div class="col-lg-5 col-md-12 mb-5 pr-3 pr-xl-5">
       <h5 class="text-secondar text-uppercase mb-4">Coordinacion de Aprovisionamiento</h5>
@@ -351,14 +351,14 @@
         <div class="col-md-6 mb-5">
           <h5 class="text-secondar text-uppercase mb-4">¿Estas interesado/a en un vacante?</h5>
           <p>Estamos en busqueda de personal proactivo, con la capacidad de trabajar bajo presion y adaptarse a cualquier grupo de trabajo</p>
-          <form action="">
-            <div class="input-group-file">
-              <input type="file" autocomplete="off" class="form-control">
-              <div class="input-group-append">
+
+            <div class="container-fluid col-md-12">
+              <input type="file" autocomplete="off" class="form-control"> 
+              <div>
                 <button class="btn btn-secondary">Adjuntar</button>
               </div>
             </div>
-          </form>
+ 
         </div>
       </div>
     </div>
