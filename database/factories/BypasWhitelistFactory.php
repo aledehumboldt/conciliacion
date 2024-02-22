@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +19,7 @@ class BypasWhitelistFactory extends Factory
         $result = [
             'ticket' => fake()->numerify('##########'),
             'fecha' => fake()->dateTimeBetween('now', '+1 year'),
-            'usuario' => fake()->numerify('########'),
+            'usuario' => User::inRandomOrder()->first()->usuario,
             'codarea' => fake()->randomElement(['416', '426']),
             'numero' => fake()->numerify('########'),
             'observaciones' => fake()->sentence(),

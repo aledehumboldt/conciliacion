@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,15 +19,15 @@ class BypasImsiFactory extends Factory
         $result = [
             'ticket' => fake()->numerify('##########'),
             'fecha' => fake()->dateTimeBetween('now', '+1 year'),
-            'usuario' => fake()->numerify('########'),
-            'tipsim' => fake()->randomElement(['7340610', '7340630']),
-            'restsim' => fake()->numerify('########'),
+            'usuario' => User::inRandomOrder()->first()->usuario,
+            'codarea' => fake()->randomElement(['7340610', '7340630']),
+            'sim' => fake()->numerify('########'),
             'observaciones' => fake()->sentence(),
         ];
 
-        $result['imsi'] = $result['tipsim'].$result['restsim'];
+        $result['imsi'] = $result['codarea'].$result['sim'];
 
-        unset($result['tipsim'], $result['restsim']);
+        unset($result['codarea'], $result['sim']);
         
         return $result;
     }

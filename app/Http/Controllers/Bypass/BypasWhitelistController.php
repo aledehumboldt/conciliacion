@@ -116,6 +116,7 @@ class BypasWhitelistController extends Controller
         $datosMinbypas['fin'] = $request->fecha;
         $datosMinbypas['descripcion'] = $request->observaciones;
         $datosMinbypas['solicitante'] = auth()->user()->perfil;
+        $datosMinbypas['responsable'] = $datosMinbypas['usuario'];
         $datosMinbypas['tipo'] = "requerimiento";
 
         //Eliminando del array
@@ -127,8 +128,13 @@ class BypasWhitelistController extends Controller
             $datosMinbypas['fecha']
         );
 
+        $incidencia = Incidencia::where('ticket',$datosMinbypas['ticket'])
+        ->first();
+
         //Insertando la tabla Incidencias
-        Incidencia::insert($datosMinbypas);
+        if (empty($incidencia)) {
+            Incidencia::insert($datosMinbypas);
+        }
         //---------------Incidencia--------------
         
         //Redireccionando
@@ -175,6 +181,8 @@ class BypasWhitelistController extends Controller
             'observaciones' => 'required|string',
         ];
 
+        $this->validate($request,$campos);
+
         $datosMinbypas = request()->except('_token', 'editar', '_method');
 
         //Sustituyendo valores necesarios
@@ -190,7 +198,7 @@ class BypasWhitelistController extends Controller
         unset($datosMinbypas['codarea']);
 
         BypasWhitelist::where('id','=',$id)->update($datosMinbypas);
-        $bypas_min = BypasWhitelist::findOrFail($id);
+        
           return redirect()->route('bypassWhitelist.index')
             ->with('mensaje', 'Registro actualizado.');
     }
@@ -218,13 +226,18 @@ class BypasWhitelistController extends Controller
         //Agregando valores necesarios
         $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosIncidencia['responsable'] = auth()->user()->usuario;
         $newDate = date("Y-m-d H:i:s", strtotime($datosIncidencia['inicio']));
 
         $datosIncidencia['inicio'] = $newDate;
         
-        //Agregando registro a Incidencia
-        Incidencia::insert($datosIncidencia);
+        $incidencia = Incidencia::where('ticket',$datosIncidencia['ticket'])
+        ->first();
 
+        //Agregando registro a Incidencia
+        if (empty($incidencia)) {
+            Incidencia::insert($datosIncidencia);
+        }
         return redirect()->route('bypassWhitelist.index')
         ->with('mensaje', 'Abonado excluido exitosamente.');
     }

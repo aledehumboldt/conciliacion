@@ -118,6 +118,7 @@ class BypasImsiController extends Controller
         $datosImsibypas['fin'] = date("Y-m-d H:i:s", strtotime($request->fin));
         $datosImsibypas['descripcion'] = $request->observaciones;
         $datosImsibypas['solicitante'] = auth()->user()->perfil;
+        $datosImsibypas['responsable'] = $datosImsibypas['usuario'];
         $datosImsibypas['tipo'] = "requerimiento";
 
         //Eliminando del array
@@ -128,7 +129,8 @@ class BypasImsiController extends Controller
             $datosImsibypas['fecha']
         );
 
-        $incidencia = Incidencia::where('ticket',$datosImsibypas['ticket'])->first();
+        $incidencia = Incidencia::where('ticket',$datosImsibypas['ticket'])
+        ->first();
 
         //Insertando la tabla Incidencias
         if (empty($incidencia)) {
@@ -176,6 +178,8 @@ class BypasImsiController extends Controller
             'observaciones' => 'required|string',
         ];
 
+        $this->validate($request,$campos);
+
         $datosImsibypas = request()->except('_token', 'editar', '_method');
 
         //Sustituyendo valores necesarios
@@ -186,7 +190,7 @@ class BypasImsiController extends Controller
         $datosImsibypas['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
 
         BypasImsi::where('id','=',$id)->update($datosImsibypas);
-        $bypas_min = BypasImsi::findOrFail($id);
+        
           return redirect()->route('bypassImsi.index')
             ->with('mensaje', 'Registro actualizado.');
     }
@@ -214,6 +218,7 @@ class BypasImsiController extends Controller
         //Agregando valores necesarios
         $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosIncidencia['responsable'] = auth()->user()->usuario;
         $newStart = date("Y-m-d H:i:s", strtotime($datosIncidencia['inicio']));
         $datosIncidencia['inicio'] = $newStart;
 
@@ -222,7 +227,8 @@ class BypasImsiController extends Controller
             $datosIncidencia['fin'] = $newEnd;
         }
         
-        $incidencia = Incidencia::where('ticket',$datosIncidencia['ticket']);
+        $incidencia = Incidencia::where('ticket',$datosIncidencia['ticket'])
+        ->first();
 
         //Insertando la tabla Incidencias
         if (empty($incidencia)) {
