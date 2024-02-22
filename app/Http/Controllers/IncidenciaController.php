@@ -28,12 +28,6 @@ class IncidenciaController extends Controller
             return back();
         }
 
-
-        $mes = date("m");
-        //$mes = date('m');
-        //$fecha = date('Y-m-j');
-        //mes = strtotime ( '-1 month' , strtotime ( $fecha ) ) ;
-        //$mes = date ( 'm' , $mes );
         $mes = date('m');
         $anio = date('Y');
         $dateFrom = $anio."-".$mes."-01 00:00:00";
@@ -45,34 +39,26 @@ class IncidenciaController extends Controller
         $estatus = request('selectEstatus');
         $busqueda = request('busqueda');
 
-        
-        if ($category == 'ambos' && $estatus == 'ambos') {
-            //return $category.$estatus;
-            $queryBuilder;
-        }
         if ($category != 'ambos' && $estatus == 'ambos') {
-            //return $category.$estatus;
+
             $queryBuilder->where('tipo','=', $category);
         }
         if ($category == 'ambos' && $estatus != 'ambos') {
-            //return $category.$estatus;
             if ($estatus == 'a'){
-                //return $category.$estatus;
                 $queryBuilder->whereNull('fin');
             }
             if ($estatus == 'c'){
-                //return $category.$estatus;
                 $queryBuilder->where('fin','!=',' ');
             }
         }
         if ($estatus == 'a' && $category != 'ambos'){
-            //return $category.$estatus;
-            $queryBuilder->where('tipo','=', $category)->whereNull('fin');
+            $queryBuilder->where('tipo','=', $category)
+            ->whereNull('fin');
         }
         if ($estatus == 'c' && $category != 'ambos'){
-            //return $category.$estatus;
             $var = " ";
-            $queryBuilder->where('tipo','=', $category)->where('fin','<>',$var);
+            $queryBuilder->where('tipo','=', $category)
+            ->where('fin','<>',$var);
         }
         
         if (!empty($busqueda)) {
@@ -119,7 +105,7 @@ class IncidenciaController extends Controller
 
         if (isset($datosIncidencia['fin'])) {
             $newEnd = date("Y-m-d H:i:s", strtotime($datosIncidencia['fin']));
-            $datosIncidencia['inicio'] = $newEnd;
+            $datosIncidencia['fin'] = $newEnd;
         }
 
         $incidencia = Incidencia::where('ticket',$datosIncidencia['ticket'])->first();
