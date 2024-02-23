@@ -86,7 +86,8 @@ class BypassAmbosController extends Controller
         $datosBypass['imsi'] = $imsi;
 
         //Eliminando del array
-        unset($datosBypass['min'],$datosBypass['tcliente']);
+        unset($datosBypass['min'],
+        $datosBypass['tcliente']);
 
         //Insertando la tabla Bypass IMSI
         BypasImsi::insert($datosBypass);
@@ -94,7 +95,8 @@ class BypassAmbosController extends Controller
 
         //-------------------Incidencia--------------
         //Agregando valores necesarios
-        $datosBypass['inicio'] = date("Y-m-d H:i:s", strtotime($request->fecha));
+        $datosBypass['inicio'] = date("Y-m-d H:i:s", strtotime($request->inicio));
+        $datosBypass['fin'] = date("Y-m-d H:i:s", strtotime($request->fin));
         $datosBypass['descripcion'] = $request->observaciones;
         $datosBypass['solicitante'] = auth()->user()->perfil;
         $datosBypass['responsable'] = $datosBypass['usuario'];
@@ -147,10 +149,12 @@ class BypassAmbosController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Request $request) {
+
         //Sustituyendo valores necesarios
         $datosIncidencia = $request->except('_token', 'excluir');
         $min = $datosIncidencia['codarea'].$datosIncidencia['min'];
-
+        $a = false;$b = false;
+        
         //Eliminando de la tabla Bypass MIN
         $numero = BypasMin::where('min',$min)->first();
         if (empty($numero)) { $a = true; }
@@ -178,14 +182,15 @@ class BypassAmbosController extends Controller
         $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['responsable'] = auth()->user()->usuario;
-        $datosIncidencia['inicio'] = date("Y-m-d H:i:s", strtotime($request->fecha));
+        $datosIncidencia['inicio'] = date("Y-m-d H:i:s", strtotime($request->inicio));
+        $datosIncidencia['fin'] = date("Y-m-d H:i:s", strtotime($request->fin));
         $datosIncidencia['tipo'] = "requerimiento";
 
          //Eliminando del array
          unset(
             $datosIncidencia['min'],$datosIncidencia['imsi'],
             $datosIncidencia['codarea'],$datosIncidencia['tcliente'],
-            $datosIncidencia['observaciones'],$datosIncidencia['fecha'],
+            $datosIncidencia['observaciones'],
         );
         
         $incidencia = Incidencia::where('ticket',$datosIncidencia['ticket'])
