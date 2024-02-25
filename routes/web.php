@@ -151,6 +151,9 @@ Route::get('aprovisionamientos/conexion', [AprovisionamientosController::class, 
 Route::get('aprovisionamientos/desconexion', [AprovisionamientosController::class, 'desconexion'])->name('aprovisionamientos.desconexion');
 //-------------------------------------------------Fin Aprovisionamientos------------------------------------------------
 
+//------------------------------------------------Proof-----------------------------------------------
+//Route::get('proof', '[]')->name('proof');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);
     Route::resource('exclusiones', ExclusioneController::class);
