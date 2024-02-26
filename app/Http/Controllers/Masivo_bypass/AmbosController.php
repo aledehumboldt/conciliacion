@@ -1,25 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Masivo_bypass;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Imports\bypassAmbosImport;
 use App\Imports\bypassImsiImport;
 use App\Imports\bypassMinImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
 use App\Models\BypasMin;
 use App\Models\BypasImsi;
 
-class ambosMasivoController extends Controller
+class AmbosController extends Controller
 {
     protected function verify() {
-    if (Auth::user()->estatus != "Iniciado") {
-        return true;
-    } else {
-        return false;
-    }
+        if (Auth::user()->estatus != "Iniciado") {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -29,13 +28,8 @@ class ambosMasivoController extends Controller
         if(!$this->verify()) {
             return back();
         }
-        
-        //validando el perfil de usuario
-        if (Auth::user()->perfil == "SA") {
-            return $this->create();
-        }
 
-        return view('bypass.bypasMasivAmbos.index');
+        return view('bypass_masivo.ambos.index');
     }
 
     public function import(Request $request)

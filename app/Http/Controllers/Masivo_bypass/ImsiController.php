@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Masivo_bypass;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Imports\bypassImsiImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
 use App\Models\BypasImsi;
-use App\Models\Incidencia;
 
-class imsiMasivoController extends Controller
+class ImsiController extends Controller
 {
     protected function verify() {
         if (Auth::user()->estatus != "Iniciado") {
@@ -27,13 +26,8 @@ class imsiMasivoController extends Controller
         if(!$this->verify()) {
             return back();
         }
-        
-        //validando el perfil de usuario
-        if (Auth::user()->perfil == "SA") {
-            return $this->create();
-        }
 
-        return view('bypass.bypasMasivImsi.index');
+        return view('bypass_masivo.imsi.index');
     }
 
     public function import(Request $request)

@@ -82,14 +82,14 @@
                 <option value="c">Cerrados</option>
             </select>
             <button type="submit" class="btn btn-secondary">Buscar</button>
-            <label for="busqueda">Busqueda Avanzada:</label>
         </form>
-        <div class="mb-3">
+        <!-- <div class="mb-3">
+            <label for="busqueda">Busqueda Avanzada:</label>
             <form action="#" enctype="multipart/form-data" method="get">
                 <input type="text" class="form-controler" id="busqueda" name="busqueda">
                 <button type="submit" class="btn btn-secondary form-controler-button">Buscar</button>
             </form>
-        </div>
+        </div> -->
     </div>
     {{$incidencias->appends(request()->query())->links()}}
     <table class="table" id="fbody">
