@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Masivo_bypass;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Imports\bypassWhitelistImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
 use App\Models\BypasWhitelist;
-use App\Models\Incidencia;
 
-class whitelistMasivoController extends Controller
+class WhitelistController extends Controller
 {
     protected function verify() {
         if (Auth::user()->estatus != "Iniciado") {
@@ -27,13 +26,8 @@ class whitelistMasivoController extends Controller
         if(!$this->verify()) {
             return back();
         }
-        
-        //validando el perfil de usuario
-        if (Auth::user()->perfil == "SA") {
-            return $this->create();
-        }
 
-        return view('bypass.bypasMasivWhitelist.index');
+        return view('bypass_masivo.whitelist.index');
     }
 
     public function import(Request $request)

@@ -6,7 +6,7 @@ use App\Models\Aprovisionamiento;
 use App\Http\Requests\StoreAprovisionamientoRequest;
 use App\Http\Requests\UpdateAprovisionamientoRequest;
 
-class AprovisionamientosController extends Controller
+class AprovisionamientoController extends Controller
 {
     /**
      * Display a listing of the resource.

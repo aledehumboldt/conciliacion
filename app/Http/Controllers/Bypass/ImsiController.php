@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
-class BypasImsiController extends Controller
+class ImsiController extends Controller
 {
     /**
      * Verify if the user can see these views.
@@ -36,7 +36,7 @@ class BypasImsiController extends Controller
         }
         
         $datos['bypas_imsis'] = BypasImsi::orderBy('id','asc')->paginate();
-        return view('bypass.bypassImsi.index', $datos);
+        return view('bypass.imsi.index', $datos);
     }
 
     /**
@@ -47,7 +47,7 @@ class BypasImsiController extends Controller
             return back();
         }
 
-        return view('bypass.bypassImsi.crear');
+        return view('bypass.imsi.crear');
     }
 
     /**
@@ -72,13 +72,10 @@ class BypasImsiController extends Controller
             $request['descripcion'] = $request->observaciones;
             $request['solicitante'] = auth()->user()->perfil;
             $request['tipo'] = "requerimiento";
-
+            
             //Buscando registro para realizar exclusion
-            $bypass = BypasImsi::where([
-                ['imsi',$request->imsi],
-                ['ticket',$request->ticket]
-            ])->first();
-
+            $bypass = BypasImsi::where('imsi',$request->imsi)->first();
+            
             if(empty($bypass)) {
                 return redirect()->route('bypassMin.index')
                 ->with('mensaje', 'IMSI no existe en el listado.');
@@ -90,7 +87,7 @@ class BypasImsiController extends Controller
                 $request['observaciones'],
             );
 
-            return $this->destroy($request,$bypass->id);
+            return $this->destroy($request,$bypass->imsi);
         }
 
         //Sustituyendo valores necesarios
@@ -156,7 +153,7 @@ class BypasImsiController extends Controller
 
         $bypas_imsis = BypasImsi::where('imsi',$request->imsi)->get();
 
-        return view('bypass.bypassImsi.consultar',compact('bypas_imsis'));
+        return view('bypass.imsi.consultar',compact('bypas_imsis'));
     }
 
     /**
@@ -225,11 +222,9 @@ class BypasImsiController extends Controller
         $datosIncidencia['responsable'] = auth()->user()->usuario;
         $newStart = date("Y-m-d H:i:s", strtotime($datosIncidencia['inicio']));
         $datosIncidencia['inicio'] = $newStart;
-
-        if ($datosIncidencia['fin']) {
-            $newEnd = date("Y-m-d H:i:s", strtotime($datosIncidencia['fin']));
-            $datosIncidencia['fin'] = $newEnd;
-        }
+        $newEnd = date("Y-m-d H:i:s", strtotime($datosIncidencia['fin']));
+        $datosIncidencia['fin'] = $newEnd;
+        $datosIncidencia['tipo'] = "requerimiento";
         
         $incidencia = Incidencia::where('ticket',$datosIncidencia['ticket'])
         ->first();
