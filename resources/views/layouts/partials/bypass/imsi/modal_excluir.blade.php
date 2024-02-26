@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('bypassImsi.destroy',$bypas_imsi->id)}}" enctype="multipart/form-data" method="POST">
+                <form action="{{ route('bypassImsi.destroy',$imsi)}}" enctype="multipart/form-data" method="POST">
                     @csrf
                     <div class="form-container">
                         <h6>Para excluir es necesario rellenar el presente formulario:</h6>

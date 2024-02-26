@@ -198,11 +198,7 @@ class BypasImsiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, $id) {
-        //Eliminando de la tabla Bypass MIN
-        $imsi = BypasImsi::find($id);
-        $imsi->delete();
-
+    public function destroy(Request $request, $imsi) {
         //Validando los datos enviados
         $campos = [
             'ticket' => 'required|string|min:10|max:10',
@@ -212,6 +208,14 @@ class BypasImsiController extends Controller
         ];
 
         $this->validate($request,$campos);
+
+        //Eliminando de la tabla Bypass MIN
+        $imsi = BypasImsi::where('imsi',$imsi)->first();
+        if(empty($imsi)) {
+            return redirect()->route('bypassImsi.index')
+            ->with('mensaje', 'IMSI no existe en el listado.');
+        }
+        else { $imsi->delete(); }
 
         $datosIncidencia = request()->except('_token', 'excluir');
 

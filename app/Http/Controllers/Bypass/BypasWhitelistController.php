@@ -57,7 +57,8 @@ class BypasWhitelistController extends Controller
         //Validando parametros enviados
         $campos = [
             'ticket' => 'required|string',
-            'fecha' => 'required|string',
+            'inicio' => 'required|string',
+            'fin' => 'required|string',
             'codarea' => 'required|string',
             'min' => 'required|numeric',
             'observaciones' => 'required|string',
@@ -66,33 +67,6 @@ class BypasWhitelistController extends Controller
         $this->validate($request,$campos);
 
         //-------------------Bypass--------------
-        //En caso de ser una exclusion vista SA
-        if (isset($request->excluir)) {
-            //Agregando valores necesarios para Incidencia
-            $numero = $request->codarea.$request->min;
-            $request['inicio'] = $request->fecha;
-            $request['descripcion'] = $request->observaciones;
-            $request['solicitante'] = auth()->user()->perfil;
-            $request['tipo'] = "requerimiento";
-
-            //Buscando registro para realizar exclusion
-            $bypass = BypasWhitelist::where([
-                ['min',$numero],
-                ['ticket',$request->ticket]
-            ])->first();
-
-            //Eliminando del array
-            unset(
-                $request['codarea'],
-                $request['min'],
-                $request['fecha'],
-                $request['observaciones'], 
-            );
-
-            //return $request;
-            return $this->destroy($request,$bypass->id);
-        }
-
         //Sustituyendo valores necesarios
         $datosMinbypas = request()->except('_token', 'incluir');
         $min = $datosMinbypas['codarea'].$datosMinbypas['min'];
@@ -102,9 +76,12 @@ class BypasWhitelistController extends Controller
         $datosMinbypas['min'] = $min;
         $datosMinbypas['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosMinbypas['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosMinbypas['fecha'] = date("Y-m-d H:i:s", strtotime($request->fin));
 
         //Eliminando del array
-        unset($datosMinbypas['codarea']);
+        unset($datosMinbypas['codarea'],
+        $datosMinbypas['inicio'],
+        $datosMinbypas['fin']);
 
         //Insertando la tabla Bypass MIN
         BypasWhitelist::insert($datosMinbypas);
@@ -112,8 +89,8 @@ class BypasWhitelistController extends Controller
 
         //---------------Incidencia--------------
         //Agregando valores necesarios
-        $datosMinbypas['inicio'] = date("Y-m-d H:i:s", strtotime($request->fecha));
-        $datosMinbypas['fin'] = $request->fecha;
+        $datosMinbypas['inicio'] = date("Y-m-d H:i:s", strtotime($request->inicio));
+        $datosMinbypas['fin'] = date("Y-m-d H:i:s", strtotime($request->fin));
         $datosMinbypas['descripcion'] = $request->observaciones;
         $datosMinbypas['solicitante'] = auth()->user()->perfil;
         $datosMinbypas['responsable'] = $datosMinbypas['usuario'];
@@ -206,11 +183,7 @@ class BypasWhitelistController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, $id) {
-        //Eliminando de la tabla Bypass MIN
-        $numero = BypasWhitelist::find($id);
-        $numero->delete();
-
+    public function destroy(Request $request, $min) {
         //Validando los datos enviados
         $campos = [
             'ticket' => 'required|string|min:10|max:10',
@@ -221,15 +194,26 @@ class BypasWhitelistController extends Controller
 
         $this->validate($request,$campos);
 
-        $datosIncidencia = request()->except('_token', 'excluir');
+        //Eliminando de la tabla Bypass MIN
+        $numero = BypasWhitelist::where('min',$min)->first();
+        if(empty($numero)) {
+            return redirect()->route('bypassWhitelist.index')
+            ->with('mensaje', 'Abonado no existe en el listado.');
+        }
+        else { $numero->delete(); }
+
+        $datosIncidencia = $request->except('_token', 'excluir');
 
         //Agregando valores necesarios
         $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['responsable'] = auth()->user()->usuario;
-        $newDate = date("Y-m-d H:i:s", strtotime($datosIncidencia['inicio']));
+        $datosIncidencia['inicio'] = date("Y-m-d H:i:s", strtotime($request->inicio));
+        $datosIncidencia['tipo'] = "requerimiento";
 
-        $datosIncidencia['inicio'] = $newDate;
+        if (isset($request->fin)) {
+            $datosIncidencia['fin'] = date("Y-m-d H:i:s", strtotime($request->fin));
+        }
         
         $incidencia = Incidencia::where('ticket',$datosIncidencia['ticket'])
         ->first();

@@ -8,12 +8,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('bypassWhitelist.destroy',$bypas_min->id)}}" enctype="multipart/form-data" method="POST">
+                <form action="{{ route('bypassWhitelist.destroy',$numero)}}" enctype="multipart/form-data" method="POST">
                     @csrf
                     <div class="form-container">
                         <h6>Para excluir es necesario rellenar el presente formulario:</h6>
-                        &nbsp
-                        <h7>Rellene por favor los campos</h7>
                         <div class="form-floating mb-3">
                             <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
                                 value="{{old('ticket')}}" placeholder="">

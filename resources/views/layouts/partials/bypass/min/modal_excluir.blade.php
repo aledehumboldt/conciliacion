@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-    <form action="{{ route('bypassMin.destroy',$bypas_min->id)}}" enctype="multipart/form-data" method="POST">
+    <form action="{{ route('bypassMin.destroy',$numero)}}" enctype="multipart/form-data" method="POST">
         @csrf
     <div class="form-container">
         <h6>Para excluir es necesario rellenar el presente formulario:</h6>

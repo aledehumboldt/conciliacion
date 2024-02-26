@@ -64,9 +64,6 @@ class BypasMinController extends Controller
             $request['solicitante'] = auth()->user()->perfil;
             $request['tipo'] = "requerimiento";
 
-
-        //return $request;
-
             //Buscando registro para realizar exclusion
             $bypass = BypasMin::where([
                 ['min',$numero],
@@ -200,7 +197,7 @@ class BypasMinController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, $id) {
+    public function destroy(Request $request, $min) {
         //Validando los datos enviados
         $campos = [
             'ticket' => 'required|string|min:10|max:10',
@@ -212,8 +209,12 @@ class BypasMinController extends Controller
         $this->validate($request,$campos);
 
         //Eliminando de la tabla Bypass MIN
-        $numero = BypasMin::find($id);
-        $numero->delete();
+        $numero = BypasMin::where('min',$min)->first();
+        if(empty($numero)) {
+            return redirect()->route('bypassMin.index')
+            ->with('mensaje', 'Abonado no existe en el listado.');
+        }
+        else { $numero->delete(); }
         
         $datosIncidencia = $request->except('_token', 'excluir');
 

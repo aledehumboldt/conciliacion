@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Imports\AdminSerieImport;
 use App\Models\AdminSerie;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use PhpOffice\PhpSpreadsheet\IOFactory;
 
 
 class AdminSeriesSeeder extends Seeder
