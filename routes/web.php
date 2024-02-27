@@ -129,9 +129,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('exclusiones', ExclusioneController::class);
     Route::resource('password', ResetController::class);
     Route::resource('incidencias', IncidenciaController::class)->except(['show','store']);
-    Route::resource('bypasMin', MinController::class)->except(['show','edit','destroy']);
-    Route::resource('bypasImsi', ImsiController::class)->except(['show','edit','destroy']);
-    Route::resource('bypasWhitelist', WhitelistController::class)->except(['show','edit','destroy']);
+    Route::resource('bypassMin', MinController::class)->except(['show','edit','destroy']);
+    Route::resource('bypassImsi', ImsiController::class)->except(['show','edit','destroy']);
+    Route::resource('bypassWhitelist', WhitelistController::class)->except(['show','edit','destroy']);
     Route::resource('bypass', BypassController::class);
     Route::resource('contactar', ContactarController::class);
 });
