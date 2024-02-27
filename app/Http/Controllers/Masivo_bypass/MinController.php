@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Masivo_bypass;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Imports\bypassMinImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
 use App\Models\BypasMin;
-use App\Models\Incidencia;
 
-class minMasivoController extends Controller
+class MinController extends Controller
 {
     protected function verify() {
         if (Auth::user()->estatus != "Iniciado") {
@@ -27,14 +26,9 @@ class minMasivoController extends Controller
         if(!$this->verify()) {
             return back();
         }
-        
-        //validando el perfil de usuario
-        if (Auth::user()->perfil == "SA") {
-            return $this->create();
-        }
 
         $datos['bypas_mins'] = BypasMin::orderBy('id','asc')->paginate();
-        return view('bypass.bypasMasivMin.index', $datos);
+        return view('bypass_masivo.min.index', $datos);
     }
 
     public function import(Request $request)

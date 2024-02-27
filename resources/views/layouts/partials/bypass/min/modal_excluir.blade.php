@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-    <form action="{{ route('bypassMin.destroy',$bypas_min->id)}}" enctype="multipart/form-data" method="POST">
+    <form action="{{ route('bypassMin.destroy',$numero)}}" enctype="multipart/form-data" method="POST">
         @csrf
     <div class="form-container">
         <h6>Para excluir es necesario rellenar el presente formulario:</h6>
@@ -31,11 +31,14 @@
         <div class="form-floating mb-3">
           <textarea name="descripcion" id="descripcion" cols="42" rows="5">{{old('descripcion')}}</textarea>
       </div>
-      <div class="form-floating mb-3">
-        <input type="text" autocomplete="off" name="solicitante" id="solicitante" class="form-control"
-            value="{{old('solicitante')}}" placeholder="">
-        <label for="ticket" class="form-label text-secondary">Solicitante</label>
-    </div>
+      <div class="mb-3">
+        <label for="solicitante" class="form-label">Solicitante</label>
+        <select name="solicitante" id="solicitante" class="form-control custom-select">
+            <option value="">Seleccione</option>
+            <option value="Soprte de Averias">Soprte de Averias</option>
+            <option value="CYA">CyA</option>
+        </select>
+      </div>
         <div class="text-center">
             <button type="submit" name="excluir" id="excluir" class="btn btn-secondary">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

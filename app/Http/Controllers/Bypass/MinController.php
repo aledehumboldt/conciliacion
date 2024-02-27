@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Bypass;
 
 use App\Http\Controllers\Controller;
-use App\Models\BypasWhitelist;
+use App\Models\BypasMin;
 use App\Models\Incidencia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Http\Requests\StoreBypassMinRequest;
 
-class BypasWhitelistController extends Controller
+class MinController extends Controller
 {
     /**
      * Verify if the user can see these views.
@@ -29,14 +30,14 @@ class BypasWhitelistController extends Controller
         if(!$this->verify()) {
             return back();
         }
-
+        
         //validando el perfil de usuario
         if (Auth::user()->perfil == "SA") {
             return $this->create();
         }
 
-        $datos['bypas_mins'] = BypasWhitelist::orderBy('id','asc')->paginate();
-        return view('bypass.bypassWhitelist.index', $datos);
+        $datos['bypas_mins'] = BypasMin::orderBy('id','asc')->paginate();
+        return view('bypass.min.index', $datos);
     }
 
     /**
@@ -47,54 +48,44 @@ class BypasWhitelistController extends Controller
             return back();
         }
 
-        return view('bypass.bypassWhitelist.crear');
+        return view('bypass.min.crear');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) {
-        //Validando parametros enviados
-        $campos = [
-            'ticket' => 'required|string',
-            'fecha' => 'required|string',
-            'codarea' => 'required|string',
-            'min' => 'required|numeric',
-            'observaciones' => 'required|string',
-        ];
-
-        $this->validate($request,$campos);
-
+    public function store(StoreBypassMinRequest $request) {
         //-------------------Bypass--------------
         //En caso de ser una exclusion vista SA
         if (isset($request->excluir)) {
             //Agregando valores necesarios para Incidencia
             $numero = $request->codarea.$request->min;
-            $request['inicio'] = $request->fecha;
-            $request['descripcion'] = $request->observaciones;
+            $request['descripcion'] = $request->observaciones; 
             $request['solicitante'] = auth()->user()->perfil;
             $request['tipo'] = "requerimiento";
-
+            
             //Buscando registro para realizar exclusion
-            $bypass = BypasWhitelist::where([
-                ['min',$numero],
-                ['ticket',$request->ticket]
-            ])->first();
+            $bypass = BypasMin::where('min',$numero)->first();
+            
+            if(empty($bypass)) {
+                return redirect()->route('bypassMin.index')
+                ->with('mensaje', 'Abonado no existe en el listado.');
+            }
 
             //Eliminando del array
             unset(
                 $request['codarea'],
                 $request['min'],
-                $request['fecha'],
-                $request['observaciones'], 
+                $request['observaciones'],
+                $request['tcliente'],
             );
 
             //return $request;
-            return $this->destroy($request,$bypass->id);
+            return $this->destroy($request,$bypass->min);
         }
 
         //Sustituyendo valores necesarios
-        $datosMinbypas = request()->except('_token', 'incluir');
+        $datosMinbypas = $request->except('_token', 'incluir');
         $min = $datosMinbypas['codarea'].$datosMinbypas['min'];
 
         //Agregando valores necesarios
@@ -102,18 +93,23 @@ class BypasWhitelistController extends Controller
         $datosMinbypas['min'] = $min;
         $datosMinbypas['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosMinbypas['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosMinbypas['fecha'] = date("Y-m-d H:i:s", strtotime($request->fin));
 
         //Eliminando del array
-        unset($datosMinbypas['codarea']);
+        unset(
+            $datosMinbypas['codarea'],
+            $datosMinbypas['inicio'],
+            $datosMinbypas['fin']
+        );
 
         //Insertando la tabla Bypass MIN
-        BypasWhitelist::insert($datosMinbypas);
+        BypasMin::insert($datosMinbypas);
         //-------------------Bypass--------------
 
-        //---------------Incidencia--------------
+        //---------------Incidencia------------------
         //Agregando valores necesarios
-        $datosMinbypas['inicio'] = date("Y-m-d H:i:s", strtotime($request->fecha));
-        $datosMinbypas['fin'] = $request->fecha;
+        $datosMinbypas['inicio'] = date("Y-m-d H:i:s", strtotime($request->inicio));
+        $datosMinbypas['fin'] = date("Y-m-d H:i:s", strtotime($request->fin));
         $datosMinbypas['descripcion'] = $request->observaciones;
         $datosMinbypas['solicitante'] = auth()->user()->perfil;
         $datosMinbypas['responsable'] = $datosMinbypas['usuario'];
@@ -125,6 +121,7 @@ class BypasWhitelistController extends Controller
             $datosMinbypas['min'],
             $datosMinbypas['codarea'],
             $datosMinbypas['observaciones'],
+            $datosMinbypas['tcliente'],
             $datosMinbypas['fecha']
         );
 
@@ -135,10 +132,10 @@ class BypasWhitelistController extends Controller
         if (empty($incidencia)) {
             Incidencia::insert($datosMinbypas);
         }
-        //---------------Incidencia--------------
+        //-------------------Incidencia--------------
         
         //Redireccionando
-        return redirect()->route('bypassWhitelist.index')
+        return redirect()->route('bypassMin.index')
         ->with('mensaje', 'Abonado incluido exitosamente.');
     }
 
@@ -148,17 +145,17 @@ class BypasWhitelistController extends Controller
     public function show(Request $request) {
 
         $campos = [
-            'codarea' => 'required|string',
-            'min' => 'required|string',
+            'codigo' => 'required|string',
+            'celular' => 'required|numeric',
         ];
 
         $this->validate($request,$campos);
 
-        $vartmp = $request->codarea.$request->min;
+        $vartmp = $request->codigo.$request->celular;
 
-        $bypas_mins = BypasWhitelist::where('min',$vartmp)->get();
+        $bypas_mins = BypasMin::where('min',$vartmp)->get();
 
-        return view('bypass.bypassWhitelist.consultar',compact('bypas_mins'));
+        return view('bypass.min.consultar',compact('bypas_mins'));
     }
 
     /**
@@ -171,19 +168,8 @@ class BypasWhitelistController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id) {
-        $campos = [
-
-            'ticket' => 'required|string',
-            'fecha' => 'required|string',
-            'codarea' => 'required|string',
-            'min' => 'required|numeric',
-            'observaciones' => 'required|string',
-        ];
-
-        $this->validate($request,$campos);
-
-        $datosMinbypas = request()->except('_token', 'editar', '_method');
+    public function update(StoreBypassMinRequest $request, $id) {
+        $datosMinbypas = $request->except('_token', 'editar', '_method');
 
         //Sustituyendo valores necesarios
         $min = $datosMinbypas['codarea'].$datosMinbypas['min'];
@@ -197,20 +183,19 @@ class BypasWhitelistController extends Controller
         //Eliminando del array
         unset($datosMinbypas['codarea']);
 
-        BypasWhitelist::where('id','=',$id)->update($datosMinbypas);
+        //Actualizando el registro
+        BypasMin::where('id','=',$id)->update($datosMinbypas);
         
-          return redirect()->route('bypassWhitelist.index')
+        //Redireccionando
+        return redirect()->route('bypassMin.index')
             ->with('mensaje', 'Registro actualizado.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, $id) {
-        //Eliminando de la tabla Bypass MIN
-        $numero = BypasWhitelist::find($id);
-        $numero->delete();
-
+    public function destroy(Request $request, $min) {
+        
         //Validando los datos enviados
         $campos = [
             'ticket' => 'required|string|min:10|max:10',
@@ -221,24 +206,33 @@ class BypasWhitelistController extends Controller
 
         $this->validate($request,$campos);
 
-        $datosIncidencia = request()->except('_token', 'excluir');
+        //Eliminando de la tabla Bypass MIN
+        $numero = BypasMin::where('min',$min)->first();
+        if(empty($numero)) {
+            return redirect()->route('bypassMin.index')
+            ->with('mensaje', 'Abonado no existe en el listado.');
+        }
+        else { $numero->delete(); }
+        
+        $datosIncidencia = $request->except('_token', 'excluir');
 
         //Agregando valores necesarios
         $datosIncidencia['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosIncidencia['responsable'] = auth()->user()->usuario;
-        $newDate = date("Y-m-d H:i:s", strtotime($datosIncidencia['inicio']));
-
-        $datosIncidencia['inicio'] = $newDate;
-        
+        $datosIncidencia['inicio'] = date("Y-m-d H:i:s", strtotime($request->inicio));
+        $datosIncidencia['fin'] = date("Y-m-d H:i:s", strtotime($request->fin));
+        $datosIncidencia['tipo'] = "requerimiento";
+  
         $incidencia = Incidencia::where('ticket',$datosIncidencia['ticket'])
         ->first();
 
-        //Agregando registro a Incidencia
+        //Insertando la tabla Incidencias
         if (empty($incidencia)) {
             Incidencia::insert($datosIncidencia);
         }
-        return redirect()->route('bypassWhitelist.index')
+
+        return redirect()->route('bypassMin.index')
         ->with('mensaje', 'Abonado excluido exitosamente.');
     }
 }

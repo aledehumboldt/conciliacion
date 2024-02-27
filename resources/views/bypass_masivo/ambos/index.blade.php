@@ -5,7 +5,7 @@
 @endsection
 
 @section('encabezado')
-<h3 class="editor-toolbar-item">Masivo Min-Imsi trafico gris</h3>
+<h3 class="editor-toolbar-item">Gestionar trafico gris masivo</h3>
 
 @endsection
 

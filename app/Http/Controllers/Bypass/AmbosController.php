@@ -10,7 +10,7 @@ use App\Models\BypasImsi;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
-class BypassAmbosController extends Controller
+class AmbosController extends Controller
 {
     /**
      * Verify if the user can see these views.
@@ -34,7 +34,7 @@ class BypassAmbosController extends Controller
      * Show the form for creating a new resource.
      */
     public function create() {
-        return view('bypass.bypassAmbos.crear');
+        return view('bypass.ambos.crear');
     }
 
     /**
