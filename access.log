@@ -5216,3 +5216,5 @@
 127.0.0.1 - - [27/Feb/2024:11:02:21 -0400] "GET /exclusiones HTTP/1.1" 200 13240 "http://aprovisionamiento.com/aprovisionamientos" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
 127.0.0.1 - - [27/Feb/2024:11:02:27 -0400] "GET /exclusiones HTTP/1.1" 200 13240 "http://aprovisionamiento.com/exclusiones" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
 127.0.0.1 - - [27/Feb/2024:11:05:18 -0400] "GET /exclusiones HTTP/1.1" 200 13239 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+127.0.0.1 - - [28/Feb/2024:08:22:45 -0400] "GET /login HTTP/1.1" 200 2755 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+127.0.0.1 - - [28/Feb/2024:08:22:46 -0400] "GET /css/stylo.css HTTP/1.1" 200 25116 "http://aprovisionamiento.com/login" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"

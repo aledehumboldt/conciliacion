@@ -43,7 +43,8 @@ class ResetController extends Controller {
 
         Auth::logout();
 
-        return redirect('/login')->with('mensaje', 'Contraseña actualizada.');
+        return redirect('/login')
+        ->with('mensaje', 'Contraseña actualizada.');
     }
 
     public function edit($id) {
@@ -52,6 +53,7 @@ class ResetController extends Controller {
         $usuario->estatus = "Iniciado";
         $usuario->save();
 
-        return redirect('usuarios')->with('mensaje', 'Contraseña reestablecida.');
+        return redirect('usuarios')
+        ->with('mensaje', 'Contraseña reestablecida.');
     }
 }

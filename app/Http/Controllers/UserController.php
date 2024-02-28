@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     protected function verify() {
-        if (Auth::user()->perfil == "CYA" && Auth::user()->estatus != "Iniciado") {
+        if (Auth::user()->perfil == "CYA"
+        && Auth::user()->estatus != "Iniciado") {
             return true;
         } else {
             return false;
@@ -23,8 +24,10 @@ class UserController extends Controller
             return back();
         }
 
-        $datos['usuarios'] = User::where('estatus','<>', 'Suspendido')->orderBy('id','asc')->paginate();
-        return view('usuarios.index', $datos);
+        $usuarios = User::where('estatus','<>', 'Suspendido')
+        ->orderBy('id','asc')->paginate();
+
+        return view('usuarios.index', compact('usuarios'));
     }
 
     /**
@@ -54,7 +57,8 @@ class UserController extends Controller
         $datosUsuario = request()->except('_token', 'crear');
         $datosUsuario['clave'] = md5(request()->usuario);
         User::insert($datosUsuario);
-        return redirect()->route('usuarios.index')->with('mensaje', 'Usuario agregado.');
+        return redirect()->route('usuarios.index')
+        ->with('mensaje', 'Usuario agregado.');
     }
 
     /**
@@ -100,9 +104,12 @@ class UserController extends Controller
         //Actualizando registro
         $datosUsuario = request()->except('_token', 'crear', '_method');
         User::where('id','=',$id)->update($datosUsuario);
+
         //Buscando registro actualizado y redireccionando
         $usuario = User::findOrFail($id);
-        return redirect()->route('usuarios.index')->with('mensaje', 'Usuario actualizado.');
+
+        return redirect()->route('usuarios.index')
+        ->with('mensaje', 'Usuario actualizado.');
 
     }
 
@@ -116,6 +123,8 @@ class UserController extends Controller
 
         $usuario->estatus = 'Suspendido';
         $usuario->save();
-        return redirect()->route('usuarios.index')->with('mensaje', 'Usuario suspendido.');
+
+        return redirect()->route('usuarios.index')
+        ->with('mensaje', 'Usuario suspendido.');
     }
 }

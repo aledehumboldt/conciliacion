@@ -11,7 +11,8 @@ class ProvisioningController extends Controller
     private $disk = "public";
 
     protected function verify() {
-        if (Auth::user()->perfil == "CYA" && Auth::user()->estatus != "Iniciado") {
+        if (Auth::user()->perfil == "CYA"
+        && Auth::user()->estatus != "Iniciado") {
             return true;
         } else {
             return false;
@@ -73,7 +74,8 @@ class ProvisioningController extends Controller
 
         }
 
-        return redirect()->route('documentacion.index')->with('mensaje', 'Documento subido exitosamente.');
+        return redirect()->route('documentacion.index')
+        ->with('mensaje', 'Documento subido exitosamente.');
     }
 
     public function download($name) {
@@ -102,6 +104,7 @@ class ProvisioningController extends Controller
 
         mkdir($rutdir,0777);
 
-        return redirect()->route('documentacion.index')->with('mensaje', 'Categoria cargada exitosamente.');
+        return redirect()->route('documentacion.index')
+        ->with('mensaje', 'Categoria cargada exitosamente.');
     }
 }

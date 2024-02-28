@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aprovisionamiento;
-use App\Http\Requests\StoreAprovisionamientoRequest;
 use App\Http\Requests\UpdateAprovisionamientoRequest;
+use Illuminate\Support\Facades\Request;
 
 class AprovisionamientoController extends Controller
 {
@@ -33,7 +33,7 @@ class AprovisionamientoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAprovisionamientoRequest $request) {
+    public function store(Request $request) {
         //
     }
 
@@ -54,7 +54,7 @@ class AprovisionamientoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAprovisionamientoRequest $request, Aprovisionamiento $Aprovisionamiento) {
+    public function update(Request $request) {
         //
     }
 

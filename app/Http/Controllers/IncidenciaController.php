@@ -13,7 +13,8 @@ class IncidenciaController extends Controller
 {
 
     protected function verify() {
-        if (Auth::user()->perfil == "CYA" && Auth::user()->estatus != "Iniciado") {
+        if (Auth::user()->perfil == "CYA" 
+        && Auth::user()->estatus != "Iniciado") {
             return true;
         } else {
             return false;
@@ -64,9 +65,14 @@ class IncidenciaController extends Controller
             $queryBuilder->where('descripcion','like', '%'.$busqueda.'%');
         }
 
-        $datos['incidencias'] = $queryBuilder->paginate();
+        $incidencias = $queryBuilder->paginate();
+/*
+        $inicio = Carbon::createFromFormat("Y-m-d H:i:s",$incidencias->inicio);
+        $fin = Carbon::createFromFormat("Y-m-d H:i:s",$incidencias->fin);
 
-        return view('incidencias.index', $datos);
+        $diff = $inicio->diffInHours($fin);*/
+
+        return view('incidencias.index', compact('incidencias'));//,'diff'
     }
 
     /**
