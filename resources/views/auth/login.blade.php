@@ -14,7 +14,8 @@
   <link rel="icon" type="image/x-icon" href="{{asset('assets/1699301436808.png')}}">
 </head>
 
-<body style="background-color: #fd585f; color:#666666;">
+<body style="background-image:url('assets/movilnet_mosaico.jpg'); background-repeat:repeat;
+background-color: rgba(253,88,95,0.5); color:#666666;">
 
         <div class="container py-5">
           <div class="row d-flex justify-content-center align-items-center">
