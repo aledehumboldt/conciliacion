@@ -49,7 +49,7 @@
                 <form action="{{ route('exclusiones.show',auth()->user()->id) }}" enctype="multipart/form-data" method="get">
                     @csrf
                     <div class="mb-3">
-                        <label for="celularB" class="form-label">Celular</label>
+                        <label for="celularB" class="form-label text-secondary">Celular</label>
                         <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
                             <select name="codigo" id="codigo" class="custom-select" style="width:100px">
                                 <option value="">Código</option>
