@@ -53,9 +53,7 @@
 
     <div class="text-center pt-1 mb-5 pb-1">
         <a href="{{route('exclusiones.index')}}" class="btn btn-secondary">
-            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 14 14">
-                <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
-            </svg>
+            <svg class="bi"><use xlink:href="#caret-left-fill"/></svg>
             Volver
         </a>
     </div>
