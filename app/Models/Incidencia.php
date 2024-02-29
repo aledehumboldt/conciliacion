@@ -9,5 +9,14 @@ class Incidencia extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['ticket', 'inicio', 'fin', 'descripcion', 'solicitante'];
+    protected $fillable = [
+        'id',
+        'ticket',
+        'inicio',
+        'fin',
+        'descripcion',
+        'tipo',
+        'solicitante',
+        'responsable',
+    ];
 }

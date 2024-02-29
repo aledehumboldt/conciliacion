@@ -8,12 +8,15 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\IncidenciaExport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
 
 class IncidenciaController extends Controller
 {
 
     protected function verify() {
-        if (Auth::user()->perfil == "CYA" && Auth::user()->estatus != "Iniciado") {
+        if (Auth::user()->perfil == "CYA" 
+        && Auth::user()->estatus != "Iniciado") {
             return true;
         } else {
             return false;
@@ -23,7 +26,7 @@ class IncidenciaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() {
+    public function index(Request $request) {
         if(!$this->verify()) {
             return back();
         }
@@ -33,42 +36,20 @@ class IncidenciaController extends Controller
         $dateFrom = $anio."-".$mes."-01 00:00:00";
         $dateTo = $anio."-".$mes."-31 23:59:59";
         $queryBuilder = Incidencia::whereBetween('inicio', [$dateFrom, $dateTo]);
-        
-        $category = request('selectCategory');
-        $estatus = request('selectEstatus');
-        $busqueda = request('busqueda');
 
-        if ($category != 'ambos' && $estatus == 'ambos') {
-
-            $queryBuilder->where('tipo','=', $category);
-        }
-        if ($category == 'ambos' && $estatus != 'ambos') {
-            if ($estatus == 'a'){
-                $queryBuilder->whereNull('fin');
-            }
-            if ($estatus == 'c'){
-                $queryBuilder->where('fin','!=',' ');
-            }
-        }
-        if ($estatus == 'a' && $category != 'ambos'){
-            $queryBuilder->where('tipo','=', $category)
-            ->whereNull('fin');
-        }
-        if ($estatus == 'c' && $category != 'ambos'){
-            $var = " ";
-            $queryBuilder->where('tipo','=', $category)
-            ->where('fin','<>',$var);
-        }
-        
-        if (!empty($busqueda)) {
-            $queryBuilder->where('descripcion','like', '%'.$busqueda.'%');
+        if($request->ajax()){
+            $data = Incidencia::select('*')->get();
+            return FacadesDataTables::of($data)->addIndexColumn()->addColumn('action', function($data){
+                $button = '<div style="display: flex; align-items: center;justify-content: center;"><button class="edit btn btn-secondary me-md-2" name="edit" id="'.$data->id.'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg></button>';
+                $button .= '<button class="delete btn btn-danger me-md-2" name="delete" id="'.$data->id.'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser" viewBox="0 0 16 16"><path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414l-3.879-3.879zM8.746 13.547 3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/></svg></button></div>';
+                
+                return $button;
+            })
+            ->make(true);
         }
 
-        $datos['incidencias'] = $queryBuilder->paginate();
-
-        return view('incidencias.index', $datos);
+        return view('incidencias.index');
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -183,12 +164,11 @@ class IncidenciaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id) {
-          $post = Incidencia::find($id);
-          $post->delete();
-          return redirect()->route('incidencias.index')
-            ->with('mensaje', 'Registro eliminado satisfactoriamente');
-        }
+    public function destroy(Request $request)
+    {
+        $com = Incidencia::where('id',$request->id)->delete();
+        return Response()->json($com);
+    }
 
     public function export() {
     

@@ -3,6 +3,7 @@
   <head>
     <link rel="icon" type="image/x-icon" href="{{asset('assets/1699301436808.png')}}">
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <title>@yield('titulo')</title>
@@ -14,6 +15,7 @@
     <link href="{{asset('css/bootstrap.login.css')}}" rel="stylesheet" crossorigin="anonymous">
 		<link href="{{asset('css/stylo.css')}}" rel="stylesheet" crossorigin="anonymous">
     <link href="{{asset('css/dashboard.css')}}" rel="stylesheet" crossorigin="anonymous">
+    <link href="{{asset('DataTables/datatables.min.css')}}" rel="stylesheet" crossorigin="anonymous">
     
     		<!-- Google Web Fonts -->
 	
@@ -227,8 +229,7 @@
             </li>
 
             <li class="nav-item">
-              <a href="{{route('exclusiones.index')}}" class="nav-link d-flex align-items-center gap-2
-                @if(route('exclusiones.index') == url()->current()) active @endif ">
+              <a href="{{route('proof')}}" class="nav-link d-flex align-items-center gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-terminal" viewBox="0 0 16 16">
                     <path d="M6 9a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3A.5.5 0 0 1 6 9M3.854 4.146a.5.5 0 1 0-.708.708L4.793 6.5 3.146 8.146a.5.5 0 1 0 .708.708l2-2a.5.5 0 0 0 0-.708z"/>
                     <path d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/>
@@ -405,7 +406,8 @@
     <!-- Template Javascript -->   
     <script src="{{asset('js/color-modes.js')}}" crossorigin="anonymous"></script>    
     <script src="{{asset('js/main.js')}}" crossorigin="anonymous"></script>    
-    <script src="{{asset('js/dashboard.js')}}" crossorigin="anonymous"></script>    
+    <script src="{{asset('js/dashboard.js')}}" crossorigin="anonymous"></script>
+    <script src="{{asset('DataTables/datatables.min.js')}}"></script>
 
 <!-- Cambio de modo -->
 <script>
@@ -439,6 +441,49 @@ function toggleDarkMode(isDarkMode) {
 <script>
   const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
   const popoverList = [...popoverTriggerList].map(popoverTriggerEL => new bootstrap.Popover(popoverTriggerEL))
+</script>
+
+<script>
+    $(document).ready(function () {
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+        $('#tableinci').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{!! route("incidencias.index") !!}',
+            columns: [
+                {data : 'id', name : 'id'},
+                {data : 'ticket', name : 'ticket'},
+                {data : 'inicio', name : 'inicio'},
+                {data : 'fin', name : 'fin'},
+                {data : 'descripcion', name : 'descripcion'},
+                {data : 'tipo', name : 'tipo'},
+                {data : 'solicitante', name : 'solicitante'},
+                {data : 'responsable', name : 'responsable'},
+                {data : 'action', name : 'action', searchable : false, orderable : false},
+                // Otros campos
+            ]
+        });
+        $('body').on('click', '.delete', function () {
+          if (confirm("Desea eliminar este registro?") == true) {
+            var id = $(this).data('id');
+
+            $.ajax({
+              type:"POST",
+              url: '{!! route("incidencias.destroy") !!}',
+              data: { id: id},
+              dataType: 'json',
+              success: function(res){
+                var oTable = $('#tableinci').dataTable();
+                oTable.fnDraw(false);
+              }
+            });
+          }
+        });
+    });
 </script>
 
  </body>

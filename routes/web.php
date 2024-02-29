@@ -19,8 +19,8 @@ use App\Http\Controllers\AprovisionamientosController;
 use App\Http\Controllers\minMasivoController;
 use App\Http\Controllers\imsiMasivoController;
 use App\Http\Controllers\ambosMasivoController;
+use App\Http\Controllers\proofController;
 use App\Http\Controllers\whitelistMasivoController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,13 +58,15 @@ Route::post('documentacion/1', [ProvisioningController::class, 'storeCategory'])
 //-------------------------------------------------Fin Almacenamiento de archivos------------------------------------------------
 
 //---------------------------------------------------Incidencias------------------------------------
-Route::get('incidencias/show', [IncidenciaController::class, 'show'])->name('incidencias.show');
-
-Route::post('incidencias/{incidencia}', [IncidenciaController::class, 'store'])->name('incidencias.store');
-
-Route::get('incidencias/filtro', [IncidenciaController::class, 'filtro'])->name('incidencias.filtro');
 
 Route::get('incidencias/export', [IncidenciaController::class, 'export'])->name('incidencias.export');
+
+Route::post('incidencias/destroy', [IncidenciaController::class, 'destroy'])->name('incidencias.destroy');
+
+//Route::post('incidencias/editar/{id}/', [IncidenciaController::class, 'edit'])->name('incidencias.edit');
+
+//Route::get('incidencias/update', [IncidenciaController::class, 'update'])->name('incidencias.update');
+
 //--------------------------------------------------Fin Incidencias--------------------------------
 
 //-------------------------------------------------Bypass MIN------------------------------------------------
@@ -152,13 +154,13 @@ Route::get('aprovisionamientos/desconexion', [AprovisionamientosController::clas
 //-------------------------------------------------Fin Aprovisionamientos------------------------------------------------
 
 //------------------------------------------------Proof-----------------------------------------------
-//Route::get('proof', '[]')->name('proof');
+Route::get('proof', [proofController::class, 'index'])->name('proof');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);
     Route::resource('exclusiones', ExclusioneController::class);
     Route::resource('password', ResetController::class);
-    Route::resource('incidencias', IncidenciaController::class)->except(['show','store']);
+    Route::resource('incidencias', IncidenciaController::class)->except(['show','store','destroy']);
     Route::resource('bypass', BypassController::class);
     Route::resource('contactar', ContactarController::class);
 });
