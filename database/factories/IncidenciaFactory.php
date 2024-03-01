@@ -18,8 +18,8 @@ class IncidenciaFactory extends Factory
     public function definition(): array {
         return [
             'ticket' => fake()->numerify('##########'),
-            'inicio' => fake()->dateTimeThisMonth()->format('Y-m-d H:i:s'),
-            'fin' => fake()->dateTimeThisMonth()->format('Y-m-d H:i:s'),
+            'inicio' => fake()->dateTimeBetween('now', '+1 year'),
+            'fin' => fake()->dateTimeBetween('now', '+1 year'),
             'descripcion' => fake()->sentence(),
             'tipo' => fake()->randomElement(['incidencia', 'requerimiento']),
             'solicitante' => fake()->randomElement(['CYA', 'Soporte de Averias']),
