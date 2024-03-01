@@ -467,22 +467,6 @@ function toggleDarkMode(isDarkMode) {
                 // Otros campos
             ]
         });
-        $('body').on('click', '.delete', function () {
-          if (confirm("Desea eliminar este registro?") == true) {
-            var id = $(this).data('id');
-
-            $.ajax({
-              type:"POST",
-              url: '{!! route("incidencias.destroy") !!}',
-              data: { id: id},
-              dataType: 'json',
-              success: function(res){
-                var oTable = $('#tableinci').dataTable();
-                oTable.fnDraw(false);
-              }
-            });
-          }
-        });
     });
 </script>
 

@@ -61,11 +61,9 @@ Route::post('documentacion/1', [ProvisioningController::class, 'storeCategory'])
 
 Route::get('incidencias/export', [IncidenciaController::class, 'export'])->name('incidencias.export');
 
-Route::post('incidencias/destroy', [IncidenciaController::class, 'destroy'])->name('incidencias.destroy');
+Route::post('incidencias/{incidencia}', [IncidenciaController::class, 'store'])->name('incidencias.store');
 
-//Route::post('incidencias/editar/{id}/', [IncidenciaController::class, 'edit'])->name('incidencias.edit');
-
-//Route::get('incidencias/update', [IncidenciaController::class, 'update'])->name('incidencias.update');
+Route::delete('incidencias/destroy', [IncidenciaController::class, 'destroy'])->name('incidencias.destroy');
 
 //--------------------------------------------------Fin Incidencias--------------------------------
 
