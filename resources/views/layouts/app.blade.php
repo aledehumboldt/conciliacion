@@ -467,6 +467,30 @@ function toggleDarkMode(isDarkMode) {
                 // Otros campos
             ]
         });
+
+        var user_id;
+
+        $(document).on('click', '.delete', function(){
+          user_id = $(this).attr('id');
+          $('#confirmModal').modal('show');
+        });
+
+        $('#ok_button').click(function(){
+          $.ajax({
+            url:"incidencias/destroy/"+user_id,
+            beforeSend:function(){
+              $('#ok_button').text('Eliminando...');
+            },
+            success:function(data)
+            {
+              setTimeout(function(){
+                $('#confirmModal').modal('hide');
+                $('#tableinci').DataTable().ajax.reload();
+                alert('Registro Eliminando');
+              }, 20);
+            }
+          })
+        });
     });
 </script>
 

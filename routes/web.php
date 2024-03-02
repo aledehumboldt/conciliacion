@@ -63,7 +63,7 @@ Route::get('incidencias/export', [IncidenciaController::class, 'export'])->name(
 
 Route::post('incidencias/{incidencia}', [IncidenciaController::class, 'store'])->name('incidencias.store');
 
-Route::delete('incidencias/destroy', [IncidenciaController::class, 'destroy'])->name('incidencias.destroy');
+Route::get('incidencias/destroy/{id}/', [IncidenciaController::class, 'destroy']);
 
 //--------------------------------------------------Fin Incidencias--------------------------------
 

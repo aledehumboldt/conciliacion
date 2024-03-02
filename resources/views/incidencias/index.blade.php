@@ -30,8 +30,7 @@
 
 @section('contenido')
     @include('layouts.partials.messages')
-    @foreach ($incidencias as $incidencia)
-    @endforeach
+    @include('layouts.partials.incidencias.destroy')
     <table class="table table-bordered" id="tableinci">
         <thead>
             <tr>
@@ -44,7 +43,6 @@
                 <th>Solicitante</th>
                 <th>Responsable</th>
                 <th style="text-align: center">Acciones</th>
-                @include('layouts.partials.incidencias.destroy')
             </tr>
         </thead>
         <tbody>
