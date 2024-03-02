@@ -58,13 +58,13 @@ Route::post('documentacion/1', [ProvisioningController::class, 'category'])->nam
 //-------------------------------------------------Fin Almacenamiento de archivos------------------------------------------------
 
 //---------------------------------------------------Incidencias------------------------------------
-Route::get('incidencias/show', [IncidenciaController::class, 'show'])->name('incidencias.show');
+
+Route::get('incidencias/export', [IncidenciaController::class, 'export'])->name('incidencias.export');
 
 Route::post('incidencias/{incidencia}', [IncidenciaController::class, 'store'])->name('incidencias.store');
 
-Route::get('incidencias/filtro', [IncidenciaController::class, 'filtro'])->name('incidencias.filtro');
+Route::get('incidencias/destroy/{id}/', [IncidenciaController::class, 'destroy']);
 
-Route::get('incidencias/export', [IncidenciaController::class, 'export'])->name('incidencias.export');
 //--------------------------------------------------Fin Incidencias--------------------------------
 
 //-------------------------------------------------Bypass MIN------------------------------------------------
@@ -122,13 +122,13 @@ Route::get('aprovisionamientos/desconexion', [AprovisionamientoController::class
 //-------------------------------------------------Fin Aprovisionamientos------------------------------------------------------------------
 
 //------------------------------------------------Proof-----------------------------------------------
-//Route::get('proof', '[]')->name('proof');
+Route::get('proof', [proofController::class, 'index'])->name('proof');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);
     Route::resource('exclusiones', ExclusioneController::class);
     Route::resource('password', ResetController::class);
-    Route::resource('incidencias', IncidenciaController::class)->except(['show','store']);
+    Route::resource('incidencias', IncidenciaController::class)->except(['show','store','destroy']);
     Route::resource('bypassMin', MinController::class)->except(['show','edit','destroy']);
     Route::resource('bypassImsi', ImsiController::class)->except(['show','edit','destroy']);
     Route::resource('bypassWhitelist', WhitelistController::class)->except(['show','edit','destroy']);
