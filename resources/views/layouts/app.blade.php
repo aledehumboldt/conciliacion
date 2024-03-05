@@ -483,5 +483,55 @@
         });
     });
 </script>
+
+<script>
+    $(document).ready(function () {
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+        $('#tableminbypass').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{!! route("proof") !!}',
+            columns: [
+                {data : 'id', name : 'id'},
+                {data : 'ticket', name : 'ticket'},
+                {data : 'fecha', name : 'fecha'},
+                {data : 'usuario', name : 'usuario'},
+                {data : 'min', name : 'min'},
+                {data : 'observaciones', name : 'observaciones'},
+                {data : 'tcliente', name : 'tcliente'},
+                {data : 'action', name : 'action', searchable : false, orderable : false},
+                // Otros campos
+            ]
+        });
+
+        var user_id;
+
+        $(document).on('click', '.delete', function(){
+          user_id = $(this).attr('id');
+          $('#confirmModal').modal('show');
+        });
+
+        $('#ok_button').click(function(){
+          $.ajax({
+            url:"incidencias/destroy/"+user_id,
+            beforeSend:function(){
+              $('#ok_button').text('Eliminando...');
+            },
+            success:function(data)
+            {
+              setTimeout(function(){
+                $('#confirmModal').modal('hide');
+                $('#tableminbypass').DataTable().ajax.reload();
+                alert('Registro Eliminando');
+              }, 20);
+            }
+          })
+        });
+    });
+</script>
  </body>
 </html>

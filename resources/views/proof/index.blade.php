@@ -1,34 +1,41 @@
 @extends('layouts.app')
-
-@section('titulo', 'Pruebas')
+@section('titulo', 'Gestión Bypass')
 
 @section('estilos')
 @endsection
 
 @section('encabezado')
-
+@include('layouts.partials.bypass.min.modal_buscar')
+<h3 class="editor-toolbar-item">Gestión trafico gris abonados</h3>
+<div>
+    <button class="btn btn-secondary me-md-2" type="button" name="buscar" id="buscar"  data-toggle="modal" data-target="#exampleModal">
+        <svg class="bi"><use xlink:href="#search"/></svg>
+        Consultar
+    </button>
+        @include('layouts.partials.bypass.min.modal_incluir')
+        <button type="submit" class="btn btn-secondary" type="button" name="incluir" id="incluir"  data-toggle="modal" data-target="#exampleModal4">
+            <svg class="bi"><use xlink:href="#file-earmark-arrow-up"/></svg>
+            Incluir Abonado
+        </button>
+</div>
 @endsection
 
 @section('contenido')
     @include('layouts.partials.messages')
-    <div class="card-body">
-        <table class="table table-bordered" id="tableinci">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Ticket</th>
-                    <th>Inicio</th>
-                    <th>Fin</th>
-                    <th>Descripcion</th>
-                    <th>Tipo</th>
-                    <th>Solicitante</th>
-                    <th>Responsable</th>
-                    <th style="text-align: center">Acciones</th>
-                    @include('layouts.partials.incidencias.destroy')
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
+    <table class="table table-bordered" id="tableminbypass">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Ticket</th>
+                <th>Fecha</th>
+                <th>Usuario</th>
+                <th>Número</th>
+                <th>Observaciones</th>
+                <th>Tipo de cliente</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
 @endsection
