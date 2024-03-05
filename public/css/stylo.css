@@ -37,6 +37,13 @@ color: #eee;
 
 /* *-*-*-*-*-*-*-* */
 
+a.little-bottoms {
+  height: 50px;
+  width: 50px;
+  border-radius: 10px;
+}
+
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
