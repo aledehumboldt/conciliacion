@@ -121,7 +121,7 @@
     <path d="M4 2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM4 5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zM7.5 5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zM4.5 8a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z"/>
     <path d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1zm11 0H3v14h3v-2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V15h3z"/>
   </symbol>
-  <symbol id="letter-open" viewBox="0 0 16 16">
+  <symbol id="letter-open" class="bi" viewBox="0 0 20 16">
     <path d="M4 0a2 2 0 0 0-2 2v1.133l-.941.502A2 2 0 0 0 0 5.4V14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5.4a2 2 0 0 0-1.059-1.765L14 3.133V2a2 2 0 0 0-2-2zm10 4.267.47.25A1 1 0 0 1 15 5.4v.817l-1 .6zm-1 3.15-3.75 2.25L8 8.917l-1.25.75L3 7.417V2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1zm-11-.6-1-.6V5.4a1 1 0 0 1 .53-.882L2 4.267zm13 .566v5.734l-4.778-2.867zm-.035 6.88A1 1 0 0 1 14 15H2a1 1 0 0 1-.965-.738L8 10.083zM1 13.116V7.383l4.778 2.867L1 13.117Z"/>
   </symbol>
   <symbol id="smartphone" viewBox="0 0 16 16">
@@ -303,29 +303,49 @@
 <div class="container-fluid bg-dark text-secondar mt-5">
   <div class="row px-xl-5 pt-5">
     <div class="col-lg-4 col-md-4 mb-5 pr-3 pr-xl-5">
-      <h5 class="text-secondar text-uppercase mb-4">Coordinacion de Aprovisionamiento</h5>
-      <p class="mb-4">Area encargada de llevar a cabo las comparaciones de distintas plataformas, con los facturadores, para realizar el aprovisionamiento correcto a los abonados, a nivel masivo.</p>
+      <h5 class="text-secondar text-uppercase mb-4" style="text-align: center">Coordinacion de Aprovisionamiento</h5>
+      <p class="mb-4" style="text-align: justify">Area encargada de llevar a cabo las comparaciones de distintas plataformas, con los facturadores, para realizar el aprovisionamiento correcto a los abonados, a nivel masivo.</p>
       <p class="mb-2">
         <svg class="bi"><use xlink:href="#building"/></svg>
         Calle Londres, Las Mercedes, Caracas
-      </p>
-      <p class="mb-2">
-        <svg class="bi"><use xlink:href="#letter-open"/></svg>
-        conciliacionyaprovisionamiento@gmail.com
       </p>
       <p class="mb-0">
         <svg class="bi"><use xlink:href="#smartphone"/></svg>
         +58 416 6325765
       </p>
-      <p class="mb-0">
+      <p class="mb-10">
         <svg class="bi"><use xlink:href="#smartphone"/></svg>
         +58 424 3490074
       </p>
+
+      <div class="row border-top mx-xl-1 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+          <a class="text-secondar mb-0" data-toggle="modal" data-target="#myModal">
+            <svg class="bi"><use xlink:href="#puzzle"/></svg>
+              Cumpleaños Aprovisionamiento
+          </a>
+      </div>
+
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <img src="#" width="700" height="550">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
     </div>
+  </div>
+</div>
+
+
+    </div>
+
     <div class="col-lg-7 col-md-12">
       <div class="row">
         <div class="col-md-6 mb-5">
-          <h4 class="text-secondar text-uppercase mb-3">Síguenos en nuestras redes sociales</h6>
+          <h4 class="text-secondar text-uppercase mb-3" style="text-align: center">Síguenos en nuestras redes sociales</h4>
           <div class="center d-flex" style="justify-content: center">
             <a class="btn btn-secondary btn-square mr-2 little-bottoms" href="https://twitter.com/SomosMovilnet_">
               <svg style="margin-left: 7px"><use xlink:href="#twitter-x"/></svg>
@@ -343,23 +363,33 @@
               <svg style="margin-left: 7px"><use xlink:href="#youtube"/></svg>
             </a>
           </div>
+          <br>
+
+          <div class="row border-top mx-xl-1 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+            <h4 class="text-secondar mb-3" style="text-align: center">También puedes comunicarte con nosotros a través del email de la coordinación</h4>
+            <div class="center d-flex" style="justify-content: center">
+              <a class="btn btn-secondary btn-square little-bottoms" href="mailto:pyacpa@cantv.com.ve;conciliacionyaprovisionamiento@gmail.com">
+                <svg style="margin-left: 7px"><use xlink:href="#letter-open"/></svg>
+              </a>
+            </div>
+          </div>
         </div>
 
-        <div class="col-md-6 mb-5">
-          <h5 class="text-secondar text-uppercase mb-4">Vacantes disponibles para la Coordinacion</h5>
+        <div class="col-md-6 mb-3">
+          <h5 class="text-secondar text-uppercase mb-4" style="text-align: center">Vacantes disponibles para la Coordinacion</h5>
           <div class="d-flex flex-column justify-content-start">
             <a class="text-secondar mb-2" href="#">
               <svg class="bi"><use xlink:href="#arrow-down-right-circle"/></svg>
               Apoyo especializado
-            </a>
+            </a>  
           </div>
           <br>
-          <h5 class="text-secondar text-uppercase mb-4">¿Estas interesado/a en una vacante?</h5>
-          <p>Estamos en busqueda de personal proactivo, con la capacidad de trabajar bajo presion y adaptarse a cualquier grupo de trabajo</p>
+          <h5 class="text-secondar text-uppercase mb-4" style="text-align: center">¿Estas interesado/a en una vacante?</h5>
+          <p style="text-align: justify">Estamos en busqueda de personal proactivo, con la capacidad de trabajar bajo presion y adaptarse a cualquier grupo de trabajo</p>
             <div class="container-fluid col-md-12">
               <input type="file" autocomplete="off" class="form-control"> 
-              <div style="margin-top: 5px">
-                <button class="btn btn-secondary">Adjuntar</button>
+              <div style="text-align: center; margin-top: 10px">
+                <button style="text-align: center" class="btn btn-secondary">Adjuntar</button>
               </div>
             </div>
         </div>
