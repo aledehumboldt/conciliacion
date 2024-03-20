@@ -484,14 +484,14 @@
     });
 </script>
 
-<script>
+<script type="text/javascript">
     $(document).ready(function () {
       $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
       });
-        $('#tableminbypass').DataTable({
+        var table = $('.tableminbypass').DataTable({
             processing: true,
             serverSide: true,
             ajax: '{!! route("proof") !!}',
@@ -506,6 +506,15 @@
                 {data : 'action', name : 'action', searchable : false, orderable : false},
                 // Otros campos
             ]
+        });
+
+        $('#crear_registro').click(function(){
+          $('.titulo-modal').text('Agregar Nuevo Registro');
+          $('#accion_boton').val('Add');
+          $('action').val('Add');
+          $('#formulario_resulta').html('');
+
+          $('$formularioModal').modal('show');
         });
 
         var user_id;
