@@ -511,10 +511,24 @@
         $('#crear_registro').click(function(){
           $('.titulo-modal').text('Agregar Nuevo Registro');
           $('#accion_boton').val('Add');
-          $('action').val('Add');
+          $('#action').val('Add');
           $('#formulario_resulta').html('');
 
           $('$formularioModal').modal('show');
+        });
+
+        $('#sample_formulario').on('submit', function(event){
+          event.preventDefault();
+          var action_url = '';
+
+          if($('#action').val() == 'Add')
+          {
+            action_url = "{{ route('bypassMin.store') }}";
+          }
+
+          $.ajax({
+            type: 'post',
+          })
         });
 
         var user_id;
