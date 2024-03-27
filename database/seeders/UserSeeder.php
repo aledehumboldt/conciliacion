@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
     public function run(): void {
         //User::factory(50)->create();
 
-        $data = collect(file('/var/www/html/conciliacion/public/storage/DataSeed/user.txt'));
+        $data = collect(file('/var/www/html/conciliacion/storage/DataSeed/user.txt'));
         //$data = collect(file('c:/laragon/www/conciliacion/public/storage/DataSeed/user.txt')); for window laragon
         $line = " ";
 
