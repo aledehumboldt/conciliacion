@@ -53,7 +53,7 @@
         </select>
       </div>
       <div class="mb-3">
-        <label for="solicitante" class="form-label text-secondary">Solicitante</label>
+        <label for="solicitante" class="form-label">Solicitante</label>
         <select name="solicitante" id="solicitante" class="form-control custom-select">
             <option value="">Seleccione</option>
             <option value="CYA">CYA</option>
