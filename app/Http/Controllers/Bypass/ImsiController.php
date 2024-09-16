@@ -35,7 +35,7 @@ class ImsiController extends Controller
             return $this->create();
         }
         
-        $datos['bypas_imsis'] = BypasImsi::orderBy('id','asc')->paginate();
+        $datos['bypas_imsis'] = BypasImsi::orderBy('id','desc')->paginate();
         return view('bypass.imsi.index', $datos);
     }
 

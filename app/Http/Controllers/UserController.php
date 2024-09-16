@@ -25,7 +25,7 @@ class UserController extends Controller
         }
 
         $usuarios = User::where('estatus','<>', 'Suspendido')
-        ->orderBy('id','asc')->paginate();
+        ->orderBy('id','desc')->paginate();
 
         return view('usuarios.index', compact('usuarios'));
     }

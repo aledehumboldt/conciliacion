@@ -52,8 +52,8 @@
             <div class="mb-3">
                 <select id="tcliente" name="tcliente" class="custom-select">
                     <option value="">Tipo de cliente</option>
-                    <option value="PREPAGO">Prepago</option>
-                    <option value="POSTPAGO">Postpago</option>
+                    <option value="PREPAGO">PREPAGO</option>
+                    <option value="POSTPAGO">POSTPAGO</option>
                 </select>
             </div>
             <label for="observaciones" class="form-label">Observaciones</label>

@@ -27,7 +27,7 @@
     <div class="form-container">
         <div class="form-floating mb-3">
             <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
-                value="{{old('ticket')}}" placeholder="" autocomplete="off">
+                value="{{old('ticket')}}" placeholder="" autocomplete="off" onkeypress='return validaNumericos(event)'>
             <label for="ticket" class="form-label text-secondary">Ingresa ticket</label>
         </div>
         <div class="mb-3">

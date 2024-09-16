@@ -22,7 +22,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th style="display: none">#</th>
                 <th>Ticket</th>
                 <th>Excluido hasta</th>
                 <th>Excluido desde</th>
@@ -35,7 +34,6 @@
         <tbody class="table">
             @foreach ($exclusiones as $exclusion)
             <tr>
-                <td style="display: none">{{$exclusion->id}}</td>
                 <td>{{$exclusion->ticket}}</td>
                 <td>{{$exclusion->fechae}}</td>
                 <td>{{$exclusion->fechac}}</td>

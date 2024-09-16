@@ -50,7 +50,7 @@ class IncidenciaController extends Controller
         }
 
 /*
-        $incidencias = $queryBuilder->orderBy('id','asc')->paginate();
+        $incidencias = $queryBuilder->orderBy('id','desc')->paginate();
 
         $inicio = Carbon::createFromFormat("Y-m-d H:i:s",$incidencias->inicio);
         $fin = Carbon::createFromFormat("Y-m-d H:i:s",$incidencias->fin);

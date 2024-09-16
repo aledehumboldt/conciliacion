@@ -30,7 +30,7 @@ class ExclusioneController extends Controller
         }
 
         $exclusiones = Exclusione::where('fechae', '>=', now()->format('Y-m-d H:i:s'))
-        ->paginate();
+        ->orderBy('id', 'desc')->paginate();
         
         return view('exclusiones.index', compact('exclusiones'));
     }
@@ -84,8 +84,8 @@ class ExclusioneController extends Controller
 
         $this->validate($request,$campos);
 
-        $abonado = $request->codareaB.$request->celularB;
-        
+        $abonado = $request->codigo.$request->celular;
+
         $exclusiones = Exclusione::where('celular',$abonado)
         ->where('fechae', '>=', now()->format('Y-m-d H:i:s'))
         ->get();

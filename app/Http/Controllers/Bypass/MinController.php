@@ -36,7 +36,7 @@ class MinController extends Controller
             return $this->create();
         }
 
-        $datos['bypas_mins'] = BypasMin::orderBy('id','asc')->paginate();
+        $datos['bypas_mins'] = BypasMin::orderBy('id','desc')->paginate();
         return view('bypass.min.index', $datos);
     }
 
@@ -168,7 +168,16 @@ class MinController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreBypassMinRequest $request, $id) {
+    public function update(Request $request, $id) {
+        //return $request;
+        $request->validate([
+            'ticket' => 'required|string|min:10|max:10',
+            'codarea' => 'required|numeric',
+            'observaciones' => 'required|string|min:6|max:250',
+            'min' => 'required|numeric',
+            'tcliente' => 'required|string|min:7|max:8',
+          ]);
+
         $datosMinbypas = $request->except('_token', 'editar', '_method');
 
         //Sustituyendo valores necesarios

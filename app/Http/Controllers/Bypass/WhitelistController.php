@@ -35,7 +35,7 @@ class WhitelistController extends Controller
             return $this->create();
         }
 
-        $datos['bypas_mins'] = BypasWhitelist::orderBy('id','asc')->paginate();
+        $datos['bypas_mins'] = BypasWhitelist::orderBy('id','desc')->paginate();
         return view('bypass.whitelist.index', $datos);
     }
 

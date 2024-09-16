@@ -27,7 +27,7 @@
         <div class="form-container my-text-class">
             <div class="form-floating mb-3">
                 <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
-                    value="{{old('ticket')}}" placeholder="">
+                    value="{{old('ticket')}}" placeholder="" onkeypress='return validaNumericos(event)'>
                 <label for="ticket" class="form-label text-secondary">Ingresa ticket</label>
             </div>
             <label for="min" class="form-label">Celular</label>
@@ -37,7 +37,8 @@
                     <option value="416">0416</option>
                     <option value="426">0426</option>
                 </select>
-                <input type="text" autocomplete="off" name="min" id="min" value="{{old('min')}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
+                <input type="text" autocomplete="off" name="min" id="min" value="{{old('min')}}" 
+                class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}" onkeypress='return validaNumericos(event)'>
             </div>
             <div class="mb-3">
                 <label for="fecha" class="form-label">Recepcion de requerimiento</label>
@@ -52,8 +53,8 @@
             <div class="mb-3">
                 <select id="tcliente" name="tcliente" class="custom-select">
                     <option value="">Tipo de cliente</option>
-                    <option value="PREPAGO">Prepago</option>
-                    <option value="POSTPAGO">Postpago</option>
+                    <option value="PREPAGO">PREPAGO</option>
+                    <option value="POSTPAGO">POSTPAGO</option>
                 </select>
             </div>
             <label for="observaciones" class="form-label">Observaciones</label>
