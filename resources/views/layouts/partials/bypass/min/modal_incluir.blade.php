@@ -14,9 +14,9 @@
                             <div class="form-floating mb-3">
                                 <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
                                     value="{{old('ticket')}}" placeholder="" onkeypress='return validaNumericos(event)' maxlength="10">
-                                <label for="ticket" class="form-label">Ingresa ticket *</label>
+                                <label for="ticket" class="form-label">Ingresa ticket</label>
                             </div>
-                            <label for="min" class="form-label">Celular *</label>
+                            <label for="min" class="form-label">Celular</label>
                             <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
                                 <select name="codarea" id="codarea" class="custom-select" style="width:100px" required>
                                     <option value="">Código</option>
@@ -28,27 +28,22 @@
                                 onkeypress='return validaNumericos(event)' maxlength="7">
                             </div>
                             <div class="mb-3">
-                                <label for="fecha" class="form-label">Fecha inicio de incidencia *</label>
+                                <label for="fecha" class="form-label">Fecha recepcion de requerimiento</label>
                                 <input type="text" autocomplete="off" name="inicio" id="inicio" class="form-control" value="{{old('inicio')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
                                 this.type='text'">
                             </div>
                             <div class="mb-3">
-                                <label for="fecha" class="form-label">Fecha fin de requerimiento.</label>
-                                <input type="text" autocomplete="off" name="fin" id="fin" class="form-control" value="{{old('fin')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
-                                this.type='text'">
-                            </div>
-                            <div class="mb-3">
                                 <select id="tcliente" name="tcliente" class="custom-select">
-                                    <option value="">Tipo de cliente *</option>
+                                    <option value="">Tipo de cliente</option>
                                     <option value="PREPAGO">PREPAGO</option>
                                     <option value="POSTPAGO">POSTPAGO</option>
                                 </select>
                             </div>
-                            <label for="observaciones" class="form-label">Observaciones *</label>
+                            <label for="observaciones" class="form-label">Observaciones</label>
                             <div class="form-floating mb-3">
                                 <textarea name="observaciones" id="observaciones" cols="42" rows="5">{{old('observaciones')}}</textarea>
                             </div>
-                            <h6>* Campos Obligatorios</h6>
+                            <h6>Todos los campos son obligatorios.</h6>
                             <div class="text-center">
                                 <button type="submit" name="incluir" id="incluir" class="btn btn-secondary">
                                     <svg class="bi"><use xlink:href="#store"/></svg>

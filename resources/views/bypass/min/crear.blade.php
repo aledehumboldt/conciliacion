@@ -26,7 +26,7 @@
         @csrf
         <div class="form-container my-text-class">
             <div class="form-floating mb-3">
-                <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
+                <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control" maxlength="10"
                     value="{{old('ticket')}}" placeholder="" onkeypress='return validaNumericos(event)'>
                 <label for="ticket" class="form-label text-secondary">Ingresa ticket</label>
             </div>
@@ -37,7 +37,7 @@
                     <option value="416">0416</option>
                     <option value="426">0426</option>
                 </select>
-                <input type="text" autocomplete="off" name="min" id="min" value="{{old('min')}}" 
+                <input type="text" autocomplete="off" name="min" id="min" value="{{old('min')}}" maxlength="7"
                 class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}" onkeypress='return validaNumericos(event)'>
             </div>
             <div class="mb-3">

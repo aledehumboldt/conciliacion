@@ -26,7 +26,7 @@
         @csrf
     <div class="form-container">
         <div class="form-floating mb-3">
-            <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
+            <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control" maxlength="10"
                 value="{{old('ticket')}}" placeholder="" autocomplete="off" onkeypress='return validaNumericos(event)'>
             <label for="ticket" class="form-label text-secondary">Ingresa ticket</label>
         </div>
@@ -39,7 +39,7 @@
             <label for="fin" class="form-label">Fecha Fin</label>
             <input type="text" name="fin" id="fin" class="form-control" value="{{old('fin')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
             this.type='text'">
-        </div>
+        </div> 
         <label for="descripcion" class="form-label">Descripcion</label>
         <div class="form-floating mb-3">
           <textarea name="descripcion" id="descripcion" cols="36" rows="5">{{old('descripcion')}}</textarea>

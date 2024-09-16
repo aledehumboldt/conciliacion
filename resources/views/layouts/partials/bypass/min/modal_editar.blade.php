@@ -4,18 +4,17 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edicion incluir Trafico gris</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body"> 
                 <form action="{{ route('bypassMin.update', $bypas_min->id) }}" enctype="multipart/form-data" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="form-container">
                         <div class="form-floating mb-3">
-                            <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
-                            placeholder="Ingresar ticket" value="{{ $bypas_min->ticket }}" required
-                            onkeypress='return validaNumericos(event)' maxlength="10">
+                            <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control" placeholder="Ingresar ticket"
+                            value="{{ $bypas_min->ticket }}" required onkeypress='return validaNumericos(event)' maxlength="10">
                             <label for="ticket" class="form-label text-secondary">Ingresa ticket</label>
                         </div>
                         <label for="min" class="form-label text-secondary">Celular</label>
@@ -26,9 +25,8 @@
                                 <option value="426"
                                 @if (substr($bypas_min->min, 0, 3) == "426") selected @endif>0426</option>
                             </select>
-                            <input type="text" autocomplete="off" name="min" id="min" value="{{substr($bypas_min->min, 3)}}"
-                            class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}"
-                            onkeypress='return validaNumericos(event)' maxlength="7">
+                            <input type="text" autocomplete="off" name="min" id="min" value="{{substr($bypas_min->min, 3)}}" class="form-control"
+                            placeholder="Ingrese abonado" pattern=".{7,7}" onkeypress='return validaNumericos(event)' maxlength="7">
                         </div>
                         <div class="mb-3">
                             <select id="tcliente" name="tcliente" class="custom-select" required>

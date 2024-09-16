@@ -93,13 +93,12 @@ class MinController extends Controller
         $datosMinbypas['min'] = $min;
         $datosMinbypas['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosMinbypas['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-        $datosMinbypas['fecha'] = date("Y-m-d H:i:s", strtotime($request->fin));
+        $datosMinbypas['fecha'] = Carbon::now()->format('Y-m-d_H:i:s');
 
         //Eliminando del array
         unset(
             $datosMinbypas['codarea'],
-            $datosMinbypas['inicio'],
-            $datosMinbypas['fin']
+            $datosMinbypas['inicio']
         );
 
         //Insertando la tabla Bypass MIN
@@ -109,7 +108,7 @@ class MinController extends Controller
         //---------------Incidencia------------------
         //Agregando valores necesarios
         $datosMinbypas['inicio'] = date("Y-m-d H:i:s", strtotime($request->inicio));
-        $datosMinbypas['fin'] = date("Y-m-d H:i:s", strtotime($request->fin));
+        $datosMinbypas['fin'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosMinbypas['descripcion'] = $request->observaciones;
         $datosMinbypas['solicitante'] = auth()->user()->perfil;
         $datosMinbypas['responsable'] = $datosMinbypas['usuario'];

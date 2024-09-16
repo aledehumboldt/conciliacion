@@ -58,7 +58,6 @@ class WhitelistController extends Controller
         $campos = [
             'ticket' => 'required|string',
             'inicio' => 'required|string',
-            'fin' => 'required|string',
             'codarea' => 'required|string',
             'min' => 'required|numeric',
             'observaciones' => 'required|string',
@@ -76,12 +75,22 @@ class WhitelistController extends Controller
         $datosMinbypas['min'] = $min;
         $datosMinbypas['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosMinbypas['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-        $datosMinbypas['fecha'] = date("Y-m-d H:i:s", strtotime($request->fin));
+        $datosMinbypas['fecha'] = Carbon::now()->format('Y-m-d_H:i:s');
 
         //Eliminando del array
         unset($datosMinbypas['codarea'],
-        $datosMinbypas['inicio'],
-        $datosMinbypas['fin']);
+            $datosMinbypas['inicio']
+        );
+
+        $bypass = BypasWhitelist::where('min',$min)
+        ->first();
+
+        //Validando si existe
+        if (!empty($bypass)) {
+            //Redireccionando
+            return redirect()->route('bypassWhitelist.index')
+            ->with('mensaje', 'Abonado ya existe en el listado.');
+        }        
 
         //Insertando la tabla Bypass MIN
         BypasWhitelist::insert($datosMinbypas);
@@ -90,7 +99,7 @@ class WhitelistController extends Controller
         //---------------Incidencia--------------
         //Agregando valores necesarios
         $datosMinbypas['inicio'] = date("Y-m-d H:i:s", strtotime($request->inicio));
-        $datosMinbypas['fin'] = date("Y-m-d H:i:s", strtotime($request->fin));
+        $datosMinbypas['fin'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosMinbypas['descripcion'] = $request->observaciones;
         $datosMinbypas['solicitante'] = auth()->user()->perfil;
         $datosMinbypas['responsable'] = $datosMinbypas['usuario'];
@@ -210,10 +219,6 @@ class WhitelistController extends Controller
         $datosIncidencia['responsable'] = auth()->user()->usuario;
         $datosIncidencia['inicio'] = date("Y-m-d H:i:s", strtotime($request->inicio));
         $datosIncidencia['tipo'] = "requerimiento";
-
-        if (isset($request->fin)) {
-            $datosIncidencia['fin'] = date("Y-m-d H:i:s", strtotime($request->fin));
-        }
         
         $incidencia = Incidencia::where('ticket',$datosIncidencia['ticket'])
         ->first();

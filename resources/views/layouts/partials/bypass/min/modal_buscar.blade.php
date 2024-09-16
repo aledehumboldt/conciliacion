@@ -18,9 +18,8 @@
                                 <option value="416">0416</option>
                                 <option value="426">0426</option>
                             </select>
-                            <input type="text" autocomplete="off" name="celular" id="celular" class="form-control"
-                            value="{{old('min')}}" placeholder="Ingrese abonado" pattern=".{7,7}"
-                            onkeypress='return validaNumericos(event)' maxlength="7">
+                            <input type="text" autocomplete="off" name="celular" id="celular" class="form-control" value="{{old('min')}}"
+                            placeholder="Ingrese abonado" pattern=".{7,7}" onkeypress='return validaNumericos(event)' maxlength="7">
                         </div>
                         <button type="submit" class="btn btn-secondary" name="buscar" id="buscar">
                             <svg class="bi"><use xlink:href="#search"/></svg>
