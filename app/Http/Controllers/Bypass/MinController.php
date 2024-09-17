@@ -15,7 +15,7 @@ class MinController extends Controller
     /**
      * Verify if the user can see these views.
      */
-    protected function verify() {
+    protected function verify() { 
         if (Auth::user()->estatus != "Iniciado") {
             return true;
         } else {
