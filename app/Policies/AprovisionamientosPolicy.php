@@ -23,7 +23,7 @@ class AprovisionamientoPolicy
     }
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the user can create models jowel and randy.
      */
     public function create(User $user): bool {
         //
