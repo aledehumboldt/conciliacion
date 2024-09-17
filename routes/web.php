@@ -100,6 +100,8 @@ Route::get('minMasivo', [MasivoMin::class, 'index'])->name('minMasivo.index');
 
 Route::post('minMasivo/import', [MasivoMin::class, 'import'])->name('minMasivo.import');
 
+Route::post('minMasivo/download', [MasivoMin::class, 'download'])->name('minMasivo.download');
+
 Route::get('imsiMasivo', [MasivoImsi::class, 'index'])->name('imsiMasivo.index');
 
 Route::post('imsiMasivo/import', [MasivoImsi::class, 'import'])->name('imsiMasivo.import');
