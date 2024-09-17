@@ -1,4 +1,4 @@
-    <div class="modal fade text-black" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+<div class="modal fade text-black" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -13,21 +13,18 @@
                     <div class="form-container">
                         <div class="form-floating mb-3">
                             <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
-                                value="{{old('ticket')}}" placeholder="">
+                                value="{{old('ticket')}}" placeholder="" onkeypress='return validaNumericos(event)' maxlength="10">
                             <label for="ticket" class="form-label">Ingresa ticket</label>
                         </div>
                         <label for="imsi" class="form-label">IMSI</label>
                         <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
-                            <input type="text" autocomplete="off" name="imsi" id="imsi" value="{{old('imsi')}}" class="form-control" placeholder="Ingrese imsi" pattern=".{15,15}">
+                            <input type="text" autocomplete="off" name="imsi" id="imsi" value="{{old('imsi')}}"
+                            class="form-control" placeholder="Ingrese imsi" pattern=".{15,15}" onkeypress='return validaNumericos(event)'
+                            maxlength="15">
                         </div>
                         <div class="mb-3">
-                            <label for="inicio" class="form-label">Fecha Inicio</label>
+                            <label for="inicio" class="form-label">Fecha recepcion de requerimiento.</label>
                             <input type="text" autocomplete="off" name="inicio" id="inicio" class="form-control" value="{{old('inicio')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
-                            this.type='text'">
-                        </div>
-                        <div class="mb-3">
-                            <label for="fin" class="form-label">Fecha Fin</label>
-                            <input type="text" autocomplete="off" name="fin" id="fin" class="form-control" value="{{old('fin')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
                             this.type='text'">
                         </div>
                         <label for="observaciones" class="form-label">Observaciones</label>
@@ -35,6 +32,7 @@
                             <textarea name="observaciones" id="observaciones" cols="35" rows="5">{{old('observaciones')}}</textarea>
                         </div>
                         <div class="text-center">
+                            <h6>Todos los campos son obligatorios</h6>
                             <button type="submit" name="incluir" id="incluir" class="btn btn-secondary">
                                 <svg class="bi"><use xlink:href="#store"/></svg>
                                 Incluir IMSI

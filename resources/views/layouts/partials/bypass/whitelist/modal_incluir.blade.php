@@ -12,8 +12,8 @@
                     @csrf
                     <div class="form-container">
                         <div class="form-floating mb-3">
-                            <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
-                                value="{{old('ticket')}}" placeholder="">
+                            <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control" value="{{old('ticket')}}"
+                            placeholder="" onkeypress='return validaNumericos(event)' maxlength="10">
                             <label for="ticket" class="form-label">Ingresa ticket</label>
                         </div>
                         <label for="min" class="form-label">Celular</label>
@@ -23,22 +23,19 @@
                                 <option value="416">0416</option>
                                 <option value="426">0426</option>
                             </select>
-                            <input type="text" autocomplete="off" name="min" id="min" value="{{old('min')}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
+                            <input type="text" autocomplete="off" name="min" id="min" value="{{old('min')}}" class="form-control"
+                            placeholder="Ingrese abonado" pattern=".{7,7}" onkeypress='return validaNumericos(event)' maxlength="7">
                         </div>
                         <div class="mb-3">
-                            <label for="inicio" class="form-label">Fecha Inicio</label>
+                            <label for="inicio" class="form-label">Fecha recepcion de requerimiento</label>
                             <input type="text" name="inicio" id="inicio" class="form-control" value="{{old('inicio')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
-                            this.type='text'">
-                        </div>        
-                        <div class="mb-3">
-                            <label for="fin" class="form-label">Fecha Fin</label>
-                            <input type="text" name="fin" id="fin" class="form-control" value="{{old('fin')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
                             this.type='text'">
                         </div>
                         <label for="observaciones" class="form-label">Observaciones</label>
                         <div class="form-floating mb-3">
                             <textarea name="observaciones" id="observaciones" cols="35" rows="5">{{old('observaciones')}}</textarea>
                         </div>
+                        <h6>Todos los campos son obligatorios.</h6>
                         <div class="text-center">
                             <button type="submit" name="incluir" id="incluir" class="btn btn-secondary">
                                 <svg class="bi"><use xlink:href="#store"/></svg>

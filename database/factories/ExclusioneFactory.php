@@ -18,7 +18,7 @@ class ExclusioneFactory extends Factory
     public function definition(): array {
         $result = [
             'ticket' => fake()->numerify('##########'),
-            'fechae' => fake()->dateTimeBetween('now', '+1 year'),
+            'fechae' => fake()->dateTimeBetween('now', '+1 year')->format('Ymd'),
             'fechac' => now(),
             'usuario' => User::inRandomOrder()->first()->usuario,
             'codarea' => fake()->randomElement(['416', '426']),

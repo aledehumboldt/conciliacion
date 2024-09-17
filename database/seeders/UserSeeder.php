@@ -13,14 +13,8 @@ class UserSeeder extends Seeder
      */
     public function run(): void {
         //User::factory(50)->create();
-
-<<<<<<< HEAD
         //$data = collect(file('/var/www/html/conciliacion/public/storage/DataSeed/user.txt'));
-        $data = collect(file('c:/laragon/www/conciliacion/storage/DataSeed/user.txt')); //for window laragon
-=======
-        $data = collect(file('/var/www/html/conciliacion/storage/DataSeed/user.txt'));
-        //$data = collect(file('c:/laragon/www/conciliacion/public/storage/DataSeed/user.txt')); for window laragon
->>>>>>> 1607851aea74c83c31cc45810957ca65429cb823
+        $data = collect(file('c:/laragon/www/conciliacion/public/storage/DataSeed/user.txt')); //for window laragon
         $line = " ";
 
         $data->each(function ($line) {

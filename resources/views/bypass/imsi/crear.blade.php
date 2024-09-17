@@ -26,12 +26,13 @@
         @csrf
         <div class="form-container">
             <div class="form-floating mb-3">
-                <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
-                    value="{{old('ticket')}}" placeholder="">
+                <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control" maxlength="10"
+                    value="{{old('ticket')}}" placeholder="" onkeypress='return validaNumericos(event)'>
                 <label for="ticket" class="form-label text-secondary">Ingrese ticket</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" autocomplete="off" name="imsi" id="imsi" value="{{old('imsi')}}" class="form-control" placeholder="Ingrese IMSI" >
+                <input type="text" autocomplete="off" name="imsi" id="imsi" value="{{old('imsi')}}" maxlength="15"
+                class="form-control" placeholder="Ingrese IMSI" onkeypress='return validaNumericos(event)'>
                 <label for="min" class="form-label text-secondary">Ingrese IMSI</label>
             </div>
             <div class="mb-3">
