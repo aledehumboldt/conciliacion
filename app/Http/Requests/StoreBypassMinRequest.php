@@ -1,8 +1,29 @@
 <?php
 
 namespace App\Http\Requests;
+namespace App\Rules;
 
 use Illuminate\Foundation\Http\FormRequest;
+
+
+use Illuminate\Contracts\Validation\Rule;
+
+class BetweenRange implements Rule
+{
+    protected $min;
+    protected $max;
+
+    public function __construct($min, $max)
+    {
+        $this->min = $min;
+        $this->max = $max;
+    }
+
+    public function passes($attribute, $value)
+    {
+        return $value >= $this->min && $value <= $this->max;
+    }
+}
 
 class StoreBypassMinRequest extends FormRequest
 {
@@ -19,10 +40,10 @@ class StoreBypassMinRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules($attribute, $value): array
     {
         return [
-            'ticket' => 'required|string|min:10|max:10',
+            'ticket' => ['required', 'numeric', new BetweenRange(3900000000, 3900999999)],
             'inicio' => 'required|date',
             'codarea' => 'required|string',
             'min' => 'required|numeric',
@@ -35,6 +56,7 @@ class StoreBypassMinRequest extends FormRequest
     {
         return [
             'ticket.required' => 'El campo ticket es obligatorio.',
+            'ticket.required' => 'El :attribute debe estar entre :min y :max.',
             'ticket.string' => 'El campo ticket debe ser una cadena.',
             'ticket.min' => 'El campo ticket debe tener mínimo 10 caracteres.',
             'ticket.max' => 'El campo ticket no debe exceder los 10 caracteres.',
