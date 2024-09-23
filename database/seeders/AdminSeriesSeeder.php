@@ -13,9 +13,8 @@ class AdminSeriesSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void {
-        
-       //$data = collect(file('/var/www/html/conciliacion/public/storage/file.txt'));
-        $data = collect(file('c:/laragon/www/conciliacion/public/storage/file.txt')); //for window laragon
+        //$data = collect(file('/var/www/html/conciliacion/public/storage/file.txt'));
+        $data = collect(file('c:/laragon/www/conciliacion/public/storage/file.txt')); #for window laragon
         $line = " ";
 
         $data->each(function ($line) {

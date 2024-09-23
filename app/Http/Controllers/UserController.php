@@ -48,7 +48,7 @@ class UserController extends Controller
 
         $campos = [
             'nombre' => 'required|string|max:100',
-            'usuario' => 'required|numeric|min:8',
+            'usuario' => 'required|unique:users|numeric|digits:8',
             'perfil' => 'required|string|min:2|max:3',
         ];
 
