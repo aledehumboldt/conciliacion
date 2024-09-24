@@ -14,7 +14,7 @@
                             <label for="min" class="form-label">Ticket</label>
                             <div class="form-floating mb-3">
                                 <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
-                                    value="{{old('ticket')}}" placeholder="" onkeypress='return validaNumericos(event)' maxlength="10">
+                                    value="{{old('ticket')}}" placeholder="" onkeypress='return validaNumericos(event)' maxlength="10" required>
                                 <label for="ticket" class="form-label">3900XXXXXX</label>
                             </div>
                             <label for="min" class="form-label">Celular</label>
@@ -26,15 +26,15 @@
                                 </select>
                                 <input type="text" autocomplete="off" name="min" id="min" value="{{old('min')}}"
                                 class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}"
-                                onkeypress='return validaNumericos(event)' maxlength="7">
+                                onkeypress='return validaNumericos(event)' maxlength="7" required>
                             </div>
                             <div class="mb-3">
                                 <label for="fecha" class="form-label">Fecha recepcion de requerimiento</label>
                                 <input type="text" autocomplete="off" name="inicio" id="inicio" class="form-control" value="{{old('inicio')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
-                                this.type='text'">
+                                this.type='text'" required>
                             </div>
                             <div class="mb-3">
-                                <select id="tcliente" name="tcliente" class="custom-select">
+                                <select id="tcliente" name="tcliente" class="custom-select" required>
                                     <option value="">Tipo de cliente</option>
                                     <option value="PREPAGO">PREPAGO</option>
                                     <option value="POSTPAGO">POSTPAGO</option>
@@ -42,7 +42,7 @@
                             </div>
                             <label for="observaciones" class="form-label">Observaciones</label>
                             <div class="form-floating mb-3">
-                                <textarea name="observaciones" id="observaciones" cols="42" rows="5">{{old('observaciones')}}</textarea>
+                                <textarea name="observaciones" id="observaciones" cols="42" rows="5" required>{{old('observaciones')}}</textarea>
                             </div>
                             <h6>Todos los campos son obligatorios.</h6>
                             <div class="text-center">

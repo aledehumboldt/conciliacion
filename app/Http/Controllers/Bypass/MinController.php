@@ -170,7 +170,7 @@ class MinController extends Controller
     public function update(Request $request, $id) {
         //return $request;
         $request->validate([
-            'ticket' => 'required|string|min:10|max:10',
+            'ticket' => 'required|string|min:10|max:10','regex:3900*', 
             'codarea' => 'required|numeric',
             'observaciones' => 'required|string|min:6|max:250',
             'min' => 'required|numeric',

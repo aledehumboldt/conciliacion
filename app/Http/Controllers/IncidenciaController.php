@@ -35,7 +35,6 @@ class IncidenciaController extends Controller
         $anio = date('Y');
         $dateFrom = $anio."-".$mes."-01 00:00:00";
         $dateTo = $anio."-".$mes."-31 23:59:59";
-        $incidencias = Incidencia::select('*')->get();
 
         if($request->ajax()){
             $data = Incidencia::select('*')->whereBetween('inicio', [$dateFrom, $dateTo])->orderBy('id','desc');
@@ -59,7 +58,7 @@ class IncidenciaController extends Controller
 
         return view('incidencias.index', compact('incidencias'));//,'diff'
 */
-        return view('incidencias.index', compact('incidencias'));
+        return view('incidencias.index');
     }
     /**
      * Show the form for creating a new resource.

@@ -22,7 +22,7 @@ class StoreBypassMinRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'ticket' => 'required|string|min:10|max:10',
+            'ticket' => 'required|numeric|between:3900000000,3900999999',
             'inicio' => 'required|date',
             'codarea' => 'required|string',
             'min' => 'required|numeric',
@@ -35,6 +35,7 @@ class StoreBypassMinRequest extends FormRequest
     {
         return [
             'ticket.required' => 'El campo ticket es obligatorio.',
+            'ticket.between' => 'El ticket debe comprender entre los rangos :min y :max.',
             'ticket.string' => 'El campo ticket debe ser una cadena.',
             'ticket.min' => 'El campo ticket debe tener mínimo 10 caracteres.',
             'ticket.max' => 'El campo ticket no debe exceder los 10 caracteres.',

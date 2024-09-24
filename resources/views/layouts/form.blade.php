@@ -1,19 +1,19 @@
 <div class="form-container">
-    <div  class="form-floating mb-3">
+    <div class="form-floating mb-3">
         <input type="text" autocomplete="off" name="nombre" id="nombre" class="form-control"
-            value="{{isset($usuario->nombre) ? $usuario->nombre : old('nombre')}}" placeholder="Ingresar nombre">
-        <label for="nombre" class="form-label text-secondary">Nombre</label>
+            value="{{isset($usuario->nombre) ? $usuario->nombre : old('nombre')}}" placeholder="" required>
+        <label for="nombre" class="form-label text-secondary">Ingresar Nombre</label>
     </div>
-    <div  class="form-floating mb-3">
-        <input type="text" autocomplete="off" name="usuario" id="usuario" value="{{isset($usuario->usuario) ? $usuario->usuario : old('usuario')}}"  class="form-control" placeholder="Ingresar cédula">
-        <label for="usuario" class="form-label text-secondary">Cédula</label>
+    <div class="form-floating mb-3">
+        <input type="text" autocomplete="off" name="usuario" id="usuario" value="{{isset($usuario->usuario) ? $usuario->usuario : old('usuario')}}"  class="form-control" placeholder="" required>
+        <label for="usuario" class="form-label text-secondary">Ingresar Cédula</label>
     </div>
     @if ($mod == "Crear")
         <input type="hidden" name="creado_por" id="creado_por" value="{{auth()->user()->usuario}}">
     @endif
     <input type="hidden" name="estatus" id="estatus" value="{{isset($usuario->estatus) ? $usuario->estatus : 'Iniciado'}}">
     <div class="mb-3">
-        <select id="perfil" name="perfil" class="custom-select" @if (auth()->user()->perfil == "SA") disabled @endif > 
+        <select id="perfil" name="perfil" class="custom-select" @if (auth()->user()->perfil == "SA") disabled @endif required> 
             <option value="">Selecciona el área</option>
             <option value="SA"
             @isset($usuario->perfil)

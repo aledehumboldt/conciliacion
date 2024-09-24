@@ -16,6 +16,7 @@ use App\Http\Controllers\IncidenciaController;
 use App\Http\Controllers\ContactarController;
 use App\Http\Controllers\ProvisioningController;
 use App\Http\Controllers\AprovisionamientoController;
+use App\Http\Controllers\proofController;
 use App\Http\Controllers\Masivo_bypass\MinController as MasivoMin;
 use App\Http\Controllers\Masivo_bypass\ImsiController as MasivoImsi;
 use App\Http\Controllers\Masivo_bypass\AmbosController as MasivoAmbos;
@@ -101,6 +102,8 @@ Route::get('minMasivo', [MasivoMin::class, 'index'])->name('minMasivo.index');
 
 Route::post('minMasivo/import', [MasivoMin::class, 'import'])->name('minMasivo.import');
 
+Route::post('minMasivo/download', [MasivoMin::class, 'download'])->name('minMasivo.download');
+
 Route::get('imsiMasivo', [MasivoImsi::class, 'index'])->name('imsiMasivo.index');
 
 Route::post('imsiMasivo/import', [MasivoImsi::class, 'import'])->name('imsiMasivo.import');
@@ -125,6 +128,7 @@ Route::get('aprovisionamientos/desconexion', [AprovisionamientoController::class
 Route::get('invisibles_ki', [ImsiKiController::class, 'index'])->name('invisibles_ki');
 //------------------------------------------------Proof-----------------------------------------------
 Route::get('proof', [proofController::class, 'index'])->name('proof');
+Route::post('edit-proof', [proofController::class, 'edit'])->name('proof.edit');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);
