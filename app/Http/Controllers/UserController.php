@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreUserRequest;
 
 class UserController extends Controller
 {
@@ -44,18 +46,12 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) {
+    public function store(StoreUserRequest $request) {
 
-        $campos = [
-            'nombre' => 'required|string|max:100',
-            'usuario' => 'required|unique:users|numeric|digits:8',
-            'perfil' => 'required|string|min:2|max:3',
-        ];
-
-        $this->validate($request,$campos);
-
-        $datosUsuario = request()->except('_token', 'crear');
+        $datosUsuario = $request->except('_token', 'crear');
         $datosUsuario['clave'] = md5(request()->usuario);
+        $datosUsuario['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosUsuario['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         User::insert($datosUsuario);
         return redirect()->route('usuarios.index')
         ->with('mensaje', 'Usuario agregado.');

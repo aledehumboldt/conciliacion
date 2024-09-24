@@ -9,6 +9,7 @@ return [
     'after'                => 'El campo :attribute debe ser una fecha posterior a :date.',
     'after_or_equal'       => 'El campo :attribute debe ser una fecha posterior o igual a :date.',
     'alpha'                => 'El campo :attribute sólo debe contener letras.',
+    'alpha_space'          => 'El campo :attribute sólo debe contener letras.',
     'alpha_dash'           => 'El campo :attribute sólo debe contener letras, números, guiones y guiones bajos.',
     'alpha_num'            => 'El campo :attribute sólo debe contener letras y números.',
     'array'                => 'El campo :attribute debe ser un conjunto.',
