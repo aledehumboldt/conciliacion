@@ -20,6 +20,7 @@ use App\Http\Controllers\Masivo_bypass\MinController as MasivoMin;
 use App\Http\Controllers\Masivo_bypass\ImsiController as MasivoImsi;
 use App\Http\Controllers\Masivo_bypass\AmbosController as MasivoAmbos;
 use App\Http\Controllers\Masivo_bypass\WhitelistController as MasivoWhitelist;
+use App\Http\Controllers\ImsiKiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -120,7 +121,8 @@ Route::get('aprovisionamientos/conexion', [AprovisionamientoController::class, '
 
 Route::get('aprovisionamientos/desconexion', [AprovisionamientoController::class, 'desconexion'])->name('aprovisionamientos.desconexion');
 //-------------------------------------------------Fin Aprovisionamientos------------------------------------------------------------------
-
+//-------------------------------------------------KI Invisibles--------------------------------------------------------------------------
+Route::get('invisibles_ki', [ImsiKiController::class, 'index'])->name('invisibles_ki');
 //------------------------------------------------Proof-----------------------------------------------
 Route::get('proof', [proofController::class, 'index'])->name('proof');
 

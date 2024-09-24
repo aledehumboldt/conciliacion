@@ -259,6 +259,14 @@
                 Trafico Gris (Bypass)
               </a>
             </li>
+
+            <li class="nav-item">
+              <a href="{{route('invisibles_ki')}}"  class="nav-link d-flex align-items-center gap-2
+              @if(route('invisibles_ki') == url()->current()) active @endif ">
+                <svg class="bi"><use xlink:href="#graph-up"/></svg>
+                Invisibles_Ki 
+              </a>
+            </li>
           </ul>
           @endif
 
