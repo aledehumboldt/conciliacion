@@ -16,6 +16,7 @@ use App\Http\Controllers\IncidenciaController;
 use App\Http\Controllers\ContactarController;
 use App\Http\Controllers\ProvisioningController;
 use App\Http\Controllers\AprovisionamientoController;
+use App\Http\Controllers\proofController;
 use App\Http\Controllers\Masivo_bypass\MinController as MasivoMin;
 use App\Http\Controllers\Masivo_bypass\ImsiController as MasivoImsi;
 use App\Http\Controllers\Masivo_bypass\AmbosController as MasivoAmbos;

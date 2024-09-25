@@ -7,6 +7,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -59,18 +60,20 @@ class UserController extends Controller
 
     /**
      * Display the specified resource.
-     */
+    */
     public function show(Request $request) {
 
         $campos = [
-            'usuario' => 'required|numeric'
+             'busqueda' => 'required',
         ];
 
         $this->validate($request,$campos);
 
-        $var = $request->usuario;
+        $busqueda = $request->busqueda;
 
-        $users = User::where('usuario', $var)->first();
+        $users = User::where('usuario', 'like', "%$busqueda%")
+                    ->orWhere('nombre', 'like', "%$busqueda%")
+                    ->get();
 
         return view('usuarios.consultar',compact('users'));
     }
@@ -87,18 +90,12 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id) {
+    public function update(UpdateUserRequest $request, $id) {
 
-        $campos = [
-            'nombre' => 'required|string|max:100',
-            'usuario' => 'required|numeric|min:8',
-            'perfil' => 'required|string|min:2|max:3',
-        ];
-
-        $this->validate($request,$campos);
-        
         //Actualizando registro
-        $datosUsuario = request()->except('_token', 'crear', '_method');
+        $datosUsuario = $request->except('_token', 'crear', '_method');
+        $datosUsuario['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosUsuario['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         User::where('id','=',$id)->update($datosUsuario);
 
         //Buscando registro actualizado y redireccionando
@@ -107,7 +104,7 @@ class UserController extends Controller
         return redirect()->route('usuarios.index')
         ->with('mensaje', 'Usuario actualizado.');
 
-    }
+        }
 
     /**
      * Remove the specified resource from storage.

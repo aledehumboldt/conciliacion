@@ -4,7 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUserRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
+
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -19,11 +20,14 @@ class StoreUserRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
+
+       
     public function rules(): array
+    
     {
-        return [
+        return[
             'nombre' => 'required|regex:/^[a-zA-Z-áéíóóú\s]+$/|max:20',
-            'usuario' => 'required|unique:users|numeric|digits:8',
+            'usuario' => 'required|numeric|digits:8|unique:users,usuario,' . $this->route('usuarios.editar')->id,
             'perfil' => 'required|string|min:2|max:3',
         ];
     }
