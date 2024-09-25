@@ -23,7 +23,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th style="display: none">#</th>
                     <th>Ticket</th>
                     <th>Fecha</th>
                     <th>Usuario</th>
@@ -36,7 +35,6 @@
             <tbody class="table">
                 @foreach ($bypas_imsis as $bypas_imsi)
                 <tr>
-                    <td style="display: none">{{$bypas_imsi->id}}</td>
                     <td>{{$bypas_imsi->ticket}}</td>
                     <td>{{$bypas_imsi->fecha}}</td>
                     <td>{{$bypas_imsi->usuario}}</td>

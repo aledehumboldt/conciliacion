@@ -513,6 +513,86 @@
           })
         });
     });
+
+    function validaNumericos(event) {
+      if(event.charCode >= 48 && event.charCode <= 57){
+        return true;
+      }
+      return false;        
+    }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+        var table = $('.tableminbypass').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{!! route("proof") !!}',
+            columns: [
+                {data : 'id', name : 'id'},
+                {data : 'ticket', name : 'ticket'},
+                {data : 'fecha', name : 'fecha'},
+                {data : 'usuario', name : 'usuario'},
+                {data : 'min', name : 'min'},
+                {data : 'observaciones', name : 'observaciones'},
+                {data : 'tcliente', name : 'tcliente'},
+                {data : 'action', name : 'action', searchable : false, orderable : false},
+                // Otros campos
+            ]
+        });
+
+        $('#crear_registro').click(function(){
+          $('.titulo-modal').text('Agregar Nuevo Registro');
+          $('#accion_boton').val('Add');
+          $('#action').val('Add');
+          $('#formulario_resulta').html('');
+
+          $('$formularioModal').modal('show');
+        });
+
+        $('#sample_formulario').on('submit', function(event){
+          event.preventDefault();
+          var action_url = '';
+
+          if($('#action').val() == 'Add')
+          {
+            action_url = "{{ route('bypassMin.store') }}";
+          }
+
+          $.ajax({
+            type: 'post',
+          })
+        });
+
+        var user_id;
+
+        $(document).on('click', '.delete', function(){
+          user_id = $(this).attr('id');
+          $('#confirmModal').modal('show');
+        });
+
+        $('#ok_button').click(function(){
+          $.ajax({
+            url:"incidencias/destroy/"+user_id,
+            beforeSend:function(){
+              $('#ok_button').text('Eliminando...');
+            },
+            success:function(data)
+            {
+              setTimeout(function(){
+                $('#confirmModal').modal('hide');
+                $('#tableminbypass').DataTable().ajax.reload();
+                alert('Registro Eliminando');
+              }, 20);
+            }
+          })
+        });
+    });
 </script>
  </body>
 </html>

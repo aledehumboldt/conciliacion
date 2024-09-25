@@ -9,5 +9,13 @@ class BypasMin extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['ticket', 'fecha', 'usuario', 'min', 'observaciones', 'tcliente'];
+    protected $fillable = [
+        'id',
+        'ticket',
+        'fecha',
+        'usuario',
+        'min',
+        'observaciones',
+        'tcliente',
+    ];
 }

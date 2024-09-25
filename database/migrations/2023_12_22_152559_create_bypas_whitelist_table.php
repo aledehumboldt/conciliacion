@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('ticket');
             $table->string('fecha');
             $table->integer('usuario');
-            $table->string('min');
+            $table->string('min')->unique();
             $table->text('observaciones');
             $table->timestamps();
         });

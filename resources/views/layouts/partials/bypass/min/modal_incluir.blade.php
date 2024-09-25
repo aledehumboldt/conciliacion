@@ -8,14 +8,16 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h6>Para incluir es necesario rellenar el presente formulario:</h6>
                     <form action="{{ route('bypassMin.store')}}" enctype="multipart/form-data" method="POST">
                         @csrf
                         <div class="form-container">
+                            <label for="min" class="form-label">Ticket</label>
                             <div class="form-floating mb-3">
-                                <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
-                                    value="{{old('ticket')}}" placeholder="">
-                                <label for="ticket" class="form-label">Ingresa ticket</label>
+                                <form id="myForm">
+                                    <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
+                                    value="{{old('ticket')}}" placeholder="" onkeypress='return validaNumericos(event)' maxlength="10" data-rule-range="[3900000000, 3900999999]" data-msg="El valor debe estar entre 3900000000 y 3900999999" required>
+                                </form>
+                                <label for="ticket" class="form-label">3900XXXXXX</label>
                             </div>
                             <label for="min" class="form-label">Celular</label>
                             <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
@@ -24,29 +26,27 @@
                                     <option value="416">0416</option>
                                     <option value="426">0426</option>
                                 </select>
-                                <input type="text" autocomplete="off" name="min" id="min" value="{{old('min')}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
+                                <input type="text" autocomplete="off" name="min" id="min" value="{{old('min')}}"
+                                class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}"
+                                onkeypress='return validaNumericos(event)' maxlength="7" required>
                             </div>
                             <div class="mb-3">
-                                <label for="fecha" class="form-label">Fecha Inicio</label>
+                                <label for="fecha" class="form-label">Fecha recepcion de requerimiento</label>
                                 <input type="text" autocomplete="off" name="inicio" id="inicio" class="form-control" value="{{old('inicio')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
-                                this.type='text'">
+                                this.type='text'" required>
                             </div>
                             <div class="mb-3">
-                                <label for="fecha" class="form-label">Fecha Fin</label>
-                                <input type="text" autocomplete="off" name="fin" id="fin" class="form-control" value="{{old('fin')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
-                                this.type='text'">
-                            </div>
-                            <div class="mb-3">
-                                <select id="tcliente" name="tcliente" class="custom-select">
+                                <select id="tcliente" name="tcliente" class="custom-select" required>
                                     <option value="">Tipo de cliente</option>
-                                    <option value="PREPAGO">Prepago</option>
-                                    <option value="POSTPAGO">Postpago</option>
+                                    <option value="PREPAGO">PREPAGO</option>
+                                    <option value="POSTPAGO">POSTPAGO</option>
                                 </select>
                             </div>
                             <label for="observaciones" class="form-label">Observaciones</label>
                             <div class="form-floating mb-3">
-                                <textarea name="observaciones" id="observaciones" cols="42" rows="5">{{old('observaciones')}}</textarea>
+                                <textarea name="observaciones" id="observaciones" cols="42" rows="5" required>{{old('observaciones')}}</textarea>
                             </div>
+                            <h6>Todos los campos son obligatorios.</h6>
                             <div class="text-center">
                                 <button type="submit" name="incluir" id="incluir" class="btn btn-secondary">
                                     <svg class="bi"><use xlink:href="#store"/></svg>

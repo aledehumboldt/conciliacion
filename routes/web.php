@@ -101,6 +101,8 @@ Route::get('minMasivo', [MasivoMin::class, 'index'])->name('minMasivo.index');
 
 Route::post('minMasivo/import', [MasivoMin::class, 'import'])->name('minMasivo.import');
 
+Route::post('minMasivo/download', [MasivoMin::class, 'download'])->name('minMasivo.download');
+
 Route::get('imsiMasivo', [MasivoImsi::class, 'index'])->name('imsiMasivo.index');
 
 Route::post('imsiMasivo/import', [MasivoImsi::class, 'import'])->name('imsiMasivo.import');
@@ -124,6 +126,7 @@ Route::get('aprovisionamientos/desconexion', [AprovisionamientoController::class
 
 //------------------------------------------------Proof-----------------------------------------------
 Route::get('proof', [proofController::class, 'index'])->name('proof');
+Route::post('edit-proof', [proofController::class, 'edit'])->name('proof.edit');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);

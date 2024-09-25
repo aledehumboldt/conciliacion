@@ -51,7 +51,9 @@
                                 <option value="416">0416</option>
                                 <option value="426">0426</option>
                             </select>
-                            <input type="text" autocomplete="off" name="celular" id="celular" value="{{old('celular')}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
+                            <input type="text" autocomplete="off" name="celular" id="celular" value="{{old('celular')}}"
+                            class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}"
+                            onkeypress='return validaNumericos(event)' maxlength="7">
                         </div>
                         <button type="submit" class="btn btn-secondary" name="buscar" id="buscar">
                             <svg class="bi"><use xlink:href="#search"/></svg>
@@ -75,7 +77,7 @@
     <div class="form-container">
         <div class="form-floating mb-3">
             <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
-                value="{{old('ticket')}}" placeholder="">
+                value="{{old('ticket')}}" placeholder="" maxlength="10" onkeypress='return validaNumericos(event)'>
             <label for="ticket" class="form-label text-secondary">Ingresa ticket</label>
         </div>
         <label for="celular" class="form-label">Celular</label>
@@ -85,7 +87,8 @@
                 <option value="416">0416</option>
                 <option value="426">0426</option>
             </select>
-            <input type="text" autocomplete="off" name="celular" id="celular" value="{{old('celular')}}" class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}">
+            <input type="text" autocomplete="off" name="celular" id="celular" value="{{old('celular')}}" class="form-control"
+            placeholder="Ingrese abonado" pattern=".{7,7}" maxlength="7" onkeypress='return validaNumericos(event)'>
         </div>
         <div class="mb-3">
             <label for="fechae" class="form-label">Fin de exclusión</label>
@@ -95,8 +98,8 @@
         <div class="mb-3">
             <select id="tcliente" name="tcliente" class="custom-select">
                 <option value="">Tipo de cliente</option>
-                <option value="PREPAGO">Prepago</option>
-                <option value="POSTPAGO">Postpago</option>
+                <option value="PREPAGO">PREPAGO</option>
+                <option value="POSTPAGO">POSTPAGO</option>
             </select>
           </div>
           <label for="observaciones" class="form-label">Observaciones</label>
@@ -104,6 +107,7 @@
             <textarea name="observaciones" id="observaciones" cols="35" rows="5">{{old('observaciones')}}</textarea>
         </div>
         <div class="text-center pt-1 mb-5 pb-1">
+            <h6>Todos los campos son obligatorios.</h6>
             <button type="submit" name="excluir" id="excluir" class="btn btn-secondary">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>

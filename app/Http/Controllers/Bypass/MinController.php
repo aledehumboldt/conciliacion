@@ -15,7 +15,7 @@ class MinController extends Controller
     /**
      * Verify if the user can see these views.
      */
-    protected function verify() {
+    protected function verify() { 
         if (Auth::user()->estatus != "Iniciado") {
             return true;
         } else {
@@ -36,7 +36,7 @@ class MinController extends Controller
             return $this->create();
         }
 
-        $datos['bypas_mins'] = BypasMin::orderBy('id','asc')->paginate();
+        $datos['bypas_mins'] = BypasMin::orderBy('id','desc')->paginate();
         return view('bypass.min.index', $datos);
     }
 
@@ -93,13 +93,12 @@ class MinController extends Controller
         $datosMinbypas['min'] = $min;
         $datosMinbypas['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosMinbypas['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-        $datosMinbypas['fecha'] = date("Y-m-d H:i:s", strtotime($request->fin));
+        $datosMinbypas['fecha'] = Carbon::now()->format('Y-m-d_H:i:s');
 
         //Eliminando del array
         unset(
             $datosMinbypas['codarea'],
-            $datosMinbypas['inicio'],
-            $datosMinbypas['fin']
+            $datosMinbypas['inicio']
         );
 
         //Insertando la tabla Bypass MIN
@@ -109,7 +108,7 @@ class MinController extends Controller
         //---------------Incidencia------------------
         //Agregando valores necesarios
         $datosMinbypas['inicio'] = date("Y-m-d H:i:s", strtotime($request->inicio));
-        $datosMinbypas['fin'] = date("Y-m-d H:i:s", strtotime($request->fin));
+        $datosMinbypas['fin'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosMinbypas['descripcion'] = $request->observaciones;
         $datosMinbypas['solicitante'] = auth()->user()->perfil;
         $datosMinbypas['responsable'] = $datosMinbypas['usuario'];
@@ -168,7 +167,16 @@ class MinController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreBypassMinRequest $request, $id) {
+    public function update(Request $request, $id) {
+        //return $request;
+        $request->validate([
+            'ticket' => 'required|string|min:10|max:10','regex:3900*', 
+            'codarea' => 'required|numeric',
+            'observaciones' => 'required|string|min:6|max:250',
+            'min' => 'required|numeric',
+            'tcliente' => 'required|string|min:7|max:8',
+          ]);
+
         $datosMinbypas = $request->except('_token', 'editar', '_method');
 
         //Sustituyendo valores necesarios

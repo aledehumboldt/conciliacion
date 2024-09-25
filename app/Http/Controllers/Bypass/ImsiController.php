@@ -35,7 +35,7 @@ class ImsiController extends Controller
             return $this->create();
         }
         
-        $datos['bypas_imsis'] = BypasImsi::orderBy('id','asc')->paginate();
+        $datos['bypas_imsis'] = BypasImsi::orderBy('id','desc')->paginate();
         return view('bypass.imsi.index', $datos);
     }
 
@@ -58,7 +58,6 @@ class ImsiController extends Controller
         $campos = [
             'ticket' => 'required|string',
             'inicio' => 'required|string',
-            'fin' => 'required|string',
             'imsi' => 'required|numeric',
             'observaciones' => 'required|string',
         ];
@@ -93,16 +92,23 @@ class ImsiController extends Controller
         //Sustituyendo valores necesarios
         $datosImsibypas = request()->except('_token', 'incluir');
 
+         //Buscando registro para realizar inclusion
+         $bypass = BypasImsi::where('imsi',$request->imsi)->first();
+            
+         if(!empty($bypass)) {
+             return redirect()->route('bypassMin.index')
+             ->with('mensaje', 'IMSI ya existe en el listado.');
+         }
+
         //Agregando valores necesarios
         $datosImsibypas['usuario'] = auth()->user()->usuario;
         $datosImsibypas['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosImsibypas['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-        $datosImsibypas['fecha'] = date("Y-m-d H:i:s", strtotime($request->fin));
+        $datosImsibypas['fecha'] = Carbon::now()->format('Y-m-d_H:i:s');
 
         //Eliminando del array
         unset(
-            $datosImsibypas['inicio'],
-            $datosImsibypas['fin']
+            $datosImsibypas['inicio']
         );
 
         //Insertando la tabla Bypass IMSI
@@ -112,7 +118,7 @@ class ImsiController extends Controller
         //---------------Incidencia--------------
         //Agregando valores necesarios
         $datosImsibypas['inicio'] = date("Y-m-d H:i:s", strtotime($request->inicio));
-        $datosImsibypas['fin'] = date("Y-m-d H:i:s", strtotime($request->fin));
+        $datosImsibypas['fin'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosImsibypas['descripcion'] = $request->observaciones;
         $datosImsibypas['solicitante'] = auth()->user()->perfil;
         $datosImsibypas['responsable'] = $datosImsibypas['usuario'];

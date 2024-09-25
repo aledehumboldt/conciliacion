@@ -21,7 +21,7 @@ class BypasWhitelistFactory extends Factory
             'fecha' => fake()->dateTimeBetween('now', '+1 year'),
             'usuario' => User::inRandomOrder()->first()->usuario,
             'codarea' => fake()->randomElement(['416', '426']),
-            'numero' => fake()->numerify('########'),
+            'numero' => fake()->numerify('#######'),
             'observaciones' => fake()->sentence(),
         ];
 

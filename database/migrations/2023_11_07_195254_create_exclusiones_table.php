@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('fechae');
             $table->string('fechac');
             $table->integer('usuario');
-            $table->string('celular', 10);
+            $table->string('celular', 10)->unique();
             $table->text('observaciones');
             $table->string('tecnologia');
             $table->string('tcliente');

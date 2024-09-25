@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 
@@ -28,7 +29,7 @@ class UserController extends Controller
         }
 
         $usuarios = User::where('estatus','<>', 'Suspendido')
-        ->orderBy('id','asc')->paginate();
+        ->orderBy('id','desc')->paginate();
 
         return view('usuarios.index', compact('usuarios'));
     }
@@ -92,6 +93,38 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, $id) {
 
+        $request->validate([
+            'nombre' => [
+                'required',
+                'regex:/^[a-zA-Z-áéíóóú\s]+$/',
+                'max:20'
+            ],
+            'usuario' => [
+                'required',
+                'numeric',
+                'digits:8',
+                Rule::unique('users')->ignore($id)
+            ],
+            'perfil' => [
+                'required',
+                'string',
+                'min:2',
+                'max:3'
+            ]
+            ], [
+            'nombre.required' => 'El campo nombre es obligatorio.',
+            'nombre.regex' => 'El campo nombre debe contener solo letras siy espacios.',
+            'nombre.max' => 'El campo nombre no debe exceder los 20 caracteres.',
+            'usuario.required' => 'El campo cedula es obligatorio.',
+            'usuario.unique' => 'Esta cedula ya se encuentra registrada',
+            'usuario.numeric' => 'El campo cedula debe ser un número.',
+            'usuario.digits' => 'El campo cedula debe tener mínimo 8 caracteres',
+            'perfil.required' => 'El campo perfil es obligatorio.',
+            'perfil.string' => 'El campo nombre debe ser una cadena.',
+            'perfil.min' => 'El campo perfil debe tener mínimo 2 caracteres.',
+            'perfil.max' => 'El campo perfil debe tener maximo 3 caracteres.'
+        ]);
+        
         //Actualizando registro
         $datosUsuario = $request->except('_token', 'crear', '_method');
         $datosUsuario['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');

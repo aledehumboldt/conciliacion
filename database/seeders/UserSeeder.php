@@ -31,5 +31,5 @@ class UserSeeder extends Seeder
                 'clave' => $values[6]
              ]);
         });
-    }
+    } 
 }

@@ -27,7 +27,7 @@ class MinController extends Controller
             return back();
         }
 
-        $datos['bypas_mins'] = BypasMin::orderBy('id','asc')->paginate();
+        $datos['bypas_mins'] = BypasMin::orderBy('id','desc')->paginate();
         return view('bypass_masivo.min.index', $datos);
     }
 

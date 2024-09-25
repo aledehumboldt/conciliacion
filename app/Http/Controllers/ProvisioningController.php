@@ -62,7 +62,7 @@ class ProvisioningController extends Controller
             }
         }
 
-        return view('documentacion.index',compact('archivos','titles'));
+        return view('documentacion.index',compact('archivos'));
     }
 
     public function store(Request $request) {

@@ -27,7 +27,8 @@
         @method('PUT')
     <div class="form-container">
         <div class="form-floating mb-3">
-            <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control" placeholder="" value="{{ $incidencia->ticket }}" required>
+            <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control" placeholder=""
+            value="{{ $incidencia->ticket }}" required onkeypress='return validaNumericos(event)' maxlength="10">
             <label for="ticket" class="form-label text-secondary">Ingresa ticket</label>
         </div>
         <div class="mb-3">

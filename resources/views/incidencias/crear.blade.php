@@ -26,8 +26,8 @@
         @csrf
     <div class="form-container">
         <div class="form-floating mb-3">
-            <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
-                value="{{old('ticket')}}" placeholder="" autocomplete="off">
+            <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control" maxlength="10"
+                value="{{old('ticket')}}" placeholder="" autocomplete="off" onkeypress='return validaNumericos(event)'>
             <label for="ticket" class="form-label text-secondary">Ingresa ticket</label>
         </div>
         <div class="mb-3">
@@ -39,7 +39,7 @@
             <label for="fin" class="form-label">Fecha Fin</label>
             <input type="text" name="fin" id="fin" class="form-control" value="{{old('fin')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
             this.type='text'">
-        </div>
+        </div> 
         <label for="descripcion" class="form-label">Descripcion</label>
         <div class="form-floating mb-3">
           <textarea name="descripcion" id="descripcion" cols="36" rows="5">{{old('descripcion')}}</textarea>
@@ -53,7 +53,7 @@
         </select>
       </div>
       <div class="mb-3">
-        <label for="solicitante" class="form-label text-secondary">Solicitante</label>
+        <label for="solicitante" class="form-label">Solicitante</label>
         <select name="solicitante" id="solicitante" class="form-control custom-select">
             <option value="">Seleccione</option>
             <option value="CYA">CYA</option>
