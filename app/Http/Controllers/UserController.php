@@ -96,7 +96,7 @@ class UserController extends Controller
             'nombre' => [
                 'required',
                 'regex:/^[a-zA-Z-áéíóóú\s]+$/',
-                'max:20'
+                'max:40'
             ],
             'usuario' => [
                 'required',
