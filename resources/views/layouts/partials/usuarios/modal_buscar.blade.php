@@ -12,8 +12,8 @@
                     @csrf
                     <div class="form-container">
                         <div class="mb-3 form-floating">
-                            <input type="text" name="usuario" id="usuario" class="form-control" required placeholder="">
-                            <label for="usuario" class="form-label">Introduzca Cedula</label>
+                            <input type="text" name="busqueda" id="busqueda" class="form-control" required placeholder="">
+                            <label for="busqueda" class="form-label">Introduzca Cedula</label>
                         </div>
                         <button type="submit" class="btn btn-secondary" name="buscar" id="buscar">
                             <svg class="bi"><use xlink:href="#search"/></svg>

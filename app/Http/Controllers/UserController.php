@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use App\Http\Requests\StoreUserRequest;
 
 class UserController extends Controller
@@ -59,18 +60,20 @@ class UserController extends Controller
 
     /**
      * Display the specified resource.
-     */
+    */
     public function show(Request $request) {
 
         $campos = [
-            'usuario' => 'required|numeric'
+             'busqueda' => 'required',
         ];
 
         $this->validate($request,$campos);
 
-        $var = $request->usuario;
+        $busqueda = $request->busqueda;
 
-        $users = User::where('usuario', $var)->first();
+        $users = User::where('usuario', 'like', "%$busqueda%")
+                    ->orWhere('nombre', 'like', "%$busqueda%")
+                    ->get();
 
         return view('usuarios.consultar',compact('users'));
     }
@@ -89,16 +92,42 @@ class UserController extends Controller
      */
     public function update(Request $request, $id) {
 
-        $campos = [
-            'nombre' => 'required|string|max:100',
-            'usuario' => 'required|numeric|min:8',
-            'perfil' => 'required|string|min:2|max:3',
-        ];
-
-        $this->validate($request,$campos);
+        $request->validate([
+            'nombre' => [
+                'required',
+                'regex:/^[a-zA-Z-áéíóóú\s]+$/',
+                'max:20'
+            ],
+            'usuario' => [
+                'required',
+                'numeric',
+                'digits:8',
+                Rule::unique('users')->ignore($id)
+            ],
+            'perfil' => [
+                'required',
+                'string',
+                'min:2',
+                'max:3'
+            ]
+            ], [
+            'nombre.required' => 'El campo nombre es obligatorio.',
+            'nombre.regex' => 'El campo nombre debe contener solo letras siy espacios.',
+            'nombre.max' => 'El campo nombre no debe exceder los 20 caracteres.',
+            'usuario.required' => 'El campo cedula es obligatorio.',
+            'usuario.unique' => 'Esta cedula ya se encuentra registrada',
+            'usuario.numeric' => 'El campo cedula debe ser un número.',
+            'usuario.digits' => 'El campo cedula debe tener mínimo 8 caracteres',
+            'perfil.required' => 'El campo perfil es obligatorio.',
+            'perfil.string' => 'El campo nombre debe ser una cadena.',
+            'perfil.min' => 'El campo perfil debe tener mínimo 2 caracteres.',
+            'perfil.max' => 'El campo perfil debe tener maximo 3 caracteres.'
+        ]);
         
         //Actualizando registro
-        $datosUsuario = request()->except('_token', 'crear', '_method');
+        $datosUsuario = $request->except('_token', 'crear', '_method');
+        $datosUsuario['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosUsuario['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         User::where('id','=',$id)->update($datosUsuario);
 
         //Buscando registro actualizado y redireccionando
@@ -107,7 +136,7 @@ class UserController extends Controller
         return redirect()->route('usuarios.index')
         ->with('mensaje', 'Usuario actualizado.');
 
-    }
+        }
 
     /**
      * Remove the specified resource from storage.

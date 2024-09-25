@@ -37,20 +37,22 @@
             <tbody class="table">
                 <tr>
                     @if(isset($users))
-                    <td style="display: none">{{$users->id}}</td>
-                    <td>{{$users->nombre}}</td>
-                    <td>{{$users->usuario}}</td>
-                    <td>{{$users->creado_por}}</td>
-                    <td>{{$users->estatus}}</td>
-                    <td>{{$users->perfil}}</td>
+                    @foreach ($users as $user)
+                    <tr>
+                    <td style="display: none">{{$user->id}}</td>
+                    <td>{{$user->nombre}}</td>
+                    <td>{{$user->usuario}}</td>
+                    <td>{{$user->creado_por}}</td>
+                    <td>{{$user->estatus}}</td>
+                    <td>{{$user->perfil}}</td>
                     <td>
                           <div style="display: flex; align-items: center;justify-content: center;">
-                        <a href="{{route('usuarios.edit',$users->id)}}">
+                        <a href="{{route('usuarios.edit',$user->id)}}">
                             <button class="btn btn-secondary" title="Editar">
                                 <svg class="bi"><use xlink:href="#pencil"/></svg>
                             </button>
                         </a>
-                        <form action="{{route('usuarios.destroy',$users->id)}}" method="post">
+                        <form action="{{route('usuarios.destroy',$user->id)}}" method="post">
                             @csrf
                             @method('delete')
                             <button style="margin-left: 10px" type="submit" onclick="return confirm('¿Seguro desea suspender el usuario?')" value="Suspender" class="btn btn-danger" title="Suspender">
@@ -58,7 +60,9 @@
                             </button>
                         </form>
                           </div>
-                    </td>                    
+                    </td>
+                    <tr>                    
+                    @endforeach                 
                     @else
                         <div class="alert alert-danger">Usuario no encontrado</div>
                     @endif
