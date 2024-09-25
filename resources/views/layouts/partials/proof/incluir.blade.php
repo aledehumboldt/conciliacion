@@ -1,6 +1,7 @@
     <div class="modal fade text-secondary" id="formularioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+            <form method="post" id="sample_formulario">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Incluir Prueba</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -59,10 +60,12 @@
                             Incluir abonado
                     </button>
                 </div>
-<<<<<<< HEAD
+
             </form>
-=======
->>>>>>> 77f593b6 (modal con datatable bypass)
+
+
+            </form>
+
             </div>
         </div>
     </div>
