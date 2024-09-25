@@ -12,6 +12,7 @@ use Database\Seeders\AprovisionamientoSeeder;
 use Database\Seeders\AdminSeriesSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\ImsiKiSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
             BypasWhitelistSeeder::class,
             AprovisionamientoSeeder::class,
             AdminSeriesSeeder::class,
+            ImsiKiSeeder::class,
         ]);
     }
 }

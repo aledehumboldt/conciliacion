@@ -40,6 +40,7 @@ class ImsiKiController extends Controller
     public function create()
     {
         //
+        return view('invisibles_ki.masivo');
     }
 
     /**
@@ -48,6 +49,7 @@ class ImsiKiController extends Controller
     public function store(Request $request)
     {
         //
+        return view('invisibles_ki.individual');
     }
 
     /**
