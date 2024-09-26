@@ -126,8 +126,8 @@ Route::get('aprovisionamientos/desconexion', [AprovisionamientoController::class
 //-------------------------------------------------Fin Aprovisionamientos------------------------------------------------------------------
 //-------------------------------------------------KI Invisibles--------------------------------------------------------------------------
 Route::get('invisibles_ki', [ImsiKiController::class, 'index'])->name('invisibles_ki');
-Route::get('invisibles_ki/masivo', [ImsiKiController::class, 'create'])->name('invisibles_ki.masivo');
-Route::get('invisibles_ki/individual', [ImsiKiController::class, 'store'])->name('invisibles_ki.individual');
+Route::get('invisibles_ki/masivo', [ImsiKiController::class, 'masivo'])->name('invisibles_ki.masivo');
+Route::get('invisibles_ki/individual', [ImsiKiController::class, 'individual'])->name('invisibles_ki.individual');
 
 //------------------------------------------------Proof-----------------------------------------------
 Route::get('proof', [proofController::class, 'index'])->name('proof');

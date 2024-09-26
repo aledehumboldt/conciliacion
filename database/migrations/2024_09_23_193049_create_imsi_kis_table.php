@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('fecha');
             $table->string('imsi', 15);
+            $table->timestamps();
             
             
         });

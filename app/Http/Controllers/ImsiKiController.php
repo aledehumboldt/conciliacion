@@ -40,7 +40,7 @@ class ImsiKiController extends Controller
     public function create()
     {
         //
-        return view('invisibles_ki.masivo');
+       
     }
 
     /**
@@ -48,8 +48,7 @@ class ImsiKiController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        return view('invisibles_ki.individual');
+        
     }
 
     /**
@@ -82,5 +81,16 @@ class ImsiKiController extends Controller
     public function destroy(ImsiKi $imsiKi)
     {
         //
+    }
+
+    public function individual(Request $request)
+    {
+        $datos['imsi_kis'] = ImsiKi::orderBy('id','desc')->paginate();
+        return view('invisibles_ki.individual', $datos);
+    }
+
+    public function masivo(Request $request)
+    {
+        return view('invisibles_ki.masivo');
     }
 }
