@@ -19,7 +19,7 @@ return [
     'between'              => [
         'array'   => 'El campo :attribute tiene que tener entre :min - :max elementos.',
         'file'    => 'El campo :attribute debe pesar entre :min - :max kilobytes.',
-        'numeric' => 'El campo :attribute tiene que estar entre :min - :max.',
+        'numeric' => 'El campo :attribute debe estar comprendido entre el rango de :min - :max.',
         'string'  => 'El campo :attribute tiene que tener entre :min - :max caracteres.',
     ],
     'boolean'              => 'El campo :attribute debe tener un valor verdadero o falso.',
