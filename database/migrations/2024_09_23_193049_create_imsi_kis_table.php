@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('imsi_kis', function (Blueprint $table) {
             $table->id();
             $table->string('fecha');
-            $table->string('imsi', 15);
+            $table->bigInteger('imsi')->unsigned();
+            $table->text('observaciones');
+            $table->bigInteger('ticket')->unsigned();
             $table->timestamps();
+          
             
             
         });

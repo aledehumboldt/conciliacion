@@ -32,17 +32,24 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Fecha</th>
+            <th>#</th>
+            <th>Ticket</th>
             <th>IMSI</th>
+            <th>Fecha</th>
+            <th>Observaciones</th>
             <th style="text-align: center">Acciones</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($imsi_kis as $imsi_ki)
             <tr>
-                <td style="display: none">{{$imsi_ki->id}}</td>
-                <td>{{ $imsi_ki->fecha }}</td>
+                <td>{{$imsi_ki->id}}</td>
+                <td>{{ $imsi_ki->ticket }}</td>
                 <td>{{ $imsi_ki->imsi }}</td>
+                <td>{{ $imsi_ki->fecha }}</td>
+                <td>{{ $imsi_ki->observaciones }}</td>
+
+                
                 <td>
                     <div style="display: flex; align-items: center;justify-content: center;">
                     <a href="{{route('imsi_ki.edit',$imsi_ki->id)}}">
