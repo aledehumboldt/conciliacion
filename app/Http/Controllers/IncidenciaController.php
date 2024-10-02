@@ -77,7 +77,7 @@ class IncidenciaController extends Controller
     public function store(Request $request) {
 
         $campos = [
-            'ticket' => 'required|string|min:10|max:10',
+            'ticket' => 'required|integer|between:3900000000,3900999999',
             'inicio' => 'required|string',
             'descripcion' => 'required|string|max:250',
             'tipo' => 'required|string',

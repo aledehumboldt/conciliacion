@@ -2,14 +2,14 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Eliminar Registro</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar Incidencia</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <form method="post" id="sample_form">
-                    <h5 class="modal-title" id="exampleModalLabel">Desea eliminar realmente este registro?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="text-align: center; margin-bottom:18px">¿Desea eliminar realmente este registro?</h5>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
