@@ -1,4 +1,4 @@
-<div class="modal fade text-black" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+<div class="modal fade text-secondary" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -11,10 +11,11 @@
                 <form action="{{ route('bypassWhitelist.store')}}" enctype="multipart/form-data" method="POST">
                     @csrf
                     <div class="form-container">
+                        <label for="min" class="form-label">Ticket</label>
                         <div class="form-floating mb-3">
-                            <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control" value="{{old('ticket')}}"
-                            placeholder="" onkeypress='return validaNumericos(event)' maxlength="10">
-                            <label for="ticket" class="form-label">Ingresa ticket</label>
+                            <form id="myForm">
+                                <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control" value="{{old('ticket')}}" placeholder="" onkeypress='return validaNumericos(event)' maxlength="10" data-rule-range="[3900000000, 3900999999]" data-msg="El valor debe estar entre 3900000000 y 3900999999" required>
+                            <label for="ticket" class="form-label">3900XXXXXX</label>
                         </div>
                         <label for="min" class="form-label">Celular</label>
                         <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
@@ -28,12 +29,12 @@
                         </div>
                         <div class="mb-3">
                             <label for="inicio" class="form-label">Fecha recepcion de requerimiento</label>
-                            <input type="text" name="inicio" id="inicio" class="form-control" value="{{old('inicio')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
-                            this.type='text'">
+                            <input type="text" autocomplete="off" name="inicio" id="inicio" class="form-control" value="{{old('inicio')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
+                            this.type='text'" required>
                         </div>
                         <label for="observaciones" class="form-label">Observaciones</label>
                         <div class="form-floating mb-3">
-                            <textarea name="observaciones" id="observaciones" cols="35" rows="5">{{old('observaciones')}}</textarea>
+                            <textarea name="observaciones" id="observaciones" cols="45" rows="5">{{old('observaciones')}}</textarea>
                         </div>
                         <h6>Todos los campos son obligatorios.</h6>
                         <div class="text-center">

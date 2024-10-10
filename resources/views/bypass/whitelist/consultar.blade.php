@@ -5,7 +5,7 @@
 @endsection
 
 @section('encabezado')
-@include('layouts.partials.bypass.whitelist.modal_editar')
+@include('layouts.partials.bypass.whitelist.modal_buscar')
 <h3 class="editor-toolbar-item">Gestión Bypass para Lista Blanca</h3>
 <div style="position: absolute; right: 2%;">
     @include('layouts.partials.bypass.whitelist.modal_incluir')

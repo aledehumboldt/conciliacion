@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use phpseclib3\Net\SFTP;
 use Illuminate\Support\Facades\Auth;
 use App\Models\BypasMin;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
-
 class proofController extends Controller
 {
     protected function verify() {
@@ -33,5 +33,24 @@ class proofController extends Controller
             ->make(true);
         }
         return view('proof.index');
+    }
+
+    public function realizarSFTP() {
+        $sftp = new SFTP('192.168.211.70');
+            if (!$sftp->login('pyacpa', 'Ch0r0n1$')) {
+            exit('No se pudo iniciar sesión en el servidor SFTP.');
+            }
+        // Ruta del archivo local
+        $local_file = 'C:/laragon/www/conciliacion/pruebas/hola.txt';
+        // Ruta del archivo remoto
+        $remote_file = '/home/pyacpa/prueba/Andres';
+        // Subir el archivo
+            if ($sftp->put($local_file, $remote_file)) {
+                echo "Archivo subido correctamente.";
+            } else {
+                echo "Error al subir el archivo.";
+            }
+        // Cerrar la conexión
+        $sftp->disconnect();
     }
 }
