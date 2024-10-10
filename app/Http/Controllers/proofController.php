@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\BypasMin;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
-
 class proofController extends Controller
 {
     protected function verify() {
@@ -32,6 +31,15 @@ class proofController extends Controller
             ->rawColumns(['action'])
             ->make(true);
         }
+        return view('proof.index');
+    }
+
+    public function ejecutarScript()
+    {
+        // Ejecuta el comando Artisan
+        exec('sh C:/laragon/www/conciliacion/pruebabash/prueba.sh');
+
+        // Redirige o muestra una vista
         return view('proof.index');
     }
 }

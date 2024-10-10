@@ -127,6 +127,7 @@ Route::get('aprovisionamientos/desconexion', [AprovisionamientoController::class
 //------------------------------------------------Proof-----------------------------------------------
 Route::get('proof', [proofController::class, 'index'])->name('proof');
 Route::post('edit-proof', [proofController::class, 'edit'])->name('proof.edit');
+Route::get('/ejecutar-script', [proofController::class, 'ejecutarScript'])->name('ejecutar-script');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);
