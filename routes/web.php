@@ -21,6 +21,7 @@ use App\Http\Controllers\Masivo_bypass\MinController as MasivoMin;
 use App\Http\Controllers\Masivo_bypass\ImsiController as MasivoImsi;
 use App\Http\Controllers\Masivo_bypass\AmbosController as MasivoAmbos;
 use App\Http\Controllers\Masivo_bypass\WhitelistController as MasivoWhitelist;
+use App\Http\Controllers\ScriptController;
 
 /*
 |--------------------------------------------------------------------------
@@ -123,6 +124,8 @@ Route::get('aprovisionamientos/conexion', [AprovisionamientoController::class, '
 
 Route::get('aprovisionamientos/desconexion', [AprovisionamientoController::class, 'desconexion'])->name('aprovisionamientos.desconexion');
 //-------------------------------------------------Fin Aprovisionamientos------------------------------------------------------------------
+
+Route::get('/ejecutar-script', [proofController::class, 'realizarSFTP'])->name('ejecutar-script');
 
 //------------------------------------------------Proof-----------------------------------------------
 Route::get('proof', [proofController::class, 'index'])->name('proof');

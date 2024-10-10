@@ -13,6 +13,10 @@
             Incluir Abonado
         </button>
 </div>
+
+<div>
+    <a href="{{route('ejecutar-script')}}" class="btn btn-secondary">generar</a>
+</div>
 @endsection
 
 @section('contenido')
