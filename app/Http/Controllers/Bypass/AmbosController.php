@@ -81,6 +81,21 @@ class AmbosController extends Controller
 
         //Insertando la tabla Bypass MIN
         BypasMin::insert($datosBypass);
+        //-----Insertar para generar un archivo.txt-------
+
+        $datosarchivo = [
+            'ticket' => $datosBypass['ticket'],
+            'min' => $min,
+            'imsi' => $imsi,
+            'tcliente' => $datosBypass['tcliente'],
+            'usuario' => auth()->user()->usuario
+        ];
+
+        $contenido = $datosBypass['ticket'] . "\t" . $min . "\t" . $imsi . "\t" . $datosBypass['tcliente'] . "\t" . auth()->user()->usuario;
+
+        $rutaArchivo = storage_path('numeros.txt');
+        file_put_contents($rutaArchivo, $contenido);
+
         //------------------------------------------
         //Agregando valores necesarios
         $datosBypass['imsi'] = $imsi;
