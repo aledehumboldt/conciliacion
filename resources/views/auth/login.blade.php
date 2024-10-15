@@ -46,7 +46,6 @@ background-color: rgba(253,88,95,0.5); color:#666666;">
       
                         <div class="text-center pt-1 mb-5 pb-1">
                           <button class="btn btn-secondary" type="submit">Ingresar</button>
-                          <a href='{{ route('ejecutar-script') }}' class="btn btn-secondary">Generar.sh</a>
                         </div>      
                       </form>
                     </div>

@@ -205,14 +205,14 @@ class MinController extends Controller
     public function destroy(Request $request, $min) {
         
         //Validando los datos enviados
-        $campos = [
-            'ticket' => 'required|string|min:10|max:10',
+        $request->validate([
+            'ticket' => 'required|numeric|between:3900000000,3909999999|unique:incidencias,ticket',
             'inicio' => 'required|string',
             'descripcion' => 'required|string|max:250',
             'solicitante' => 'required|string',
-        ];
-
-        $this->validate($request,$campos);
+        ], [
+            'ticket.unique' => 'Ya una solicitud ha sido procesada con este ticket',
+        ]);
 
         //Eliminando de la tabla Bypass MIN
         $numero = BypasMin::where('min',$min)->first();
