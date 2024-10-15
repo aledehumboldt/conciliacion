@@ -6,6 +6,11 @@ namespace App\Http\Controllers;
 use App\Models\ImsiKi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
+//use Yajra\DataTables\Facades\DataTables;
+use Yajra\DataTables\Contracts\DataTable;
 
 class ImsiKiController extends Controller
 {
@@ -85,12 +90,38 @@ class ImsiKiController extends Controller
 
     public function individual(Request $request)
     {
-        $datos['imsi_kis'] = ImsiKi::orderBy('id','desc')->paginate();
-        return view('invisibles_ki.individual', $datos);
+        
+        $imsi_kis = ImsiKi::all(); // or use a more specific query
+
+        return view('invisibles_ki.individual', compact('imsi_kis'));
     }
+
 
     public function masivo(Request $request)
     {
         return view('invisibles_ki.masivo');
+    }
+
+    public function getData()
+    {
+        $data = ImsiKi::select(['id', 'fecha', 'imsi', 'observaciones', 'ticket'])->get();
+        dd($data);
+    
+        $datatables = DataTables::of($data)
+            ->addColumn('actions', function($imsiKi) {
+                $editUrl = route('imsi_ki.edit', $imsiKi->id);
+                $deleteUrl = route('imsi_ki.destroy', $imsiKi->id);
+    
+                return '<a href="' . $editUrl . '" class="btn btn-primary">Editar</a>
+                        <form action="' . $deleteUrl . '" method="post" style="display: inline-block;">
+                            ' . csrf_field() . '
+                            ' . method_field('DELETE') . '
+                            <button type="submit" onclick="return confirm(\'¿Seguro desea suspender el usuario?\')" class="btn btn-danger">Eliminar</button>
+                        </form>';
+            })
+            ->rawColumns(['actions'])  // This line is important
+            ->make(true);
+    
+        return $datatables;
     }
 }

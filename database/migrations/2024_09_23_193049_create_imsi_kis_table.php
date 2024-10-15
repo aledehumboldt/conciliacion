@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('imsi_kis', function (Blueprint $table) {
             $table->id();
-            $table->string('fecha');
+            $table->date('fecha');
             $table->bigInteger('imsi')->unsigned();
             $table->text('observaciones');
             $table->bigInteger('ticket')->unsigned();
