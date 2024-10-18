@@ -47,7 +47,9 @@ class ExclusioneController extends Controller
      */
     public function store(StoreExclusioneRequest $request) {
         //Guardando datos del formulario
+
         $datosExclusion = $request->except('_token', 'excluir');
+
 
         //Sustituyendo valores necesarios
         $fechae = Carbon::parse($datosExclusion['fechae'])->format('Ymd');
@@ -61,6 +63,13 @@ class ExclusioneController extends Controller
         $datosExclusion['celular'] = $celular;
         $datosExclusion['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosExclusion['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
+
+        $exclusiones = Exclusione::where('celular',$celular)->first();
+            
+        if(!empty($exclusiones)) {
+            return redirect()->route('exclusiones.create')
+            ->with('cuidado', 'El abonado ya fue excluido de los procesos conciliatorios ');
+        }
 
         //Eliminando del array
         unset($datosExclusion['codarea']);
@@ -78,7 +87,7 @@ class ExclusioneController extends Controller
     public function show(Request $request) {
         //Validando valores del formulario
         $campos = [
-            'codigo' => 'required|string',
+            'codigo' => 'required|numeric',
             'celular' => 'required|numeric',
         ];
 

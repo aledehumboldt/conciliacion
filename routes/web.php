@@ -16,6 +16,7 @@ use App\Http\Controllers\IncidenciaController;
 use App\Http\Controllers\ContactarController;
 use App\Http\Controllers\ProvisioningController;
 use App\Http\Controllers\AprovisionamientoController;
+use App\Http\Controllers\BirthdaysController;
 use App\Http\Controllers\proofController;
 use App\Http\Controllers\Masivo_bypass\MinController as MasivoMin;
 use App\Http\Controllers\Masivo_bypass\ImsiController as MasivoImsi;
@@ -126,6 +127,10 @@ Route::get('aprovisionamientos/desconexion', [AprovisionamientoController::class
 //-------------------------------------------------Fin Aprovisionamientos------------------------------------------------------------------
 
 Route::get('/ejecutar-script', [proofController::class, 'realizarSFTP'])->name('ejecutar-script');
+
+//------------------------------------------------birthdates-----------------------------------------------
+
+Route::get('/birthdays', [BirthdaysController::class, 'index'])->name('birthdays');
 
 //------------------------------------------------Proof-----------------------------------------------
 Route::get('proof', [proofController::class, 'index'])->name('proof');

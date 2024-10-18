@@ -30,44 +30,9 @@
 		</button>
     </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Buscar en Exclusiones</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('exclusiones.show',auth()->user()->id) }}" enctype="multipart/form-data" method="get">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="celularB" class="form-label text-secondary">Celular</label>
-                        <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
-                            <select name="codigo" id="codigo" class="custom-select" style="width:100px">
-                                <option value="">Código</option>
-                                <option value="416">0416</option>
-                                <option value="426">0426</option>
-                            </select>
-                            <input type="text" autocomplete="off" name="celular" id="celular" value="{{old('celular')}}"
-                            class="form-control" placeholder="Ingrese abonado" pattern=".{7,7}"
-                            onkeypress='return validaNumericos(event)' maxlength="7">
-                        </div>
-                        <button type="submit" class="btn btn-secondary" name="buscar" id="buscar">
-                            <svg class="bi"><use xlink:href="#search"/></svg>
-                            Buscar abonado
-                        </button>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- Modal, boton de busqueda-->
+@include('layouts.partials.exclusiones.consulta')
+
 @endsection
 
 @section('contenido')
@@ -78,33 +43,33 @@
         <div class="form-floating mb-3">
             <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
                 value="{{old('ticket')}}" placeholder="" maxlength="10" onkeypress='return validaNumericos(event)'>
-            <label for="ticket" class="form-label text-secondary">Ingresa ticket</label>
+            <label for="ticket" class="form-label text-secondary" required>Ingresa ticket</label>
         </div>
         <label for="celular" class="form-label">Celular</label>
         <div style="display: flex; align-items: center;justify-content: center;" class="mb-3">
-            <select name="codarea" id="codaera" class="custom-select" style="width:100px">
+            <select name="codarea" id="codaera" class="custom-select" style="width:100px" required>
                 <option value="">Código</option>
                 <option value="416">0416</option>
                 <option value="426">0426</option>
             </select>
             <input type="text" autocomplete="off" name="celular" id="celular" value="{{old('celular')}}" class="form-control"
-            placeholder="Ingrese abonado" pattern=".{7,7}" maxlength="7" onkeypress='return validaNumericos(event)'>
+            placeholder="Ingrese abonado" pattern=".{7,7}" maxlength="7" onkeypress='return validaNumericos(event)' required>
         </div>
         <div class="mb-3">
             <label for="fechae" class="form-label">Fin de exclusión</label>
             <input type="text" autocomplete="off" name="fechae" id="fechae" class="form-control" value="{{old('fechae')}}" placeholder="Día/Mes/Año" onfocus="this.type='date'" onblur="
-            this.type='text'" max="{{date(('Y-m-d'),strtotime('+3 months'))}}">
+            this.type='text'" max="{{date(('Y-m-d'),strtotime('+3 months'))}}" required>
         </div>
         <div class="mb-3">
-            <select id="tcliente" name="tcliente" class="custom-select">
-                <option value="">Tipo de cliente</option>
+            <select id="tcliente" name="tcliente" class="custom-select" required>
+                <option value="" >Tipo de cliente</option>
                 <option value="PREPAGO">PREPAGO</option>
                 <option value="POSTPAGO">POSTPAGO</option>
             </select>
           </div>
           <label for="observaciones" class="form-label">Observaciones</label>
           <div class="form-floating mb-3">
-            <textarea name="observaciones" id="observaciones" cols="35" rows="5">{{old('observaciones')}}</textarea>
+            <textarea name="observaciones" id="observaciones" cols="35" rows="5" required>{{old('observaciones')}}</textarea>
         </div>
         <div class="text-center pt-1 mb-5 pb-1">
             <h6>Todos los campos son obligatorios.</h6>
@@ -114,6 +79,7 @@
                     <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
                   </svg>
                 Excluir Abonado</button>
+              
                 @if (auth()->user()->perfil == "CYA")
                     <a href="{{route('exclusiones.index')}}" class="btn btn-secondary">
                         <svg class="bi"><use xlink:href="#caret-left-fill"/></svg>
@@ -123,4 +89,5 @@
         </div>
     </div>
 </form>
+
 @endsection

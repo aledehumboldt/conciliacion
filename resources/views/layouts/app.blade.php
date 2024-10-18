@@ -232,15 +232,6 @@
                 Suspension y Reactivacion de abonados
               </a>
             </li>
-            @endif
-            
-            <li class="nav-item">
-              <a href="{{route('exclusiones.index')}}" class="nav-link d-flex align-items-center gap-2
-                @if(route('exclusiones.index') == url()->current()) active @endif ">
-                <svg class="bi"><use xlink:href="#upload"/></svg>
-                Exclusiones
-              </a>
-            </li>
 
             <li class="nav-item">
               <a href="{{route('proof')}}" class="nav-link d-flex align-items-center gap-2">
@@ -249,6 +240,15 @@
                     <path d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/>
                   </svg>
                 Pruebas
+              </a>
+            </li>
+            @endif
+            
+            <li class="nav-item">
+              <a href="{{route('exclusiones.index')}}" class="nav-link d-flex align-items-center gap-2
+                @if(route('exclusiones.index') == url()->current()) active @endif ">
+                <svg class="bi"><use xlink:href="#upload"/></svg>
+                Exclusiones
               </a>
             </li>
 
@@ -319,25 +319,22 @@
       </p>
 
       <div class="row border-top mx-xl-1 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
-          <a class="text-secondar mb-0" data-toggle="modal" data-target="#myModal">
-            <svg class="bi"><use xlink:href="#puzzle"/></svg>
-              Cumpleaños Aprovisionamiento
-          </a>
+        <a class="text-secondar mb-0" data-toggle="modal" data-target="#birthdayModal">
+          <svg class="bi" href=><use xlink:href="#puzzle"/></svg>
+          Cumpleaños Aprovisionamiento
+        </a>
       </div>
-
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <img src="#" width="700" height="550">
+      
+      <div id="calendar"></div>
+      
+      <div class="modal fade" id="birthdayModal" tabindex="-1" aria-labelledby="birthdayModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div id="modal-calendar" class="text-secondary">hola</div>
+          </div>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+      
 
 
     </div>
@@ -411,6 +408,26 @@
   </div>
 </div>
 <!-- Footer End -->
+
+<!-- Inicialización de FullCalendar en el modal -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('modal-calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      // Configuración de FullCalendar
+      events: function(info, successCallback) {
+        // Obtener cumpleaños desde el servidor
+        fetch(`/birthdays/${info.startStr}`)
+          .then(response => response.json())
+          .then(birthdays => {
+            // Mostrar los cumpleaños en el modal
+            // ...
+          });
+      }
+    });
+    calendar.render();
+  });
+</script>
 
     <!-- JavaScript Libraries -->
     <script src="{{asset('js/jquery-3.4.1.min.js')}}" crossorigin="anonymous"></script>
@@ -577,10 +594,6 @@
           user_id = $(this).attr('id');
           $('#confirmModal').modal('show');
         });
-<<<<<<< HEAD
-=======
-
->>>>>>> master
     });
 </script>
  </body>

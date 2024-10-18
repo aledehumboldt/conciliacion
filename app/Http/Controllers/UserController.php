@@ -105,7 +105,7 @@ class UserController extends Controller
                 Rule::unique('users')->ignore($id)
             ],
             'perfil' => [
-                'required',
+                'required_if:perfil,CYA',
                 'string',
                 'min:2',
                 'max:3'
@@ -131,10 +131,8 @@ class UserController extends Controller
         User::where('id','=',$id)->update($datosUsuario);
 
         //Buscando registro actualizado y redireccionando
-        $usuario = User::findOrFail($id);
 
-        return redirect()->route('usuarios.index')
-        ->with('mensaje', 'Usuario actualizado.');
+        return back()->with('mensaje', 'Se realizaron exitosamente los cambios.');
 
         }
 

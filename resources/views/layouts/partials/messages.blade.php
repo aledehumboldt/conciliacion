@@ -30,3 +30,9 @@
         <strong>{{Session::get('mensaje')}}</strong>
     </div>
 @endif
+
+@if (Session::has('cuidado'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{Session::get('cuidado')}}</strong>
+    </div>
+@endif
