@@ -14,7 +14,7 @@
                     <div class="form-container">
                         <div class="form-floating mb-3">
                             <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control" placeholder="Ingresar ticket"
-                            value="{{ $bypas_min->ticket }}" required onkeypress='return validaNumericos(event)' maxlength="10">
+                            value="{{ $bypas_min->ticket }}" required onkeypress='return validaNumericos(event)' maxlength="10" required>
                             <label for="ticket" class="form-label text-secondary">Ingresa ticket</label>
                         </div>
                         <label for="min" class="form-label text-secondary">Celular</label>
@@ -26,7 +26,7 @@
                                 @if (substr($bypas_min->min, 0, 3) == "426") selected @endif>0426</option>
                             </select>
                             <input type="text" autocomplete="off" name="min" id="min" value="{{substr($bypas_min->min, 3)}}" class="form-control"
-                            placeholder="Ingrese abonado" pattern=".{7,7}" onkeypress='return validaNumericos(event)' maxlength="7">
+                            placeholder="Ingrese abonado" pattern=".{7,7}" onkeypress='return validaNumericos(event)' maxlength="7" required>
                         </div>
                         <div class="mb-3">
                             <select id="tcliente" name="tcliente" class="custom-select" required>
@@ -38,7 +38,7 @@
                         </div>
                         <label for="observaciones" class="form-label text-secondary">Observaciones</label>
                         <div class="form-floating mb-3">
-                            <textarea name="observaciones" id="observaciones" cols="42" rows="5">{{ $bypas_min->observaciones }}</textarea>
+                            <textarea name="observaciones" id="observaciones" cols="42" rows="5" required>{{ $bypas_min->observaciones }}</textarea>
                         </div>
                         <div class="text-center pt-1 pb-1">
                             <button type="submit" name="editar" id="editar" class="btn btn-secondary">
