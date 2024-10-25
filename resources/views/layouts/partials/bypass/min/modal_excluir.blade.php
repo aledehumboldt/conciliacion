@@ -13,21 +13,21 @@
                     <div class="form-container">
                         <div class="form-floating mb-3">
                             <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
-                                value="{{old('ticket')}}" placeholder="" onkeypress='return validaNumericos(event)' maxlength="10">
+                                value="{{old('ticket')}}" placeholder="" onkeypress='return validaNumericos(event)' maxlength="10" required>
                             <label for="ticket" class="form-label text-secondary">Ingresa ticket</label>
                         </div>
                         <div class="mb-3">
                             <label for="inicio" class="form-label text-secondary">Fecha recepcion de incidencia</label>
                             <input type="text" autocomplete="off" name="inicio" id="inicio" class="form-control" value="{{old('inicio')}}" placeholder="Día/Mes/Año hora:min segs" onfocus="this.type='datetime-local'" onblur="
-                            this.type='text'">
+                            this.type='text'" required>
                         </div>
                         <label for="descripcion" class="form-label text-secondary">Descripcion</label>
                         <div class="form-floating mb-3">
-                            <textarea name="descripcion" id="descripcion" cols="42" rows="5">{{old('descripcion')}}</textarea>
+                            <textarea name="descripcion" id="descripcion" cols="42" rows="5" required>{{old('descripcion')}}</textarea>
                         </div>
                         <div class="mb-3">
                             <label for="solicitante" class="form-label">Solicitante</label>
-                            <select name="solicitante" id="solicitante" class="form-control custom-select">
+                            <select name="solicitante" id="solicitante" class="form-control custom-select" required>
                                 <option value="">Seleccione</option>
                                 <option value="Soprte de Averias">Soprte de Averias</option>
                                 <option value="CYA">CyA</option>

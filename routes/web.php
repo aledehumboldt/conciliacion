@@ -21,7 +21,11 @@ use App\Http\Controllers\Masivo_bypass\MinController as MasivoMin;
 use App\Http\Controllers\Masivo_bypass\ImsiController as MasivoImsi;
 use App\Http\Controllers\Masivo_bypass\AmbosController as MasivoAmbos;
 use App\Http\Controllers\Masivo_bypass\WhitelistController as MasivoWhitelist;
+<<<<<<< HEAD
 use App\Http\Controllers\ImsiKiController;
+=======
+use App\Http\Controllers\ScriptController;
+>>>>>>> master
 
 /*
 |--------------------------------------------------------------------------
@@ -132,9 +136,13 @@ Route::get('invisibles_ki/data', [ImsiKiController::class, 'getData'])->name('in
 Route::get('/imsi_ki/{imsi_ki}/edit', [ImsiKiController::class, 'edit'])->name('imsi_ki.edit');
 Route::delete('/imsi-kis/{id}', [ImsiKiController::class, 'destroy'])->name('imsi-kis.destroy');
 //-------------------------------------------------Fin KI Invisibles--------------------------------------------------------------------------
+
+Route::get('/ejecutar-script', [proofController::class, 'realizarSFTP'])->name('ejecutar-script');
+
 //------------------------------------------------Proof-----------------------------------------------
 Route::get('proof', [proofController::class, 'index'])->name('proof');
 Route::post('edit-proof', [proofController::class, 'edit'])->name('proof.edit');
+Route::get('/ejecutar-script', [proofController::class, 'ejecutarScript'])->name('ejecutar-script');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);

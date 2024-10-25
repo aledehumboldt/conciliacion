@@ -27,7 +27,7 @@
         <div class="form-container">
             <div class="form-floating mb-3">
                 <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
-                value="{{old('ticket')}}" placeholder="" onkeypress='return validaNumericos(event)'>
+                value="{{old('ticket')}}" placeholder="" onkeypress='return validaNumericos(event)' maxlength="10" required>
                 <label for="ticket" class="form-label text-secondary">Ingresa ticket</label>
             </div>
             <label for="min" class="form-label">Celular</label>
@@ -38,25 +38,25 @@
                     <option value="426">0426</option>
                 </select>
                 <input type="text" autocomplete="off" name="min" id="min" value="{{old('min')}}"
-                class="form-control" placeholder="" pattern=".{7,7}" onkeypress='return validaNumericos(event)'>
+                class="form-control" placeholder="" pattern=".{7,7}" onkeypress='return validaNumericos(event)' maxlength="7" required>
             </div>
             <div class="form-floating mb-3">
                 <input type="text" autocomplete="off" name="imsi" id="imsi" value="{{old('imsi')}}"
-                class="form-control" placeholder="" pattern=".{15,15}" onkeypress='return validaNumericos(event)'>
+                class="form-control" placeholder="" pattern=".{15,15}" onkeypress='return validaNumericos(event)' maxlength="15" required>
                 <label for="imsi" class="form-label text-secondary">IMSI</label>
             </div>
             <div class="mb-3">
                 <label for="incio" class="form-label">Fecha inicio</label>
                 <input type="text" autocomplete="off" name="inicio" id="inicio" class="form-control" value="{{old('inicio')}}" placeholder="Recepcion del requerimiento" onfocus="this.type='datetime-local'" onblur="
-                this.type='text'">
+                this.type='text'" required>
             </div>
             <div class="mb-3">
                 <label for="fin" class="form-label">Fecha fin</label>
                 <input type="text" autocomplete="off" name="fin" id="fin" class="form-control" value="{{old('fin')}}" placeholder="Fin del requerimiento" onfocus="this.type='datetime-local'" onblur="
-                this.type='text'">
+                this.type='text'" required>
             </div>
             <div class="mb-3">
-                <select id="tcliente" name="tcliente" class="custom-select">
+                <select id="tcliente" name="tcliente" class="custom-select" required>
                     <option value="">Tipo de cliente</option>
                     <option value="PREPAGO">PREPAGO</option>
                     <option value="POSTPAGO">POSTPAGO</option>
@@ -64,7 +64,7 @@
             </div>
             <label for="observaciones" class="form-label">Observaciones</label>
             <div class="mb-3">
-                <textarea name="observaciones" id="observaciones" cols="35" rows="5">{{old('observaciones')}}</textarea>
+                <textarea name="observaciones" id="observaciones" cols="35" rows="5" required>{{old('observaciones')}}</textarea>
             </div>
             <div class="text-center">
                 <button type="submit" name="incluir" id="incluir" class="btn btn-secondary" value="incluir">

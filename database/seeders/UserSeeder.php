@@ -13,6 +13,15 @@ class UserSeeder extends Seeder
      */
     public function run(): void {
         //User::factory(50)->create();
+        User::create([
+            'nombre' => 'admin',
+            'usuario' => '1234567',
+            'estatus' => 'activo',
+            'perfil' => 'CYA',
+            'creado_por' => '1234567',
+            'created_at' => now(),
+            'clave' => md5('Ch0r0n1$'), // Asegúrate de encriptar la contraseña
+        ]);
 
         //$data = collect(file('/var/www/html/conciliacion/public/storage/DataSeed/user.txt'));
         $data = collect(file('c:/laragon/www/conciliacion/storage/DataSeed/user.txt')); //for window laragon

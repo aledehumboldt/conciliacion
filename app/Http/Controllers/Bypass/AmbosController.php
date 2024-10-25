@@ -9,6 +9,7 @@ use App\Models\BypasMin;
 use App\Models\BypasImsi;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Rules\ValidateIMSI;
 
 class AmbosController extends Controller
 {
@@ -42,18 +43,20 @@ class AmbosController extends Controller
      */
     public function store(Request $request) {
         //Validando parametros enviados 
-        $campos = [
-            'ticket' => 'required|string',
-            'inicio' => 'required|string',
-            'fin' => 'required|string',
+        $request->validate([
+            'ticket' => 'required|numeric|between:3900000000,3909999999|unique:incidencias,ticket',
+            'inicio' => 'required|date',
+            'fin' => 'required|date|after:inicio',
             'codarea' => 'required|string',
             'min' => 'required|numeric',
-            'imsi' => 'required|numeric',
+            'imsi' => ['required', new ValidateIMSI],
             'observaciones' => 'required|string',
             'tcliente' => 'required|string',
-        ];
-
-        $this->validate($request,$campos);
+        ], [
+            'ticket.unique' => 'El número de ticket ya existe.',
+            'inicio.date' => 'La fecha de inicio no es válida.',
+            'fin.after' => 'La fecha de fin debe ser posterior a la fecha de inicio.',
+        ]);
 
         //-------------------Bypass--------------
         //En caso de ser una exclusion
@@ -81,6 +84,13 @@ class AmbosController extends Controller
 
         //Insertando la tabla Bypass MIN
         BypasMin::insert($datosBypass);
+        //-----Insertar para generar un archivo.txt-------
+
+        $contenido = $datosBypass['ticket'] . "\t" . $min . "\t" . $imsi . "\t" . $datosBypass['tcliente'] . "\t" . auth()->user()->usuario;
+
+        $rutaArchivo = storage_path('numeros.txt');
+        file_put_contents($rutaArchivo, $contenido);
+
         //------------------------------------------
         //Agregando valores necesarios
         $datosBypass['imsi'] = $imsi;

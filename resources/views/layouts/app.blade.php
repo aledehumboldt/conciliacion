@@ -595,7 +595,10 @@
           user_id = $(this).attr('id');
           $('#confirmModal').modal('show');
         });
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
     });
 </script>
  </body>
