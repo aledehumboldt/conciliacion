@@ -21,11 +21,8 @@ use App\Http\Controllers\Masivo_bypass\MinController as MasivoMin;
 use App\Http\Controllers\Masivo_bypass\ImsiController as MasivoImsi;
 use App\Http\Controllers\Masivo_bypass\AmbosController as MasivoAmbos;
 use App\Http\Controllers\Masivo_bypass\WhitelistController as MasivoWhitelist;
-<<<<<<< HEAD
 use App\Http\Controllers\ImsiKiController;
-=======
 use App\Http\Controllers\ScriptController;
->>>>>>> master
 
 /*
 |--------------------------------------------------------------------------
