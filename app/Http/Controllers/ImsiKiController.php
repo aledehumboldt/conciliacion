@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Validator;
-use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
+//use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
 //use Yajra\DataTables\Facades\DataTables;
 use Yajra\DataTables\Contracts\DataTable;
 
@@ -85,15 +85,17 @@ class ImsiKiController extends Controller
      */
     public function destroy(ImsiKi $imsiKi)
     {
-        //
+        dd($imsiKi)->delete();
+
+        return response()->json(['message' => 'Registro eliminado correctamente']);
     }
 
     public function individual(Request $request)
     {
         
-        $imsi_kis = ImsiKi::all(); // or use a more specific query
-
-        return view('invisibles_ki.individual', compact('imsi_kis'));
+        $imsis_kis = ImsiKi::all(); // Replace with your data fetching logic
+        return view('invisibles_ki.individual', compact('imsis_kis'));
+      
     }
 
 
@@ -104,24 +106,15 @@ class ImsiKiController extends Controller
 
     public function getData()
     {
-        $data = ImsiKi::select(['id', 'fecha', 'imsi', 'observaciones', 'ticket'])->get();
-        dd($data);
     
-        $datatables = DataTables::of($data)
-            ->addColumn('actions', function($imsiKi) {
-                $editUrl = route('imsi_ki.edit', $imsiKi->id);
-                $deleteUrl = route('imsi_ki.destroy', $imsiKi->id);
-    
-                return '<a href="' . $editUrl . '" class="btn btn-primary">Editar</a>
-                        <form action="' . $deleteUrl . '" method="post" style="display: inline-block;">
-                            ' . csrf_field() . '
-                            ' . method_field('DELETE') . '
-                            <button type="submit" onclick="return confirm(\'¿Seguro desea suspender el usuario?\')" class="btn btn-danger">Eliminar</button>
-                        </form>';
-            })
-            ->rawColumns(['actions'])  // This line is important
+        {
+            
+            $data = ImsiKi::select('id', 'fecha', 'imsi', 'observaciones', 'ticket');
+
+            return DataTables::of($data)
             ->make(true);
     
-        return $datatables;
+
+        }
     }
 }

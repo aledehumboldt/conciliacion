@@ -130,7 +130,7 @@ Route::get('invisibles_ki/masivo', [ImsiKiController::class, 'masivo'])->name('i
 Route::get('invisibles_ki/individual', [ImsiKiController::class, 'individual'])->name('invisibles_ki.individual');
 Route::get('invisibles_ki/data', [ImsiKiController::class, 'getData'])->name('invisibles_ki.data');
 Route::get('/imsi_ki/{imsi_ki}/edit', [ImsiKiController::class, 'edit'])->name('imsi_ki.edit');
-Route::get('/imsi_ki/{imsi_ki}', [ImsiKiController::class, 'destroy'])->name('imsi_ki.destroy'); 
+Route::delete('/imsi-kis/{id}', [ImsiKiController::class, 'destroy'])->name('imsi-kis.destroy');
 //-------------------------------------------------Fin KI Invisibles--------------------------------------------------------------------------
 //------------------------------------------------Proof-----------------------------------------------
 Route::get('proof', [proofController::class, 'index'])->name('proof');

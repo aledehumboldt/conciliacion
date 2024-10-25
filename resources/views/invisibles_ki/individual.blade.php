@@ -1,15 +1,21 @@
 @extends('layouts.app')
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	@section('titulo', 'Gestion Invisibles_Ki')
-	
+   
+    @section('titulo', 'Gestion Invisibles_Ki')
+   
 
-	@section('estilos')
-	
-	@endsection
 
-	@section('encabezado')
-	<h3 class="editor-toolbar-item"> Inclusion/Exclusion Invisibles_Ki</h3>
+    @section('estilos')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>   
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>   
+
+    @endsection
+
+
+    @section('encabezado')
+    <h3 class="editor-toolbar-item"> Inclusion/Exclusion Invisibles_Ki</h3>
     <div style="position: absolute; right: 2%;">
+
 
             <button type="submit" class="btn btn-secondary" type="button" name="incluir" id="incluir"  data-toggle="modal" data-target="#exampleModal4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
@@ -19,18 +25,18 @@
                 Incluir IMSI
             </button>
     </div>
-
-	
+   
+   
     @endsection
 @section('contenido')
 
+
 @include('layouts.partials.messages')
 
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 
-<table id="imsi_ki" class="table table-bordered">
+
+
+<table class="table table-bordered">
     <thead>
     <tr>
         <th>#</th>
@@ -41,17 +47,23 @@
         <th>Acciones</th>
     </tr>
     </thead>
+    <tbody  class="table table-bordered">
+        @foreach ($imsis_kis as $imsi_ki)
+                <tr>
+                    <td>{{$imsi_ki->id}}</td>
+                    <td>{{$imsi_ki->fecha}}</td>
+                    <td>{{$imsi_ki->imsi}}</td>
+                    <td>{{$imsi_ki->observaciones}}</td>
+                    <td>{{$imsi_ki->ticket}}</td>
+                   
+                </tr>
+                @endforeach
+    </tbody>
 </table>
-<tbody>
-<script>
-    $(document).ready(function() {
-    $('#imsi_ki').DataTable({
-    processing: true,
-    serverSide: true,
-    ajax: '{!! route('invisibles_ki.data') !!}'
-    });
-    });
-</script>
-</tbody>
 
-@endsection     
+
+
+
+
+
+@endsection    
