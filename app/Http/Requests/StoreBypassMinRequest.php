@@ -22,7 +22,7 @@ class StoreBypassMinRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'ticket' => 'required|numeric|between:3900000000,3900999999',
+            'ticket' => 'required|numeric|between:3900000000,3909999999',
             'inicio' => 'required|date',
             'codarea' => 'required|string',
             'min' => 'required|numeric',

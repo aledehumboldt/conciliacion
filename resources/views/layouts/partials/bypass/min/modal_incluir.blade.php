@@ -15,7 +15,7 @@
                             <div class="form-floating mb-3">
                                 <form id="myForm">
                                     <input type="text" autocomplete="off" name="ticket" id="ticket" class="form-control"
-                                    value="{{old('ticket')}}" placeholder="" onkeypress='return validaNumericos(event)' maxlength="10" data-rule-range="[3900000000, 3900999999]" data-msg="El valor debe estar entre 3900000000 y 3900999999" required>
+                                    value="{{old('ticket')}}" placeholder="" onkeypress='return validaNumericos(event)' maxlength="10" required>
                                 </form>
                                 <label for="ticket" class="form-label">3900XXXXXX</label>
                             </div>

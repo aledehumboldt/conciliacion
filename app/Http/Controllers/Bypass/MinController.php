@@ -102,6 +102,11 @@ class MinController extends Controller
         );
 
         //Insertando la tabla Bypass MIN
+        $bypass = BypasMin::where('min',$datosMinbypas['min'])->first();
+        if(!empty($bypass)) {
+            return redirect()->route('bypassMin.index')
+            ->with('mensaje', 'Abonado ya se encuentra incluido en el listado.');
+        }
         BypasMin::insert($datosMinbypas);
         //-------------------Bypass--------------
 
@@ -170,12 +175,14 @@ class MinController extends Controller
     public function update(Request $request, $id) {
         //return $request;
         $request->validate([
-            'ticket' => 'required|string|min:10|max:10','regex:3900*', 
+            'ticket' => 'required|numeric|between:3900000000,3909999999|unique:incidencias,ticket', 
             'codarea' => 'required|numeric',
             'observaciones' => 'required|string|min:6|max:250',
             'min' => 'required|numeric',
             'tcliente' => 'required|string|min:7|max:8',
-          ]);
+          ], [
+            'ticket.unique' => 'Ya una solicitud ha sido procesada con este ticket',
+        ]);
 
         $datosMinbypas = $request->except('_token', 'editar', '_method');
 
