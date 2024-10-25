@@ -102,6 +102,11 @@ class MinController extends Controller
         );
 
         //Insertando la tabla Bypass MIN
+        $bypass = BypasMin::where('min',$datosMinbypas['min'])->first();
+        if(!empty($bypass)) {
+            return redirect()->route('bypassMin.index')
+            ->with('mensaje', 'Abonado ya se encuentra incluido en el listado.');
+        }
         BypasMin::insert($datosMinbypas);
         //-------------------Bypass--------------
 
