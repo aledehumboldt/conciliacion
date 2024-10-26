@@ -17,6 +17,7 @@ use App\Http\Controllers\ContactarController;
 use App\Http\Controllers\ProvisioningController;
 use App\Http\Controllers\AprovisionamientoController;
 use App\Http\Controllers\proofController;
+use App\Http\Controllers\RtbController;
 use App\Http\Controllers\Masivo_bypass\MinController as MasivoMin;
 use App\Http\Controllers\Masivo_bypass\ImsiController as MasivoImsi;
 use App\Http\Controllers\Masivo_bypass\AmbosController as MasivoAmbos;
@@ -131,6 +132,10 @@ Route::get('/ejecutar-script', [proofController::class, 'realizarSFTP'])->name('
 Route::get('proof', [proofController::class, 'index'])->name('proof');
 Route::post('edit-proof', [proofController::class, 'edit'])->name('proof.edit');
 Route::get('/ejecutar-script', [proofController::class, 'ejecutarScript'])->name('ejecutar-script');
+
+//------------------------------------------------Plataforma-RTB-----------------------------------------------
+
+Route::get('plataformas/Rtb', [RtbController::class, 'index'])->name('rtb');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);
