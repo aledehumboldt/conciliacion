@@ -268,7 +268,7 @@
                 Plataformas
             </a>
             <ul class="dropdown-menu">
-                <li><a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('bypass.index')) active @endif" href="{{ route('bypass.index') }}">{{ __('RTB(PRN)') }}</a></li>
+                <li><a class="nav-link d-flex align-items-center gap-2" href="{{ route('rtb') }}">{{ __('RTB(PRN)') }}</a></li>
                 <li><a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('bypass.index')) active @endif" href="{{ route('bypass.index') }}">{{ __('VHLR(Prepago)') }}</a></li>
                 <li><a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('bypass.index')) active @endif" href="{{ route('bypass.index') }}">{{ __('VHLR(Pospago)') }}</a></li>
             </ul>
@@ -588,6 +588,28 @@
         $(document).on('click', '.delete', function(){
           user_id = $(this).attr('id');
           $('#confirmModal').modal('show');
+        });
+    });
+
+</script>
+
+<script>
+      $(document).ready(function() {
+        $('#tablertb').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{!! route('rtb') !!}',
+            columns: [
+                {data : 'Min'},
+                {data : 'Imsi'},
+                {data : 'SimCard'},
+                {data : 'Status'},
+                {data : 'FechaActivacion'},
+                {data : 'Plan'},
+                {data : 'Nodo'},
+                {data : 'TipoDispositivo'},
+                // Otros campos
+            ]
         });
     });
 </script>
