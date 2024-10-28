@@ -18,6 +18,7 @@ use App\Http\Controllers\ProvisioningController;
 use App\Http\Controllers\AprovisionamientoController;
 use App\Http\Controllers\BirthdaysController;
 use App\Http\Controllers\proofController;
+use App\Http\Controllers\VhlrPrepagoController;
 use App\Http\Controllers\Masivo_bypass\MinController as MasivoMin;
 use App\Http\Controllers\Masivo_bypass\ImsiController as MasivoImsi;
 use App\Http\Controllers\Masivo_bypass\AmbosController as MasivoAmbos;
@@ -127,6 +128,9 @@ Route::get('aprovisionamientos/desconexion', [AprovisionamientoController::class
 //-------------------------------------------------Fin Aprovisionamientos------------------------------------------------------------------
 
 Route::get('/ejecutar-script', [proofController::class, 'realizarSFTP'])->name('ejecutar-script');
+
+Route::get('plataformas/vhlrprg', [VhlrPrepagoController::class, 'index'])->name('vhlrprg.index');
+
 
 //------------------------------------------------birthdates-----------------------------------------------
 

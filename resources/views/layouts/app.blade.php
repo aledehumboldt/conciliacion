@@ -269,7 +269,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li><a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('bypass.index')) active @endif" href="{{ route('bypass.index') }}">{{ __('RTB(PRN)') }}</a></li>
-                <li><a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('bypass.index')) active @endif" href="{{ route('bypass.index') }}">{{ __('VHLR(Prepago)') }}</a></li>
+                <li><a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('vhlrprg.index')) active @endif" href="{{ route('vhlrprg.index') }}">{{ __('VHLR(Prepago)') }}</a></li>
                 <li><a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('bypass.index')) active @endif" href="{{ route('bypass.index') }}">{{ __('VHLR(Pospago)') }}</a></li>
             </ul>
           @endif
@@ -607,6 +607,37 @@
           $('#confirmModal').modal('show');
         });
     });
+
+    $(document).ready(function() {
+        $('#vhlrprg').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{!! route("vhlrprg.index") !!}',
+            columns: [
+                { data: 0, title: 'MSISDN' },
+                { data: 1, title: 'IMSI' },
+                { data: 2, title: 'CAT' },
+                { data: 3, title: 'CURRENTNAM' },
+                { data: 4, title: 'LOCK' },
+                { data: 5, title: 'ODBIC' },
+                { data: 6, title: 'TBS' },
+                { data: 7, title: 'ODBOC' },
+                { data: 8, title: 'ODBROAM' },
+                { data: 9, title: 'OCSI' },
+                { data: 10, title: 'TCSI' },
+                { data: 11, title: 'GRPSCSI' },
+                { data: 12, title: 'EPSPROFILEID' },
+            ]
+        });
+    });
+
+    <script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
+</script>
+
+
 </script>
  </body>
 </html>
