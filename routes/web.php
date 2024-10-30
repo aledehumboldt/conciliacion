@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\Masivo_bypass\MinController as MasivoMin;
 use App\Http\Controllers\Masivo_bypass\ImsiController as MasivoImsi;
 use App\Http\Controllers\Masivo_bypass\AmbosController as MasivoAmbos;
 use App\Http\Controllers\Masivo_bypass\WhitelistController as MasivoWhitelist;
+use App\Http\Controllers\ImsiKiController;
 use App\Http\Controllers\ScriptController;
 
 /*
@@ -125,6 +127,24 @@ Route::get('aprovisionamientos/conexion', [AprovisionamientoController::class, '
 
 Route::get('aprovisionamientos/desconexion', [AprovisionamientoController::class, 'desconexion'])->name('aprovisionamientos.desconexion');
 //-------------------------------------------------Fin Aprovisionamientos------------------------------------------------------------------
+//-------------------------------------------------KI Invisibles--------------------------------------------------------------------------
+Route::get('invisibles_ki', [ImsiKiController::class, 'index'])->name('invisibles_ki');
+
+Route::get('invisibles_ki/masivo', [ImsiKiController::class, 'masivo'])->name('invisibles_ki.masivo');
+
+Route::get('invisibles_ki/individual', [ImsiKiController::class, 'individual'])->name('invisibles_ki.individual');
+
+Route::get('invisibles_ki/data', [ImsiKiController::class, 'getData'])->name('invisibles_ki.data');
+
+Route::get('/imsi_ki/{imsi_ki}/edit', [ImsiKiController::class, 'edit'])->name('imsi_ki.edit');
+
+Route::delete('/imsi-kis/{id}', [ImsiKiController::class, 'destroy'])->name('imsi-kis.destroy');
+
+Route::post('invisibles_ki', [ImsiKiController::class, 'store'])->name('invisibles_ki.store');
+
+Route::get('invisibles_ki/create', [ImsiKiController::class, 'create'])->name('imsi_kis.create');
+
+//-------------------------------------------------Fin KI Invisibles--------------------------------------------------------------------------
 
 Route::get('/ejecutar-script', [proofController::class, 'realizarSFTP'])->name('ejecutar-script');
 
