@@ -9,7 +9,7 @@ class ImsiKi extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['imsi','fecha','ticket','observaciones'];
+    protected $fillable = ['ticket','fecha','imsi','observaciones'];
    
 }
 

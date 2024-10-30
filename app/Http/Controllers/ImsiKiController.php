@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 
 use App\Models\ImsiKi;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 //use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
 //use Yajra\DataTables\Facades\DataTables;
 use Yajra\DataTables\Contracts\DataTable;
+use App\Rules\ValidateIMSI;
 
 class ImsiKiController extends Controller
 {
@@ -44,7 +48,7 @@ class ImsiKiController extends Controller
      */
     public function create()
     {
-        //
+        return view('invisibles_ki.create');
        
     }
 
@@ -53,7 +57,19 @@ class ImsiKiController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $validatedData = $request->validate([
+            'ticket' => 'required|integer|between:3900000000,3900999999',
+            'fecha' => 'required|date',
+            'imsi' => ['required', new ValidateIMSI, Rule::unique('imsi_kis')->ignore($request->id)],
+            'observaciones' => 'nullable|string|max:500',
+        ]);
+    
+        try {
+            ImsiKi::create($validatedData);
+            return redirect()->route('invisibles_ki.individual')->with('success', 'Datos guardados correctamente');
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'Ocurrió un error al guardar los datos.'])->withInput();
+        }
     }
 
     /**
@@ -67,9 +83,11 @@ class ImsiKiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ImsiKi $imsiKi)
+    public function edit($id)
     {
-        //
+        $imsis_ki = ImsiKi::findOrFail($id);
+
+        return view('invisibles_ki.individual', compact('imsis_ki'));
     }
 
     /**
@@ -83,11 +101,10 @@ class ImsiKiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ImsiKi $imsiKi)
+    public function destroy($id)
     {
-        dd($imsiKi)->delete();
-
-        return response()->json(['message' => 'Registro eliminado correctamente']);
+        ImsiKi::findOrFail($id)->delete();
+        return redirect()->route('invisibles_ki.individual')->with('success', 'Registro eliminado correctamente');
     }
 
     public function individual(Request $request)

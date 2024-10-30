@@ -5,9 +5,7 @@
 
 
     @section('estilos')
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>   
-    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>   
+    
 
     @endsection
 
@@ -16,14 +14,16 @@
     <h3 class="editor-toolbar-item"> Inclusion/Exclusion Invisibles_Ki</h3>
     <div style="position: absolute; right: 2%;">
 
-
-            <button type="submit" class="btn btn-secondary" type="button" name="incluir" id="incluir"  data-toggle="modal" data-target="#exampleModal4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
-                    <path d="M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707z"/>
-                    <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
-                </svg>
-                Incluir IMSI
+        <form action="{{ route('imsi_kis.create') }}" method="GET">
+            @csrf  <button type="submit" href: class="btn btn-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-up"
+           viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5m-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5"/>
+              </svg>
+              Incluir IMSI
             </button>
+          </form>
+            
     </div>
    
    
@@ -40,10 +40,10 @@
     <thead>
     <tr>
         <th>#</th>
+        <th>Ticket</th>
         <th>Fecha</th>
         <th>IMSI</th>
         <th>Observaciones</th>
-        <th>ticket</th>
         <th>Acciones</th>
     </tr>
     </thead>
@@ -51,12 +51,26 @@
         @foreach ($imsis_kis as $imsi_ki)
                 <tr>
                     <td>{{$imsi_ki->id}}</td>
+                    <td>{{$imsi_ki->ticket}}</td>
                     <td>{{$imsi_ki->fecha}}</td>
                     <td>{{$imsi_ki->imsi}}</td>
                     <td>{{$imsi_ki->observaciones}}</td>
-                    <td>{{$imsi_ki->ticket}}</td>
-                   
+                    @include('layouts.partials.imsiki.modal_editar_individual_ki')
+                    <td>
+                            <div style="display: flex; align-items: center;justify-content: center;">
+                            <a href="{{ route('imsi_ki.edit', $imsi_ki->id) }}" class="btn btn-primary btn-sm"><svg class="bi"><use xlink:href="#pencil"/></svg>Editar</a>
+                           
+                            <form action="{{ route('imsi-kis.destroy', $imsi_ki->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button style="margin-left: 10px;" type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este registro?')"><svg class="bi"><use xlink:href="#eraser"/></svg></button>
+                            </form>
+                        
+                    </td>
                 </tr>
+                    
+                   
+               
                 @endforeach
     </tbody>
 </table>
