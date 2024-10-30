@@ -48,8 +48,6 @@ class IncidenciaController extends Controller
             ->make(true);
         }
 
-        return $data;
-
 /*
         $incidencias = $queryBuilder->orderBy('id','desc')->paginate();
 

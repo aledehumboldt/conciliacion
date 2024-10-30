@@ -58,13 +58,9 @@ public function index(Request $request)
         return new Rtb($fila);
     });
 
-    #return DataTables::of($rtbCollection)->make(true);
-
-    $totaldataTable = $rtbCollection->count();
-    $draw = request()->get('draw');
     if (request()->ajax()) {
         return FacadesDataTables::of($rtbCollection)->make(true);
     }
-    return view('plataformas.Rtb.index');
+    return view('plataformas.index');
 }
 }
