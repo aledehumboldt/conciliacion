@@ -259,6 +259,16 @@
                 Trafico Gris (Bypass)
               </a>
             </li>
+
+            <li class="nav-item">
+              <a href="{{route('invisibles_ki')}}"  class="nav-link d-flex align-items-center gap-2
+              @if(route('invisibles_ki') == url()->current()) active @endif ">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upc-scan" viewBox="0 0 16 16">
+                <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5M3 4.5a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0zm2 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0z"/>
+              </svg>
+                Invisibles_Ki 
+              </a>
+            </li>
           </ul>
 
             <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -268,8 +278,8 @@
                 Plataformas
             </a>
             <ul class="dropdown-menu">
-                <li><a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('bypass.index')) active @endif" href="{{ route('bypass.index') }}">{{ __('RTB(PRN)') }}</a></li>
-                <li><a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('vhlrprg.index')) active @endif" href="{{ route('vhlrprg.index') }}">{{ __('VHLR(Prepago)') }}</a></li>
+                <li><a class="nav-link d-flex align-items-center gap-2" href="{{ route('rtb') }}">{{ __('RTB(PRN)') }}</a></li>
+                <li><a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('bypass.index')) active @endif" href="{{ route('bypass.index') }}">{{ __('VHLR(Prepago)') }}</a></li>
                 <li><a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('bypass.index')) active @endif" href="{{ route('bypass.index') }}">{{ __('VHLR(Pospago)') }}</a></li>
             </ul>
           @endif
@@ -580,7 +590,15 @@
         $('#crear_registro').click(function(){
           $('.titulo-modal').text('Agregar Nuevo Registro');
           $('#accion_boton').val('Add');
+
+
           $('#action').val('Add');
+
+          $('action').val('Add');
+
+
+          $('#action').val('Add');
+
           $('#formulario_resulta').html('');
 
           $('$formularioModal').modal('show');
@@ -638,6 +656,27 @@
 </script>
 
 
+</script>
+
+<script>
+      $(document).ready(function() {
+        $('#tablertb').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{!! route('rtb') !!}',
+            columns: [
+                {data : 'Min'},
+                {data : 'Imsi'},
+                {data : 'SimCard'},
+                {data : 'Status'},
+                {data : 'FechaActivacion'},
+                {data : 'Plan'},
+                {data : 'Nodo'},
+                {data : 'TipoDispositivo'},
+                // Otros campos
+            ]
+        });
+    });
 </script>
  </body>
 </html>

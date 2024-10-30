@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
+    "content-hash": "61d074de0ae1c7df71fb4a0131d3242b",
+=======
     "content-hash": "afc734321470ecbf8ab570b1877a6584",
+>>>>>>> master
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -2999,6 +3003,8 @@
                 }
             ],
             "time": "2024-10-15T15:27:12+00:00"
+<<<<<<< HEAD
+=======
         },
         {
             "name": "paragonie/constant_time_encoding",
@@ -3116,6 +3122,7 @@
                 "source": "https://github.com/paragonie/random_compat"
             },
             "time": "2020-10-15T08:29:30+00:00"
+>>>>>>> master
         },
         {
             "name": "phenx/php-font-lib",
@@ -10083,13 +10090,13 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^7.3||^8.0"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "platform-overrides": {
         "php": "7.4.19"
     },

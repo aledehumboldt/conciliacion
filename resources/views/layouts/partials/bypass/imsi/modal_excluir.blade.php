@@ -29,11 +29,11 @@
                           <label for="solicitante" class="form-label">Solicitante</label>
                           <select name="solicitante" id="solicitante" class="form-control custom-select" required>
                               <option value="">Seleccione</option>
-                              <option value="Soprte de Averias">Soprte de Averias</option>
+                              <option value="Soprte de Averias">Soporte de Averias</option>
                               <option value="CYA">CyA</option>
                           </select>
                         </div>
-                        <h6>Todos los campos son obligatorios</h6>
+                        <h6>Todos los campos son obligatorios</h6>o
                         <div class="text-center">
                             <button type="submit" name="excluir" id="excluir" class="btn btn-secondary">
                                 <svg class="bi"><use xlink:href="#store"/></svg>
