@@ -9606,3 +9606,14 @@ a.text-dark:hover, a.text-dark:focus {
 .grid-item {
   margin: auto;
 }
+.boton-caja {
+  background-color: #8A8E3A; /* Color de fondo (verde) */
+  color: white; /* Color del texto */
+  padding: 15px 32px; /* Relleno interno */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px; /* Borde redondeado para efecto de caja */
+  cursor: pointer;
+}

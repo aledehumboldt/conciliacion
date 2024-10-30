@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Http\Requests\StoreBypassMinRequest;
+use Illuminate\Support\Facades\Validator;
 
 class MinController extends Controller
 {
@@ -63,6 +64,12 @@ class MinController extends Controller
             $request['descripcion'] = $request->observaciones; 
             $request['solicitante'] = auth()->user()->perfil;
             $request['tipo'] = "requerimiento";
+
+            $request->validate([
+                'inicio' => 'required|string|before_or_equal:now', 
+              ], [
+                'inicio.before_or_equal' => 'La fecha y hora deben ser menor igual a la del dia de hoy',
+            ]);
             
             //Buscando registro para realizar exclusion
             $bypass = BypasMin::where('min',$numero)->first();
@@ -93,7 +100,12 @@ class MinController extends Controller
         $datosMinbypas['min'] = $min;
         $datosMinbypas['created_at'] = Carbon::now()->format('Y-m-d_H:i:s');
         $datosMinbypas['updated_at'] = Carbon::now()->format('Y-m-d_H:i:s');
-        $datosMinbypas['fecha'] = Carbon::now()->format('Y-m-d_H:i:s');
+        $datosMinbypas['fecha'] = Carbon::now()->format('Y-m-d H:i:s');
+        $request->validate([
+            'inicio' => 'required|string|before_or_equal:now', 
+          ], [
+            'inicio.before_or_equal' => 'La fecha y hora deben ser menor igual a la del dia de hoy',
+        ]);
 
         //Eliminando del array
         unset(
@@ -175,17 +187,33 @@ class MinController extends Controller
     public function update(Request $request, $id) {
         //return $request;
         $request->validate([
-            'ticket' => 'required|numeric|between:3900000000,3909999999|unique:incidencias,ticket', 
+            'ticket' => 'required|numeric|between:3900000000,3909999999', 
             'codarea' => 'required|numeric',
             'observaciones' => 'required|string|min:6|max:250',
             'min' => 'required|numeric',
             'tcliente' => 'required|string|min:7|max:8',
-          ], [
-            'ticket.unique' => 'Ya una solicitud ha sido procesada con este ticket',
-        ]);
+          ]);
 
         $datosMinbypas = $request->except('_token', 'editar', '_method');
 
+        Validator::extend('unique_min_codarea', function ($attribute, $value, $parameters, $validator) {
+            $codarea = $validator->getData()['codarea'];
+            $min = $validator->getData()['min'];
+            $combinedValue = $codarea . $min;
+
+            return BypasMin::where('min', $combinedValue)->doesntExist();
+        });
+
+        $validator = Validator::make($request->all(), [
+            'min' => 'unique_min_codarea'
+        ]);
+        
+        if ($validator->fails()) {
+            session()->forget('errors');
+            $validator->errors()->add('min', 'El abonado que intenta actualizar ya se encuentra en el listado.');
+
+            return back()->withErrors($validator)->withInput();
+        }
         //Sustituyendo valores necesarios
         $min = $datosMinbypas['codarea'].$datosMinbypas['min'];
 
