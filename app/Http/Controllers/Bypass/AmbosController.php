@@ -170,7 +170,7 @@ class AmbosController extends Controller
 
         if($b) {
             return redirect()->route('bypassAmbos.create')
-            ->with('mensaje', 'Abonado no existe en los listados.');
+            ->withErrors('Abonado no existe en los listados.');
         }
 
         //-------------------Incidencia--------------

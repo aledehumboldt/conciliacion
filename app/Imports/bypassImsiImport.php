@@ -16,7 +16,12 @@ class bypassImsiImport implements ToModel
     */
     public function model(array $row) {
 
-        if (str_contains($row[1], '73406')) {
+        if (
+            str_starts_with($row[0],'3900')
+            && strlen($row[0]) == 10
+            && str_contains($row[1], '73406')
+            && strlen($row[1]) == 15
+        ) {
             return new BypasImsi([
                 'ticket' => $row[0],
                 'fecha' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -25,12 +30,5 @@ class bypassImsiImport implements ToModel
                 'observaciones' => $row[2],
             ]);
         }
-        return new BypasImsi([
-            'ticket' => $row[0],
-            'fecha' => Carbon::now()->format('Y-m-d H:i:s'),
-            'usuario' => auth()->user()->usuario,
-            'imsi' => $row[2],
-            'observaciones' => $row[4],
-        ]);
     }
 }

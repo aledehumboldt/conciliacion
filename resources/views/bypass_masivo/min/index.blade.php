@@ -13,7 +13,7 @@
     @include('layouts.partials.messages')
     <div style="display: flex; align-items: center;justify-content: center;">
         @if(Session::has('message'))
-        <p>{{ Session::get('message') }}</p>
+        <p>{{ Session::get('message') }}</p> 
         @endif
         <form action="{{route('minMasivo.download')}}" method="post" enctype="multipart/form-data">
             @csrf
@@ -26,7 +26,7 @@
             </div>
             <div class="mb-3">
                 <h5 class="text-secondary">Descarga el archivo de prueba, modificalo y vuelve a subirlo</h5>
-                <input type="hidden" name="archivo" value="example.txt" id="archivo">
+                <input type="hidden" name="archivo" value="example_solomin.txt" id="archivo">
                 <button type="submit" class="btn btn-secondary" name="descargar" id="descargar" value="descargar" style="margin-left:40%">
                     <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
                     Descargar   
@@ -37,6 +37,7 @@
     <br>
     <div style="display: flex; align-items: center;justify-content: center;">
         <form action="{{route('minMasivo.import')}}" method="post" enctype="multipart/form-data">
+            @csrf
             <div class="mb-3">
                 <input type="file" name="file" class="form-control" required>
                 <button class="btn btn-secondary" type="submit" name="incluir" id="incluir" value="incluir">

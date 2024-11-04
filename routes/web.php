@@ -106,9 +106,13 @@ Route::get('imsiMasivo', [MasivoImsi::class, 'index'])->name('imsiMasivo.index')
 
 Route::post('imsiMasivo/import', [MasivoImsi::class, 'import'])->name('imsiMasivo.import');
 
+Route::post('imsiMasivo/download', [MasivoImsi::class, 'download'])->name('imsiMasivo.download');
+
 Route::get('ambosMasivo', [MasivoAmbos::class, 'index'])->name('ambosMasivo.index');
 
 Route::post('ambosMasivo/import', [MasivoAmbos::class, 'import'])->name('ambosMasivo.import');
+
+Route::post('ambosMasivo/download', [MasivoImsi::class, 'download'])->name('ambosMasivo.download');
 
 Route::get('whitelistMasivo', [MasivoWhitelist::class, 'index'])->name('whitelistMasivo.index');
 

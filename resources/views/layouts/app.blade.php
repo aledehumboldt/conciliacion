@@ -428,7 +428,7 @@
     <!-- Template Javascript -->   
     <script src="{{asset('js/color-modes.js')}}" crossorigin="anonymous"></script>    
     <script src="{{asset('js/main.js')}}" crossorigin="anonymous"></script>    
-    <script src="{{asset('js/dashboard.js')}}" crossorigin="anonymous"></script>
+    
     <script src="{{asset('DataTables/datatables.min.js')}}"></script>
 
     <!-- Cambio de modo -->
@@ -519,6 +519,15 @@
         return true;
       }
       return false;        
+    }
+
+    function validaLetras(event) {
+      var regex = new RegExp("^[a-zA-Z ]+$");
+      var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+      if (!regex.test(key)) {
+        event.preventDefault();
+        return false;
+      }
     }
 </script>
  </body>

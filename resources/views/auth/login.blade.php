@@ -105,7 +105,7 @@ background-color: rgba(253,88,95,0.5); color:#666666;">
   <script src="{{asset('js/contact.js')}}" crossorigin="anonymous"></script>
   <script src="{{asset('js/color-modes.js')}}" crossorigin="anonymous"></script>
   <script src="{{asset('js/main.js')}}" crossorigin="anonymous"></script>
-  <script src="{{asset('js/dashboard.js')}}" crossorigin="anonymous"></script>
+  
 </body>
 
 </html>
