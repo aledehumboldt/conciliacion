@@ -89,7 +89,7 @@ class WhitelistController extends Controller
         if (!empty($bypass)) {
             //Redireccionando
             return redirect()->route('bypassWhitelist.index')
-            ->with('mensaje', 'Abonado ya existe en el listado.');
+            ->withErrors('Abonado ya existe en el listado.');
         }        
 
         //Insertando la tabla Bypass MIN
@@ -207,7 +207,7 @@ class WhitelistController extends Controller
         $numero = BypasWhitelist::where('min',$min)->first();
         if(empty($numero)) {
             return redirect()->route('bypassWhitelist.index')
-            ->with('mensaje', 'Abonado no existe en el listado.');
+            ->withErrors('Abonado no existe en el listado.');
         }
         else { $numero->delete(); }
 

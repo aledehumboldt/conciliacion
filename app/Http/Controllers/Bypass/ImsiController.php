@@ -77,7 +77,7 @@ class ImsiController extends Controller
             
             if(empty($bypass)) {
                 return redirect()->route('bypassMin.index')
-                ->with('mensaje', 'IMSI no existe en el listado.');
+                ->withErrors('IMSI no existe en el listado.');
             }
 
             //Eliminando del array
@@ -97,7 +97,7 @@ class ImsiController extends Controller
             
          if(!empty($bypass)) {
              return redirect()->route('bypassMin.index')
-             ->with('mensaje', 'IMSI ya existe en el listado.');
+             ->withErrors('IMSI ya existe en el listado.');
          }
 
         //Agregando valores necesarios
@@ -215,7 +215,7 @@ class ImsiController extends Controller
         $imsi = BypasImsi::where('imsi',$imsi)->first();
         if(empty($imsi)) {
             return redirect()->route('bypassImsi.index')
-            ->with('mensaje', 'IMSI no existe en el listado.');
+            ->withErrors('IMSI no existe en el listado.');
         }
         else { $imsi->delete(); }
 

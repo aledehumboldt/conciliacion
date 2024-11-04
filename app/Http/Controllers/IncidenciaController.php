@@ -146,7 +146,7 @@ class IncidenciaController extends Controller
      */
     public function update(Request $request, string $id) {
         $request->validate([
-            'ticket' => 'required|string|min:10|max:10',
+            'ticket' => 'required|numeric|min:10|max:10',
             'inicio' => 'required|string',
             'descripcion' => 'required|string|max:250',
             'tipo' => 'required|string',

@@ -76,7 +76,7 @@ class MinController extends Controller
             
             if(empty($bypass)) {
                 return redirect()->route('bypassMin.index')
-                ->with('mensaje', 'Abonado no existe en el listado.');
+                ->withErrors('Abonado no existe en el listado.');
             }
 
             //Eliminando del array
@@ -253,7 +253,7 @@ class MinController extends Controller
         $numero = BypasMin::where('min',$min)->first();
         if(empty($numero)) {
             return redirect()->route('bypassMin.index')
-            ->with('mensaje', 'Abonado no existe en el listado.');
+            ->withErrors('Abonado no existe en el listado.');
         }
         else { $numero->delete(); }
         

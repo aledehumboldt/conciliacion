@@ -1,12 +1,13 @@
 <div class="form-container">
-    <div class="form-floating mb-3">
-        <input type="text" autocomplete="off" name="nombre" id="nombre" class="form-control"
-            value="{{isset($usuario->nombre) ? $usuario->nombre : old('nombre')}}" placeholder="" required>
-        <label for="nombre" class="form-label text-secondary">Ingresar Nombre</label>
+    <div  class="form-floating mb-3">
+        <input type="text" autocomplete="off" name="nombre" id="nombre" class="form-control" placeholder="Ingresar nombre"
+            value="{{isset($usuario->nombre) ? $usuario->nombre : old('nombre')}}" maxlength="18" onkeypress='return validaLetras(event)'>
+        <label for="nombre" class="form-label text-secondary">Nombre</label>
     </div>
-    <div class="form-floating mb-3">
-        <input type="text" autocomplete="off" name="usuario" id="usuario" value="{{isset($usuario->usuario) ? $usuario->usuario : old('usuario')}}"  class="form-control" placeholder="" required>
-        <label for="usuario" class="form-label text-secondary">Ingresar Cédula</label>
+    <div  class="form-floating mb-3">
+        <input type="text" autocomplete="off" name="usuario" id="usuario" value="{{isset($usuario->usuario) ? $usuario->usuario : old('usuario')}}"
+        class="form-control" placeholder="Ingresar cédula" maxlength="10" onkeypress='return validaNumericos(event)'>
+        <label for="usuario" class="form-label text-secondary">Cédula</label>
     </div>
     @if ($mod == "Crear")
         <input type="hidden" name="creado_por" id="creado_por" value="{{auth()->user()->usuario}}">
