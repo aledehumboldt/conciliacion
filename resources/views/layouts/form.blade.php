@@ -25,7 +25,7 @@
             @isset($usuario->perfil)
                 @if ($usuario->perfil == "CYA") selected @endif
             @endisset
-            >Aprovisionamiento</option>
+            >Conciliación de la Red</option>
         </select>
       </div>
     <input type="hidden" name="clave" id="clave" value="{{isset($usuario->clave) ? $usuario->clave : ''}}">

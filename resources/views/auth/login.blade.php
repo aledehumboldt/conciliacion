@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-  <title>Aprovisionamiento</title>
+  <title>Conciliación de la Red</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -27,7 +27,7 @@ background-color: rgba(253,88,95,0.5); color:#666666;">
                       <div class="text-center">
                         <img src="{{asset('assets/1699298393389.png')}}"
                           style="width: 185px; margin-bottom: 15px" alt="logo">
-                        <h4 class="mt-1 mb-5 pb-1">Coordinación de Aprovisionamiento</h4>
+                        <h4 class="mt-1 mb-5 pb-1">Coordinación de <br> Conciliación de la Red</h4>
                       </div>
       
                       <form method="post" action="{{route('login')}}">
@@ -66,7 +66,7 @@ background-color: rgba(253,88,95,0.5); color:#666666;">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                       <div class="p-3" style="max-width: 700px;">
                         <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">¿Nuevo Ingreso?</h1>
-                        <p class="mx-md-5 px-5 animate__animated animate__bounceIn text-white">Contacta con el equipo de Aprovisionamiento para la creación de un nuevo usuario.</p>
+                        <p class="mx-md-5 px-5 animate__animated animate__bounceIn text-white">Contacta con el equipo de Conciliación de la Red para la creación de un nuevo usuario.</p>
                       </div>
                     </div>
                   </div>
@@ -75,7 +75,7 @@ background-color: rgba(253,88,95,0.5); color:#666666;">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                       <div class="p-3" style="max-width: 700px;">
                         <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">¿Olvidaste tu contraseña?</h1>
-                        <p class="mx-md-5 px-5 animate__animated animate__bounceIn text-white">Solicita el reestablecimiento de tu clave al equipo de Aprovisionamiento.</p>
+                        <p class="mx-md-5 px-5 animate__animated animate__bounceIn text-white">Solicita el reestablecimiento de tu clave al equipo de Conciliación de la Red.</p>
                       </div>
                     </div>
                   </div>

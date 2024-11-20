@@ -8,7 +8,7 @@
         width:400px;
         height:40px;
         text-align:center;
-        background:#fd585f;
+        background:#ff585f;
         margin:10px auto;
         border-radius:10px;
         font-weight:bold; 
@@ -28,7 +28,7 @@
         height:100px;
         padding:4px;
         text-align:center;
-        background:none repeat scroll 0% 0% #fd585f;
+        background:none repeat scroll 0% 0% #ff585f;
         margin:1% 1%;
         border-radius:10px;
         box-shadow:0 0 10px 3px #666666 inset

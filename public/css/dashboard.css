@@ -25,7 +25,7 @@
 }
 
 .sidebar .nav-link.active {
-  color: #666666;
+  color: #ff585f;
 }
 
 .sidebar-heading {
@@ -48,8 +48,8 @@
 }
 
 textarea:focus, input:focus, input[type]:focus{
-  border-color: #fd585f;
-  box-shadow: 0 1px 1px #fd585f inset, 0 0 8px #fd585f;
+  border-color: #747678;
+  box-shadow: 0 1px 1px #747678 inset, 0 0 8px #747678;
 }
 
 .bd-placeholder-img {
@@ -105,7 +105,7 @@ textarea:focus, input:focus, input[type]:focus{
 }
 
 .btn-bd-primary {
-  --bd-violet-bg: #fd585f;
+  --bd-violet-bg: #747678;
   --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
 
   --bs-btn-font-weight: 600;
@@ -113,12 +113,12 @@ textarea:focus, input:focus, input[type]:focus{
   --bs-btn-bg: var(--bd-violet-bg);
   --bs-btn-border-color: var(--bd-violet-bg);
   --bs-btn-hover-color: var(--bs-white);
-  --bs-btn-hover-bg: #fd585f;
+  --bs-btn-hover-bg: #747678;
   --bs-btn-hover-border-color: #0000;
   --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
   --bs-btn-active-color: var(--bs-btn-hover-color);
-  --bs-btn-active-bg: #fd585f;
-  --bs-btn-active-border-color: #fd585f;
+  --bs-btn-active-bg: #747678;
+  --bs-btn-active-border-color: #747678;
 }
 
 .bd-mode-toggle {
@@ -130,36 +130,36 @@ textarea:focus, input:focus, input[type]:focus{
 }
 
 .nav-link {
-  color: #fd585f;
+  color: #747678;
 }
 .nav-link:hover {
-  color: #666666;
+  color: #ff585f;
 }
 .nav-link:focus {
   color: #bbb2b2;
 }
 
 .dropdown-item.active {
-background-color: #fd585f;
+background-color: #747678;
 }
 
 .pagination {
---bs-pagination-active-bg: #fd585f;
---bs-pagination-active-border-color: #fd585f;
---bs-pagination-color:#666666;
---bs-pagination-hover-bg:#fd585f;
+--bs-pagination-active-bg: #ff585f;
+--bs-pagination-active-border-color: #ff585f;
+--bs-pagination-color:#747678;
+--bs-pagination-hover-bg:#ff585f;
 --bs-pagination-hover-color: #070707;
 }
 
 .tomatxt:focus {
-box-shadow: 0 0 8px #fd585f;
+box-shadow: 0 0 8px #747678;
 }
 
 .form-control:focus{
   color: var(--bs-body-color);
   background-color: var(--bs-body-bg);
-  border-color: #fd585f;
+  border-color: #747678;
   outline: 0;
-  box-shadow: 0 0 8px #fd585f;
+  box-shadow: 0 0 8px #747678;
 }
 

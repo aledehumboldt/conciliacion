@@ -167,11 +167,11 @@
 </svg>
 
 
-<header class="navbar sticky-top bg-nav flex-md-nowrap p-0 shadow" data-bs-theme="dark" style="background-color: #fd585f">
+<header class="navbar sticky-top bg-nav flex-md-nowrap p-0 shadow" data-bs-theme="dark" style="background-color: #747678">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white">{{auth()->user()->nombre}}</a>
   <img src="{{asset('assets/1699301436808.png')}}" style="width: 45px; position:absolute; left:17%" alt="logo">
   <img src="{{asset('assets/logoMovilnet.png')}}" style="width: 150px; position:absolute; right:0%" alt="logo">
-  <h2 class="text-white col-md" style="text-align:center">Aprovisionamiento</h2>
+  <h2 class="text-white col-md" style="text-align:center">Conciliación de la Red</h2>
 </header>
  
 <div class="container-fluid">
@@ -325,7 +325,7 @@
 <div class="container-fluid bg-dark text-secondar mt-5">
   <div class="row px-xl-5 pt-5">
     <div class="col-lg-4 col-md-4 mb-5 pr-3 pr-xl-5">
-      <h5 class="text-secondar text-uppercase mb-4" style="text-align: center">Coordinacion de Aprovisionamiento</h5>
+      <h5 class="text-secondar text-uppercase mb-4" style="text-align: center">Coordinacion de Conciliacion de la Red</h5>
       <p class="mb-4" style="text-align: justify">Area encargada de llevar a cabo las comparaciones de distintas plataformas, con los facturadores, para realizar el aprovisionamiento correcto a los abonados, a nivel masivo.</p>
       <p class="mb-2">
         <svg class="bi"><use xlink:href="#building"/></svg>
@@ -343,7 +343,7 @@
       <div class="row border-top mx-xl-1 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
           <a class="text-secondar mb-0" data-toggle="modal" data-target="#myModal">
             <svg class="bi"><use xlink:href="#puzzle"/></svg>
-              Cumpleaños Aprovisionamiento
+              Cumpleaños Conciliación de la Red
           </a>
       </div>
 
@@ -427,7 +427,7 @@
       <p class="mb-md-0 text-center text-md-right text-secondar">
         <a class="text-primer" href="#">Domain</a>. Todos los Derechos Reservados. Desarrollado
         por
-        <strong class="text-primer">Aprovisionamiento</strong>
+        <strong class="text-primer">Conciliación de la Red</strong>
       </p>
     </div>
   </div>
