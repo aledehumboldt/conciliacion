@@ -38,8 +38,8 @@
                 <label for="solicitante" class="form-label">Solicitante</label>
                 <select name="solicitante" id="solicitante" class="form-control custom-select">
                     <option value="">Seleccione</option>
-                    <option value="CYA">CYA</option>
-                    <option value="Soporte de Averias">Soporte de Averias</option>
+                    <option value="Conciliacion">Conciliacion</option>
+                    <option value="SASM">Soporte de Aplicaciones</option>
                 </select>
             </div>
             <input type="hidden" name="hidden_id" id="hidden_id">

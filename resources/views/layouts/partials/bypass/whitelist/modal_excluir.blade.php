@@ -30,8 +30,8 @@
                             <label for="solicitante" class="form-label">Solicitante</label>
                             <select name="solicitante" id="solicitante" class="form-control custom-select">
                                 <option value="">Seleccione</option>
-                                <option value="Soprte de Averias">Soprte de Averias</option>
-                                <option value="CYA">CyA</option>
+                                <option value="SASM">Soporte de Aplicaciones</option>
+                                <option value="Conciliacion">Conciliacion</option>
                             </select>
                         </div>
                         <h6>Todos los campos son obligatorios.</h6>

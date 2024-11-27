@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class RtbController extends Controller
 {
     protected function verify() {
-        if (Auth::user()->perfil == "CYA" 
+        if (Auth::user()->perfil == "Conciliacion" 
         && Auth::user()->estatus != "Iniciado") {
             return true;
         } else {

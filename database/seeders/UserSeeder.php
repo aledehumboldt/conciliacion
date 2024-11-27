@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
             'nombre' => 'admin',
             'usuario' => '1234567',
             'estatus' => 'activo',
-            'perfil' => 'CYA',
+            'perfil' => 'Conciliacion',
             'creado_por' => '1234567',
             'created_at' => now(),
             'clave' => md5('Ch0r0n1$'), // Asegúrate de encriptar la contraseña

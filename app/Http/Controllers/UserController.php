@@ -12,7 +12,7 @@ use App\Http\Requests\StoreUserRequest;
 class UserController extends Controller
 {
     protected function verify() {
-        if (Auth::user()->perfil == "CYA"
+        if (Auth::user()->perfil == "Conciliacion"
         && Auth::user()->estatus != "Iniciado") {
             return true;
         } else {
@@ -107,8 +107,8 @@ class UserController extends Controller
             'perfil' => [
                 'required',
                 'string',
-                'min:2',
-                'max:3'
+                'min:4',
+                'max:12'
             ]
             ], [
             'nombre.required' => 'El campo nombre es obligatorio.',
@@ -120,8 +120,8 @@ class UserController extends Controller
             'usuario.digits' => 'El campo cedula debe tener mínimo 8 caracteres',
             'perfil.required' => 'El campo perfil es obligatorio.',
             'perfil.string' => 'El campo nombre debe ser una cadena.',
-            'perfil.min' => 'El campo perfil debe tener mínimo 2 caracteres.',
-            'perfil.max' => 'El campo perfil debe tener maximo 3 caracteres.'
+            'perfil.min' => 'El campo perfil debe tener mínimo 4 caracteres.',
+            'perfil.max' => 'El campo perfil debe tener maximo 12 caracteres.'
         ]);
         
         //Actualizando registro

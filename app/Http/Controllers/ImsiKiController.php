@@ -19,7 +19,7 @@ use App\Rules\ValidateIMSI;
 class ImsiKiController extends Controller
 {
     protected function verify() {
-        if (Auth::user()->perfil == "CYA"
+        if (Auth::user()->perfil == "Conciliacion"
         && Auth::user()->estatus != "Iniciado") {
             return true;
         } else {
@@ -36,7 +36,7 @@ class ImsiKiController extends Controller
             return back();
         }
         
-        if (Auth::user()->perfil == "SA") {
+        if (Auth::user()->perfil == "SASM") {
             return $this->create();
         }
 

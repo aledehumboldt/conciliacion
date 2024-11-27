@@ -55,8 +55,8 @@
         <label for="solicitante" class="form-label">Solicitante</label>
             <select name="solicitante" id="solicitante" class="form-control custom-select">
                 <option value="">Seleccione</option>
-                <option value="CYA" @if ($incidencia->solicitante == "CYA") selected @endif>CYA</option>
-                <option value="Soporte de Averias" @if ($incidencia->solicitante == "Soporte de Averias") selected @endif>Soporte de Averias</option>
+                <option value="Conciliacion" @if ($incidencia->solicitante == "Conciliacion") selected @endif>Conciliacion</option>
+                <option value="Soporte de Averias" @if ($incidencia->solicitante == "SASM") selected @endif>Soporte de Aplicaciones</option>
             </select>
         </div>
         <div class="mb-3">

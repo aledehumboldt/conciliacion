@@ -30,7 +30,7 @@ class LoginController extends Controller
     public function login (LoginRequest $request) {
 
         $credentials = $request->getCredentials();
-    
+
         $user = User::where([
             'usuario' => $credentials['usuario'],
             'clave' => md5($credentials['clave'])

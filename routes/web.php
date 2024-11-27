@@ -150,13 +150,6 @@ Route::get('invisibles_ki/create', [ImsiKiController::class, 'create'])->name('i
 
 //-------------------------------------------------Fin KI Invisibles--------------------------------------------------------------------------
 
-Route::get('/ejecutar-script', [proofController::class, 'realizarSFTP'])->name('ejecutar-script');
-
-//------------------------------------------------Proof-----------------------------------------------
-Route::get('proof', [proofController::class, 'index'])->name('proof');
-Route::post('edit-proof', [proofController::class, 'edit'])->name('proof.edit');
-Route::get('/ejecutar-script', [proofController::class, 'ejecutarScript'])->name('ejecutar-script');
-
 //------------------------------------------------Plataforma-RTB-----------------------------------------------
 
 Route::get('plataformas/Rtb', [RtbController::class, 'index'])->name('rtb');
