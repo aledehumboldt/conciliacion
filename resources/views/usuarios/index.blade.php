@@ -44,7 +44,13 @@
                 <td>{{$usuario->usuario}}</td>
                 <td>{{$usuario->creado_por}}</td>
                 <td>{{$usuario->estatus}}</td>
-                <td>{{$usuario->perfil}}</td>
+                <td>
+                    @if ($usuario->perfil == "SASM")
+                        Soporte de Aplicaciones
+                    @else
+                        {{$usuario->perfil}}
+                    @endif
+                </td>
                 <td>
                     <div style="display: flex; align-items: center;justify-content: center;">
                     <a href="{{route('usuarios.edit',$usuario->id)}}">

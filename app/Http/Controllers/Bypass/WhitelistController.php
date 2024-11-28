@@ -31,7 +31,7 @@ class WhitelistController extends Controller
         }
 
         //validando el perfil de usuario
-        if (Auth::user()->perfil == "SA") {
+        if (Auth::user()->perfil == "SASM") {
             return $this->create();
         }
 

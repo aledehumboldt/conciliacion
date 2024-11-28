@@ -193,7 +193,7 @@
               </a>
             </li>
 
-            @if (auth()->user()->perfil == "CYA")
+            @if (auth()->user()->perfil == "Conciliacion")
             <li class="nav-item">
               <a href="{{route('usuarios.index')}}" class="nav-link d-flex align-items-center gap-2
                 @if(route('usuarios.index') == url()->current()) active @endif ">
@@ -217,21 +217,6 @@
                 Incidencias o Requerimientos
               </a>
             </li>
-
-            <li class="nav-item">
-              <a href="{{route('aprovisionamientos')}}" class="nav-link d-flex align-items-center gap-2
-              @if(route('aprovisionamientos') == url()->current()) active @endif ">
-              <svg class="bi"><use xlink:href="#net-full"/></svg>
-                Conexion y Desconexion de abonados
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="#" class="nav-link d-flex align-items-center gap-2">
-                <svg class="bi"><use xlink:href="#caution"/></svg>
-                Suspension y Reactivacion de abonados
-              </a>
-            </li>
             @endif
             
             <li class="nav-item">
@@ -249,6 +234,43 @@
                 Trafico Gris (Bypass)
               </a>
             </li>
+
+            @if (auth()->user()->perfil == "Conciliacion")    
+            
+            <li class="nav-item">
+              <a href="{{route('aprovisionamientos')}}" class="nav-link d-flex align-items-center gap-2
+              @if(route('aprovisionamientos') == url()->current()) active @endif ">
+              <svg class="bi"><use xlink:href="#net-full"/></svg>
+                Conexion y Desconexion de abonados
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#" class="nav-link d-flex align-items-center gap-2">
+                <svg class="bi"><use xlink:href="#caution"/></svg>
+                Suspension y Reactivacion de abonados
+              </a>
+            </li>
+<<<<<<< HEAD
+            @endif
+            
+            <li class="nav-item">
+              <a href="{{route('exclusiones.index')}}" class="nav-link d-flex align-items-center gap-2
+                @if(route('exclusiones.index') == url()->current()) active @endif ">
+                <svg class="bi"><use xlink:href="#upload"/></svg>
+                Exclusiones
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="{{route('bypass.index')}}"  class="nav-link d-flex align-items-center gap-2
+              @if(route('bypass.index') == url()->current()) active @endif ">
+                <svg class="bi"><use xlink:href="#graph-up"/></svg>
+                Trafico Gris (Bypass)
+              </a>
+            </li>
+=======
+>>>>>>> alejandro
 
             <li class="nav-item">
               <a href="{{route('invisibles_ki')}}"  class="nav-link d-flex align-items-center gap-2
@@ -272,6 +294,8 @@
                 <li><a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('bypass.index')) active @endif" href="{{ route('bypass.index') }}">{{ __('VHLR(Prepago)') }}</a></li>
                 <li><a class="nav-link d-flex align-items-center gap-2 @if(request()->routeIs('bypass.index')) active @endif" href="{{ route('bypass.index') }}">{{ __('VHLR(Pospago)') }}</a></li>
             </ul>
+
+            @endif
           @endif
 
           <hr class="my-3">
@@ -392,7 +416,7 @@
           <div class="d-flex flex-column justify-content-start">
             <a class="text-secondar mb-2" href="#">
               <svg class="bi"><use xlink:href="#arrow-down-right-circle"/></svg>
-              Apoyo especializado
+              
             </a>  
           </div>
           <br>

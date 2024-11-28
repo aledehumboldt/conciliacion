@@ -22,7 +22,7 @@ class IncidenciaFactory extends Factory
             'fin' => fake()->dateTimeBetween('now', '+1 year'),
             'descripcion' => fake()->sentence(),
             'tipo' => fake()->randomElement(['incidencia', 'requerimiento']),
-            'solicitante' => fake()->randomElement(['CYA', 'Soporte de Averias']),
+            'solicitante' => fake()->randomElement(['Conciliacion', 'SASM']),
             'responsable' => User::inRandomOrder()->first()->usuario
         ];
     }

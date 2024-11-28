@@ -31,7 +31,7 @@ class ImsiController extends Controller
         }
 
         //validando el perfil de usuario
-        if (Auth::user()->perfil == "SA") {
+        if (Auth::user()->perfil == "SASM") {
             return $this->create();
         }
         
@@ -65,7 +65,7 @@ class ImsiController extends Controller
         $this->validate($request,$campos);
 
         //-------------------Bypass--------------
-        //En caso de ser una exclusion vista SA
+        //En caso de ser una exclusion vista SASM
         if (isset($request->excluir)) {
             //Agregando valores necesarios para Incidencia
             $request['descripcion'] = $request->observaciones;

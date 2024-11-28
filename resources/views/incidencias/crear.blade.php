@@ -57,8 +57,8 @@
         <label for="solicitante" class="form-label">Solicitante</label>
         <select name="solicitante" id="solicitante" class="form-control custom-select" required>
             <option value="">Seleccione</option>
-            <option value="CYA">CYA</option>
-            <option value="Soporte de Averias">Soporte de Averias</option>
+            <option value="Conciliacion">Conciliacion</option>
+            <option value="SASM">SASM</option>
         </select>
     </div>
         <div class="text-center">

@@ -23,7 +23,7 @@ class UserFactory extends Factory
             'nombre' => fake()->name(),
             'usuario' => fake()->numerify('########'),
             'estatus' => fake()->randomElement(['Suspendido', 'Iniciado', 'Activo']),
-            'perfil' => fake()->randomElement(['SA', 'CYA']),
+            'perfil' => fake()->randomElement(['SASM', 'Conciliacion']),
             'creado_por' => fake()->numerify('########'),
         ];
 

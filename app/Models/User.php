@@ -59,4 +59,8 @@ class User extends Authenticatable
             }   
         );
     }
+
+    public function incidencias() {
+     return $this->hasMany(Incidencia::class, 'responsable', 'usuario');
+    }
 }

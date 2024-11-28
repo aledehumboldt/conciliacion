@@ -33,7 +33,7 @@ class MinController extends Controller
         }
         
         //validando el perfil de usuario
-        if (Auth::user()->perfil == "SA") {
+        if (Auth::user()->perfil == "SASM") {
             return $this->create();
         }
 
@@ -57,7 +57,7 @@ class MinController extends Controller
      */
     public function store(StoreBypassMinRequest $request) {
         //-------------------Bypass--------------
-        //En caso de ser una exclusion vista SA
+        //En caso de ser una exclusion vista SASM
         if (isset($request->excluir)) {
             //Agregando valores necesarios para Incidencia
             $numero = $request->codarea.$request->min;

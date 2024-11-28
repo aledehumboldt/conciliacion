@@ -14,16 +14,16 @@
     @endif
     <input type="hidden" name="estatus" id="estatus" value="{{isset($usuario->estatus) ? $usuario->estatus : 'Iniciado'}}">
     <div class="mb-3">
-        <select id="perfil" name="perfil" class="custom-select" @if (auth()->user()->perfil == "SA") disabled @endif required> 
+        <select id="perfil" name="perfil" class="custom-select" @if (auth()->user()->perfil == "SASM") disabled @endif required> 
             <option value="">Selecciona el área</option>
-            <option value="SA"
+            <option value="SASM"
             @isset($usuario->perfil)
-                @if ($usuario->perfil == "SA") selected @endif
+                @if ($usuario->perfil == "SASM") selected @endif
             @endisset
-            >Soporte de Averías</option>
-            <option value="CYA"
+            >Soporte de Aplicaciones</option>
+            <option value="Conciliacion"
             @isset($usuario->perfil)
-                @if ($usuario->perfil == "CYA") selected @endif
+                @if ($usuario->perfil == "Conciliacion") selected @endif
             @endisset
             >Conciliación de la Red</option>
         </select>
@@ -34,7 +34,7 @@
             <svg class="bi"><use xlink:href="#store"/></svg>
             {{$mod}}
         </button>
-        @if (auth()->user()->perfil == "CYA")
+        @if (auth()->user()->perfil == "Conciliacion")
             @if ($mod == "Actualizar")
                 <a href="{{route('password.edit',$usuario->id)}}" name="reiniciar" id="reiniciar" class="btn btn-group btn-secondary">
                     <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="1 0 30 30" style="fill:#FFFFFF;">

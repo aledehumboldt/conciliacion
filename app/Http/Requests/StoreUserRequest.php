@@ -24,7 +24,7 @@ class StoreUserRequest extends FormRequest
         return [
             'nombre' => 'required|regex:/^[a-zA-Z-áéíóóú\s]+$/|max:40',
             'usuario' => 'required|unique:users|numeric|regex:/^\d{7,8}$/',
-            'perfil' => 'required|string|min:2|max:3',
+            'perfil' => 'required|string|min:4|max:12',
         ];
     }
 
@@ -41,8 +41,8 @@ class StoreUserRequest extends FormRequest
             'usuario.regex' => 'Ingrese un numero de cedula valido',
             'perfil.required' => 'El campo perfil es obligatorio.',
             'perfil.string' => 'El campo nombre debe ser una cadena.',
-            'perfil.min' => 'El campo perfil debe tener mínimo 2 caracteres.',
-            'perfil.max' => 'El campo perfil debe tener maximo 3 caracteres.',       
+            'perfil.min' => 'El campo perfil debe tener mínimo 4 caracteres.',
+            'perfil.max' => 'El campo perfil debe tener maximo 12 caracteres.',       
         ];
     }
 }

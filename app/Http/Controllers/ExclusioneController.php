@@ -25,7 +25,9 @@ class ExclusioneController extends Controller
             return back();
         }
 
-        if(auth()->user()->perfil == "SA") {
+        return auth()->user()->perfil;
+
+        if(auth()->user()->perfil == "SASM") {
             return redirect()->route('exclusiones.create');
         }
 

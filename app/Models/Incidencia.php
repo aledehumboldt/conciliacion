@@ -19,4 +19,8 @@ class Incidencia extends Model
         'solicitante',
         'responsable',
     ];
+
+    public function user() {
+     return $this->belongsTo(User::class, 'responsable', 'usuario');
+    }
 }
