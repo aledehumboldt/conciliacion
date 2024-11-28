@@ -251,26 +251,6 @@
                 Suspension y Reactivacion de abonados
               </a>
             </li>
-<<<<<<< HEAD
-            @endif
-            
-            <li class="nav-item">
-              <a href="{{route('exclusiones.index')}}" class="nav-link d-flex align-items-center gap-2
-                @if(route('exclusiones.index') == url()->current()) active @endif ">
-                <svg class="bi"><use xlink:href="#upload"/></svg>
-                Exclusiones
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="{{route('bypass.index')}}"  class="nav-link d-flex align-items-center gap-2
-              @if(route('bypass.index') == url()->current()) active @endif ">
-                <svg class="bi"><use xlink:href="#graph-up"/></svg>
-                Trafico Gris (Bypass)
-              </a>
-            </li>
-=======
->>>>>>> alejandro
 
             <li class="nav-item">
               <a href="{{route('invisibles_ki')}}"  class="nav-link d-flex align-items-center gap-2
