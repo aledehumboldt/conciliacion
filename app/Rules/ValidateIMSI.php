@@ -16,7 +16,7 @@ class ValidateIMSI implements ValidationRule
 
         // Validamos el prefijo del IMSI (los primeros 6 dígitos)
         if (!preg_match('/^73406(10|30)[0-9]{8}/', $value)) {
-            $fail('El :attribute debe estar entre los prefijos (734610 (SIM) o 734630 (USIM)).');
+            $fail('El :attribute debe estar entre los prefijos (7340610 (SIM) o 7340630 (USIM)).');
         }
 
         // Validamos que los últimos 12 caracteres sean numéricos
