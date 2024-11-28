@@ -22,8 +22,8 @@ class StoreUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => 'required|regex:/^[a-zA-Z-áéíóóú\s]+$/|max:20',
-            'usuario' => 'required|unique:users|numeric|digits:8',
+            'nombre' => 'required|regex:/^[a-zA-Z-áéíóóú\s]+$/|max:40',
+            'usuario' => 'required|unique:users|numeric|regex:/^\d{7,8}$/',
             'perfil' => 'required|string|min:2|max:3',
         ];
     }
@@ -38,6 +38,7 @@ class StoreUserRequest extends FormRequest
             'usuario.unique' => 'Esta cedula ya se encuentra registrada',
             'usuario.numeric' => 'El campo cedula debe ser un número.',
             'usuario.digits' => 'El campo cedula debe tener mínimo 8 caracteres',
+            'usuario.regex' => 'Ingrese un numero de cedula valido',
             'perfil.required' => 'El campo perfil es obligatorio.',
             'perfil.string' => 'El campo nombre debe ser una cadena.',
             'perfil.min' => 'El campo perfil debe tener mínimo 2 caracteres.',
