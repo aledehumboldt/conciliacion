@@ -56,6 +56,19 @@ class IncidenciaController extends Controller
             ->rawColumns(['action'])
             ->make(true);
         }
+
+       // return $data;
+
+/*
+        $incidencias = $queryBuilder->orderBy('id','desc')->paginate();
+
+        $inicio = Carbon::createFromFormat("Y-m-d H:i:s",$incidencias->inicio);
+        $fin = Carbon::createFromFormat("Y-m-d H:i:s",$incidencias->fin);
+
+        $diff = $inicio->diffInHours($fin);
+
+        return view('incidencias.index', compact('incidencias'));//,'diff'
+*/
         return view('incidencias.index');
     }
     /**

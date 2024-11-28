@@ -7,12 +7,12 @@ use App\Models\ImsiKi;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
+//use Yajra\DataTables\DataTables;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-//use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
-//use Yajra\DataTables\Facades\DataTables;
+use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
+use Yajra\DataTables\Facades\DataTables;
 use Yajra\DataTables\Contracts\DataTable;
 use App\Rules\ValidateIMSI;
 
@@ -42,6 +42,7 @@ class ImsiKiController extends Controller
 
         return view('invisibles_ki.index');
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -110,8 +111,13 @@ class ImsiKiController extends Controller
     public function individual(Request $request)
     {
         
-        $imsis_kis = ImsiKi::all(); // Replace with your data fetching logic
-        return view('invisibles_ki.individual', compact('imsis_kis'));
+        $datatables = DataTables::of(ImsiKi::query())
+        ->addColumn('action', function ($imsiKi) {
+            return view('layouts.partials.imsiki.actions', compact('imsiKi'))->render();
+        })
+        ->rawColumns(['action']);
+
+        return view('invisibles_ki.individual', compact('datatables'));
       
     }
 
@@ -121,17 +127,39 @@ class ImsiKiController extends Controller
         return view('invisibles_ki.masivo');
     }
 
-    public function getData()
+    public function data(Request $request) 
     {
-    
-        {
-            
-            $data = ImsiKi::select('id', 'fecha', 'imsi', 'observaciones', 'ticket');
+        $data = ImsiKi::select('id', 'ticket', 'imsi') // Selecciona solo las columnas necesarias
+        ->limit(50) // Limita el número de registros por página
+        ->get();
 
-            return DataTables::of($data)
-            ->make(true);
-    
-
-        }
+    return DataTables::of($data)
+        ->make(true);
     }
+   
+
 }
+     /*
+
+    DB::table('table')
+    ->select(array('column1', 'column2', 'column3'))
+    ->get();
+
+    DB::table('table')->get(array('column1', 'column2', 'column3'));
+
+     {
+       $arrJson = [];
+       $data = DB::SQL("SELECT * FROM imsi_kis");
+       if(empty($data)){
+            $arrJson = ['msg'=> 'No se encontraron registros'];
+       }else{
+        $arrJson = $data;
+       }
+
+       echo json_encode($arrJson, JSON_UNESCAPED_UNICODE);
+    }
+*/
+    
+
+
+

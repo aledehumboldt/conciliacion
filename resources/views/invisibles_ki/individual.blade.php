@@ -1,83 +1,83 @@
 @extends('layouts.app')
+
+
    
     @section('titulo', 'Gestion Invisibles_Ki')
-   
+        <!-- Links Data Table -->
+            <link href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+            <link href="https://cdn.datatables.net/buttons/3.2.0/css/buttons.bootstrap5.min.css" rel="stylesheet">
+        <!-- fin -->
+            
+        <!-- link Bootstrap -->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- fin -->
 
+        <!-- link Font Awesome -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- fin -->
 
-    @section('estilos')
+                @section('estilos')
     
 
-    @endsection
+                @endsection
 
 
-    @section('encabezado')
-    <h3 class="editor-toolbar-item"> Inclusion/Exclusion Invisibles_Ki</h3>
-    <div style="position: absolute; right: 2%;">
+                 @section('encabezado')
 
-        <form action="{{ route('imsi_kis.create') }}" method="GET">
-            @csrf  <button type="submit" href: class="btn btn-secondary">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-up"
-           viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5m-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5"/>
-              </svg>
-              Incluir IMSI
-            </button>
-          </form>
-            
-    </div>
+                        <h3 class="editor-toolbar-item"> Inclusion/Exclusion Invisibles_Ki</h3>
    
    
     @endsection
-@section('contenido')
+        @section('contenido')
 
+        @include('layouts.partials.messages')
 
-@include('layouts.partials.messages')
-
-
-
-
-<table class="table table-bordered">
-    <thead>
-    <tr>
-        <th>#</th>
-        <th>Ticket</th>
-        <th>Fecha</th>
-        <th>IMSI</th>
-        <th>Observaciones</th>
-        <th>Acciones</th>
-    </tr>
-    </thead>
-    <tbody  class="table table-bordered">
-        @foreach ($imsis_kis as $imsi_ki)
-                <tr>
-                    <td>{{$imsi_ki->id}}</td>
-                    <td>{{$imsi_ki->ticket}}</td>
-                    <td>{{$imsi_ki->fecha}}</td>
-                    <td>{{$imsi_ki->imsi}}</td>
-                    <td>{{$imsi_ki->observaciones}}</td>
-                    @include('layouts.partials.imsiki.modal_editar_individual_ki')
-                    <td>
-                            <div style="display: flex; align-items: center;justify-content: center;">
-                            <a href="{{ route('imsi_ki.edit', $imsi_ki->id) }}" class="btn btn-primary btn-sm"><svg class="bi"><use xlink:href="#pencil"/></svg>Editar</a>
-                           
-                            <form action="{{ route('imsi-kis.destroy', $imsi_ki->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button style="margin-left: 10px;" type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este registro?')"><svg class="bi"><use xlink:href="#eraser"/></svg></button>
-                            </form>
-                        
-                    </td>
-                </tr>
+            <table id="imsis-table" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Ticket</th>
+                        <th>IMSI</th>
+                        <th>Observasiones</th>
+                        <th>Fecha</th>
+                    </tr>
                     
-                   
-               
-                @endforeach
-    </tbody>
-</table>
+                </thead>
+
+
+
+            
+            </table>
+            
 
 
 
 
+             <!-- JQuery -->
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+             <!-- fin -->
 
+             <!-- Script Chart -->
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+             <!-- fin -->
 
-@endsection    
+             <!-- Script Data Table -->
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+                <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+                <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.min.js"></script>
+                <script src="https://cdn.datatables.net/buttons/3.2.0/js/dataTables.buttons.min.js"></script>
+                <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.bootstrap5.min.js"></script>
+                <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.colVis.min.js"></script>
+                <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.html5.min.js"></script>
+                <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.print.min.js"></script>
+             <!-- fin -->
+
+             <!-- ScriptBootstrap -->
+                <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+             <!-- fin -->
+
+        
+        
+        @endsection    

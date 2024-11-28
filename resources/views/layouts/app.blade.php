@@ -589,5 +589,44 @@
         });
     });
 </script>
+      
+<script>
+  $(document).ready(function () {
+      $('#imsis-table').DataTable({
+          dom: 'Bfrtilp', 
+          buttons: [
+              {
+                  extend: 'excelHtml5',
+                  text: "<i class='fa-solid fa-file-csv'></i>",
+                  titleAttr: 'Exportar a Excel',
+                  className: 'btn btn-success',
+
+              },
+          ],
+          lengthMenu: [5, 8, 16, 32],
+          columnDefs: [{ orderable: false, targets: [0, 2, 3, 4] },
+                       { searchable: false, targets:[0, 3, 4] }       
+          ],
+          processing: true,
+          serverSide: true,
+          
+          ajax: {
+              url: '{!! route('invisibles_ki.data') !!}',
+              type: 'GET',
+              error: function (xhr, error, thrown) {
+                  console.error(xhr.responseText); // Muestra el error en la consola
+              }
+          },
+          columns: [
+              { data: 'id' },
+              { data: 'ticket' },
+              { data: 'imsi' },
+              { data: 'observaciones' },
+              { data: 'fecha' },
+              { data: 'actions', name: 'actions', orderable: false, searchable: false }
+          ]
+      });
+  });
+</script>
  </body>
 </html>

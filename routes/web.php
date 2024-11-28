@@ -136,7 +136,7 @@ Route::get('invisibles_ki/masivo', [ImsiKiController::class, 'masivo'])->name('i
 
 Route::get('invisibles_ki/individual', [ImsiKiController::class, 'individual'])->name('invisibles_ki.individual');
 
-Route::get('invisibles_ki/data', [ImsiKiController::class, 'getData'])->name('invisibles_ki.data');
+Route::get('invisibles_ki/{data?}', [ImsiKiController::class, 'data'])->name('invisibles_ki.data');
 
 Route::get('/imsi_ki/{imsi_ki}/edit', [ImsiKiController::class, 'edit'])->name('imsi_ki.edit');
 
