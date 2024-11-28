@@ -499,7 +499,16 @@
                 {data : 'descripcion', name : 'descripcion'},
                 {data : 'tipo', name : 'tipo'},
                 {data : 'solicitante', name : 'solicitante'},
-                {data : 'responsable', name : 'responsable'},
+                {
+                  data : 'responsable', 
+                  name : 'responsable',
+                  render: function (data, type, row) {
+                    // Convertir la primera letra de cada palabra a mayúscula
+                    return data.replace(/\b\w+/g, function(word) {
+                      return word.charAt(0).toUpperCase() + word.slice(1);
+                    });
+                  }
+                },
                 {data : 'action', name : 'action', searchable : false, orderable : false},
                 // Otros campos
             ]

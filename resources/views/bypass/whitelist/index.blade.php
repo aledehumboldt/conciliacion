@@ -43,7 +43,7 @@
             <tr>
                 <td>{{$bypas_min->ticket}}</td>
                 <td>{{$bypas_min->fecha}}</td>
-                <td>{{$bypas_min->usuario}}</td>
+                <td>{{ucwords($bypas_min->usuario)}}</td>
                 <td>{{$bypas_min->min}}</td>
                 <td>{{$bypas_min->observaciones}}</td>
                 @include('layouts.partials.bypass.whitelist.modal_editar')

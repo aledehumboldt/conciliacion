@@ -43,7 +43,7 @@
             <tr>
                 <td>{{$bypas_imsi->ticket}}</td>
                 <td>{{$bypas_imsi->fecha}}</td>
-                <td>{{$bypas_imsi->usuario}}</td>
+                <td>{{ucwords($bypas_imsi->usuario)}}</td>
                 <td>{{$bypas_imsi->imsi}}</td>
                 <td>{{$bypas_imsi->observaciones}}</td>
                 @include('layouts.partials.bypass.imsi.modal_editar')

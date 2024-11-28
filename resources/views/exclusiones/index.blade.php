@@ -37,7 +37,7 @@
                 <td>{{$exclusion->ticket}}</td>
                 <td>{{$exclusion->fechae}}</td>
                 <td>{{$exclusion->fechac}}</td>
-                <td>{{$exclusion->usuario}}</td>
+                <td>{{ucwords($exclusion->usuario)}}</td>
                 <td>{{$exclusion->celular}}</td>
                 <td>{{$exclusion->observaciones}}</td>
                 <td>{{$exclusion->tcliente}}</td>
