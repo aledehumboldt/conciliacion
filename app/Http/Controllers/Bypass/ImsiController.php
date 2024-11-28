@@ -35,8 +35,18 @@ class ImsiController extends Controller
             return $this->create();
         }
         
-        $datos['bypas_imsis'] = BypasImsi::orderBy('id','desc')->paginate();
-        return view('bypass.imsi.index', $datos);
+        $bypas_imsis = BypasImsi::select(
+            'bypas_imsis.id as id',
+            'bypas_imsis.ticket as ticket',
+            'bypas_imsis.fecha as fecha',
+            'users.nombre as usuario',
+            'bypas_imsis.imsi as imsi',
+            'bypas_imsis.observaciones as observaciones')
+        ->join('users', 'bypas_imsis.usuario', '=', 'users.usuario')
+        ->orderBy('id','desc')
+        ->paginate();
+
+        return view('bypass.imsi.index', compact('bypas_imsis'));
     }
 
     /**

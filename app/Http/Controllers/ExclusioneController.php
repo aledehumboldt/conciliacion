@@ -29,7 +29,18 @@ class ExclusioneController extends Controller
             return redirect()->route('exclusiones.create');
         }
 
-        $exclusiones = Exclusione::where('fechae', '>=', now()->format('Y-m-d H:i:s'))
+        $exclusiones = Exclusione::select(
+            'exclusiones.id as id',
+            'exclusiones.ticket as ticket',
+            'exclusiones.fechae as fechae',
+            'exclusiones.fechac as fechac',
+            'users.nombre as usuario',
+            'exclusiones.celular as celular',
+            'exclusiones.observaciones as observaciones',
+            'exclusiones.tecnologia as tecnologia',
+            'exclusiones.tcliente as tcliente')
+        ->join('users', 'exclusiones.usuario', '=', 'users.usuario')
+        ->where('fechae', '>=', now()->format('Y-m-d H:i:s'))
         ->orderBy('id', 'desc')->paginate();
         
         return view('exclusiones.index', compact('exclusiones'));

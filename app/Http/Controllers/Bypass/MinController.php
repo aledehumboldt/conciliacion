@@ -37,8 +37,19 @@ class MinController extends Controller
             return $this->create();
         }
 
-        $datos['bypas_mins'] = BypasMin::orderBy('id','desc')->paginate();
-        return view('bypass.min.index', $datos);
+        $bypas_mins = BypasMin::select(
+            'bypas_mins.id as id',
+            'bypas_mins.ticket as ticket',
+            'bypas_mins.fecha as fecha',
+            'users.nombre as usuario',
+            'bypas_mins.min as min',
+            'bypas_mins.observaciones as observaciones',
+            'bypas_mins.tcliente as tcliente')
+        ->join('users', 'bypas_mins.usuario', '=', 'users.usuario')
+        ->orderBy('id','desc')
+        ->paginate();
+        
+        return view('bypass.min.index', compact('bypas_mins'));
     }
 
     /**

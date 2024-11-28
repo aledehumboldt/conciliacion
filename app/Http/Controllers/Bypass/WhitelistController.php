@@ -35,8 +35,18 @@ class WhitelistController extends Controller
             return $this->create();
         }
 
-        $datos['bypas_mins'] = BypasWhitelist::orderBy('id','desc')->paginate();
-        return view('bypass.whitelist.index', $datos);
+        $bypas_mins = BypasWhitelist::select(
+            'bypas_whitelists.id as id',
+            'bypas_whitelists.ticket as ticket',
+            'bypas_whitelists.fecha as fecha',
+            'users.nombre as usuario',
+            'bypas_whitelists.min as min',
+            'bypas_whitelists.observaciones as observaciones')
+        ->join('users', 'bypas_whitelists.usuario', '=', 'users.usuario')
+        ->orderBy('id','desc')
+        ->paginate();
+
+        return view('bypass.whitelist.index', compact('bypas_mins'));
     }
 
     /**
