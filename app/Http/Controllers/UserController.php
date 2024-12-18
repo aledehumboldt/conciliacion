@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use App\Http\Requests\StoreUserRequest;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -27,10 +28,16 @@ class UserController extends Controller
             return back();
         }
 
-        $usuarios = User::where('estatus','<>', 'Suspendido')
-        ->orderBy('id','desc')->paginate();
+        $usuarios = User::select('users.id', 'users.nombre',
+        'users.usuario', 'r.nombre as creado_por',
+        'users.estatus', 'users.perfil')
+        ->join('users as r', function ($join) {
+            $join->on(DB::raw("REPLACE(r.usuario, '.', '')"), '=', DB::raw("REPLACE(users.creado_por, '.', '')"));
+        })
+        ->where('users.estatus','<>', 'Suspendido')
+        ->orderBy('users.id','desc')->paginate();
 
-        return view('usuarios.index', compact('usuarios'));
+        return view('usuarios.index', compact('usuarios')); 
     }
 
     /**

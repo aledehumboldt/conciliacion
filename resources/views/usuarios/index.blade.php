@@ -42,8 +42,8 @@
                 <td style="display: none">{{$usuario->id}}</td>
                 <td>{{$usuario->nombre}}</td>
                 <td>{{$usuario->usuario}}</td>
-                <td>{{$usuario->creado_por}}</td>
-                <td>{{$usuario->estatus}}</td>
+                <td>{{ucwords($usuario->creado_por)}}</td>
+                <td>{{ucwords($usuario->estatus)}}</td>
                 <td>
                     @if ($usuario->perfil == "SASM")
                         Soporte de Aplicaciones
